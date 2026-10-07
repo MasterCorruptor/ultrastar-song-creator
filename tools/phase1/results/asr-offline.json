@@ -1,0 +1,107 @@
+{
+  "generated_utc": "2026-10-07T18:19:12.919943+00:00",
+  "status": "passed",
+  "python": "3.12.10",
+  "model_id": "Systran/faster-whisper-tiny",
+  "revision": "d90ca5fe260221311c53c58e660288d3deb8d356",
+  "model_sha256": "dcb76c6586fc06cbdac6dd21f14cfd129cc4cdd9dce19bf4ffa62e59cbe6e6d1",
+  "model_card_license": "mit",
+  "model_credentials_sent": false,
+  "device": "cpu",
+  "compute_type": "int8",
+  "cpu_threads": 4,
+  "python_socket_connections_denied_during_inference": true,
+  "input_seconds": 6.9331875,
+  "setup_seconds": 0.16006989998277277,
+  "inference_seconds": 0.2707418999634683,
+  "real_time_factor": 0.0390501338617293,
+  "reference": "This is a local speech recognition test. The music editor will keep all analysis on this computer.",
+  "transcript": "This is a local speech recognition test. The music editor will keep all analysis on this computer.",
+  "word_count": 17,
+  "synthetic_speech_word_error_rate": 0.0,
+  "versions": {
+    "faster-whisper": "1.2.1",
+    "ctranslate2": "4.8.2",
+    "av": "19.0.1",
+    "huggingface-hub": "1.33.0"
+  },
+  "pyav_ffmpeg_libraries": {
+    "libavutil": {
+      "version": [
+        61,
+        1,
+        102
+      ],
+      "declared_license": "LGPL version 3 or later",
+      "gpl_enabled": false,
+      "nonfree_enabled": false
+    },
+    "libavcodec": {
+      "version": [
+        63,
+        1,
+        102
+      ],
+      "declared_license": "LGPL version 3 or later",
+      "gpl_enabled": false,
+      "nonfree_enabled": false
+    },
+    "libavformat": {
+      "version": [
+        63,
+        1,
+        102
+      ],
+      "declared_license": "LGPL version 3 or later",
+      "gpl_enabled": false,
+      "nonfree_enabled": false
+    },
+    "libavdevice": {
+      "version": [
+        63,
+        1,
+        102
+      ],
+      "declared_license": "LGPL version 3 or later",
+      "gpl_enabled": false,
+      "nonfree_enabled": false
+    },
+    "libavfilter": {
+      "version": [
+        12,
+        1,
+        102
+      ],
+      "declared_license": "LGPL version 3 or later",
+      "gpl_enabled": false,
+      "nonfree_enabled": false
+    },
+    "libswscale": {
+      "version": [
+        10,
+        1,
+        102
+      ],
+      "declared_license": "LGPL version 3 or later",
+      "gpl_enabled": false,
+      "nonfree_enabled": false
+    },
+    "libswresample": {
+      "version": [
+        7,
+        1,
+        102
+      ],
+      "declared_license": "LGPL version 3 or later",
+      "gpl_enabled": false,
+      "nonfree_enabled": false
+    }
+  },
+  "limitations": [
+    "English SAPI synthetic speech, not singing",
+    "no forced alignment of supplied lyrics",
+    "no acoustic word-boundary accuracy validation",
+    "no OS-level network isolation",
+    "tiny model only; no GPU or Linux execution"
+  ]
+}

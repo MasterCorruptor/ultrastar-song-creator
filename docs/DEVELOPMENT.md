@@ -1,6 +1,6 @@
 # Utviklings- og repositoryprinsipper
 
-Dette dokumentet beskriver det etablerte Fase 0-grunnlaget. Kravene følger [PROJECT_MASTER.md](PROJECT_MASTER.md), særlig §15–19. Ved uløste konflikter mellom lokale autoritative dokumenter skal berørt arbeid stoppes og rapporteres.
+Dette dokumentet beskriver det etablerte Fase 0-grunnlaget og gjeldende Fase 1-evaluering. Kravene følger [PROJECT_MASTER.md](PROJECT_MASTER.md), særlig §15–19. Ved uløste konflikter mellom lokale autoritative dokumenter skal berørt arbeid stoppes og rapporteres.
 
 ## Autoritet og synkronisering
 
@@ -43,7 +43,13 @@ Kontroller den påkrevde strukturen og at lokale dokumentlenker finnes. Bekreft 
 
 Før commit brukes `git diff --cached --check` på de nye grunnlagsfilene. Etter commit kontrolleres ren working tree, branch `main`, upstream `origin/main` og samsvar mellom lokal og ekstern commit. Masterspesifikasjonen beholdes uendret også dersom den inneholder eksisterende formatteringsavvik.
 
-Automatiske produkttester og build er ikke tilgjengelige i Fase 0. Teknologievaluering og produktkode krever senere arbeidsordrer.
+Automatiske produkttester og build er fortsatt ikke etablert. Brukerens arbeidsordre av 2026-10-07 åpner Fase 1-kartlegging og avgrensede PoC-er. Produktimplementering/Fase 2 krever en senere arbeidsordre.
+
+## Evaluering i Fase 1
+
+Se [auditten](PHASE1_AUDIT.md), [måleresultatene](PHASE1_RESULTS.md) og [reproduksjonsguiden](../tools/phase1/README.md). Python-venv, SDK, modeller og cacher ligger under `.agent-local/`. Varige probe-kilder, kandidat-/commitreferanser, låste evalueringsversjoner og utvalgte måleresultater versjonskontrolleres under `tools/phase1/`. Dette er ikke produksjonsdependencies eller valgte produktkommandoer.
+
+Foreslåtte ADR-er kan committes som reviewgrunnlag, men blir ikke aksepterte teknologivalg gjennom commit/push alene. Masteren §15.2 og §18.2 regulerer godkjenning. Åpne native playback-, sangbenchmark-, pakke-/Linux- og lisensporter skal lukkes før Fase 1 avsluttes.
 
 ## Foreløpig lisens
 

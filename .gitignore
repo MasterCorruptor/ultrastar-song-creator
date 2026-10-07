@@ -20,3 +20,8 @@ Desktop.ini
 
 # Bevart innsendt kildefil; autoritativ kopi er docs/PROJECT_MASTER.md
 /Master-plan-for-prosjektet-v0.5(1).txt
+
+# Regenererbare Fase 1-evalueringsartefakter
+/tools/phase1/TimelineProbe/bin/
+/tools/phase1/TimelineProbe/obj/
+/tools/phase1/__pycache__/

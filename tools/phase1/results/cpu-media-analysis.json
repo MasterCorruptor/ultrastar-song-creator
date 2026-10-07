@@ -1,0 +1,156 @@
+{
+  "generated_utc": "2026-10-07T18:04:38.362549+00:00",
+  "python": "3.12.10",
+  "platform": "Windows",
+  "scope": "Phase 1 feasibility; no production stack decision",
+  "core": {
+    "status": "passed",
+    "fixture_sha256": "ce11fcb48dd5319804aa00282bf20da882498ba266f88772a0530b51bbef55c1",
+    "input_seconds": 6,
+    "output_frames": 96000,
+    "output_rate": 16000,
+    "output_channels": 1,
+    "encode_seconds": 0.06988069997169077,
+    "decode_resample_seconds": 0.025405499967746437,
+    "ffprobe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "sample_rate": "16000",
+          "channels": 1
+        }
+      ],
+      "format": {
+        "duration": "6.000000"
+      }
+    },
+    "ffmpeg_version": "ffmpeg version N-121938-g2456a39581-20251130 Copyright (c) 2000-2025 the FFmpeg developers",
+    "ffmpeg_gpl_enabled": true,
+    "ffmpeg_nonfree_enabled": false,
+    "spec_checks": [
+      "quadrupled_BPM_ticks",
+      "GAP_milliseconds",
+      "pitch_relative_to_C4"
+    ]
+  },
+  "analysis": {
+    "status": "passed",
+    "swift_model_setup_seconds": 0.04263469995930791,
+    "cold_seconds": {
+      "pyin": 5.5805735000176355,
+      "swift-f0": 0.027829699916765094
+    },
+    "pitch": [
+      {
+        "detector": "pyin",
+        "fixture": "harmonic",
+        "duration_seconds": 5,
+        "warm_seconds": [
+          0.10188249999191612,
+          0.09872779995203018
+        ],
+        "warm_median_seconds": 0.10030514997197315,
+        "warm_real_time_factor": 0.02006102999439463,
+        "voiced_coverage": 1.0,
+        "median_abs_cents": 0.7902805954461313,
+        "p95_abs_cents": 0.7902805954461313,
+        "silence_false_voiced_fraction": 0.0,
+        "proposed_note_count": null,
+        "input_sha256": "c6f10870c0ddf6a2fcca760916657946bef7746bc90753f4f0499b95a418a366"
+      },
+      {
+        "detector": "swift-f0",
+        "fixture": "harmonic",
+        "duration_seconds": 5,
+        "warm_seconds": [
+          0.028678700095042586,
+          0.027278699912130833
+        ],
+        "warm_median_seconds": 0.02797870000358671,
+        "warm_real_time_factor": 0.005595740000717342,
+        "voiced_coverage": 1.0,
+        "median_abs_cents": 5.348541753609129,
+        "p95_abs_cents": 7.189130717245902,
+        "silence_false_voiced_fraction": 0.0,
+        "proposed_note_count": 3,
+        "input_sha256": "c6f10870c0ddf6a2fcca760916657946bef7746bc90753f4f0499b95a418a366"
+      },
+      {
+        "detector": "pyin",
+        "fixture": "vibrato",
+        "duration_seconds": 5,
+        "warm_seconds": [
+          0.10129549994599074,
+          0.10078750003594905
+        ],
+        "warm_median_seconds": 0.1010414999909699,
+        "warm_real_time_factor": 0.020208299998193978,
+        "voiced_coverage": 1.0,
+        "median_abs_cents": 10.258898117306424,
+        "p95_abs_cents": 18.678336990628658,
+        "silence_false_voiced_fraction": 0.0,
+        "proposed_note_count": null,
+        "input_sha256": "6e8c9e0e7c2e8b337b32a659d6d848bee008ab2c8fbf2d40fcbcd6ad05a8935f"
+      },
+      {
+        "detector": "swift-f0",
+        "fixture": "vibrato",
+        "duration_seconds": 5,
+        "warm_seconds": [
+          0.028113699983805418,
+          0.028320000041276217
+        ],
+        "warm_median_seconds": 0.028216850012540817,
+        "warm_real_time_factor": 0.005643370002508164,
+        "voiced_coverage": 1.0,
+        "median_abs_cents": 4.949519107811111,
+        "p95_abs_cents": 15.681678919165677,
+        "silence_false_voiced_fraction": 0.0,
+        "proposed_note_count": 3,
+        "input_sha256": "6e8c9e0e7c2e8b337b32a659d6d848bee008ab2c8fbf2d40fcbcd6ad05a8935f"
+      }
+    ],
+    "beat": [
+      {
+        "expected_bpm": 90,
+        "estimated_bpm": 89.28571428571429,
+        "relative_tempo_error": 0.007936507936507868,
+        "median_nearest_click_error_seconds": 0.022666666666667723,
+        "beat_count": 30,
+        "seconds": [
+          4.519673599977978,
+          0.0390669999178499
+        ]
+      },
+      {
+        "expected_bpm": 120,
+        "estimated_bpm": 120.96774193548387,
+        "relative_tempo_error": 0.008064516129032267,
+        "median_nearest_click_error_seconds": 0.017999999999999794,
+        "beat_count": 39,
+        "seconds": [
+          0.03791259997524321,
+          0.038100400008261204
+        ]
+      }
+    ],
+    "versions": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "librosa": "1.0.0",
+      "numba": "0.68.0",
+      "swift-f0": "0.3.0",
+      "onnxruntime": "1.30.0"
+    },
+    "limitations": [
+      "synthetic mono audio only",
+      "no separation/ASR/alignment inference",
+      "no actual singing accuracy benchmark",
+      "no GPU benchmark",
+      "no Linux run",
+      "two warm samples per detector, not statistically representative"
+    ]
+  },
+  "publication_note": "Local hardware profile, OS build and drivers omitted by project owner; raw evidence kept local."
+}

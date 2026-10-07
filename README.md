@@ -4,13 +4,15 @@ UltraStar Song Creator skal bli et desktopverktøy for opprettelse, automatisk g
 
 ## Status
 
-Repositoryet inneholder prosjektgrunnlaget for **Fase 0**. Produktfunksjonalitet er ikke implementert. Programmeringsspråk, GUI-rammeverk, produksjonsdependencies og build-/testverktøy er ikke valgt. Fase 1 krever en egen arbeidsordre.
+Fase 0 er etablert. **Fase 1 – Technology Feasibility & Reuse Audit er påbegynt**, med kandidatmatrise, lisensfunn, måleresultater og foreslåtte ADR-er. Native playback, ekte sangbenchmark, pakking og Linux-kontroll gjenstår. Produktfunksjonalitet og produksjonsstack er ikke implementert eller vedtatt.
 
 ## Prosjektkilder
 
 - [Master Project Specification v0.5](docs/PROJECT_MASTER.md) er prosjektets autoritative masterspesifikasjon.
 - [AGENTS.md](AGENTS.md) er et kort kart for agenter og utviklere.
 - [Utviklings- og repositoryprinsipper](docs/DEVELOPMENT.md) beskriver autoritet, brancher, verifikasjon og miljø.
+- [Fase 1-audit](docs/PHASE1_AUDIT.md), [kandidat-/lisensmatrise](docs/DEPENDENCIES.md) og [måleresultater](docs/PHASE1_RESULTS.md) dokumenterer evalueringen.
+- [Evalueringsverktøy](tools/phase1/README.md) inneholder reproduksjonskommandoer; disse velger ingen produksjonsstack.
 
 ## Struktur
 
@@ -23,6 +25,9 @@ Repositoryet inneholder prosjektgrunnlaget for **Fase 0**. Produktfunksjonalitet
 ├── docs/
 │   ├── PROJECT_MASTER.md
 │   ├── DEVELOPMENT.md
+│   ├── PHASE1_AUDIT.md
+│   ├── PHASE1_RESULTS.md
+│   ├── DEPENDENCIES.md
 │   ├── decisions/
 │   └── exec-plans/
 │       ├── active/
@@ -32,11 +37,11 @@ Repositoryet inneholder prosjektgrunnlaget for **Fase 0**. Produktfunksjonalitet
 └── tools/
 ```
 
-De foreløpig tomme mappene har minimale `.gitkeep`-filer. Lokal agenttilstand hører hjemme i den Git-ignorerte mappen `.agent-local/`.
+Mapper som fortsatt er tomme har minimale `.gitkeep`-filer. Lokal agenttilstand hører hjemme i den Git-ignorerte mappen `.agent-local/`.
 
 ## Kom i gang
 
-Fase 0 krever Git for å lese historikk og arbeide med repositoryet. GitHub CLI er brukt til den første GitHub-opprettelsen, men er ikke et krav for applikasjonen eller senere utvikling. Det finnes ennå ingen applikasjon å kjøre og ingen etablerte build- eller automatiske testkommandoer. Se [DEVELOPMENT.md](docs/DEVELOPMENT.md) for dagens verifikasjon og prinsippene som gjelder når stacken velges.
+Fase 0 krever Git for å lese historikk og arbeide med repositoryet. GitHub CLI er brukt til den første GitHub-opprettelsen, men er ikke et krav for applikasjonen eller senere utvikling. Det finnes ennå ingen produktapplikasjon eller etablerte produkt-build-/testkommandoer. Fase 1-prøvene kjøres separat som beskrevet i [tools/phase1/README.md](tools/phase1/README.md). Se [DEVELOPMENT.md](docs/DEVELOPMENT.md) for arbeidsflyt og miljøprinsipper.
 
 ## Lisens
 

@@ -1,0 +1,58 @@
+{
+  "generated_utc": "2026-10-07T18:01:27.355007+00:00",
+  "providers": [
+    {
+      "provider": "lrclib",
+      "url": "https://lrclib.net/api/search?artist_name=Rick+Astley&track_name=Never+Gonna+Give+You+Up",
+      "credentials_sent": false,
+      "status": 200,
+      "content_type": "application/json",
+      "result_count": 20,
+      "keys": [
+        "albumName",
+        "artistName",
+        "duration",
+        "hasWordSync",
+        "id",
+        "instrumental",
+        "lyricsfile",
+        "name",
+        "plainLyrics",
+        "syncedLyrics",
+        "trackName"
+      ],
+      "with_synced_lyrics": 20,
+      "with_plain_lyrics": 20,
+      "elapsed_seconds": 0.15413829998578876
+    },
+    {
+      "provider": "lyrics.ovh",
+      "url": "https://api.lyrics.ovh/v1/Rick%20Astley/Never%20Gonna%20Give%20You%20Up",
+      "credentials_sent": false,
+      "status": "error",
+      "error": "<urlopen error timed out>",
+      "elapsed_seconds": 30.043964099953882
+    },
+    {
+      "provider": "musicbrainz",
+      "url": "https://musicbrainz.org/ws/2/recording/?query=recording%3A%22Never+Gonna+Give+You+Up%22+AND+artist%3A%22Rick+Astley%22&fmt=json&limit=3",
+      "credentials_sent": false,
+      "status": 200,
+      "content_type": "application/json",
+      "keys": [
+        "count",
+        "created",
+        "offset",
+        "recordings"
+      ],
+      "total_count": 73,
+      "returned_count": 3,
+      "elapsed_seconds": 0.1868350999429822
+    }
+  ],
+  "limitations": [
+    "single request per provider",
+    "snapshot, not an availability guarantee",
+    "lyrics were not retained"
+  ]
+}
