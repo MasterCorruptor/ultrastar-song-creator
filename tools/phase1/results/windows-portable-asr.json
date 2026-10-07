@@ -1,0 +1,105 @@
+{
+  "status": "research probe passed; bundle rejected for proposed distribution",
+  "runtime": "CPython 3.12.10 embeddable",
+  "dependency_check": "passed",
+  "faster_whisper": "1.2.1",
+  "pyav": "18.0.0",
+  "network_connections_denied": true,
+  "records": [
+    {
+      "track": "Lower_Loveday_-_Is_It_Right_",
+      "duration_seconds": 29,
+      "cpu_inference_seconds": 0.4238215000368655,
+      "words": 50
+    },
+    {
+      "track": "Rxbyn_-_Bad_Side",
+      "duration_seconds": 29,
+      "cpu_inference_seconds": 0.3368088999995962,
+      "words": 50
+    },
+    {
+      "track": "Cortez_-_Feel__Stripped_",
+      "duration_seconds": 29,
+      "cpu_inference_seconds": 0.37177510000765324,
+      "words": 48
+    }
+  ],
+  "pyav_native": {
+    "libavutil": {
+      "license": "LGPL version 3 or later",
+      "version": [
+        60,
+        26,
+        102
+      ],
+      "gpl": false,
+      "nonfree": false
+    },
+    "libavcodec": {
+      "license": "LGPL version 3 or later",
+      "version": [
+        62,
+        28,
+        102
+      ],
+      "gpl": false,
+      "nonfree": false
+    },
+    "libavformat": {
+      "license": "LGPL version 3 or later",
+      "version": [
+        62,
+        12,
+        102
+      ],
+      "gpl": false,
+      "nonfree": false
+    },
+    "libavdevice": {
+      "license": "LGPL version 3 or later",
+      "version": [
+        62,
+        3,
+        102
+      ],
+      "gpl": false,
+      "nonfree": false
+    },
+    "libavfilter": {
+      "license": "LGPL version 3 or later",
+      "version": [
+        11,
+        14,
+        102
+      ],
+      "gpl": false,
+      "nonfree": false
+    },
+    "libswscale": {
+      "license": "LGPL version 3 or later",
+      "version": [
+        9,
+        5,
+        102
+      ],
+      "gpl": false,
+      "nonfree": false
+    },
+    "libswresample": {
+      "license": "LGPL version 3 or later",
+      "version": [
+        6,
+        3,
+        102
+      ],
+      "gpl": false,
+      "nonfree": false
+    }
+  },
+  "limitations": [
+    "same Windows host, not clean VM",
+    "CPU tiny only; no transcripts stored"
+  ],
+  "license_audit_correction": "reported LGPL does not clear bundled x264/x265; vendor patch changes GPL detection; exclude stock PyAV"
+}

@@ -1,0 +1,1808 @@
+{
+  "dataset": "vocadito v3",
+  "doi": "10.5281/zenodo.5578807",
+  "license": "CC-BY-4.0",
+  "records": [
+    {
+      "track_id": "1",
+      "language": "Tagalog",
+      "detector": "swift-f0",
+      "duration_seconds": 33.21225,
+      "seconds": 0.2194935999577865,
+      "real_time_factor": 0.006608814517468299,
+      "raw_pitch_accuracy": 0.972809667673716,
+      "voicing_recall": 0.9803625377643505,
+      "voicing_false_alarm": 0.04660452729693742,
+      "median_cents_when_both_voiced": 3.265041520128322,
+      "proposed_notes": 61,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.819672131147541,
+          "onset_pitch_recall": 0.847457627118644,
+          "onset_pitch_f1": 0.8333333333333333,
+          "reference_notes": 59
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8688524590163934,
+          "onset_pitch_recall": 0.828125,
+          "onset_pitch_f1": 0.8480000000000001,
+          "reference_notes": 64
+        }
+      }
+    },
+    {
+      "track_id": "1",
+      "language": "Tagalog",
+      "detector": "pyin",
+      "duration_seconds": 33.21225,
+      "seconds": 1.4708689999533817,
+      "real_time_factor": 0.04428694231656638,
+      "raw_pitch_accuracy": 0.9335347432024169,
+      "voicing_recall": 0.9977341389728097,
+      "voicing_false_alarm": 0.35106382978723405,
+      "median_cents_when_both_voiced": 7.791759503194059,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "2",
+      "language": "Spanish",
+      "detector": "swift-f0",
+      "duration_seconds": 35.2080625,
+      "seconds": 0.24580469995271415,
+      "real_time_factor": 0.006981488968690458,
+      "raw_pitch_accuracy": 0.9547920433996383,
+      "voicing_recall": 0.9734779987944545,
+      "voicing_false_alarm": 0.09981515711645102,
+      "median_cents_when_both_voiced": 3.6060570062448556,
+      "proposed_notes": 48,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8125,
+          "onset_pitch_recall": 0.5131578947368421,
+          "onset_pitch_f1": 0.6290322580645162,
+          "reference_notes": 76
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7291666666666666,
+          "onset_pitch_recall": 0.5555555555555556,
+          "onset_pitch_f1": 0.6306306306306306,
+          "reference_notes": 63
+        }
+      }
+    },
+    {
+      "track_id": "2",
+      "language": "Spanish",
+      "detector": "pyin",
+      "duration_seconds": 35.2080625,
+      "seconds": 0.8765243000816554,
+      "real_time_factor": 0.02489555624032579,
+      "raw_pitch_accuracy": 0.9656419529837251,
+      "voicing_recall": 0.9969861362266426,
+      "voicing_false_alarm": 0.35608856088560886,
+      "median_cents_when_both_voiced": 5.951823020557095,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "3",
+      "language": "Tagalog",
+      "detector": "swift-f0",
+      "duration_seconds": 21.736375,
+      "seconds": 0.13828740001190454,
+      "real_time_factor": 0.006362026787442917,
+      "raw_pitch_accuracy": 0.9686323713927227,
+      "voicing_recall": 0.9799247176913425,
+      "voicing_false_alarm": 0.05169340463458111,
+      "median_cents_when_both_voiced": 3.9952636486960795,
+      "proposed_notes": 45,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9555555555555556,
+          "onset_pitch_recall": 0.8431372549019608,
+          "onset_pitch_f1": 0.8958333333333333,
+          "reference_notes": 51
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8,
+          "onset_pitch_recall": 0.782608695652174,
+          "onset_pitch_f1": 0.7912087912087912,
+          "reference_notes": 46
+        }
+      }
+    },
+    {
+      "track_id": "3",
+      "language": "Tagalog",
+      "detector": "pyin",
+      "duration_seconds": 21.736375,
+      "seconds": 0.5733797999564558,
+      "real_time_factor": 0.026378814312711104,
+      "raw_pitch_accuracy": 0.9196988707653702,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.40747330960854095,
+      "median_cents_when_both_voiced": 9.015090591241856,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "4",
+      "language": "Catalan/Valencian",
+      "detector": "swift-f0",
+      "duration_seconds": 18.4560625,
+      "seconds": 0.11470819998066872,
+      "real_time_factor": 0.006215204352535581,
+      "raw_pitch_accuracy": 0.947603121516165,
+      "voicing_recall": 0.9832775919732442,
+      "voicing_false_alarm": 0.1015625,
+      "median_cents_when_both_voiced": 5.834488792826058,
+      "proposed_notes": 45,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8444444444444444,
+          "onset_pitch_recall": 0.5507246376811594,
+          "onset_pitch_f1": 0.6666666666666667,
+          "reference_notes": 69
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7333333333333333,
+          "onset_pitch_recall": 0.6470588235294118,
+          "onset_pitch_f1": 0.6875,
+          "reference_notes": 51
+        }
+      }
+    },
+    {
+      "track_id": "4",
+      "language": "Catalan/Valencian",
+      "detector": "pyin",
+      "duration_seconds": 18.4560625,
+      "seconds": 0.44435370003338903,
+      "real_time_factor": 0.02407630013354089,
+      "raw_pitch_accuracy": 0.8483835005574136,
+      "voicing_recall": 0.9955406911928651,
+      "voicing_false_alarm": 0.556420233463035,
+      "median_cents_when_both_voiced": 12.796536831199912,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "5",
+      "language": "Catalan/Valencian",
+      "detector": "swift-f0",
+      "duration_seconds": 23.232,
+      "seconds": 0.14747550000902265,
+      "real_time_factor": 0.006347946797909033,
+      "raw_pitch_accuracy": 0.9733079122974261,
+      "voicing_recall": 0.9809342230695901,
+      "voicing_false_alarm": 0.09181141439205956,
+      "median_cents_when_both_voiced": 4.022869556240364,
+      "proposed_notes": 61,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8524590163934426,
+          "onset_pitch_recall": 0.5416666666666666,
+          "onset_pitch_f1": 0.6624203821656051,
+          "reference_notes": 96
+        },
+        "A2": {
+          "onset_pitch_precision": 0.639344262295082,
+          "onset_pitch_recall": 0.5416666666666666,
+          "onset_pitch_f1": 0.5864661654135339,
+          "reference_notes": 72
+        }
+      }
+    },
+    {
+      "track_id": "5",
+      "language": "Catalan/Valencian",
+      "detector": "pyin",
+      "duration_seconds": 23.232,
+      "seconds": 0.5627348999259993,
+      "real_time_factor": 0.024222404438963473,
+      "raw_pitch_accuracy": 0.8789323164918971,
+      "voicing_recall": 0.990467111534795,
+      "voicing_false_alarm": 0.6485148514851485,
+      "median_cents_when_both_voiced": 11.02856618001129,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "6",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 23.832,
+      "seconds": 0.14548930001910776,
+      "real_time_factor": 0.006104787681231443,
+      "raw_pitch_accuracy": 0.9814453125,
+      "voicing_recall": 0.9912109375,
+      "voicing_false_alarm": 0.08602150537634409,
+      "median_cents_when_both_voiced": 3.8759810969593067,
+      "proposed_notes": 48,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.875,
+          "onset_pitch_recall": 0.5753424657534246,
+          "onset_pitch_f1": 0.6942148760330579,
+          "reference_notes": 73
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8125,
+          "onset_pitch_recall": 0.78,
+          "onset_pitch_f1": 0.7959183673469388,
+          "reference_notes": 50
+        }
+      }
+    },
+    {
+      "track_id": "6",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 23.832,
+      "seconds": 0.59007609996479,
+      "real_time_factor": 0.02475982292567934,
+      "raw_pitch_accuracy": 0.814453125,
+      "voicing_recall": 0.9970703125,
+      "voicing_false_alarm": 0.37124463519313305,
+      "median_cents_when_both_voiced": 12.639319795485507,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "6",
+      "task": "singing-asr",
+      "reference_word_count": 37,
+      "word_error_rate": 0.08108108108108109,
+      "seconds": 0.33808540005702525,
+      "word_timestamps_count": 36,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "7",
+      "language": "Tagalog",
+      "detector": "swift-f0",
+      "duration_seconds": 19.467375,
+      "seconds": 0.12249799992423505,
+      "real_time_factor": 0.006292476511303401,
+      "raw_pitch_accuracy": 0.9710344827586207,
+      "voicing_recall": 0.9806896551724138,
+      "voicing_false_alarm": 0.12830957230142567,
+      "median_cents_when_both_voiced": 3.54548866445145,
+      "proposed_notes": 43,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8837209302325582,
+          "onset_pitch_recall": 0.8085106382978723,
+          "onset_pitch_f1": 0.8444444444444444,
+          "reference_notes": 47
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7209302325581395,
+          "onset_pitch_recall": 0.7380952380952381,
+          "onset_pitch_f1": 0.7294117647058824,
+          "reference_notes": 42
+        }
+      }
+    },
+    {
+      "track_id": "7",
+      "language": "Tagalog",
+      "detector": "pyin",
+      "duration_seconds": 19.467375,
+      "seconds": 0.4914597000461072,
+      "real_time_factor": 0.025245298867777866,
+      "raw_pitch_accuracy": 0.9351724137931035,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.5386178861788617,
+      "median_cents_when_both_voiced": 12.718624682704839,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "8",
+      "language": "Tagalog",
+      "detector": "swift-f0",
+      "duration_seconds": 17.0416875,
+      "seconds": 0.10605830000713468,
+      "real_time_factor": 0.006223462318924384,
+      "raw_pitch_accuracy": 0.9768270944741533,
+      "voicing_recall": 0.9857397504456328,
+      "voicing_false_alarm": 0.03968253968253968,
+      "median_cents_when_both_voiced": 4.26631055000223,
+      "proposed_notes": 36,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9722222222222222,
+          "onset_pitch_recall": 0.875,
+          "onset_pitch_f1": 0.9210526315789473,
+          "reference_notes": 40
+        },
+        "A2": {
+          "onset_pitch_precision": 1.0,
+          "onset_pitch_recall": 0.972972972972973,
+          "onset_pitch_f1": 0.9863013698630138,
+          "reference_notes": 37
+        }
+      }
+    },
+    {
+      "track_id": "8",
+      "language": "Tagalog",
+      "detector": "pyin",
+      "duration_seconds": 17.0416875,
+      "seconds": 0.4107870999723673,
+      "real_time_factor": 0.02410483703403007,
+      "raw_pitch_accuracy": 0.9572192513368984,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.4158415841584158,
+      "median_cents_when_both_voiced": 7.206596229033626,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "9",
+      "language": "Tagalog",
+      "detector": "swift-f0",
+      "duration_seconds": 20.3750625,
+      "seconds": 0.12046980008017272,
+      "real_time_factor": 0.0059126100879529925,
+      "raw_pitch_accuracy": 0.9374167776298269,
+      "voicing_recall": 0.9653794940079894,
+      "voicing_false_alarm": 0.07662835249042145,
+      "median_cents_when_both_voiced": 4.01758106374554,
+      "proposed_notes": 48,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.875,
+          "onset_pitch_recall": 0.6774193548387096,
+          "onset_pitch_f1": 0.7636363636363636,
+          "reference_notes": 62
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7916666666666666,
+          "onset_pitch_recall": 0.6440677966101694,
+          "onset_pitch_f1": 0.7102803738317757,
+          "reference_notes": 59
+        }
+      }
+    },
+    {
+      "track_id": "9",
+      "language": "Tagalog",
+      "detector": "pyin",
+      "duration_seconds": 20.3750625,
+      "seconds": 0.46394260006491095,
+      "real_time_factor": 0.022770119113249884,
+      "raw_pitch_accuracy": 0.844207723035952,
+      "voicing_recall": 0.9986684420772304,
+      "voicing_false_alarm": 0.4435946462715105,
+      "median_cents_when_both_voiced": 13.757620381105314,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "10",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 9.097875,
+      "seconds": 0.05148379993624985,
+      "real_time_factor": 0.005658881874750956,
+      "raw_pitch_accuracy": 0.9624413145539906,
+      "voicing_recall": 0.9859154929577465,
+      "voicing_false_alarm": 0.44366197183098594,
+      "median_cents_when_both_voiced": 6.0227527927852,
+      "proposed_notes": 28,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.75,
+          "onset_pitch_recall": 0.6,
+          "onset_pitch_f1": 0.6666666666666665,
+          "reference_notes": 35
+        },
+        "A2": {
+          "onset_pitch_precision": 0.5714285714285714,
+          "onset_pitch_recall": 0.5925925925925926,
+          "onset_pitch_f1": 0.5818181818181818,
+          "reference_notes": 27
+        }
+      }
+    },
+    {
+      "track_id": "10",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 9.097875,
+      "seconds": 0.21754450001753867,
+      "real_time_factor": 0.023911572759302436,
+      "raw_pitch_accuracy": 0.8497652582159625,
+      "voicing_recall": 0.9812206572769953,
+      "voicing_false_alarm": 0.7202797202797203,
+      "median_cents_when_both_voiced": 15.44290342202516,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "10",
+      "task": "singing-asr",
+      "reference_word_count": 22,
+      "word_error_rate": 0.5454545454545454,
+      "seconds": 0.2515792999183759,
+      "word_timestamps_count": 18,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "11",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 12.984,
+      "seconds": 0.07527790009044111,
+      "real_time_factor": 0.005797743383428921,
+      "raw_pitch_accuracy": 0.9773095623987034,
+      "voicing_recall": 0.9918962722852512,
+      "voicing_false_alarm": 0.11855670103092783,
+      "median_cents_when_both_voiced": 3.0702503558205065,
+      "proposed_notes": 27,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9259259259259259,
+          "onset_pitch_recall": 0.6756756756756757,
+          "onset_pitch_f1": 0.7812500000000001,
+          "reference_notes": 37
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7407407407407407,
+          "onset_pitch_recall": 0.6666666666666666,
+          "onset_pitch_f1": 0.7017543859649122,
+          "reference_notes": 30
+        }
+      }
+    },
+    {
+      "track_id": "11",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 12.984,
+      "seconds": 0.3275444000028074,
+      "real_time_factor": 0.02522677141118356,
+      "raw_pitch_accuracy": 0.8849270664505673,
+      "voicing_recall": 0.9902755267423015,
+      "voicing_false_alarm": 0.4717948717948718,
+      "median_cents_when_both_voiced": 10.694616826370215,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "11",
+      "task": "singing-asr",
+      "reference_word_count": 19,
+      "word_error_rate": 0.3157894736842105,
+      "seconds": 0.30053710006177425,
+      "word_timestamps_count": 22,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "12",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 15.1535,
+      "seconds": 0.09589789994060993,
+      "real_time_factor": 0.006328432371439597,
+      "raw_pitch_accuracy": 0.9957325746799431,
+      "voicing_recall": 0.9971550497866287,
+      "voicing_false_alarm": 0.09016393442622951,
+      "median_cents_when_both_voiced": 2.6381844484741546,
+      "proposed_notes": 27,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8518518518518519,
+          "onset_pitch_recall": 0.8518518518518519,
+          "onset_pitch_f1": 0.8518518518518519,
+          "reference_notes": 27
+        },
+        "A2": {
+          "onset_pitch_precision": 0.6296296296296297,
+          "onset_pitch_recall": 0.7083333333333334,
+          "onset_pitch_f1": 0.6666666666666667,
+          "reference_notes": 24
+        }
+      }
+    },
+    {
+      "track_id": "12",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 15.1535,
+      "seconds": 0.4733538000145927,
+      "real_time_factor": 0.03123725872007079,
+      "raw_pitch_accuracy": 0.9672830725462305,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.5428571428571428,
+      "median_cents_when_both_voiced": 6.466055758207113,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "12",
+      "task": "singing-asr",
+      "reference_word_count": 21,
+      "word_error_rate": 0.0,
+      "seconds": 0.2709143999963999,
+      "word_timestamps_count": 21,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "13",
+      "language": "French",
+      "detector": "swift-f0",
+      "duration_seconds": 22.36,
+      "seconds": 0.14548159996047616,
+      "real_time_factor": 0.006506332735262798,
+      "raw_pitch_accuracy": 0.9781420765027322,
+      "voicing_recall": 0.9956284153005465,
+      "voicing_false_alarm": 0.13278008298755187,
+      "median_cents_when_both_voiced": 5.743288429181455,
+      "proposed_notes": 51,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8235294117647058,
+          "onset_pitch_recall": 0.5675675675675675,
+          "onset_pitch_f1": 0.6719999999999999,
+          "reference_notes": 74
+        },
+        "A2": {
+          "onset_pitch_precision": 0.6666666666666666,
+          "onset_pitch_recall": 0.6538461538461539,
+          "onset_pitch_f1": 0.6601941747572816,
+          "reference_notes": 52
+        }
+      }
+    },
+    {
+      "track_id": "13",
+      "language": "French",
+      "detector": "pyin",
+      "duration_seconds": 22.36,
+      "seconds": 0.4992070000153035,
+      "real_time_factor": 0.02232589445506724,
+      "raw_pitch_accuracy": 0.8131147540983606,
+      "voicing_recall": 0.9868852459016394,
+      "voicing_false_alarm": 0.494824016563147,
+      "median_cents_when_both_voiced": 19.798545031591186,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "14",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 12.197875,
+      "seconds": 0.06498390005435795,
+      "real_time_factor": 0.005327477126496045,
+      "raw_pitch_accuracy": 0.9436893203883495,
+      "voicing_recall": 0.9533980582524272,
+      "voicing_false_alarm": 0.12550607287449392,
+      "median_cents_when_both_voiced": 4.455938458064894,
+      "proposed_notes": 29,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8275862068965517,
+          "onset_pitch_recall": 0.7058823529411765,
+          "onset_pitch_f1": 0.7619047619047619,
+          "reference_notes": 34
+        },
+        "A2": {
+          "onset_pitch_precision": 0.5862068965517241,
+          "onset_pitch_recall": 0.6538461538461539,
+          "onset_pitch_f1": 0.6181818181818182,
+          "reference_notes": 26
+        }
+      }
+    },
+    {
+      "track_id": "14",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 12.197875,
+      "seconds": 0.2843455000547692,
+      "real_time_factor": 0.023311068530770255,
+      "raw_pitch_accuracy": 0.8524271844660194,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.5967741935483871,
+      "median_cents_when_both_voiced": 13.488532067649496,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "14",
+      "task": "singing-asr",
+      "reference_word_count": 16,
+      "word_error_rate": 0.125,
+      "seconds": 0.2553717999253422,
+      "word_timestamps_count": 17,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "15",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 20.28,
+      "seconds": 0.1291185999289155,
+      "real_time_factor": 0.006366794868289718,
+      "raw_pitch_accuracy": 0.9810201660735468,
+      "voicing_recall": 0.9905100830367735,
+      "voicing_false_alarm": 0.18160377358490565,
+      "median_cents_when_both_voiced": 3.5449855346110763,
+      "proposed_notes": 41,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8536585365853658,
+          "onset_pitch_recall": 0.7446808510638298,
+          "onset_pitch_f1": 0.7954545454545454,
+          "reference_notes": 47
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7073170731707317,
+          "onset_pitch_recall": 0.7073170731707317,
+          "onset_pitch_f1": 0.7073170731707317,
+          "reference_notes": 41
+        }
+      }
+    },
+    {
+      "track_id": "15",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 20.28,
+      "seconds": 0.4968475999776274,
+      "real_time_factor": 0.024499388559054605,
+      "raw_pitch_accuracy": 0.8469750889679716,
+      "voicing_recall": 0.9727164887307236,
+      "voicing_false_alarm": 0.4894117647058824,
+      "median_cents_when_both_voiced": 11.541273818952746,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "15",
+      "task": "singing-asr",
+      "reference_word_count": 30,
+      "word_error_rate": 0.0,
+      "seconds": 0.2923597999615595,
+      "word_timestamps_count": 28,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "16",
+      "language": "Tagalog",
+      "detector": "swift-f0",
+      "duration_seconds": 17.2771875,
+      "seconds": 0.1028085999423638,
+      "real_time_factor": 0.0059505402683372975,
+      "raw_pitch_accuracy": 0.9602941176470589,
+      "voicing_recall": 0.9720588235294118,
+      "voicing_false_alarm": 0.11278195488721804,
+      "median_cents_when_both_voiced": 3.4139635564184037,
+      "proposed_notes": 44,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9318181818181818,
+          "onset_pitch_recall": 0.8723404255319149,
+          "onset_pitch_f1": 0.9010989010989012,
+          "reference_notes": 47
+        },
+        "A2": {
+          "onset_pitch_precision": 0.5681818181818182,
+          "onset_pitch_recall": 0.6944444444444444,
+          "onset_pitch_f1": 0.625,
+          "reference_notes": 36
+        }
+      }
+    },
+    {
+      "track_id": "16",
+      "language": "Tagalog",
+      "detector": "pyin",
+      "duration_seconds": 17.2771875,
+      "seconds": 0.40831379999872297,
+      "real_time_factor": 0.023633117369289587,
+      "raw_pitch_accuracy": 0.8941176470588236,
+      "voicing_recall": 0.9941176470588236,
+      "voicing_false_alarm": 0.555,
+      "median_cents_when_both_voiced": 10.407384332703247,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "17",
+      "language": "none",
+      "detector": "swift-f0",
+      "duration_seconds": 23.5680625,
+      "seconds": 0.1425931000849232,
+      "real_time_factor": 0.006050268242666244,
+      "raw_pitch_accuracy": 0.9766277128547579,
+      "voicing_recall": 0.986644407345576,
+      "voicing_false_alarm": 0.02909090909090909,
+      "median_cents_when_both_voiced": 3.624411235041161,
+      "proposed_notes": 46,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8913043478260869,
+          "onset_pitch_recall": 0.7592592592592593,
+          "onset_pitch_f1": 0.8200000000000001,
+          "reference_notes": 54
+        },
+        "A2": {
+          "onset_pitch_precision": 0.5869565217391305,
+          "onset_pitch_recall": 0.574468085106383,
+          "onset_pitch_f1": 0.5806451612903226,
+          "reference_notes": 47
+        }
+      }
+    },
+    {
+      "track_id": "17",
+      "language": "none",
+      "detector": "pyin",
+      "duration_seconds": 23.5680625,
+      "seconds": 0.5677768000168726,
+      "real_time_factor": 0.024090940866134947,
+      "raw_pitch_accuracy": 0.8714524207011686,
+      "voicing_recall": 0.9724540901502504,
+      "voicing_false_alarm": 0.3115942028985507,
+      "median_cents_when_both_voiced": 9.979418465218592,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "18",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 29.138875,
+      "seconds": 0.19150279997847974,
+      "real_time_factor": 0.0065720725312312074,
+      "raw_pitch_accuracy": 0.9790897908979089,
+      "voicing_recall": 0.992619926199262,
+      "voicing_false_alarm": 0.031746031746031744,
+      "median_cents_when_both_voiced": 3.861342043427257,
+      "proposed_notes": 43,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.7674418604651163,
+          "onset_pitch_recall": 0.7333333333333333,
+          "onset_pitch_f1": 0.7499999999999999,
+          "reference_notes": 45
+        },
+        "A2": {
+          "onset_pitch_precision": 0.627906976744186,
+          "onset_pitch_recall": 0.7941176470588235,
+          "onset_pitch_f1": 0.7012987012987012,
+          "reference_notes": 34
+        }
+      }
+    },
+    {
+      "track_id": "18",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 29.138875,
+      "seconds": 0.6645205999957398,
+      "real_time_factor": 0.0228052936153417,
+      "raw_pitch_accuracy": 0.8892988929889298,
+      "voicing_recall": 0.998769987699877,
+      "voicing_false_alarm": 0.6689791873141725,
+      "median_cents_when_both_voiced": 10.415091429607205,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "18",
+      "task": "singing-asr",
+      "reference_word_count": 26,
+      "word_error_rate": 0.15384615384615385,
+      "seconds": 0.32191379996947944,
+      "word_timestamps_count": 26,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "19",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 30.4935,
+      "seconds": 0.200756200007163,
+      "real_time_factor": 0.006583573548696049,
+      "raw_pitch_accuracy": 0.9827160493827161,
+      "voicing_recall": 0.9917695473251029,
+      "voicing_false_alarm": 0.16666666666666666,
+      "median_cents_when_both_voiced": 3.7839493779654867,
+      "proposed_notes": 70,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.7285714285714285,
+          "onset_pitch_recall": 0.6986301369863014,
+          "onset_pitch_f1": 0.7132867132867133,
+          "reference_notes": 73
+        },
+        "A2": {
+          "onset_pitch_precision": 0.6571428571428571,
+          "onset_pitch_recall": 0.7540983606557377,
+          "onset_pitch_f1": 0.7022900763358779,
+          "reference_notes": 61
+        }
+      }
+    },
+    {
+      "track_id": "19",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 30.4935,
+      "seconds": 0.7132588000968099,
+      "real_time_factor": 0.02339051929417121,
+      "raw_pitch_accuracy": 0.8378600823045268,
+      "voicing_recall": 0.988477366255144,
+      "voicing_false_alarm": 0.4934876989869754,
+      "median_cents_when_both_voiced": 16.380575769376662,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "19",
+      "task": "singing-asr",
+      "reference_word_count": 63,
+      "word_error_rate": 0.031746031746031744,
+      "seconds": 0.6516954000107944,
+      "word_timestamps_count": 57,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "20",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 8.7135,
+      "seconds": 0.05549749999772757,
+      "real_time_factor": 0.0063691398402166265,
+      "raw_pitch_accuracy": 0.9501466275659824,
+      "voicing_recall": 0.9941348973607038,
+      "voicing_false_alarm": 0.09359605911330049,
+      "median_cents_when_both_voiced": 4.990617620913358,
+      "proposed_notes": 28,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8214285714285714,
+          "onset_pitch_recall": 0.7419354838709677,
+          "onset_pitch_f1": 0.7796610169491526,
+          "reference_notes": 31
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7857142857142857,
+          "onset_pitch_recall": 0.7333333333333333,
+          "onset_pitch_f1": 0.7586206896551724,
+          "reference_notes": 30
+        }
+      }
+    },
+    {
+      "track_id": "20",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 8.7135,
+      "seconds": 0.2494436000706628,
+      "real_time_factor": 0.028627256564028553,
+      "raw_pitch_accuracy": 0.8357771260997068,
+      "voicing_recall": 0.9912023460410557,
+      "voicing_false_alarm": 0.5,
+      "median_cents_when_both_voiced": 15.570338294879452,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "20",
+      "task": "singing-asr",
+      "reference_word_count": 23,
+      "word_error_rate": 0.391304347826087,
+      "seconds": 0.2932188000995666,
+      "word_timestamps_count": 20,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "21",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 22.0,
+      "seconds": 0.13915149995591491,
+      "real_time_factor": 0.006325068179814314,
+      "raw_pitch_accuracy": 0.9823584029712163,
+      "voicing_recall": 0.9953574744661096,
+      "voicing_false_alarm": 0.2483221476510067,
+      "median_cents_when_both_voiced": 5.102992283258763,
+      "proposed_notes": 62,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9032258064516129,
+          "onset_pitch_recall": 0.5773195876288659,
+          "onset_pitch_f1": 0.7044025157232705,
+          "reference_notes": 97
+        },
+        "A2": {
+          "onset_pitch_precision": 0.6129032258064516,
+          "onset_pitch_recall": 0.6129032258064516,
+          "onset_pitch_f1": 0.6129032258064516,
+          "reference_notes": 62
+        }
+      }
+    },
+    {
+      "track_id": "21",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 22.0,
+      "seconds": 0.49506519990973175,
+      "real_time_factor": 0.022502963632260533,
+      "raw_pitch_accuracy": 0.8319405756731661,
+      "voicing_recall": 0.9452181987000928,
+      "voicing_false_alarm": 0.6923076923076923,
+      "median_cents_when_both_voiced": 13.246554727590805,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "21",
+      "task": "singing-asr",
+      "reference_word_count": 49,
+      "word_error_rate": 0.30612244897959184,
+      "seconds": 1.1225165999494493,
+      "word_timestamps_count": 52,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "22",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 18.3335,
+      "seconds": 0.11322920001111925,
+      "real_time_factor": 0.006176082036224356,
+      "raw_pitch_accuracy": 0.9403669724770642,
+      "voicing_recall": 0.9510703363914373,
+      "voicing_false_alarm": 0.038696537678207736,
+      "median_cents_when_both_voiced": 3.563462602962952,
+      "proposed_notes": 35,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8571428571428571,
+          "onset_pitch_recall": 0.6666666666666666,
+          "onset_pitch_f1": 0.75,
+          "reference_notes": 45
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8857142857142857,
+          "onset_pitch_recall": 0.6595744680851063,
+          "onset_pitch_f1": 0.7560975609756098,
+          "reference_notes": 47
+        }
+      }
+    },
+    {
+      "track_id": "22",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 18.3335,
+      "seconds": 0.44173000007867813,
+      "real_time_factor": 0.02409414460297696,
+      "raw_pitch_accuracy": 0.9051987767584098,
+      "voicing_recall": 0.9923547400611621,
+      "voicing_false_alarm": 0.4532520325203252,
+      "median_cents_when_both_voiced": 10.468372156061756,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "22",
+      "task": "singing-asr",
+      "reference_word_count": 38,
+      "word_error_rate": 0.02631578947368421,
+      "seconds": 0.8638191999634728,
+      "word_timestamps_count": 38,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "23",
+      "language": "French",
+      "detector": "swift-f0",
+      "duration_seconds": 18.037875,
+      "seconds": 0.10506099998019636,
+      "real_time_factor": 0.005824466572708612,
+      "raw_pitch_accuracy": 0.9456066945606695,
+      "voicing_recall": 0.9609483960948396,
+      "voicing_false_alarm": 0.06097560975609756,
+      "median_cents_when_both_voiced": 6.344174463688605,
+      "proposed_notes": 43,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9534883720930233,
+          "onset_pitch_recall": 0.7735849056603774,
+          "onset_pitch_f1": 0.8541666666666667,
+          "reference_notes": 53
+        },
+        "A2": {
+          "onset_pitch_precision": 0.9534883720930233,
+          "onset_pitch_recall": 0.803921568627451,
+          "onset_pitch_f1": 0.8723404255319148,
+          "reference_notes": 51
+        }
+      }
+    },
+    {
+      "track_id": "23",
+      "language": "French",
+      "detector": "pyin",
+      "duration_seconds": 18.037875,
+      "seconds": 0.4197139999596402,
+      "real_time_factor": 0.023268483674470535,
+      "raw_pitch_accuracy": 0.8730822873082287,
+      "voicing_recall": 0.99581589958159,
+      "voicing_false_alarm": 0.5425790754257908,
+      "median_cents_when_both_voiced": 12.97421917736538,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "24",
+      "language": "French",
+      "detector": "swift-f0",
+      "duration_seconds": 14.757875,
+      "seconds": 0.08126970008015633,
+      "real_time_factor": 0.0055068700663311165,
+      "raw_pitch_accuracy": 0.9714765100671141,
+      "voicing_recall": 0.9815436241610739,
+      "voicing_false_alarm": 0.2116564417177914,
+      "median_cents_when_both_voiced": 3.1440227315343,
+      "proposed_notes": 28,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 1.0,
+          "onset_pitch_recall": 0.717948717948718,
+          "onset_pitch_f1": 0.835820895522388,
+          "reference_notes": 39
+        },
+        "A2": {
+          "onset_pitch_precision": 1.0,
+          "onset_pitch_recall": 0.9333333333333333,
+          "onset_pitch_f1": 0.9655172413793104,
+          "reference_notes": 30
+        }
+      }
+    },
+    {
+      "track_id": "24",
+      "language": "French",
+      "detector": "pyin",
+      "duration_seconds": 14.757875,
+      "seconds": 0.3438353999517858,
+      "real_time_factor": 0.023298435577736348,
+      "raw_pitch_accuracy": 0.9295302013422819,
+      "voicing_recall": 0.9932885906040269,
+      "voicing_false_alarm": 0.7370030581039755,
+      "median_cents_when_both_voiced": 7.5848409242802965,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "25",
+      "language": "French",
+      "detector": "swift-f0",
+      "duration_seconds": 14.657875,
+      "seconds": 0.07838389999233186,
+      "real_time_factor": 0.005347562316661308,
+      "raw_pitch_accuracy": 0.9854604200323102,
+      "voicing_recall": 0.9919224555735057,
+      "voicing_false_alarm": 0.16835016835016836,
+      "median_cents_when_both_voiced": 3.54020977087269,
+      "proposed_notes": 36,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.75,
+          "onset_pitch_recall": 0.7105263157894737,
+          "onset_pitch_f1": 0.7297297297297298,
+          "reference_notes": 38
+        },
+        "A2": {
+          "onset_pitch_precision": 0.6111111111111112,
+          "onset_pitch_recall": 0.6666666666666666,
+          "onset_pitch_f1": 0.6376811594202899,
+          "reference_notes": 33
+        }
+      }
+    },
+    {
+      "track_id": "25",
+      "language": "French",
+      "detector": "pyin",
+      "duration_seconds": 14.657875,
+      "seconds": 0.34370740002486855,
+      "real_time_factor": 0.023448651323938054,
+      "raw_pitch_accuracy": 0.9402261712439418,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.5503355704697986,
+      "median_cents_when_both_voiced": 9.343179499363359,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "26",
+      "language": "French",
+      "detector": "swift-f0",
+      "duration_seconds": 12.857875,
+      "seconds": 0.06782380002550781,
+      "real_time_factor": 0.005274884071085448,
+      "raw_pitch_accuracy": 0.9530956848030019,
+      "voicing_recall": 0.9812382739212008,
+      "voicing_false_alarm": 0.22592592592592592,
+      "median_cents_when_both_voiced": 7.2870301895900305,
+      "proposed_notes": 48,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9166666666666666,
+          "onset_pitch_recall": 0.6027397260273972,
+          "onset_pitch_f1": 0.7272727272727272,
+          "reference_notes": 73
+        },
+        "A2": {
+          "onset_pitch_precision": 0.875,
+          "onset_pitch_recall": 0.75,
+          "onset_pitch_f1": 0.8076923076923077,
+          "reference_notes": 56
+        }
+      }
+    },
+    {
+      "track_id": "26",
+      "language": "French",
+      "detector": "pyin",
+      "duration_seconds": 12.857875,
+      "seconds": 0.28192169999238104,
+      "real_time_factor": 0.021925994769149727,
+      "raw_pitch_accuracy": 0.7673545966228893,
+      "voicing_recall": 0.9793621013133208,
+      "voicing_false_alarm": 0.7453874538745388,
+      "median_cents_when_both_voiced": 19.072485159640465,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "27",
+      "language": "French",
+      "detector": "swift-f0",
+      "duration_seconds": 14.017875,
+      "seconds": 0.07463119993917644,
+      "real_time_factor": 0.005324002385466872,
+      "raw_pitch_accuracy": 0.9638783269961977,
+      "voicing_recall": 0.9771863117870723,
+      "voicing_false_alarm": 0.04285714285714286,
+      "median_cents_when_both_voiced": 3.799658413407869,
+      "proposed_notes": 27,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9259259259259259,
+          "onset_pitch_recall": 0.7352941176470589,
+          "onset_pitch_f1": 0.819672131147541,
+          "reference_notes": 34
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8888888888888888,
+          "onset_pitch_recall": 0.8571428571428571,
+          "onset_pitch_f1": 0.8727272727272727,
+          "reference_notes": 28
+        }
+      }
+    },
+    {
+      "track_id": "27",
+      "language": "French",
+      "detector": "pyin",
+      "duration_seconds": 14.017875,
+      "seconds": 0.3196443000342697,
+      "real_time_factor": 0.022802621655155984,
+      "raw_pitch_accuracy": 0.9220532319391636,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.5669515669515669,
+      "median_cents_when_both_voiced": 9.958201455656077,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "28",
+      "language": "French",
+      "detector": "swift-f0",
+      "duration_seconds": 12.897875,
+      "seconds": 0.06916890002321452,
+      "real_time_factor": 0.005362813643581947,
+      "raw_pitch_accuracy": 0.9636363636363636,
+      "voicing_recall": 0.9745454545454545,
+      "voicing_false_alarm": 0.08203125,
+      "median_cents_when_both_voiced": 4.801040341955817,
+      "proposed_notes": 34,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8823529411764706,
+          "onset_pitch_recall": 0.6818181818181818,
+          "onset_pitch_f1": 0.7692307692307693,
+          "reference_notes": 44
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8823529411764706,
+          "onset_pitch_recall": 0.6976744186046512,
+          "onset_pitch_f1": 0.7792207792207793,
+          "reference_notes": 43
+        }
+      }
+    },
+    {
+      "track_id": "28",
+      "language": "French",
+      "detector": "pyin",
+      "duration_seconds": 12.897875,
+      "seconds": 0.2810362000018358,
+      "real_time_factor": 0.021789341267599183,
+      "raw_pitch_accuracy": 0.8727272727272727,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.5214007782101168,
+      "median_cents_when_both_voiced": 15.349033237866406,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "29",
+      "language": "French",
+      "detector": "swift-f0",
+      "duration_seconds": 14.8935,
+      "seconds": 0.08105999999679625,
+      "real_time_factor": 0.005442642763406604,
+      "raw_pitch_accuracy": 0.9848484848484849,
+      "voicing_recall": 0.9924242424242424,
+      "voicing_false_alarm": 0.25925925925925924,
+      "median_cents_when_both_voiced": 3.1313150042064275,
+      "proposed_notes": 30,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9333333333333333,
+          "onset_pitch_recall": 0.7777777777777778,
+          "onset_pitch_f1": 0.8484848484848485,
+          "reference_notes": 36
+        },
+        "A2": {
+          "onset_pitch_precision": 0.9333333333333333,
+          "onset_pitch_recall": 0.875,
+          "onset_pitch_f1": 0.9032258064516129,
+          "reference_notes": 32
+        }
+      }
+    },
+    {
+      "track_id": "29",
+      "language": "French",
+      "detector": "pyin",
+      "duration_seconds": 14.8935,
+      "seconds": 0.3253563999896869,
+      "real_time_factor": 0.021845529928471275,
+      "raw_pitch_accuracy": 0.956060606060606,
+      "voicing_recall": 0.990909090909091,
+      "voicing_false_alarm": 0.6863468634686347,
+      "median_cents_when_both_voiced": 6.023360176503987,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "30",
+      "language": "French+English",
+      "detector": "swift-f0",
+      "duration_seconds": 13.017875,
+      "seconds": 0.07024479995016009,
+      "real_time_factor": 0.005396026613418863,
+      "raw_pitch_accuracy": 0.9522727272727273,
+      "voicing_recall": 0.9772727272727273,
+      "voicing_false_alarm": 0.1903485254691689,
+      "median_cents_when_both_voiced": 5.483693451220482,
+      "proposed_notes": 43,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.7674418604651163,
+          "onset_pitch_recall": 0.5689655172413793,
+          "onset_pitch_f1": 0.6534653465346535,
+          "reference_notes": 58
+        },
+        "A2": {
+          "onset_pitch_precision": 0.6511627906976745,
+          "onset_pitch_recall": 0.7,
+          "onset_pitch_f1": 0.674698795180723,
+          "reference_notes": 40
+        }
+      }
+    },
+    {
+      "track_id": "30",
+      "language": "French+English",
+      "detector": "pyin",
+      "duration_seconds": 13.017875,
+      "seconds": 0.31363929994404316,
+      "real_time_factor": 0.024092972158977034,
+      "raw_pitch_accuracy": 0.7596371882086168,
+      "voicing_recall": 0.981859410430839,
+      "voicing_false_alarm": 0.6112600536193029,
+      "median_cents_when_both_voiced": 20.565080830944172,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "31",
+      "language": "French",
+      "detector": "swift-f0",
+      "duration_seconds": 14.0335,
+      "seconds": 0.07504939998034388,
+      "real_time_factor": 0.005347874726927985,
+      "raw_pitch_accuracy": 0.939453125,
+      "voicing_recall": 0.953125,
+      "voicing_false_alarm": 0.10684931506849316,
+      "median_cents_when_both_voiced": 4.563177478797339,
+      "proposed_notes": 37,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.918918918918919,
+          "onset_pitch_recall": 0.723404255319149,
+          "onset_pitch_f1": 0.8095238095238095,
+          "reference_notes": 47
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8108108108108109,
+          "onset_pitch_recall": 0.7894736842105263,
+          "onset_pitch_f1": 0.8,
+          "reference_notes": 38
+        }
+      }
+    },
+    {
+      "track_id": "31",
+      "language": "French",
+      "detector": "pyin",
+      "duration_seconds": 14.0335,
+      "seconds": 0.3258944000117481,
+      "real_time_factor": 0.023222603057807965,
+      "raw_pitch_accuracy": 0.896484375,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.6038251366120219,
+      "median_cents_when_both_voiced": 12.048877659625283,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "32",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 25.0335,
+      "seconds": 0.14906159997917712,
+      "real_time_factor": 0.005954484989281448,
+      "raw_pitch_accuracy": 0.9688473520249221,
+      "voicing_recall": 0.9792315680166147,
+      "voicing_false_alarm": 0.1064891846921797,
+      "median_cents_when_both_voiced": 4.373083204329372,
+      "proposed_notes": 46,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9347826086956522,
+          "onset_pitch_recall": 0.7543859649122807,
+          "onset_pitch_f1": 0.8349514563106796,
+          "reference_notes": 57
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8260869565217391,
+          "onset_pitch_recall": 0.6909090909090909,
+          "onset_pitch_f1": 0.7524752475247525,
+          "reference_notes": 55
+        }
+      }
+    },
+    {
+      "track_id": "32",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 25.0335,
+      "seconds": 0.5654661000007764,
+      "real_time_factor": 0.022588375576758198,
+      "raw_pitch_accuracy": 0.9511941848390446,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.5,
+      "median_cents_when_both_voiced": 11.203457687603494,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "32",
+      "task": "singing-asr",
+      "reference_word_count": 50,
+      "word_error_rate": 0.32,
+      "seconds": 1.2877037998987362,
+      "word_timestamps_count": 51,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "33",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 30.0,
+      "seconds": 0.18471619999036193,
+      "real_time_factor": 0.006157206666345397,
+      "raw_pitch_accuracy": 0.9664209664209664,
+      "voicing_recall": 0.9901719901719902,
+      "voicing_false_alarm": 0.1345565749235474,
+      "median_cents_when_both_voiced": 5.8561890415438365,
+      "proposed_notes": 65,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8461538461538461,
+          "onset_pitch_recall": 0.6875,
+          "onset_pitch_f1": 0.7586206896551724,
+          "reference_notes": 80
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7692307692307693,
+          "onset_pitch_recall": 0.5747126436781609,
+          "onset_pitch_f1": 0.6578947368421053,
+          "reference_notes": 87
+        }
+      }
+    },
+    {
+      "track_id": "33",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 30.0,
+      "seconds": 0.6776014999486506,
+      "real_time_factor": 0.02258671666495502,
+      "raw_pitch_accuracy": 0.8206388206388207,
+      "voicing_recall": 0.9811629811629812,
+      "voicing_false_alarm": 0.6687022900763359,
+      "median_cents_when_both_voiced": 18.937169251165848,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "33",
+      "task": "singing-asr",
+      "reference_word_count": 79,
+      "word_error_rate": 0.21518987341772153,
+      "seconds": 0.6741124999243766,
+      "word_timestamps_count": 79,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "34",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 24.8535,
+      "seconds": 0.14734180003870279,
+      "real_time_factor": 0.005928412498791027,
+      "raw_pitch_accuracy": 0.9780123131046614,
+      "voicing_recall": 0.9920844327176781,
+      "voicing_false_alarm": 0.2620192307692308,
+      "median_cents_when_both_voiced": 4.729450468782801,
+      "proposed_notes": 56,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8928571428571429,
+          "onset_pitch_recall": 0.5617977528089888,
+          "onset_pitch_f1": 0.6896551724137933,
+          "reference_notes": 89
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8214285714285714,
+          "onset_pitch_recall": 0.4842105263157895,
+          "onset_pitch_f1": 0.609271523178808,
+          "reference_notes": 95
+        }
+      }
+    },
+    {
+      "track_id": "34",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 24.8535,
+      "seconds": 0.5525741999736056,
+      "real_time_factor": 0.022233254872497055,
+      "raw_pitch_accuracy": 0.8478452066842568,
+      "voicing_recall": 0.9648197009674582,
+      "voicing_false_alarm": 0.6115107913669064,
+      "median_cents_when_both_voiced": 13.28949706918706,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "34",
+      "task": "singing-asr",
+      "reference_word_count": 82,
+      "word_error_rate": 1.2439024390243902,
+      "seconds": 3.5531311000231653,
+      "word_timestamps_count": 122,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "35",
+      "language": "Mandarin",
+      "detector": "swift-f0",
+      "duration_seconds": 13.8,
+      "seconds": 0.08739110000897199,
+      "real_time_factor": 0.006332688406447245,
+      "raw_pitch_accuracy": 0.9866888519134775,
+      "voicing_recall": 0.9966722129783694,
+      "voicing_false_alarm": 0.22988505747126436,
+      "median_cents_when_both_voiced": 4.7145546167887975,
+      "proposed_notes": 33,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8181818181818182,
+          "onset_pitch_recall": 0.7297297297297297,
+          "onset_pitch_f1": 0.7714285714285715,
+          "reference_notes": 37
+        },
+        "A2": {
+          "onset_pitch_precision": 0.6363636363636364,
+          "onset_pitch_recall": 0.8076923076923077,
+          "onset_pitch_f1": 0.7118644067796609,
+          "reference_notes": 26
+        }
+      }
+    },
+    {
+      "track_id": "35",
+      "language": "Mandarin",
+      "detector": "pyin",
+      "duration_seconds": 13.8,
+      "seconds": 0.3409514999948442,
+      "real_time_factor": 0.024706630434409,
+      "raw_pitch_accuracy": 0.8851913477537438,
+      "voicing_recall": 0.9966722129783694,
+      "voicing_false_alarm": 0.7099236641221374,
+      "median_cents_when_both_voiced": 14.494377598418396,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "36",
+      "language": "Mandarin",
+      "detector": "swift-f0",
+      "duration_seconds": 23.277875,
+      "seconds": 0.1400775999063626,
+      "real_time_factor": 0.006017628323305395,
+      "raw_pitch_accuracy": 0.9894179894179894,
+      "voicing_recall": 0.9968253968253968,
+      "voicing_false_alarm": 0.2220039292730845,
+      "median_cents_when_both_voiced": 4.317232765858187,
+      "proposed_notes": 58,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8620689655172413,
+          "onset_pitch_recall": 0.746268656716418,
+          "onset_pitch_f1": 0.7999999999999999,
+          "reference_notes": 67
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7413793103448276,
+          "onset_pitch_recall": 0.7962962962962963,
+          "onset_pitch_f1": 0.7678571428571429,
+          "reference_notes": 54
+        }
+      }
+    },
+    {
+      "track_id": "36",
+      "language": "Mandarin",
+      "detector": "pyin",
+      "duration_seconds": 23.277875,
+      "seconds": 0.5217905000317842,
+      "real_time_factor": 0.022415727381978987,
+      "raw_pitch_accuracy": 0.9174603174603174,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.8019607843137255,
+      "median_cents_when_both_voiced": 13.82868695342219,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "37",
+      "language": "Hawaiian+English",
+      "detector": "swift-f0",
+      "duration_seconds": 38.7360625,
+      "seconds": 0.22976180003024638,
+      "real_time_factor": 0.00593147019086533,
+      "raw_pitch_accuracy": 0.9967532467532467,
+      "voicing_recall": 0.9967532467532467,
+      "voicing_false_alarm": 0.07678883071553229,
+      "median_cents_when_both_voiced": 2.974470533798696,
+      "proposed_notes": 44,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8863636363636364,
+          "onset_pitch_recall": 0.7647058823529411,
+          "onset_pitch_f1": 0.8210526315789474,
+          "reference_notes": 51
+        },
+        "A2": {
+          "onset_pitch_precision": 0.7954545454545454,
+          "onset_pitch_recall": 0.8536585365853658,
+          "onset_pitch_f1": 0.8235294117647058,
+          "reference_notes": 41
+        }
+      }
+    },
+    {
+      "track_id": "37",
+      "language": "Hawaiian+English",
+      "detector": "pyin",
+      "duration_seconds": 38.7360625,
+      "seconds": 0.8857289999723434,
+      "real_time_factor": 0.022865746872758257,
+      "raw_pitch_accuracy": 0.9810606060606061,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.5940766550522648,
+      "median_cents_when_both_voiced": 6.531933647493812,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "38",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 27.84,
+      "seconds": 0.17425409995485097,
+      "real_time_factor": 0.0062591271535506815,
+      "raw_pitch_accuracy": 0.9774520856820744,
+      "voicing_recall": 0.9830890642615558,
+      "voicing_false_alarm": 0.10316529894490035,
+      "median_cents_when_both_voiced": 4.219441504729388,
+      "proposed_notes": 61,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9180327868852459,
+          "onset_pitch_recall": 0.717948717948718,
+          "onset_pitch_f1": 0.8057553956834532,
+          "reference_notes": 78
+        },
+        "A2": {
+          "onset_pitch_precision": 0.9016393442622951,
+          "onset_pitch_recall": 0.859375,
+          "onset_pitch_f1": 0.88,
+          "reference_notes": 64
+        }
+      }
+    },
+    {
+      "track_id": "38",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 27.84,
+      "seconds": 0.6592830000445247,
+      "real_time_factor": 0.023681142242978615,
+      "raw_pitch_accuracy": 0.8917700112739572,
+      "voicing_recall": 1.0,
+      "voicing_false_alarm": 0.4894613583138173,
+      "median_cents_when_both_voiced": 15.74297605195866,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "38",
+      "task": "singing-asr",
+      "reference_word_count": 56,
+      "word_error_rate": 0.23214285714285715,
+      "seconds": 0.41899509995710105,
+      "word_timestamps_count": 55,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "39",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 31.68,
+      "seconds": 0.20295780000742525,
+      "real_time_factor": 0.006406496212355595,
+      "raw_pitch_accuracy": 0.9937062937062937,
+      "voicing_recall": 0.9979020979020979,
+      "voicing_false_alarm": 0.17454545454545456,
+      "median_cents_when_both_voiced": 3.157308053802622,
+      "proposed_notes": 73,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.8904109589041096,
+          "onset_pitch_recall": 0.7065217391304348,
+          "onset_pitch_f1": 0.7878787878787878,
+          "reference_notes": 92
+        },
+        "A2": {
+          "onset_pitch_precision": 0.6712328767123288,
+          "onset_pitch_recall": 0.7424242424242424,
+          "onset_pitch_f1": 0.7050359712230216,
+          "reference_notes": 66
+        }
+      }
+    },
+    {
+      "track_id": "39",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 31.68,
+      "seconds": 0.7324673000257462,
+      "real_time_factor": 0.023120811238186434,
+      "raw_pitch_accuracy": 0.9167832167832168,
+      "voicing_recall": 0.9986013986013986,
+      "voicing_false_alarm": 0.5444646098003629,
+      "median_cents_when_both_voiced": 11.349435233161227,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "39",
+      "task": "singing-asr",
+      "reference_word_count": 51,
+      "word_error_rate": 0.13725490196078433,
+      "seconds": 0.6429304000921547,
+      "word_timestamps_count": 50,
+      "lyrics_or_transcript_stored": false
+    },
+    {
+      "track_id": "40",
+      "language": "English",
+      "detector": "swift-f0",
+      "duration_seconds": 18.577875,
+      "seconds": 0.11972999991849065,
+      "real_time_factor": 0.006444762919251564,
+      "raw_pitch_accuracy": 0.9811320754716981,
+      "voicing_recall": 0.9932614555256065,
+      "voicing_false_alarm": 0.1766109785202864,
+      "median_cents_when_both_voiced": 3.1574927846006444,
+      "proposed_notes": 39,
+      "note_scores": {
+        "A1": {
+          "onset_pitch_precision": 0.9230769230769231,
+          "onset_pitch_recall": 0.8,
+          "onset_pitch_f1": 0.8571428571428571,
+          "reference_notes": 45
+        },
+        "A2": {
+          "onset_pitch_precision": 0.8461538461538461,
+          "onset_pitch_recall": 0.9166666666666666,
+          "onset_pitch_f1": 0.8799999999999999,
+          "reference_notes": 36
+        }
+      }
+    },
+    {
+      "track_id": "40",
+      "language": "English",
+      "detector": "pyin",
+      "duration_seconds": 18.577875,
+      "seconds": 0.44308290001936257,
+      "real_time_factor": 0.02385003128825889,
+      "raw_pitch_accuracy": 0.9285714285714286,
+      "voicing_recall": 0.9892183288409704,
+      "voicing_false_alarm": 0.5928571428571429,
+      "median_cents_when_both_voiced": 10.960937712517516,
+      "proposed_notes": null,
+      "note_scores": {}
+    },
+    {
+      "track_id": "40",
+      "task": "singing-asr",
+      "reference_word_count": 30,
+      "word_error_rate": 0.16666666666666666,
+      "seconds": 0.3309751999331638,
+      "word_timestamps_count": 30,
+      "lyrics_or_transcript_stored": false
+    }
+  ],
+  "limitations": [
+    "solo singing, no accompaniment",
+    "nearest annotation-frame sampling",
+    "no word-time ground truth",
+    "tiny ASR CPU only",
+    "macro aggregation; not duration-weighted",
+    "note matching one-to-one, onset 50 ms and pitch 50 cents, no offset requirement"
+  ]
+}

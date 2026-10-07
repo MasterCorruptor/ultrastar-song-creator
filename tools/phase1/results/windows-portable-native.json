@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "platform": "Windows",
+  "mode": "native device + native Avalonia window",
+  "pause_stable": true,
+  "seek_requested_frame": 24000,
+  "loop_wraps": 6,
+  "native_clock_frames": 436320,
+  "native_render_count": 498,
+  "ui_tick_median_ms": 16.701600000000205,
+  "ui_tick_p95_ms": 26.34059999999927,
+  "render_p95_ms": 9.6336,
+  "python_worker_messages": 4,
+  "worker_kind": "Open-Unmix CPU four threads",
+  "worker_terminated": true,
+  "cancellation_ms": 85.2053,
+  "real_annotated_notes": true,
+  "waveform": true,
+  "placeholder_word_labels": true,
+  "zoom_during_playback": true,
+  "limitations": [
+    "one default device",
+    "no acoustic loopback latency measurement",
+    "small proof, not full editor"
+  ]
+}

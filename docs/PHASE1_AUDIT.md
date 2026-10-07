@@ -1,5 +1,6 @@
 # Fase 1 – Technology Feasibility & Reuse Audit
 
+**Oppdatert beslutningsgrunnlag:** [avsluttende anbefaling](PHASE1_RECOMMENDATION.md), [native/sang/Windows/Linux-resultater](PHASE1_CONTINUATION_RESULTS.md) og [artefaktlisenser](PHASE1_LICENSES.md). Første kandidatrunde nedenfor er historisk; gjeldende baseline er miniaudio, SwiftF0, Open-Unmix umxhq, whisper.cpp, direkte CTranslate2-alignment og egen minimal FFmpeg. Stock PyAV og uklare separasjonsweights holdes utenfor standardpakken. Ingen ADR er akseptert.
 Dato: 2026-10-07. **Status: første kartlegging og avgrensede feasibility-prøver gjennomført; Fase 1 er fortsatt aktiv.** Produksjonsstacken er ikke valgt. Forslagene nedenfor trenger prosjekteierens vurdering, og de åpne kontrollpunktene må løses før Fase 1 lukkes.
 
 ## Konklusjon for neste arbeidstrinn
@@ -26,9 +27,9 @@ Masterspesifikasjon v0.5 er uendret. `src/` inneholder ingen produksjonskode. Ev
 | Metadata/cover | MusicBrainz core-data; valgfri CAA-adapter | Recording/release-match, ratebegrensning og separat coverrettighet |
 | Word-/line-/plain-lyrics | AMLL når ID/versjon matcher; LRCLIB; lyrics.ovh best effort; manuell fallback | Word-level-format/dekning, faktisk innspillingsoffset og providerfeil |
 | Dekoding/resampling | FFmpeg som isolert verktøy | Valgt LGPL-build/codecsett og eksplisitt distribusjonsløsning |
-| Vokalseparasjon | Demucs 4.1.0-fork som baseline; audio-separator som alternativ | HTDemucs-weightvilkår, CPU/GPU-tid, vokallekkasje og moderne dependencykombinasjon |
-| Lokal ASR | faster-whisper CPU int8; whisper.cpp reserve | Sangbenchmark, større modellvalg, PyAV/native vilkår og minne |
-| Alignment av korrekt tekst | WhisperX alignment med ungated språkmodell, uten diarization | Singing-benchmark, norsk/språkdekning, egne weightvilkår og fallback når ord ikke alignes |
+| Vokalseparasjon | Open-Unmix umxhq som målt MIT-baseline; Demucs/audio-separator kun betingede alternativer | Kvalitet på referansestems og senere GPU-profil; uklare weights innføres ikke |
+| Lokal ASR | whisper.cpp som native CPU-sidecar; CTranslate2 som analysereferanse | Større sangmodell; stock PyAV-bundle avvist etter source-audit |
+| Alignment av korrekt tekst | Direkte CTranslate2-API på PCM med MIT-hjelpere | Målte tail-feil, norsk, repetert tekst og manuell fallback; ingen PyAV-dependency |
 | BPM/beat/onset | librosa 1.0.0 baseline | Halvt/dobbelt tempo, rubato og musikalsk beatfase på ekte sanger |
 | Pitch/referansekurve | SwiftF0 0.3.0 + pYIN-kontroll; torchcrepe/RMVPE alternativer | Vibrato, oktavfeil, stille stemmer, separasjonsartefakter og faktisk vokalconfidence |
 | Note-/stavelses-/fraseforslag | Gjenbruk grunnsegmentering; eget domene-/alignmentlag | Samme pitch med flere stavelser, melisma, repetert tekst og ordbokvilkår |
@@ -71,12 +72,8 @@ En tidslinje kontrollert av en audio-sampleclock og et reversibelt kommandosyste
 
 Lisensusikkerhet blokkerer **innføring/distribusjon av den berørte komponenten**, ikke hele kartleggingen. Ingen slike kandidater er installert i produktet. FFmpeg GPL-binary er brukt som allerede installert evalueringsverktøy, ikke kopiert til prosjektets release.
 
-## Neste avgrensede Fase 1-del
+## Beslutningsport etter videre Fase 1-prøver
 
-1. Vurder ADR-0001-retningen sammen med prosjekteieren; behold status «foreslått» inntil vedtak. Masteren §15.2 legger vesentlige teknologivalg til prosjekteieren.
-2. Gjør en native playback/timeline-PoC med loop/play-from-selection, avspillingens tidskilde og respons mens worker kjører. Ingen full editor eller Fase 2-domeneimplementering.
-3. Velg et lite, rettighetsavklart sangkorpus med ground truth. Sammenlign separation, F0, alignment og BPM på CPU/GPU. Mål faktisk kvalitet, ressursbruk og avbrudd.
-4. Løs modell-/artefaktlisenser og et minimalt Windows-pakke-/Linux-smoke-oppsett for de kandidatene som består.
-5. Oppdater anbefalingene fra målinger, innhent nødvendige vedtak og registrer aksepterte ADR-er før Fase 1 avsluttes. Først deretter kan en separat Fase 2-ordre utformes.
+Native playback, timeline med tung worker, annotert sangbenchmark, lisensavgrenset CPU-profil, portable Windows-prøve og faktisk Linux-smoke er nå utført med dokumenterte avgrensninger. Se de gjeldende rapportene ovenfor.
 
-Denne auditten lukker ikke åpne poster ved antakelse. Sluttmålet for Fase 1 er dokumenterte, godkjente teknologivalg med tilstrekkelig praktisk og lisensmessig grunnlag.
+Prosjekteieren skal vurdere hovedstack, playback, lisensprofil, modellbaseline og automatikkens kvalitetsbegrensninger. Fase 1 står åpen til disse vedtakene og eventuell bestilling av mer research er registrert. Fase 2 krever eksplisitt godkjenning; publishing/merge av research er ikke et teknologivedtak.

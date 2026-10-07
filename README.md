@@ -4,7 +4,7 @@ UltraStar Song Creator skal bli et desktopverktøy for opprettelse, automatisk g
 
 ## Status
 
-Fase 0 er etablert. **Fase 1 – Technology Feasibility & Reuse Audit er påbegynt**, med kandidatmatrise, lisensfunn, måleresultater og foreslåtte ADR-er. Native playback, ekte sangbenchmark, pakking og Linux-kontroll gjenstår. Produktfunksjonalitet og produksjonsstack er ikke implementert eller vedtatt.
+Fase 0 er etablert. **Fase 1 har nå kandidatmatrise, native playback/timeline-prøver, ekte sangbenchmark, portable Windows-prøve, Linux smoke og en avsluttende teknologianbefaling.** Prosjekteierens beslutning om stack og faseavslutning gjenstår. Produktfunksjonalitet og produksjonsstack er ikke implementert eller vedtatt; Fase 2 er ikke startet.
 
 ## Prosjektkilder
 
@@ -12,6 +12,7 @@ Fase 0 er etablert. **Fase 1 – Technology Feasibility & Reuse Audit er påbegy
 - [AGENTS.md](AGENTS.md) er et kort kart for agenter og utviklere.
 - [Utviklings- og repositoryprinsipper](docs/DEVELOPMENT.md) beskriver autoritet, brancher, verifikasjon og miljø.
 - [Fase 1-audit](docs/PHASE1_AUDIT.md), [kandidat-/lisensmatrise](docs/DEPENDENCIES.md) og [måleresultater](docs/PHASE1_RESULTS.md) dokumenterer evalueringen.
+- [Teknologianbefaling og beslutningspunkter](docs/PHASE1_RECOMMENDATION.md), [videre målinger](docs/PHASE1_CONTINUATION_RESULTS.md) og [artefaktlisenser](docs/PHASE1_LICENSES.md) er gjeldende beslutningsgrunnlag.
 - [Evalueringsverktøy](tools/phase1/README.md) inneholder reproduksjonskommandoer; disse velger ingen produksjonsstack.
 
 ## Struktur

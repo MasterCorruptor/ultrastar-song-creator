@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "code": "openunmix 1.3.0 / torch+torchaudio 2.10.0+cpu",
+  "model": "umxhq 1.0.1",
+  "model_license": "MIT",
+  "model_doi": "10.5281/zenodo.3370489",
+  "setup_seconds": 0.7612112760002674,
+  "records": [
+    {
+      "track": "Lower_Loveday_-_Is_It_Right_",
+      "duration_seconds": 29.0,
+      "inference_seconds": 1.4628629059998275,
+      "real_time_factor": 0.05044354848275267,
+      "finite": true,
+      "targets": 4
+    },
+    {
+      "track": "Rxbyn_-_Bad_Side",
+      "duration_seconds": 29.0,
+      "inference_seconds": 1.3652805770002487,
+      "real_time_factor": 0.04707864058621548,
+      "finite": true,
+      "targets": 4
+    },
+    {
+      "track": "Cortez_-_Feel__Stripped_",
+      "duration_seconds": 29.0,
+      "inference_seconds": 1.4746939519995976,
+      "real_time_factor": 0.050851515586193025,
+      "finite": true,
+      "targets": 4
+    }
+  ],
+  "limitations": [
+    "three mono-downmixed 29s excerpts duplicated to stereo; no source-stem ground truth",
+    "CPU only; cannot rank quality against Spleeter",
+    "research probe, not production adapter"
+  ]
+}

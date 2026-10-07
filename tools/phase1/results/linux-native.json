@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "platform": "Linux",
+  "mode": "no-device PCM + Xvfb native Avalonia window",
+  "pause_stable": true,
+  "seek_requested_frame": 24000,
+  "loop_wraps": 6,
+  "native_clock_frames": 406272,
+  "native_render_count": 528,
+  "ui_tick_median_ms": 16.00109999999999,
+  "ui_tick_p95_ms": 18.426700000000018,
+  "render_p95_ms": 6.8257,
+  "python_worker_messages": 5,
+  "worker_kind": "Open-Unmix CPU four threads",
+  "worker_terminated": true,
+  "cancellation_ms": 24.4742,
+  "real_annotated_notes": true,
+  "waveform": true,
+  "placeholder_word_labels": true,
+  "zoom_during_playback": true,
+  "limitations": [
+    "no physical device; PCM pumped on UI timer",
+    "no acoustic loopback latency measurement",
+    "small proof, not full editor"
+  ]
+}

@@ -25,3 +25,7 @@ Desktop.ini
 /tools/phase1/TimelineProbe/bin/
 /tools/phase1/TimelineProbe/obj/
 /tools/phase1/__pycache__/
+
+/tools/phase1/NativeProbe/bin/
+/tools/phase1/NativeProbe/obj/
+/tools/phase1/**/__pycache__/

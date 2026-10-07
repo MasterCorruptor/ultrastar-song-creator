@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "native": "miniaudio 0.11.25 / Hexa.NET.MiniAudio 1.0.1",
+  "mode": "no-device PCM render",
+  "loop_start_frame": 48000,
+  "loop_end_frame": 96000,
+  "wraps": 5,
+  "min_cursor": 48128,
+  "max_cursor": 96000,
+  "seek_cursor": 24512,
+  "pause_stable": true,
+  "sample_rate": 48000,
+  "frames_rendered": 256000,
+  "limitations": [
+    "no physical audio device",
+    "sample-cursor test, no acoustic loopback"
+  ]
+}

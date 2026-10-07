@@ -1,5 +1,7 @@
 # Fase 1 – måleresultater og avgrensninger
 
+**Historisk første kontrollpunkt.** Senere native/sang/portable/Linux-prøver og korrigert PyAV-lisensvurdering finnes i [videre resultater](PHASE1_CONTINUATION_RESULTS.md) og [lisensrapporten](PHASE1_LICENSES.md). Gjeldende forslag står i [anbefalingen](PHASE1_RECOMMENDATION.md).
+
 Utført 2026-10-07. Dette er feasibility-prøver på Windows med syntetiske data. Resultatene er ikke et kvalitetsbenchmark på ekte sang, en produktakseptanse eller et vedtak om produksjonsstack.
 
 ## Miljø
@@ -79,7 +81,7 @@ Første modellnedlasting var anonym. Den verifiserte kjøringen lastet kun fra l
 
 Testen viser CPU-/lokalcache-integrasjon, ikke gjenkjenning eller word-boundary-nøyaktighet på sang. Ingen forced alignment av innhentet tekst, norsk sang, GPU eller stor modell ble testet.
 
-Den installerte PyAV 19.0.1-wheelen rapporterte **LGPL-3.0-or-later for sine FFmpeg-biblioteker**, uten GPL eller nonfree-flagg. Bindingens BSD-lisens dekker derfor ikke hele codec-bundlen. Opplysningene ble lest fra wheelens native metadata; andre PyAV-versjoner/bygg trenger egen kontroll.
+Den installerte PyAV 19.0.1-wheelen rapporterte **LGPL-3.0-or-later for sine FFmpeg-biblioteker**, uten GPL eller nonfree-flagg. Bindingens BSD-lisens dekker derfor ikke hele codec-bundlen. **Senere audit avviste stock-bundlen:** faktisk x264/x265 og endret GPL-detektering gjør denne selvrapporterte LGPL-etiketten utilstrekkelig som redistribusjonsklarering. Opplysningene ble lest fra wheelens native metadata; andre PyAV-versjoner/bygg trenger egen kontroll.
 
 [ASR-evidens og native lisensmetadata](../tools/phase1/results/asr-offline.json).
 

@@ -1,0 +1,67 @@
+{
+  "profile": "Phase 1 proposed CPU profile, no stock PyAV/faster-whisper package; not a product release",
+  "python_embed": {
+    "name": "python-3.12.10-embed-amd64.zip",
+    "url": "https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip",
+    "sha256": "4acbed6dd1c744b0376e3b1cf57ce906f9dc9e95e68824584c8099a63025a3c3"
+  },
+  "whisper_cpp": {
+    "version": "1.9.5",
+    "source_ref_object": "d2a764c648779feb36d44363f212a29b00aad1af",
+    "source_url": "https://github.com/ggml-org/whisper.cpp/archive/refs/tags/v1.9.5.tar.gz",
+    "source_archive_sha256": "ff1a9053feb509ff9d7729703355541ae9690073a6b1c40eb692c962e0dc1720",
+    "model_repo": "ggerganov/whisper.cpp",
+    "model_revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+    "model_card_license": "mit",
+    "model_url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-tiny.bin",
+    "model_sha256": "be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21"
+  },
+  "models": [
+    {
+      "name": "bass-8d85a5bd.pth",
+      "sha256": "8d85a5bd3f996a8867fca0e8442e077e5a3f5ec747a6112742452a8f347b39c8",
+      "license": "MIT",
+      "source_record": "https://zenodo.org/records/3370489"
+    },
+    {
+      "name": "drums-9619578f.pth",
+      "sha256": "9619578f885c54737cb0234f9f9a4a679ee4f31438fd77fd1dbe02bb16c2da0a",
+      "license": "MIT",
+      "source_record": "https://zenodo.org/records/3370489"
+    },
+    {
+      "name": "other-b52fbbf7.pth",
+      "sha256": "b52fbbf76479e752bd72e02304c602ac7802aa5bfbfb9cd12054b2695d5093ab",
+      "license": "MIT",
+      "source_record": "https://zenodo.org/records/3370489"
+    },
+    {
+      "name": "vocals-b62c91ce.pth",
+      "sha256": "b62c91cedbc7a066f1778ead5b5cecb377aa3a46a31af1cce7c5c8769339d083",
+      "license": "MIT",
+      "source_record": "https://zenodo.org/records/3370489"
+    },
+    {
+      "name": "swift_f0/model.onnx",
+      "sha256": "6385e8c2ebc3872e82c9ff5946228de44cd3be77a750ea53698b7dbfe94b0a22",
+      "license": "MIT package; no separate exception identified"
+    }
+  ],
+  "ct2_tiny": {
+    "revision": "d90ca5fe260221311c53c58e660288d3deb8d356",
+    "model_sha256": "dcb76c6586fc06cbdac6dd21f14cfd129cc4cdd9dce19bf4ffa62e59cbe6e6d1",
+    "model_card_license": "MIT"
+  },
+  "pyav_rejected_vendor_source": {
+    "tag": "8.1.2-1",
+    "tree_sha": "a71bf9279f7a4659154b68ba6783e89be460bcd5",
+    "patch_url": "https://github.com/PyAV-Org/pyav-ffmpeg/blob/8.1.2-1/patches/ffmpeg.patch",
+    "patch_sha256": "c6fff328c0c64ea5a3cb4b9bf44299553cb5897ab7bc5e22b4e16902c191d492",
+    "finding": "x264/x265 removed from GPL-list and added to VERSION3-list; actual Windows wheel includes both DLLs"
+  },
+  "limitations": [
+    "artifact-specific source/notices inventory, not a final installer SBOM",
+    "no public binary/audio/model/lyrics publication",
+    "host hardware and OS build excluded"
+  ]
+}

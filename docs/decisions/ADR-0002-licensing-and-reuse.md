@@ -14,7 +14,7 @@ Komponenter kan ha permissiv kildekodelisens mens medfølgende weights, codecs, 
 
 ## Foreslått løsning
 
-Fortsett å sikte mot **MIT for prosjektets egen kode**. Foreta endelig bekreftelse først etter valgt hovedstack og konkret dependency-/modell-/binærmanifest. LGPL-komponenter kan vurderes etter artefaktspesifikk compliance; dette er ikke automatisk godkjenning av enhver LGPL/GPL-kombinasjon.
+Anbefal **MIT for prosjektets egen kode**, artefaktvise tredjepartslisenser og en separat minimal LGPL-codecprofil. Foreta endelig bekreftelse først etter valgt hovedstack og konkret dependency-/modell-/binærmanifest. LGPL-komponenter kan vurderes etter artefaktspesifikk compliance; dette er ikke automatisk godkjenning av enhver LGPL/GPL-kombinasjon.
 
 Velg permissiv kilde/wheel-distribusjon der den er verifisert, for eksempel yt-dlp-wheel, fremfor å anta at standalone exe har samme lisens. Ikke kopier GPL-editor-/AGPL-analysekode inn i egen planlagt MIT-kodebase. Ikke innfør noncommercial eller gated weights som obligatorisk kjerne.
 
@@ -22,16 +22,20 @@ Uavklarte modellvilkår blokkerer det aktuelle modellvalget. Database-/providerl
 
 ## Begrunnelse
 
-Evalueringen fant konkrete forskjeller: yt-dlp-kilde mot GPL-standalone, lokal FFmpeg GPL-build mot testet PyAV-wheels LGPL-3.0-biblioteker, madmom/Open-Unmix-modellrestriksjoner og ufullstendig HTDemucs-modellkort. GUI-core og NuGet package-metadata alene klarerer heller ikke alle native/font-artefakter. Se [matrisen](../DEPENDENCIES.md) og [måleresultater](../PHASE1_RESULTS.md).
+Evalueringen fant konkrete forskjeller: yt-dlp-kilde mot GPL-standalone, lokal FFmpeg GPL-build mot egen minimal LGPL-2.1-build; stock PyAV-wheels ble senere avvist fordi faktisk x264/x265 og en vendor-patch gjorde rapportert LGPL-3.0 utilstrekkelig, madmom/Open-Unmix-modellrestriksjoner og ufullstendig HTDemucs-modellkort. GUI-core og NuGet package-metadata alene klarerer heller ikke alle native/font-artefakter. Se [matrisen](../DEPENDENCIES.md) og [måleresultater](../PHASE1_RESULTS.md).
 
 ## Konsekvenser og porter før aksept
 
 - Et release-manifest må ha eksakte versjoner/hashes, kilder, lisens, notices og eventuelt tilsvarende source per binary/weight.
 - Velg eller bygg en konkret FFmpeg/PyAV-rute med nødvendige codec-funksjoner og dokumenterte vilkår før bundling.
-- Klarer HTDemucs-/alignmentweights og valgte språkordbøker individuelt.
+- HTDemucs/Roformer/umxl holdes utenfor standardpakken. Umxhq og Whisper har dokumentert MIT-grunnlag. Valgte fremtidige språkordbøker krever egen artefaktport.
 - GPU-runtime må vurderes særskilt og kan ikke gjøres obligatorisk for CPU-ruten.
 - Egen MIT-lisens og tredjepartsvilkår må beskrives tydelig i distribusjonen.
 - Vesentlig andre krav enn den permissive modellen krever prosjekteierens eksplisitte vedtak etter masteren §18.2.
+
+## Konkrete funn etter videre Fase 1
+
+[Lisensrapporten](../PHASE1_LICENSES.md) og [anbefalingen](../PHASE1_RECOMMENDATION.md) angir gjeldende profil: whisper.cpp, direkte CTranslate2-alignment med to uendrede MIT-hjelpere, Open-Unmix umxhq, SwiftF0, medfølgende runtimes og egen minimal FFmpeg. Stock PyAV/faster-whisper-pakken er fjernet fra den avsluttende portable profilen. Compiler-runtime-exceptions og eventuelle MPL/andre filvilkår må følges; dette er ikke en pakke som kan merkes bare MIT.
 
 ## Vedtak
 

@@ -1,0 +1,35 @@
+{
+  "status": "measured",
+  "model": "Spleeter 2stems v1.4.0",
+  "records": [
+    {
+      "track": "Lower_Loveday_-_Is_It_Right_",
+      "duration_seconds": 29.0,
+      "cpu_inference_seconds": 3.375530199962668,
+      "real_time_factor": 0.11639759310216097,
+      "vocal_finite": true,
+      "stems_sum_relative_rms_error": 0.003703852416947484
+    },
+    {
+      "track": "Rxbyn_-_Bad_Side",
+      "duration_seconds": 29.0,
+      "cpu_inference_seconds": 2.580315100029111,
+      "real_time_factor": 0.08897638275962451,
+      "vocal_finite": true,
+      "stems_sum_relative_rms_error": 0.0018623925279825926
+    },
+    {
+      "track": "Cortez_-_Feel__Stripped_",
+      "duration_seconds": 29.0,
+      "cpu_inference_seconds": 2.447601000079885,
+      "real_time_factor": 0.08440003448551328,
+      "vocal_finite": true,
+      "stems_sum_relative_rms_error": 0.0002172400854760781
+    }
+  ],
+  "limitations": [
+    "three 29s real polyphonic excerpts, no source-stem ground truth; no SDR/quality claim",
+    "Windows tensorflow-io-gcs-filesystem override 0.31.0; pip check fails",
+    "CPU only, not production packaging approved"
+  ]
+}

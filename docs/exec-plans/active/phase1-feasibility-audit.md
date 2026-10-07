@@ -1,6 +1,6 @@
 # Fase 1 – Technology Feasibility & Reuse Audit
 
-Status: aktiv. Første kartlegging og avgrensede feasibility-prøver gjennomført 2026-10-07; vesentlige kontrollpunkter gjenstår. Startet 2026-10-07. Arbeidsbranch: `work/phase1-feasibility-audit`.
+Status: aktiv – avsluttende research/prøver og teknologianbefaling levert; prosjekteierens teknologi- og fasevedtak gjenstår. Gjennomført 2026-10-07. Startet 2026-10-07. Arbeidsbranch: `work/phase1-feasibility-audit`.
 
 ## Mål og rammer
 
@@ -34,12 +34,17 @@ Produksjonsstack og lisensstrategi forelegges prosjekteieren. Research kan integ
 
 Se `docs/PHASE1_AUDIT.md`, `docs/DEPENDENCIES.md` og `docs/PHASE1_RESULTS.md`. Det er gjennomført syntetisk media-/pitch-/BPM-prøve, offentlig provider-probe, lokal CPU-ASR med cache-only modellast og headless Avalonia-timeline. To ADR-er er foreslått, ingen er akseptert. Evidens og reproduksjon ligger i `tools/phase1/`.
 
-## Gjenstående porter før Fase 1 kan lukkes
+## Porter etter videre arbeidsordre
 
-- [ ] Native playback/timeline: sampleclock, seek/loop/play-from-selection, tekst/waveform og workerbelastning.
-- [ ] Rettighetsavklart sangbenchmark: separation, pitch, alignment og BPM på CPU/GPU med ground truth.
-- [ ] Klarering av konkrete modell-/codec-/native-/ordbokartefakter, særlig HTDemucs-weights og ferdig FFmpeg/PyAV-rute.
-- [ ] Minimalt Windows-pakkeoppsett og Linux-smoke-test.
-- [ ] Prosjekteierens vedtak om hovedstack og eventuelle lisensavvik; oppdaterte aksepterte ADR-er.
+- [x] Native playback/seek/loop/play-from-selection: Windows-lydenhet og samplekontroll, Linux no-device PCM.
+- [x] Realistisk timeline: ekte waveform/manuelle noter, egne ordplassholdere, sample-cursor, zoom og tung UMX-worker med målt prosessstopp.
+- [x] Ekte sangbenchmark: 40 annoterte solovokaler, 17 ASR-klipp, tre miksinger for alignment/ASR og tre hele sanger for CPU-separation. GPU og source-stem-SDR er eksplisitt uprøvd, ikke skjult som bestått.
+- [x] Lisensavgrensning: MIT UMXHQ/Whisper/SwiftF0 og egen minimal LGPL-FFmpeg; konkret stock PyAV/x264/x265-rute og uklare weights avvist. Installer-SBOM/source/notices er en egen fremtidig releaseforpliktelse.
+- [x] Minimalt Windows-pakkeoppsett: faktisk self-contained .NET + embedded Python/native sidecars, uten utviklingsverktøy i PATH, startet fra pakkemappen med medfølgende kode/modeller.
+- [x] Faktisk Linux-smoke: native Avalonia/miniaudio-kjerne + Python/UMX/whisper.cpp/direkte alignment, med nettverket av under inferens. Xvfb/no-device, ikke fysisk desktop/audio.
+- [x] Oppdatert kandidat-/risikovurdering, publiserbar evidens uten maskinvareprofil og avsluttende anbefaling med konkrete tradeoffs/beslutninger.
+- [ ] Prosjekteierens vedtak om stack, playback, lisensprofil, modellbaseline, tilstrekkelig evidens og faseavslutning. Ingen ADR er akseptert.
 
-Planen flyttes ikke til `completed/` før disse portene er håndtert eller avklart med eksplisitt vedtak. En første audit-/probe-leveranse alene fullfører ikke Fase 1.
+Se [anbefalingen](../../PHASE1_RECOMMENDATION.md), [målingene](../../PHASE1_CONTINUATION_RESULTS.md) og [artefaktlisenser](../../PHASE1_LICENSES.md). CPP/PCM-alignment-ruten ble prøvd etter at dypere lisenskontroll avdekket x264/x265 i PyAVs «LGPL»-rapporterte bundle. Den avsluttende anbefalte pakken inneholder ikke stock PyAV.
+
+Planen blir i active/ til prosjekteieren har gjennomgått teknologivalgene og eksplisitt godkjent faseavslutning. Den nye publiseringen er en researchleveranse, ikke et produksjonsstackvedtak. Ingen produktkode eller Fase 2 er startet.
