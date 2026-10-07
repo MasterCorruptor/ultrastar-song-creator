@@ -1,0 +1,22 @@
+# Lokal agenttilstand og regenererbare arbeidsartefakter
+/.agent-local/
+/cache/
+/scratch/
+/tmp/
+/temp/
+*.tmp
+*.swp
+*~
+
+# Maskinspesifikke filer og lokale hemmeligheter
+/.idea/
+/.vscode/
+.env
+.env.*
+!.env.example
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Bevart innsendt kildefil; autoritativ kopi er docs/PROJECT_MASTER.md
+/Master-plan-for-prosjektet-v0.5(1).txt
