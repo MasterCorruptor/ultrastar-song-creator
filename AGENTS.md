@@ -14,7 +14,7 @@ Bruk avgrensede `work/<oppgave>`-brancher for ikke-trivielt arbeid. Commit ved k
 
 ## Scope og arkitektur
 
-Arbeid i `src/`, `tests/`, `tools/` og relevant `docs/` innenfor arbeidsordren. Endre rotfiler når oppgaven krever det. Fase 0: prosjektgrunnlag. Ikke start Fase 1 eller produktimplementering.
+Arbeid i `src/`, `tests/`, `tools/` og relevant `docs/` innenfor arbeidsordren. Endre rotfiler når oppgaven krever det. Aktuell arbeidsordre er Fase 1: kartlegging og avgrensede proof-of-concept. Produksjonsimplementering krever ny arbeidsordre.
 
 Bevar skillet mellom acquisition, generation og editor. UltraStar er import-/eksportformat; intern sangmodell er separat. Undo/redo er et grunnkrav. Kjernefunksjoner skal kunne behandles lokalt uten obligatoriske tredjepartskontoer eller API-nøkler. Ikke lås stack eller innfør dependencies uten nødvendig evaluering og godkjenning.
 
