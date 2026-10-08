@@ -1,0 +1,221 @@
+using System.Collections.Immutable;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using UltraStar.SongCreator.Core;
+
+namespace UltraStar.SongCreator.Projects;
+
+internal static class ProjectJson
+{
+    internal const string Format = "ultrastar-song-creator";
+    internal const int Version = 1;
+
+    private static readonly JsonSerializerOptions Options = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
+        RespectNullableAnnotations = true,
+        WriteIndented = true,
+        MaxDepth = 64,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: false) }
+    };
+
+    internal static byte[] Encode(Song song)
+    {
+        Validate(song);
+        var document = new Envelope { Format = Format, SchemaVersion = Version, Song = SongDocument.From(song) };
+        return JsonSerializer.SerializeToUtf8Bytes(document, Options);
+    }
+
+    internal static (Song Song, ImmutableArray<ValidationIssue> Issues) Decode(byte[] bytes)
+    {
+        try
+        {
+            using var json = JsonDocument.Parse(bytes, new JsonDocumentOptions { MaxDepth = 64 });
+            CheckDuplicateProperties(json.RootElement);
+            var root = json.RootElement;
+            if (root.ValueKind != JsonValueKind.Object ||
+                !root.TryGetProperty("format", out var format) || format.ValueKind != JsonValueKind.String || format.GetString() != Format ||
+                !root.TryGetProperty("schemaVersion", out var version) || !version.TryGetInt32(out var number))
+                throw new ProjectFormatException(ProjectError.InvalidEnvelope, "Missing/invalid project format or schemaVersion.");
+            if (number != Version)
+                throw new ProjectFormatException(ProjectError.UnsupportedVersion, $"Unsupported project schema version: {number}.");
+            var document = JsonSerializer.Deserialize<Envelope>(bytes, Options)
+                ?? throw new JsonException("Project document is null.");
+            var song = document.Song.ToSong();
+            return (song, Validate(song));
+        }
+        catch (JsonException e)
+        {
+            throw new ProjectFormatException(ProjectError.InvalidJson, "Project JSON is malformed or does not match the v1 schema.", inner: e);
+        }
+    }
+
+    private static ImmutableArray<ValidationIssue> Validate(Song song)
+    {
+        ArgumentNullException.ThrowIfNull(song);
+        var issues = SongValidator.Validate(song);
+        if (issues.Any(i => i.Severity == ValidationSeverity.Error))
+            throw new ProjectFormatException(ProjectError.InvalidSong, "Project contains structural song errors.", issues);
+        return issues;
+    }
+
+    private static void CheckDuplicateProperties(JsonElement element)
+    {
+        if (element.ValueKind == JsonValueKind.Object)
+        {
+            var names = new HashSet<string>(StringComparer.Ordinal);
+            foreach (var property in element.EnumerateObject())
+            {
+                if (!names.Add(property.Name)) throw new JsonException("Duplicate JSON property.");
+                CheckDuplicateProperties(property.Value);
+            }
+        }
+        else if (element.ValueKind == JsonValueKind.Array)
+            foreach (var item in element.EnumerateArray()) CheckDuplicateProperties(item);
+    }
+
+    private static T Required<T>(T? value) where T : class =>
+        value ?? throw new JsonException("Null is not permitted for this v1 field.");
+
+    private sealed record Envelope
+    {
+        public required string Format { get; init; }
+        public required int SchemaVersion { get; init; }
+        public required SongDocument Song { get; init; }
+    }
+
+    private sealed record SongDocument
+    {
+        public required Guid Id { get; init; }
+        public required MetadataDocument Metadata { get; init; }
+        public required MediaDocument[] Media { get; init; }
+        public required double AudioOffsetSeconds { get; init; }
+        public required double VideoOffsetSeconds { get; init; }
+        public required double? BeatsPerMinute { get; init; }
+        public required PhraseDocument[] Phrases { get; init; }
+        public required AnalysisDocument Analysis { get; init; }
+
+        internal static SongDocument From(Song song) => new()
+        {
+            Id = song.Id, Metadata = new()
+            {
+                Title = Required(song.Metadata.Title), Artist = Required(song.Metadata.Artist), Language = song.Metadata.Language
+            },
+            Media = song.Media.Select(m => new MediaDocument
+            {
+                Id = m.Id, Kind = m.Kind, Location = Required(m.Location), Source = m.Source
+            }).ToArray(),
+            AudioOffsetSeconds = song.AudioOffsetSeconds, VideoOffsetSeconds = song.VideoOffsetSeconds,
+            BeatsPerMinute = song.BeatsPerMinute,
+            Phrases = song.Phrases.Select(p => new PhraseDocument
+            {
+                Id = p.Id, StartSeconds = p.StartSeconds, EndSeconds = p.EndSeconds,
+                Notes = p.Notes.Select(n => new NoteDocument
+                {
+                    Id = n.Id, StartSeconds = n.StartSeconds, DurationSeconds = n.DurationSeconds,
+                    MidiPitch = n.MidiPitch, Text = Required(n.Text), Type = n.Type,
+                    Confidence = n.Confidence, AnalysisReferences = n.AnalysisReferences.ToArray()
+                }).ToArray()
+            }).ToArray(),
+            Analysis = new()
+            {
+                Artifacts = song.Analysis.Artifacts.Select(a => new ArtifactDocument
+                {
+                    Id = a.Id, Kind = a.Kind, SourceMediaId = a.SourceMediaId,
+                    Producer = Required(a.Producer), ModelRevision = a.ModelRevision, ContentReference = a.ContentReference,
+                    Points = a.Points.Select(p => new PointDocument { TimeSeconds = p.TimeSeconds, Value = p.Value }).ToArray()
+                }).ToArray()
+            }
+        };
+
+        internal Song ToSong() => new()
+        {
+            Id = Id, Metadata = new()
+            {
+                Title = Required(Required(Metadata).Title), Artist = Required(Metadata.Artist), Language = Metadata.Language
+            },
+            Media = Required(Media).Select(m => new MediaReference
+            {
+                Id = Required(m).Id, Kind = m.Kind, Location = Required(m.Location), Source = m.Source
+            }).ToImmutableArray(),
+            AudioOffsetSeconds = AudioOffsetSeconds, VideoOffsetSeconds = VideoOffsetSeconds, BeatsPerMinute = BeatsPerMinute,
+            Phrases = Required(Phrases).Select(p => new Phrase
+            {
+                Id = Required(p).Id, StartSeconds = p.StartSeconds, EndSeconds = p.EndSeconds,
+                Notes = Required(p.Notes).Select(n => new Note
+                {
+                    Id = Required(n).Id, StartSeconds = n.StartSeconds, DurationSeconds = n.DurationSeconds,
+                    MidiPitch = n.MidiPitch, Text = Required(n.Text), Type = n.Type,
+                    Confidence = n.Confidence, AnalysisReferences = Required(n.AnalysisReferences).ToImmutableArray()
+                }).ToImmutableArray()
+            }).ToImmutableArray(),
+            Analysis = new()
+            {
+                Artifacts = Required(Required(Analysis).Artifacts).Select(a => new AnalysisArtifact
+                {
+                    Id = Required(a).Id, Kind = a.Kind, SourceMediaId = a.SourceMediaId,
+                    Producer = Required(a.Producer), ModelRevision = a.ModelRevision, ContentReference = a.ContentReference,
+                    Points = Required(a.Points).Select(p => new AnalysisPoint(Required(p).TimeSeconds, p.Value)).ToImmutableArray()
+                }).ToImmutableArray()
+            }
+        };
+    }
+
+    private sealed record MetadataDocument
+    {
+        public required string Title { get; init; }
+        public required string Artist { get; init; }
+        public required string? Language { get; init; }
+    }
+
+    private sealed record MediaDocument
+    {
+        public required Guid Id { get; init; }
+        public required MediaKind Kind { get; init; }
+        public required string Location { get; init; }
+        public required string? Source { get; init; }
+    }
+
+    private sealed record PhraseDocument
+    {
+        public required Guid Id { get; init; }
+        public required double StartSeconds { get; init; }
+        public required double EndSeconds { get; init; }
+        public required NoteDocument[] Notes { get; init; }
+    }
+
+    private sealed record NoteDocument
+    {
+        public required Guid Id { get; init; }
+        public required double StartSeconds { get; init; }
+        public required double DurationSeconds { get; init; }
+        public required int MidiPitch { get; init; }
+        public required string Text { get; init; }
+        public required NoteType Type { get; init; }
+        public required double? Confidence { get; init; }
+        public required Guid[] AnalysisReferences { get; init; }
+    }
+
+    private sealed record AnalysisDocument
+    {
+        public required ArtifactDocument[] Artifacts { get; init; }
+    }
+
+    private sealed record ArtifactDocument
+    {
+        public required Guid Id { get; init; }
+        public required AnalysisKind Kind { get; init; }
+        public required Guid? SourceMediaId { get; init; }
+        public required string Producer { get; init; }
+        public required string? ModelRevision { get; init; }
+        public required string? ContentReference { get; init; }
+        public required PointDocument[] Points { get; init; }
+    }
+
+    private sealed record PointDocument
+    {
+        public required double TimeSeconds { get; init; }
+        public required double Value { get; init; }
+    }
+}

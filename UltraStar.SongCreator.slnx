@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/UltraStar.SongCreator.Core/UltraStar.SongCreator.Core.csproj" />
+    <Project Path="src/UltraStar.SongCreator.Projects/UltraStar.SongCreator.Projects.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/UltraStar.SongCreator.Core.Tests/UltraStar.SongCreator.Core.Tests.csproj" />

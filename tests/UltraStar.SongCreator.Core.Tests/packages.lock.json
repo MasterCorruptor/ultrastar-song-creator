@@ -95,6 +95,12 @@
       },
       "ultrastar.songcreator.core": {
         "type": "Project"
+      },
+      "ultrastar.songcreator.projects": {
+        "type": "Project",
+        "dependencies": {
+          "UltraStar.SongCreator.Core": "[1.0.0, )"
+        }
       }
     }
   }

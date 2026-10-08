@@ -1,0 +1,34 @@
+{
+  "format": "ultrastar-song-creator",
+  "schemaVersion": 1,
+  "song": {
+    "id": "00000000-0000-0000-0000-000000000001",
+    "metadata": { "title": "Høyt 🎵", "artist": "Test", "language": "nb" },
+    "media": [
+      { "id": "00000000-0000-0000-0000-000000000002", "kind": "audio", "location": "media/song.wav", "source": null }
+    ],
+    "audioOffsetSeconds": -0.25,
+    "videoOffsetSeconds": 0.5,
+    "beatsPerMinute": 123.5,
+    "phrases": [{
+      "id": "00000000-0000-0000-0000-000000000003",
+      "startSeconds": 0, "endSeconds": 4,
+      "notes": [{
+        "id": "00000000-0000-0000-0000-000000000004",
+        "startSeconds": 1.25, "durationSeconds": 0.5, "midiPitch": 62,
+        "text": "Hei", "type": "golden", "confidence": 0.75,
+        "analysisReferences": ["00000000-0000-0000-0000-000000000005"]
+      }]
+    }],
+    "analysis": {
+      "artifacts": [{
+        "id": "00000000-0000-0000-0000-000000000005",
+        "kind": "pitchCurve",
+        "sourceMediaId": "00000000-0000-0000-0000-000000000002",
+        "producer": "synthetic", "modelRevision": "fixture-v1",
+        "contentReference": "cache/pitch.json",
+        "points": [{ "timeSeconds": 1, "value": 61.25 }, { "timeSeconds": 1.1, "value": 62.5 }]
+      }]
+    }
+  }
+}
