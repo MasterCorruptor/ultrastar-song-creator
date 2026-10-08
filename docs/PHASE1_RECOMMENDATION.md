@@ -1,6 +1,6 @@
 # Fase 1 – teknologianbefaling til prosjekteier
 
-Dato: 2026-10-07. **Forslag til beslutning; ingen produksjonsstack er vedtatt. Fase 2 er ikke startet.**
+Utarbeidet: 2026-10-07. **Godkjent av prosjekteieren 2026-10-08; Fase 1 er avsluttet.** ADR-0001 og ADR-0002 er akseptert. Fase 2 er ikke startet.
 
 ## Anbefaling
 
@@ -49,14 +49,16 @@ Detaljer og målte tall finnes i [resultatene](PHASE1_CONTINUATION_RESULTS.md). 
 
 Anbefalingen bygger på krav og utført verifikasjon. Den påstår ikke at de uprøvde alternativene er tregere.
 
-## Beslutninger som kreves av prosjekteier
+## Prosjekteierens vedtak – 2026-10-08
 
-1. **Hovedstack:** Godkjenne C#/.NET 10 LTS + Avalonia + separat Python-prosess, eller velge et av alternativene. Godkjenning gjelder arkitektur; evalueringspatcher skal ikke automatisk bli evige produksjonsversjoner.
-2. **Playback:** Godkjenne miniaudio som første backend, med Hexa-binding som utgangspunkt og et utskiftbart grensesnitt. Akseptere at fysisk Linux-audio og akustisk latency må verifiseres før Linux-release.
-3. **Lisensprofil:** Beholde MIT for egen kode og tillate separat LGPL-codec med source/notices/utskiftbarhet, samt dokumenterte compiler-runtime-exceptions. Alternativt kreve en strengere pakkeprofil og ta funksjons-/byggekostnaden. Ingen godkjenning kan gjøre uklare modellrettigheter gyldige.
-4. **Separasjonsbaseline:** Velge MIT-lisensiert umxhq som konservativ baseline. Demucs/Roformer holdes utenfor standardpakken. Spleeter er en målt referanse med gammel Windows-dependencyflate, ikke foreslått standard.
-5. **Automatikk og kvalitet:** Godta at pitch, noter, alignment og BPM gir forslag med confidence og manuell korreksjon. Beholde modellvalg utskiftbart, og kreve større ASR-/norsk-/miksingsbenchmark før et kvalitetsløfte eller default ASR-modell bestemmes.
-6. **Distribusjon og ressursbruk:** Godta medfølgende runtimes og at PyTorch gjør pakken større; modeller kan hentes til en verifisert lokal cache uten konto. CUDA/GPU er et valgfritt senere tillegg, ikke et krav for CPU-ruten.
-7. **Faseovergang:** Avgjøre om den dokumenterte evidensen og avgrensningene er tilstrekkelige til å lukke Fase 1. Eventuelle utvidede Fase 1-tester må bestilles konkret. **Fase 2 krever eksplisitt godkjenning og egen arbeidsordre.**
+1. **Hovedstack:** C#/.NET 10 LTS + Avalonia og separat Python-prosess for analyse er godkjent. Arkitekturen er valgt; eksakte evalueringspatcher er ikke automatisk produksjonsversjoner.
+2. **Playback:** miniaudio er første backend, med Hexa.NET.MiniAudio som utgangspunkt og et utskiftbart grensesnitt.
+3. **Lisensprofil:** MIT er bekreftet for egen prosjektkode. Separat dokumenterte LGPL-codecs tillates med nødvendige source/notices/utskiftbarhetskrav. Andre dokumenterte filvilkår/compiler-runtime-exceptions skal følges; uavklarte rettigheter klareres ikke av dette vedtaket.
+4. **Separasjonsbaseline:** Open-Unmix med eksplisitt MIT-lisensiert umxhq er konservativ standardbaseline. Ingen automatisk fallback til noncommercial umxl. Demucs/Roformer holdes utenfor standardpakken inntil rettigheter er avklart.
+5. **Automatikk og kvalitet:** Automatisk pitch-, note-, alignment- og BPM-analyse skal gi forslag med confidence og forventet manuell korreksjon. Modellvalg forblir utskiftbart. Større ASR-, norsk- og miksingsbenchmark gjennomføres før konkrete kvalitetsløfter eller endelig default ASR-modell fastsettes.
+6. **Distribusjon og ressursbruk:** Nødvendige runtimes kan distribueres lokalt; PyTorch-relatert pakkestørrelse er akseptert. CPU er baseline; GPU/CUDA forblir et valgfritt senere tillegg.
+7. **Faseavslutning:** Evidensen er godkjent som tilstrekkelig, og de dokumenterte begrensningene blokkerer ikke avslutning av Fase 1. De består som kvalitets-/releasekrav for senere arbeid.
 
-ADR-0001 og ADR-0002 står fortsatt som **foreslått**. Arbeidsplanen blir stående i active/ til teknologivalg og faseavslutning er besluttet. Verken publisering av denne researchen eller merge av en dokumentasjons-PR er i seg selv slik godkjenning.
+Vedtaket er gitt eksplisitt av prosjekteieren i arbeidsordren 2026-10-08. Se [ADR-0001](decisions/ADR-0001-desktop-and-analysis-stack.md), [ADR-0002](decisions/ADR-0002-licensing-and-reuse.md) og [avsluttet arbeidsplan](exec-plans/completed/phase1-feasibility-audit.md).
+
+Fase 1-PR-en klargjøres for merge. **Fase 2 er ikke startet og krever en egen arbeidsordre.** [Forslaget til første arbeidsordre](PHASE2_FIRST_WORK_ORDER.md) er et reviewgrunnlag, ikke igangsatt implementasjon.

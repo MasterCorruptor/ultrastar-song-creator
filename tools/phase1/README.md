@@ -138,4 +138,4 @@ docker run --rm --network none --env ULTRASTAR_PHASE1_UMX_CACHE=/project/.agent-
 
 Første .NET restore krever nett eller ferdig lokal NuGet-cache; kommandoen med --network none ble kjørt etter cachepreparering. Linux bruker Xvfb/no-device PCM, ikke fysisk audio. Ingen Wayland-/ren maskin-/GPU-garanti følger av denne testen.
 
-Vendored MIT-hjelpere har original LICENSE/proveniens. Alle binaries, modell-/korpusdata, private logs, screenshots og regenererbare outputs blir i .agent-local/ eller ignorerte buildmapper. Se aktive arbeidsplanen for beslutningsporten; ADR-er forblir foreslått.
+Vendored MIT-hjelpere har original LICENSE/proveniens. Alle binaries, modell-/korpusdata, private logs, screenshots og regenererbare outputs blir i .agent-local/ eller ignorerte buildmapper. Fase 1 ble avsluttet av prosjekteieren 2026-10-08; ADR-0001/0002 er akseptert. Se [avsluttet arbeidsplan](../../docs/exec-plans/completed/phase1-feasibility-audit.md). Prøveverktøyene er fortsatt researchkode, ikke en produktrelease.

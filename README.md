@@ -4,7 +4,7 @@ UltraStar Song Creator skal bli et desktopverktøy for opprettelse, automatisk g
 
 ## Status
 
-Fase 0 er etablert. **Fase 1 har nå kandidatmatrise, native playback/timeline-prøver, ekte sangbenchmark, portable Windows-prøve, Linux smoke og en avsluttende teknologianbefaling.** Prosjekteierens beslutning om stack og faseavslutning gjenstår. Produktfunksjonalitet og produksjonsstack er ikke implementert eller vedtatt; Fase 2 er ikke startet.
+Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-08.** ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, utskiftbar miniaudio-backend, MIT for egen kode og separat dokumenterte LGPL-codecs. Open-Unmix med eksplisitt umxhq er separasjonsbaseline. Produktfunksjonalitet er ikke implementert; Fase 2 er ikke startet.
 
 ## Prosjektkilder
 
@@ -13,7 +13,10 @@ Fase 0 er etablert. **Fase 1 har nå kandidatmatrise, native playback/timeline-p
 - [Utviklings- og repositoryprinsipper](docs/DEVELOPMENT.md) beskriver autoritet, brancher, verifikasjon og miljø.
 - [Fase 1-audit](docs/PHASE1_AUDIT.md), [kandidat-/lisensmatrise](docs/DEPENDENCIES.md) og [måleresultater](docs/PHASE1_RESULTS.md) dokumenterer evalueringen.
 - [Teknologianbefaling og beslutningspunkter](docs/PHASE1_RECOMMENDATION.md), [videre målinger](docs/PHASE1_CONTINUATION_RESULTS.md) og [artefaktlisenser](docs/PHASE1_LICENSES.md) er gjeldende beslutningsgrunnlag.
-- [Evalueringsverktøy](tools/phase1/README.md) inneholder reproduksjonskommandoer; disse velger ingen produksjonsstack.
+- [Akseptert desktop-/analysearkitektur](docs/decisions/ADR-0001-desktop-and-analysis-stack.md) og [lisensstrategi](docs/decisions/ADR-0002-licensing-and-reuse.md) dokumenterer prosjekteierens vedtak.
+- [Avsluttet Fase 1-plan](docs/exec-plans/completed/phase1-feasibility-audit.md) dokumenterer leveransen og aksepterte begrensninger.
+- [Forslag til første Fase 2-arbeidsordre](docs/PHASE2_FIRST_WORK_ORDER.md) avventer bestilling.
+- [Evalueringsverktøy](tools/phase1/README.md) inneholder reproduksjonskommandoer; ingen produkt-build er etablert.
 
 ## Struktur
 
@@ -46,4 +49,4 @@ Fase 0 krever Git for å lese historikk og arbeide med repositoryet. GitHub CLI 
 
 ## Lisens
 
-[MIT License](LICENSE) er prosjektets foreløpige lisens. Endelig lisensbekreftelse følger dependency- og lisensgjennomgangen i Fase 1. Tredjepartsavhengigheter må vurderes separat.
+[MIT License](LICENSE) er bekreftet for egen prosjektkode 2026-10-08. Tredjepartsavhengigheter, modeller og distribuerte binærer har egne vilkår, jf. [ADR-0002](docs/decisions/ADR-0002-licensing-and-reuse.md).

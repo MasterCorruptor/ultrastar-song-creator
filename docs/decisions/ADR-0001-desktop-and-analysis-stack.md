@@ -1,6 +1,6 @@
 # ADR-0001 – Desktop/editor og isolert analyseworker
 
-Dato: 2026-10-07. **Status: foreslått; ikke akseptert.** Prosjekteierens vedtak mangler. Dette dokumentet er en avsluttende Fase 1-anbefaling til review, ikke instruks om å bygge Fase 2. Se [beslutningsgrunnlaget](../PHASE1_RECOMMENDATION.md).
+Opprettet: 2026-10-07. **Status: akseptert av prosjekteieren 2026-10-08.** Godkjenningen omfatter hovedstack, playback, analysebaseline og dokumenterte kompromisser. Fase 1 er avsluttet; Fase 2 er ikke startet. Se [beslutningsgrunnlaget](../PHASE1_RECOMMENDATION.md).
 
 ## Problem
 
@@ -16,11 +16,11 @@ Editoren skal ha direkte noteredigering, waveform, live preview, undo/redo og pr
 
 Se [auditten](../PHASE1_AUDIT.md) og [dependency-matrisen](../DEPENDENCIES.md) for konkrete fordeler, lisenser og kompromisser.
 
-## Foreslått løsning
+## Akseptert løsning
 
-Anbefal **C#/.NET 10 LTS og Avalonia** (testversjon 12.1.3) for desktop/editor, med en avgrenset **Python-worker** for eksisterende signal-/modellbiblioteker. Python 3.12 er dagens evalueringsruntime; endelig runtime/patch og dependencysett velges etter kompatibilitet og pakking.
+Bruk **C#/.NET 10 LTS og Avalonia** (testversjon 12.1.3) for desktop/editor, med en avgrenset **Python-worker** for eksisterende signal-/modellbiblioteker. Python 3.12 er dagens evalueringsruntime; endelig runtime/patch og dependencysett velges etter kompatibilitet og pakking.
 
-Hold intern sangmodell og brukerendringer uavhengig av UltraStar-format og analyseworker. Timeline tegnes som spesialisert kontroll rundt én konsistent audio-tidskilde. Playback-backend isoleres; miniaudio 0.11.25 og Hexa.NET.MiniAudio 1.0.1 er den native kandidat/binding som nå er prøvd. ASR foreslås som whisper.cpp-sidecar, kjent-tekst-alignment direkte via CTranslate2, uten stock PyAV.
+Hold intern sangmodell og brukerendringer uavhengig av UltraStar-format og analyseworker. Timeline tegnes som spesialisert kontroll rundt én konsistent audio-tidskilde. Playback-backend isoleres; miniaudio er første backend, med Hexa.NET.MiniAudio som utgangspunkt. Evalueringsversjonene 0.11.25/1.0.1 er prøvd; eksakte produksjonspatcher skal velges etter kompatibilitet og pakking. whisper.cpp-sidecar og direkte CTranslate2-alignment er den anbefalte tekniske retningen, uten stock PyAV. Ingen endelig default ASR-modell eller kvalitetsløfte fastsettes her.
 
 Prosesskommunikasjon skal først undersøkes med et minimalt testharness. Ingen offentlig IPC-kontrakt, lagringsmodell eller produksjonsmappestruktur vedtas her.
 
@@ -30,15 +30,19 @@ Avalonia har permissiv core-lisens, Windows/Linux-retning og gjennomførbar cust
 
 PySide er et sterkt alternativ dersom fordelene ved ett språk oppveier konkret Qt-compliance og distribusjon. Web-UI kan også fungere, men ekstra webview-/Rust-/sidecarflater gir flere ting å verifisere. Ingen ytelsesrangering av de uprøvde GUI-alternativene er etablert.
 
-## Konsekvenser og porter før aksept
+## Konsekvenser og senere verifikasjon
 
 - To språk og to runtimeflater krever reproducerbar pakking og en liten, versjonert workergrense.
-- Windows 10 22H2 er dokumentert som Tier 2 i dagens Avalonia-støtte. Native bruk på eierens maskin må prøves.
+- Windows 10 22H2 er dokumentert som Tier 2 i dagens Avalonia-støtte. Native Windows-vindu er prøvd; plattformstøtte og produktets input/UX skal fortsatt verifiseres mot releasekrav.
 - Sample-seek/loop, native waveform/noter/ordplassholdere og tung worker er prøvd. Fysisk Linux-device, akustisk latency og ferdig editor-input er senere release-/produktarbeid.
 - Linux-smoke og minimum Windows-pakke har lykkes på den dokumenterte CPU-profilen. Ren VM, installer og GPU er ikke godkjent gjennom denne prøven.
-- Modell-/codecprofil er avgrenset: umxhq/Whisper/SwiftF0 og egen minimal FFmpeg; uklare weights og stock PyAV-bundle avvises. Korpus-/kvalitetsavgrensningene og releaseforpliktelser må gjennomgås av prosjekteieren.
-- Prosjekteieren godkjenner hovedstacken etter masteren §15.2. Vedtak og dato fylles inn først etter faktisk godkjenning.
+- Modell-/codecprofil er avgrenset: umxhq/Whisper/SwiftF0 og egen minimal FFmpeg; uklare weights og stock PyAV-bundle avvises. Prosjekteieren har akseptert korpus-/kvalitetsavgrensningene for faseavslutning; releaseforpliktelsene består.
+- Medfølgende runtimes og PyTorch-relatert pakkestørrelse er akseptert. CPU er baseline; GPU/CUDA forblir et valgfritt senere tillegg.
 
 ## Vedtak
 
-Ikke vedtatt. Ingen produksjonsspråk, GUI eller playback-backend er låst.
+Prosjekteieren godkjente 2026-10-08 C#/.NET 10 LTS + Avalonia, separat Python-prosess og miniaudio bak et utskiftbart playback-grensesnitt, med Hexa.NET.MiniAudio som utgangspunkt.
+
+Open-Unmix med eksplisitt umxhq er konservativ standardbaseline for vokalseparasjon. Modellvalg skal forbli utskiftbare. Automatisk pitch-, note-, alignment- og BPM-analyse gir forslag med confidence og forventet manuell korreksjon. Større ASR-, norsk- og miksingsbenchmark kreves før konkrete kvalitetsløfter eller endelig default ASR-modell fastsettes.
+
+Prosjekteieren anser evidensen som tilstrekkelig og de dokumenterte begrensningene som ikke-blokkerende for avslutning av Fase 1. Dette godkjenner arkitektur og retning, ikke alle evalueringspatcher eller en fremtidig releasepakke. Fase 2 krever egen arbeidsordre og er ikke startet.

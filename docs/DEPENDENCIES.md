@@ -1,7 +1,7 @@
 # Kandidater, dependencies og lisensvurdering – Fase 1
 
 **Videre kontroll:** [artefaktlisenser](PHASE1_LICENSES.md) og [anbefalingen](PHASE1_RECOMMENDATION.md) overstyrer første kandidatprioritering. Native Windows/Linux, UMXHQ, whisper.cpp og direkte alignment er nå prøvd. Stock PyAV-bundle er avvist etter kontroll av faktisk x264/x265 og vendor-patch; dens selvrapporterte LGPL-flagg er ikke en klarering.
-Kontrollert 2026-10-07. Dette er en **kandidatmatrise**, ikke en valgt produksjonsstack. Ingen bibliotek i tabellene er innført i `src/`. Installerte evalueringspakker ligger i `.agent-local/`; eksakte testversjoner finnes i `tools/phase1/requirements-evaluation.txt` og TimelineProbes `packages.lock.json`.
+Kontrollert 2026-10-07. Dette er en **kandidatmatrise**, med historiske alternativer og forslag. Hovedstack og baseline ble godkjent 2026-10-08; [ADR-0001](decisions/ADR-0001-desktop-and-analysis-stack.md) og [ADR-0002](decisions/ADR-0002-licensing-and-reuse.md) angir gjeldende vedtak. Ingen bibliotek i tabellene er innført i `src/`. Installerte evalueringspakker ligger i `.agent-local/`; eksakte testversjoner finnes i `tools/phase1/requirements-evaluation.txt` og TimelineProbes `packages.lock.json`.
 
 [Masteren](PROJECT_MASTER.md) §15, §18.2 og §26 regulerer vurderingen. [Audit](PHASE1_AUDIT.md) gir anbefalingene; [måleresultater](PHASE1_RESULTS.md) skiller utførte tester fra uprøvde egenskaper.
 

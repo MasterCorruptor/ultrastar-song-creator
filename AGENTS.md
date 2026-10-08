@@ -14,9 +14,9 @@ Bruk avgrensede `work/<oppgave>`-brancher for ikke-trivielt arbeid. Commit ved k
 
 ## Scope og arkitektur
 
-Arbeid i `src/`, `tests/`, `tools/` og relevant `docs/` innenfor arbeidsordren. Endre rotfiler når oppgaven krever det. Aktuell fase er Fase 1: research og avgrensede PoC-er. Produksjonsimplementering og Fase 2 krever ny arbeidsordre.
+Arbeid i `src/`, `tests/`, `tools/` og relevant `docs/` innenfor arbeidsordren. Endre rotfiler når oppgaven krever det. Fase 1 er avsluttet og godkjent 2026-10-08. Fase 2 er ikke startet; produksjonsimplementering krever ny arbeidsordre. Se den avsluttede planen i docs/exec-plans/completed/ og forslaget i docs/PHASE2_FIRST_WORK_ORDER.md.
 
-Bevar skillet acquisition/generation/editor, separat intern sangmodell og grunnleggende undo/redo. Kjernefunksjoner skal fungere lokalt uten obligatoriske tredjepartskontoer/API-nøkler. Ingen produksjonsstack er vedtatt. Prosjekteieren godkjenner vesentlige teknologivalg. Uavklarte modell-/binærlisenser blokkerer innføring av berørte komponenter.
+Bevar skillet acquisition/generation/editor, separat intern sangmodell og grunnleggende undo/redo. Kjernefunksjoner skal fungere lokalt uten obligatoriske tredjepartskontoer/API-nøkler. ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, miniaudio/Hexa bak utskiftbart grensesnitt, eksplisitt umxhq og MIT for egen kode med dokumenterte LGPL-codecs. Analyse gir forslag med confidence/manuell korreksjon; modellvalg er utskiftbart og endelig default ASR-modell er ikke valgt. Nye vesentlige teknologivalg krever prosjekteierens vedtak. Uavklarte modell-/binærlisenser blokkerer innføring av berørte komponenter.
 
 ## Verifikasjon og stopp
 

@@ -1,9 +1,9 @@
 # Fase 1 – Technology Feasibility & Reuse Audit
 
-**Oppdatert beslutningsgrunnlag:** [avsluttende anbefaling](PHASE1_RECOMMENDATION.md), [native/sang/Windows/Linux-resultater](PHASE1_CONTINUATION_RESULTS.md) og [artefaktlisenser](PHASE1_LICENSES.md). Første kandidatrunde nedenfor er historisk; gjeldende baseline er miniaudio, SwiftF0, Open-Unmix umxhq, whisper.cpp, direkte CTranslate2-alignment og egen minimal FFmpeg. Stock PyAV og uklare separasjonsweights holdes utenfor standardpakken. Ingen ADR er akseptert.
-Dato: 2026-10-07. **Status: første kartlegging og avgrensede feasibility-prøver gjennomført; Fase 1 er fortsatt aktiv.** Produksjonsstacken er ikke valgt. Forslagene nedenfor trenger prosjekteierens vurdering, og de åpne kontrollpunktene må løses før Fase 1 lukkes.
+**Oppdatert beslutningsgrunnlag:** [avsluttende anbefaling](PHASE1_RECOMMENDATION.md), [native/sang/Windows/Linux-resultater](PHASE1_CONTINUATION_RESULTS.md) og [artefaktlisenser](PHASE1_LICENSES.md). Første kandidatrunde nedenfor er historisk; gjeldende baseline er miniaudio, SwiftF0, Open-Unmix umxhq, whisper.cpp, direkte CTranslate2-alignment og egen minimal FFmpeg. Stock PyAV og uklare separasjonsweights holdes utenfor standardpakken. ADR-0001 og ADR-0002 er akseptert 2026-10-08.
+Researchdato: 2026-10-07. **Status: Fase 1 avsluttet og godkjent 2026-10-08.** Første kartlegging nedenfor er historisk; gjeldende vedtak og gjennomførte kontroller står i rapportene ovenfor.
 
-## Konklusjon for neste arbeidstrinn
+## Historisk konklusjon fra første kontrollpunkt
 
 Prosjektet har en realistisk lokal vei med mye open-source-gjenbruk. Den mest lovende retningen å teste videre er **C#/.NET 10 + Avalonia for desktop/editor og en separat Python-worker for analysen**. SwiftF0 og librosa er prøvd på CPU; faster-whisper er prøvd med en lokal tiny-modell. Acquisition kan bygges rundt utskiftbare yt-dlp-, MusicBrainz- og lyric-adaptere.
 
@@ -13,8 +13,8 @@ Dette er en begrunnet anbefaling for videre Fase 1, ikke en akseptert produksjon
 
 - [Kandidat- og lisensmatrise](DEPENDENCIES.md): acquisition, metadata, lyrics, separation, ASR/alignment, beat/BPM, pitch, segmentering, format, playback, GUI og eksisterende editorer.
 - [Måleresultater og avgrensninger](PHASE1_RESULTS.md): faktisk Windows-evaluering, syntetiske data og anonyme provider-kall.
-- [Forslag ADR-0001](decisions/ADR-0001-desktop-and-analysis-stack.md): språk, GUI og isolert analyseprosess.
-- [Forslag ADR-0002](decisions/ADR-0002-licensing-and-reuse.md): permissivt mål og artefaktvis lisensport.
+- [Akseptert ADR-0001](decisions/ADR-0001-desktop-and-analysis-stack.md): språk, GUI og isolert analyseprosess.
+- [Akseptert ADR-0002](decisions/ADR-0002-licensing-and-reuse.md): permissivt mål og artefaktvis lisensport.
 - [Reproduserbare evalueringsverktøy](../tools/phase1/README.md), låste testversjoner og kilde-/måledata.
 
 Masterspesifikasjon v0.5 er uendret. `src/` inneholder ingen produksjonskode. Evalueringsharnessene gir ingen offentlig API eller ferdig intern sangmodell.
@@ -76,4 +76,4 @@ Lisensusikkerhet blokkerer **innføring/distribusjon av den berørte komponenten
 
 Native playback, timeline med tung worker, annotert sangbenchmark, lisensavgrenset CPU-profil, portable Windows-prøve og faktisk Linux-smoke er nå utført med dokumenterte avgrensninger. Se de gjeldende rapportene ovenfor.
 
-Prosjekteieren skal vurdere hovedstack, playback, lisensprofil, modellbaseline og automatikkens kvalitetsbegrensninger. Fase 1 står åpen til disse vedtakene og eventuell bestilling av mer research er registrert. Fase 2 krever eksplisitt godkjenning; publishing/merge av research er ikke et teknologivedtak.
+Prosjekteieren har eksplisitt godkjent hovedstack, playback, lisensprofil, modellbaseline og automatikkens kvalitetsbegrensninger 2026-10-08. Evidensen er ansett som tilstrekkelig og Fase 1 er avsluttet. Fase 2 krever en egen arbeidsordre og er ikke startet.

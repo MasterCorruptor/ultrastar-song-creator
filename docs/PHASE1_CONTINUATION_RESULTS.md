@@ -110,4 +110,4 @@ Faktisk Ubuntu 24.04-container, pinnet .NET SDK-image, Linux-native miniaudio og
 
 ## Gjenstående beslutnings- og releasegrenser
 
-Researchen gir konkret grunnlag for [teknologianbefalingen](PHASE1_RECOMMENDATION.md). GPU, norsk sang, kilde-stem-kvalitet, ferdig full-song-alignment, fysisk Linux-audio og ren Windows-release er ikke utført. Native programmer/worker-minimum er prøvd; et fullstendig produkt og alle releaseartefakter eksisterer ennå ikke. Prosjekteieren må avgjøre om avgrensningene er tilstrekkelige til å lukke Fase 1. Ingen ADR er akseptert, og ingen Fase 2 er startet.
+Researchen gir konkret grunnlag for [teknologianbefalingen](PHASE1_RECOMMENDATION.md). GPU, norsk sang, kilde-stem-kvalitet, ferdig full-song-alignment, fysisk Linux-audio og ren Windows-release er ikke utført. Native programmer/worker-minimum er prøvd; et fullstendig produkt og alle releaseartefakter eksisterer ennå ikke. Prosjekteieren godkjente evidensen og avgrensningene som tilstrekkelige 2026-10-08 og avsluttet Fase 1. ADR-0001 og ADR-0002 er akseptert. Ingen Fase 2 er startet; gjenstående kvalitets-/releasearbeid er ikke utført gjennom vedtaket.

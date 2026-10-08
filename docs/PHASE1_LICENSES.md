@@ -1,6 +1,6 @@
 # Fase 1 – modell-, codec- og distribusjonsvilkår
 
-Kontrollert 2026-10-07. Rapporten skiller **lisensgrunnlag**, **teknisk verifikasjon** og **ferdig redistribusjonspakke**. Et permissivt pakkenavn er ikke en komplett klarering. Egen prosjektkode har fortsatt foreløpig MIT; ingen offentlig produktbinær eller modellpakke er publisert.
+Kontrollert 2026-10-07. Rapporten skiller **lisensgrunnlag**, **teknisk verifikasjon** og **ferdig redistribusjonspakke**. Et permissivt pakkenavn er ikke en komplett klarering. MIT for egen prosjektkode er bekreftet av prosjekteieren 2026-10-08; ingen offentlig produktbinær eller modellpakke er publisert.
 
 ## Valgte evalueringsartefakter og anbefalt profil
 
@@ -51,8 +51,8 @@ Ingen modeller, sanger, checkpoints, lyrics eller transkripsjoner er committet. 
 
 ## Konkret distribusjonsbeslutning
 
-Anbefal **MIT for egen kode**, individuelt dokumenterte permissive weights/runtimes, og en separat LGPL-codecprofil med komplette forpliktelser. Dette trenger prosjekteierens vedtak om lisensstrategi. Den foreslåtte avsluttende profilen bruker whisper.cpp og CTranslate2 direkte på PCM og **utelukker stock PyAV**. De to uendrede MIT-hjelpemodulene er bevart med original LICENSE/proveniens under tools/phase1/vendor/.
+Anbefal **MIT for egen kode**, individuelt dokumenterte permissive weights/runtimes, og en separat LGPL-codecprofil med komplette forpliktelser. Prosjekteieren godkjente denne lisensstrategien 2026-10-08, uten å klarere fremtidige releaseartefakter automatisk. Den foreslåtte avsluttende profilen bruker whisper.cpp og CTranslate2 direkte på PCM og **utelukker stock PyAV**. De to uendrede MIT-hjelpemodulene er bevart med original LICENSE/proveniens under tools/phase1/vendor/.
 
 Før noen faktisk produktbinær publiseres må den endelige, faktiske pakken ha: exact binary/model hashes, source/build-proveniens, alle notices og corresponding source for berørte native/codec/compiler-runtimes, mulighet til å erstatte LGPL-komponentene og korrekt lisensomtale i produkt/pakkedokumentasjon. Source til egen FFmpeg er allerede bevart lokalt; det klarerer ikke automatisk PyAVs separate FFmpeg-bundle.
 
-**Håndtert kandidatport:** Stock PyAV er avvist og fjernet fra den anbefalte prøvepakken; en fungerende alternativ rute er verifisert. Ingen uklar modell er obligatorisk i forslaget. **Gjenstående releasearbeid:** samlet endelig installer-SBOM, compiler-/OS-runtime-forutsetninger og alle tilsvarende source/notices må følge den faktisk bygde produktpakken. Research-/kodepublisering er kontrollert separat. [ADR-0002](decisions/ADR-0002-licensing-and-reuse.md) er fortsatt foreslått.
+**Håndtert kandidatport:** Stock PyAV er avvist og fjernet fra den anbefalte prøvepakken; en fungerende alternativ rute er verifisert. Ingen uklar modell er obligatorisk i forslaget. **Gjenstående releasearbeid:** samlet endelig installer-SBOM, compiler-/OS-runtime-forutsetninger og alle tilsvarende source/notices må følge den faktisk bygde produktpakken. Research-/kodepublisering er kontrollert separat. [ADR-0002](decisions/ADR-0002-licensing-and-reuse.md) er akseptert 2026-10-08.
