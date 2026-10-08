@@ -363,4 +363,16 @@ public class UltraStarImportTests
         await File.WriteAllTextAsync(files.FilePath("conflict.txt"), Headers + "#ENCODING:CP1252\nE", new UTF8Encoding(true));
         Error(await new UltraStarImporter().LoadAsync(files.FilePath("conflict.txt")), ImportCode.InvalidEncoding);
     }
+
+    [Fact]
+    public async Task V1UnicodeHeaderWhitespaceDoesNotAccidentallyEnableLegacyEncoding()
+    {
+        using var files = new ProjectTestDirectory();
+        var input = "#\u00A0VERSION\u00A0:\u00A01.0.0\n#ENCODING:CP1252\n" + Headers +
+            ": 0 4 0 Æ ø 🎵\nE";
+        await File.WriteAllTextAsync(files.FilePath("unicode-header.txt"), input, new UTF8Encoding(false, true));
+        var song = Success(await new UltraStarImporter().LoadAsync(files.FilePath("unicode-header.txt")));
+        Assert.Equal("ultrastar-v1", song.ImportedSource!.FormatId);
+        Assert.Equal("Æ ø 🎵", song.Phrases[0].Text);
+    }
 }

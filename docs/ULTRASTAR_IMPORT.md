@@ -53,3 +53,5 @@ Referanse: UltraStar-Deluxe/format ved commit 7328e4df4ad9b88cb7120d4c9d8177a879
 ## Verifikasjon
 
 Håndskrevne syntetiske fixtures dekker begge profiler, alle notetyper, fractional comma-BPM, GAP/videooffset, Unicode og AUDIO-preferanse. Testene dekker feil/diagnostikk, encoding, BOM/linjeslutt, versjoner/stemmer, numeriske grenser, usorterte/overlappende noter og import → redigering → undo/redo → Save v2 → reopen med identiske metadata/referanser. Ingen ekte sangtekst eller lyd er brukt.
+
+180/180 tester bestod på Windows og nettisolert Linux, med locked restore og Release build uten warnings; Windows formatkontroll bestod. Leveransen venter fortsatt på avklaringen om relativ modus.

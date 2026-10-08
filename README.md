@@ -4,7 +4,7 @@ UltraStar Song Creator skal bli et desktopverktøy for opprettelse, automatisk g
 
 ## Status
 
-Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-08.** ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, utskiftbar miniaudio-backend, MIT for egen kode og separat dokumenterte LGPL-codecs. Open-Unmix med eksplisitt umxhq er separasjonsbaseline. **Fase 2 er påbegynt:** deloppgave 2.1 har intern sangmodell, validering og MoveNote med undo/redo og domenetester. **Fase 2.2 har versjonert prosjektlagring:** dagens sang, redigerte noter og analysepunkter kan lagres/gjenåpnes lokalt. GUI og UltraStar import/eksport er fortsatt ikke implementert.
+Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-08.** ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, utskiftbar miniaudio-backend, MIT for egen kode og separat dokumenterte LGPL-codecs. Open-Unmix med eksplisitt umxhq er separasjonsbaseline. **Fase 2 er påbegynt:** deloppgave 2.1 har intern sangmodell, validering og MoveNote med undo/redo og domenetester. **Fase 2.2 har versjonert prosjektlagring:** dagens sang, redigerte noter og analysepunkter kan lagres/gjenåpnes lokalt. **Fase 2.3 har import for unversionerte enkeltstemmer og UltraStar v1**, med bevart kildemetadata i prosjektformat v2. Avgrensningen for legacy relativ tid venter på prosjekteierens svar; leveransen er derfor fortsatt under arbeid. GUI og UltraStar-eksport er ikke implementert.
 
 ## Prosjektkilder
 
@@ -15,9 +15,10 @@ Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-
 - [Teknologianbefaling og beslutningspunkter](docs/PHASE1_RECOMMENDATION.md), [videre målinger](docs/PHASE1_CONTINUATION_RESULTS.md) og [artefaktlisenser](docs/PHASE1_LICENSES.md) er gjeldende beslutningsgrunnlag.
 - [Akseptert desktop-/analysearkitektur](docs/decisions/ADR-0001-desktop-and-analysis-stack.md) og [lisensstrategi](docs/decisions/ADR-0002-licensing-and-reuse.md) dokumenterer prosjekteierens vedtak.
 - [Avsluttet Fase 1-plan](docs/exec-plans/completed/phase1-feasibility-audit.md) dokumenterer leveransen og aksepterte begrensninger.
-- [Prosjektformat v1](docs/PROJECT_FORMAT.md) og [avsluttet lagringsplan](docs/exec-plans/completed/phase2-project-storage.md) dokumenterer Fase 2.2.
+- [Gjeldende prosjektformat v2](docs/PROJECT_FORMAT_V2.md), [historisk v1](docs/PROJECT_FORMAT.md) og [avsluttet lagringsplan](docs/exec-plans/completed/phase2-project-storage.md) dokumenterer Fase 2.2.
 - [Fase 2.1-arbeidsordre](docs/PHASE2_FIRST_WORK_ORDER.md), [core domain/enheter](docs/CORE_DOMAIN.md) og [testdependencies](docs/CORE_DEPENDENCIES.md) dokumenterer den første kjernedeloppgaven.
-- [Evalueringsverktøy](tools/phase1/README.md) inneholder reproduksjonskommandoer; prober bygges separat fra Core/Projects-solution.
+- [UltraStar-importprofil](docs/ULTRASTAR_IMPORT.md), [arbeidsordre](docs/PHASE2_ULTRASTAR_IMPORT_WORK_ORDER.md) og [aktiv importplan](docs/exec-plans/active/phase2-ultrastar-import.md) dokumenterer Fase 2.3 og den åpne avklaringen.
+- [Evalueringsverktøy](tools/phase1/README.md) inneholder reproduksjonskommandoer; prober bygges separat fra Core/Projects/UltraStar-solution.
 
 ## Struktur
 
@@ -54,7 +55,7 @@ dotnet build UltraStar.SongCreator.slnx -c Release --no-restore
 dotnet test UltraStar.SongCreator.slnx -c Release --no-build --no-restore
 ```
 
-Core/Projects krever ingen Python, modeller eller mediefiler; restore trenger pakker én gang eller en eksisterende NuGet-cache. Fase 1-prøvene kjøres separat som beskrevet i [tools/phase1/README.md](tools/phase1/README.md). Se [DEVELOPMENT.md](docs/DEVELOPMENT.md) for arbeidsflyt og miljøprinsipper.
+Core/Projects/UltraStar krever ingen Python, modeller eller mediefiler; restore trenger pakker én gang eller en eksisterende NuGet-cache. Fase 1-prøvene kjøres separat som beskrevet i [tools/phase1/README.md](tools/phase1/README.md). Se [DEVELOPMENT.md](docs/DEVELOPMENT.md) for arbeidsflyt og miljøprinsipper.
 
 ## Lisens
 

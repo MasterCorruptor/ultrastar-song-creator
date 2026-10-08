@@ -9,7 +9,7 @@ Autoritet: PROJECT_MASTER.md §9–10/13–16, aksepterte ADR-0001/0002 og forma
 
 - [x] Metadata/migrasjon: generisk importkilde/header-samling i Core, prosjektformat v2 og eksplisitt v1-load-migrasjon; full rundtur uten metadata-/identitetstap.
 - [x] Import (absolutt modus; relativ avgrensning venter på svar): separat UltraStar-adapter, eksplisitt profil, korrekt beat/pitch/GAP/video-konvertering, note-/frasestruktur, diagnostikk med linjenummer og tydelig avvisning av duett/ukjente major-versjoner.
-- [ ] Verifikasjon: håndskrevne syntetiske fixtures, filtekst/encoding/robusthet, import → redigering → lagring/gjenåpning, Windows/Linux-tester og avgrenset PR.
+- [x] Verifikasjon (PR publiseres som draft med åpen avklaring): håndskrevne syntetiske fixtures, filtekst/encoding/robusthet, import → redigering → lagring/gjenåpning, Windows/Linux-tester og avgrenset PR.
 
 Ingen writer/eksport, GUI, lyd, acquisition, modeller eller duettmodell. Ingen metadata/nettressurser hentes ved load. Cover/album/ukjente headers beholdes som original kildemetadata; aktuelle Title/Artist/Language og redigerte noter er domenets sannhet.
 
@@ -24,3 +24,7 @@ Stop conditions: uløst autoritetskonflikt, ny uavklart lisens, større scope el
 2026-10-08: første kontrollpunkt verifisert med Release-build uten warnings og 114/114 tester. V1 beholdes; v2 bevarer importkilde og samtlige headers.
 
 2026-10-08: andre kontrollpunkt: separat importer og 65 importtester. Windows Release: 179/179 totalt. Relativ modus er ikke endelig avgrenset; leveransen er ikke ferdig før svar.
+
+2026-10-08: Windows og nettisolert Linux bestod 180/180 tester, locked restore og Release build uten warnings. Windows formatkontroll bestod. Metadata-rundtur og v1-migrasjon dekkes; master/aksepterte ADR-er og v1-fixture er byteuendret. Public inventory/lenker/privacy bestod. Ingen ekte lyd, sangtekster eller hardwareinformasjon publiseres.
+
+Status: implementerte kontrollpunkter er verifisert, men Fase 2.3 er ikke avsluttet. Prosjekteierens svar om #RELATIVE:YES er nødvendig for endelig scope. Ny PR holdes draft på work/phase2-project-storage; ingen automatisk merge eller oppstart av writer/eksport.

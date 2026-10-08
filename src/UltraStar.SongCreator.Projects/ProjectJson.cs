@@ -110,7 +110,7 @@ internal static class ProjectJson
     }
 
     private static T Required<T>(T? value) where T : class =>
-        value ?? throw new JsonException("Null is not permitted for this v1 field.");
+        value ?? throw new JsonException("Null is not permitted for this required field.");
 
     // Freeze v1 names independently of future domain enum additions.
     private sealed class NamedEnumConverter<T>(params (string Name, T Value)[] entries) : JsonConverter<T> where T : struct, Enum

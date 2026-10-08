@@ -58,7 +58,10 @@ public sealed class UltraStarImporter
         // ASCII-compatible headers select explicit legacy encodings before any lyric is decoded.
         var scan = bytes.AsSpan();
         if (scan.StartsWith(new byte[] { 0xEF, 0xBB, 0xBF })) scan = scan[3..];
-        var preliminary = ReadHeaderPairs(Encoding.Latin1.GetString(scan));
+        string headerText;
+        try { headerText = Utf8.GetString(scan); }
+        catch (DecoderFallbackException) { headerText = Encoding.Latin1.GetString(scan); }
+        var preliminary = ReadHeaderPairs(headerText);
         var version = preliminary.LastOrDefault(h => h.Name.Equals("VERSION", StringComparison.OrdinalIgnoreCase) && h.Value.Length > 0);
         var declared = preliminary.Where(h => h.Name.Equals("ENCODING", StringComparison.OrdinalIgnoreCase) && h.Value.Length > 0).ToArray();
         Encoding encoding = Utf8;
