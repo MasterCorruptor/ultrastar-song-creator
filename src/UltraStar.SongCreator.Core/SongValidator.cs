@@ -10,7 +10,7 @@ public enum ValidationCode
     InvalidTiming, InvalidDuration, InvalidPhraseBounds, InvalidPitch,
     InvalidConfidence, InvalidTempo, InvalidType, BrokenReference,
     NoteOutsidePhrase, NoteOverlap, MissingText, MissingMetadata, MissingMedia,
-    MissingProvenance, InvalidAnalysisPoint
+    MissingProvenance, InvalidAnalysisPoint, InvalidSourceMetadata
 }
 
 public sealed record ValidationIssue(
@@ -65,6 +65,19 @@ public static class SongValidator
                 Add(ValidationCode.MissingMetadata, "Song.Metadata.Title", song.Id, "Title is missing.", ValidationSeverity.Warning);
             if (string.IsNullOrWhiteSpace(song.Metadata.Artist))
                 Add(ValidationCode.MissingMetadata, "Song.Metadata.Artist", song.Id, "Artist is missing.", ValidationSeverity.Warning);
+        }
+
+        if (song.ImportedSource is { } source)
+        {
+            if (string.IsNullOrWhiteSpace(source.FormatId))
+                Add(ValidationCode.InvalidSourceMetadata, "Song.ImportedSource.FormatId", song.Id, "Source format identity is required.");
+            var headers = Collection(source.Headers, "Song.ImportedSource.Headers");
+            for (var i = 0; i < headers.Length; i++)
+            {
+                var header = headers[i];
+                if (header is null || string.IsNullOrWhiteSpace(header.Name) || header.Value is null)
+                    Add(ValidationCode.InvalidSourceMetadata, $"Song.ImportedSource.Headers[{i}]", song.Id, "Header name/value must be present.");
+            }
         }
 
         var media = Collection(song.Media, "Song.Media");

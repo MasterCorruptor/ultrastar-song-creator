@@ -60,8 +60,8 @@ public sealed class ProjectStore
         if (await stream.ReadAsync(new byte[1], cancellationToken) != 0)
             throw new IOException("Project file changed while being read.");
         cancellationToken.ThrowIfCancellationRequested();
-        var (song, issues) = ProjectJson.Decode(bytes);
-        return new(path, ProjectJson.Version, song, issues);
+        var (song, issues, version) = ProjectJson.Decode(bytes);
+        return new(path, version, song, issues);
     }
 
     private void CheckLength(long length)

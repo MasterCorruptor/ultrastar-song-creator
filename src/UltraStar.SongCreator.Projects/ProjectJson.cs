@@ -8,7 +8,7 @@ namespace UltraStar.SongCreator.Projects;
 internal static class ProjectJson
 {
     internal const string Format = "ultrastar-song-creator";
-    internal const int Version = 1;
+    internal const int Version = 2;
 
     private static readonly JsonSerializerOptions Options = new()
     {
@@ -34,16 +34,20 @@ internal static class ProjectJson
         Validate(song);
         try
         {
-            var document = new Envelope { Format = Format, SchemaVersion = Version, Song = SongDocument.From(song) };
+            var document = new EnvelopeV2
+            {
+                Format = Format, SchemaVersion = Version, Song = SongDocument.From(song),
+                ImportedSource = song.ImportedSource is null ? null : SourceDocumentDto.From(song.ImportedSource)
+            };
             return JsonSerializer.SerializeToUtf8Bytes(document, Options);
         }
         catch (JsonException e)
         {
-            throw new ProjectFormatException(ProjectError.InvalidSong, "Song does not match the v1 storage schema.", inner: e);
+            throw new ProjectFormatException(ProjectError.InvalidSong, "Song does not match the project storage schema.", inner: e);
         }
     }
 
-    internal static (Song Song, ImmutableArray<ValidationIssue> Issues) Decode(byte[] bytes)
+    internal static (Song Song, ImmutableArray<ValidationIssue> Issues, int SchemaVersion) Decode(byte[] bytes)
     {
         try
         {
@@ -56,16 +60,26 @@ internal static class ProjectJson
                 !root.TryGetProperty("format", out var format) || format.ValueKind != JsonValueKind.String || format.GetString() != Format ||
                 !root.TryGetProperty("schemaVersion", out var version) || version.ValueKind != JsonValueKind.Number || !version.TryGetInt32(out var number))
                 throw new ProjectFormatException(ProjectError.InvalidEnvelope, "Missing/invalid project format or schemaVersion.");
-            if (number != Version)
+            Song song;
+            if (number == 1)
+            {
+                var legacy = JsonSerializer.Deserialize<Envelope>(input.Span, Options)
+                    ?? throw new JsonException("Project document is null.");
+                song = legacy.Song.ToSong(); // v1 migration adds no invented source metadata.
+            }
+            else if (number == Version)
+            {
+                var current = JsonSerializer.Deserialize<EnvelopeV2>(input.Span, Options)
+                    ?? throw new JsonException("Project document is null.");
+                song = current.Song.ToSong() with { ImportedSource = current.ImportedSource?.ToSource() };
+            }
+            else
                 throw new ProjectFormatException(ProjectError.UnsupportedVersion, $"Unsupported project schema version: {number}.");
-            var document = JsonSerializer.Deserialize<Envelope>(input.Span, Options)
-                ?? throw new JsonException("Project document is null.");
-            var song = document.Song.ToSong();
-            return (song, Validate(song));
+            return (song, Validate(song), number);
         }
         catch (JsonException e)
         {
-            throw new ProjectFormatException(ProjectError.InvalidJson, "Project JSON is malformed or does not match the v1 schema.", inner: e);
+            throw new ProjectFormatException(ProjectError.InvalidJson, "Project JSON is malformed or does not match the declared project schema.", inner: e);
         }
     }
 
@@ -114,6 +128,39 @@ internal static class ProjectJson
             if (!names.TryGetValue(value, out var name)) throw new JsonException("Enum value is not defined in v1.");
             writer.WriteStringValue(name);
         }
+    }
+
+    private sealed record EnvelopeV2
+    {
+        public required string Format { get; init; }
+        public required int SchemaVersion { get; init; }
+        public required SongDocument Song { get; init; }
+        public required SourceDocumentDto? ImportedSource { get; init; }
+    }
+
+    private sealed record SourceDocumentDto
+    {
+        public required string FormatId { get; init; }
+        public required string? FileReference { get; init; }
+        public required HeaderDocument[] Headers { get; init; }
+
+        internal static SourceDocumentDto From(SourceDocument source) => new()
+        {
+            FormatId = source.FormatId, FileReference = source.FileReference,
+            Headers = source.Headers.Select(h => new HeaderDocument { Name = h.Name, Value = h.Value }).ToArray()
+        };
+
+        internal SourceDocument ToSource() => new()
+        {
+            FormatId = Required(FormatId), FileReference = FileReference,
+            Headers = Required(Headers).Select(h => new SourceHeader(Required(h).Name, Required(h.Value))).ToImmutableArray()
+        };
+    }
+
+    private sealed record HeaderDocument
+    {
+        public required string Name { get; init; }
+        public required string Value { get; init; }
     }
 
     private sealed record Envelope

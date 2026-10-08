@@ -12,6 +12,7 @@ public sealed record Song
     public double? BeatsPerMinute { get; init; }
     public ImmutableArray<Phrase> Phrases { get; init; } = [];
     public AnalysisData Analysis { get; init; } = new();
+    public SourceDocument? ImportedSource { get; init; }
 }
 
 public sealed record SongMetadata
