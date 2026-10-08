@@ -1,6 +1,6 @@
 # UltraStar-import – Fase 2.3
 
-Arbeidsordren av 2026-10-08 gjelder unversionerte filer og UltraStar v1, enkeltstemme først og alle originale headers bevart ved lagring/gjenåpning. Dette er en GUI-uavhengig importer, ingen writer, eksport eller duettimplementasjon.
+Arbeidsordren av 2026-10-08 gjelder unversionerte filer og UltraStar v1, enkeltstemme først og alle originale headers bevart ved lagring/gjenåpning. Dette er en GUI-uavhengig importer med absolutt og legacy relativ tid, ingen writer, eksport eller duettimplementasjon.
 
 ## API og resultat
 
@@ -38,9 +38,11 @@ ImportedSource har formatId ultrastar-unversioned/ultrastar-v1, eventuell kilder
 
 Kildemetadata er proveniens, mens redigerte domenefelt/noter er aktuell sannhet. Importen bevarer ikke original byte-encoding, whitespace rundt headers eller rå body/frasemarkør-cues som en tapsfri teksteditor. Den lover ingen identisk fremtidig eksport; writerens regler er en egen arbeidsordre.
 
-## Åpent avklaringspunkt
+## Relativ legacy-tid – avklart og implementert
 
-Legacy #RELATIVE:YES avvises foreløpig tydelig med UnsupportedRelativeTiming. Primærkilden initialiserer relativ offset fra GAP, men blander denne med beatverdier selv om GAP er dokumentert i millisekunder. Prosjekteieren er spurt om relativ modus skal avvises i første importer eller avklares/implementeres nå. Den endelige avgrensningen er ikke vedtatt; dette punktet må lukkes før leveransen anses ferdig. En markør med ekstra relativ-offset uten deklarert relativ modus gir feil; modus gjettes aldri.
+Prosjekteieren bestilte avklaring og implementering 2026-10-08. [Kompatibilitetsrapporten](RELATIVE_TIMING.md) dokumenterer primærkilder, enhetsuklarheten og USDX-profilen. Unversionerte enkeltstemmer med eksplisitt RELATIVE:YES bruker initial beat-offset 0, markør med to felt og akkumulerende delta i beats; GAP holdes separat i millisekunder. Hver slik import gir RelativeTimingCompatibility-warning. V1 + YES avvises siden relativ modus er fjernet i v1. Modus gjettes aldri.
+
+Alle relative start/end/markør-/offsetsummer kontrolleres før konvertering; overflow eller tap av positiv varighet gir feil. Tomme/gjentatte markører beholder delta-effekten uten å lage tomme fraser. Gjentatt P1 nullstiller ikke offset. Ingen automatisk reparasjon av manglende markørfelt inngår.
 
 ## Primærkilder og lisens
 
@@ -54,4 +56,4 @@ Referanse: UltraStar-Deluxe/format ved commit 7328e4df4ad9b88cb7120d4c9d8177a879
 
 Håndskrevne syntetiske fixtures dekker begge profiler, alle notetyper, fractional comma-BPM, GAP/videooffset, Unicode og AUDIO-preferanse. Testene dekker feil/diagnostikk, encoding, BOM/linjeslutt, versjoner/stemmer, numeriske grenser, usorterte/overlappende noter og import → redigering → undo/redo → Save v2 → reopen med identiske metadata/referanser. Ingen ekte sangtekst eller lyd er brukt.
 
-180/180 tester bestod på Windows og nettisolert Linux, med locked restore og Release build uten warnings; Windows formatkontroll bestod. Leveransen venter fortsatt på avklaringen om relativ modus.
+203/203 tester bestod på Windows og nettisolert Linux, med locked restore og Release build uten warnings; Windows formatkontroll bestod. Relativ modus er avklart og implementert i denne leveransen.

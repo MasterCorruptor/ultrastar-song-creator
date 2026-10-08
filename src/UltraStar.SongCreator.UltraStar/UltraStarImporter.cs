@@ -6,7 +6,7 @@ using UltraStar.SongCreator.Core;
 
 namespace UltraStar.SongCreator.UltraStar;
 
-/// <summary>Single-voice absolute-time import. Does not open referenced media or fetch metadata.</summary>
+/// <summary>Single-voice absolute/legacy relative-time import. Does not open referenced media or fetch metadata.</summary>
 public sealed class UltraStarImporter
 {
     public const int DefaultMaximumBytes = 8 * 1024 * 1024;
@@ -146,6 +146,8 @@ public sealed class UltraStarImporter
         private readonly List<Note> phraseNotes = [];
         private readonly Dictionary<Guid, int> noteLines = [];
         private bool versioned;
+        private bool relativeTiming;
+        private long relativeBeatOffset;
         private double secondsPerBeat;
         private long previousStart = -1;
         private bool ended;
@@ -262,7 +264,17 @@ public sealed class UltraStarImporter
             if (Value("RELATIVE") is { } relative)
             {
                 if (relative.Equals("YES", StringComparison.OrdinalIgnoreCase))
-                    Add(ImportCode.UnsupportedRelativeTiming, HeaderLine("RELATIVE"), "Relative timing requires a separately verified adapter; no absolute interpretation is attempted.");
+                {
+                    if (versioned)
+                        Add(ImportCode.UnsupportedRelativeTiming, HeaderLine("RELATIVE"), "Relative timing was removed from v1; no legacy mode is inferred for a versioned file.");
+                    else
+                    {
+                        relativeTiming = true;
+                        Add(ImportCode.RelativeTimingCompatibility, HeaderLine("RELATIVE"),
+                            "Legacy relative timing uses the documented USDX profile: initial beat offset 0; GAP remains a separate audio offset.",
+                            ValidationSeverity.Warning);
+                    }
+                }
                 else if (!relative.Equals("NO", StringComparison.OrdinalIgnoreCase))
                     Add(ImportCode.InvalidHeader, HeaderLine("RELATIVE"), "RELATIVE must be YES or NO.");
             }
@@ -327,21 +339,7 @@ public sealed class UltraStarImporter
                 return;
             }
             var position = 1;
-            if (line.StartsWith('-'))
-            {
-                if (!Token(line, ref position, out var raw) || !Integer(raw, false, out var marker) ||
-                    marker > MaximumExactInteger || line[position..].Any(c => !Whitespace(c)))
-                    Add(ImportCode.InvalidLine, number, "Absolute phrase marker requires exactly one nonnegative beat integer.");
-                else
-                {
-                    if (phraseNotes.Count == 0)
-                        Add(ImportCode.PhraseMarker, number, "Empty/consecutive phrase marker is ignored.", ValidationSeverity.Warning);
-                    else if (marker * secondsPerBeat < phraseNotes.Max(n => n.EndSeconds))
-                        Add(ImportCode.PhraseMarker, number, "Phrase marker precedes the last note end; note timing is retained.", ValidationSeverity.Warning);
-                    ClosePhrase();
-                }
-                return;
-            }
+            if (line.StartsWith('-')) { ReadPhraseMarker(line, number); return; }
             var type = line[0] switch
             {
                 ':' => NoteType.Normal,
@@ -358,6 +356,11 @@ public sealed class UltraStarImporter
                 start > MaximumExactInteger || duration > MaximumExactInteger - start || duration <= 0)
             {
                 Add(ImportCode.InvalidNote, number, "Note requires representable nonnegative start, positive duration and signed integer pitch.");
+                return;
+            }
+            if (!AbsoluteBeat(start, out start) || duration > MaximumExactInteger - start)
+            {
+                Add(ImportCode.InvalidTiming, number, "Accumulated relative note start/end exceeds the exact beat range.");
                 return;
             }
             if (position < line.Length && !Whitespace(line[position]))
@@ -393,6 +396,58 @@ public sealed class UltraStarImporter
             }
             phraseNotes.Add(note);
             noteLines.Add(note.Id, number);
+        }
+
+        private bool AbsoluteBeat(long localBeat, out long absolute)
+        {
+            absolute = 0;
+            if (localBeat > MaximumExactInteger - relativeBeatOffset) return false;
+            absolute = localBeat + relativeBeatOffset;
+            return true;
+        }
+
+        private void ReadPhraseMarker(string line, int number)
+        {
+            var position = 1;
+            if (!Token(line, ref position, out var raw) || !Integer(raw, false, out var marker) || marker > MaximumExactInteger)
+            {
+                Add(ImportCode.InvalidLine, number, "Phrase marker requires a representable nonnegative beat integer.");
+                return;
+            }
+            long delta = 0;
+            if (relativeTiming &&
+                (!Token(line, ref position, out var rawDelta) || !Integer(rawDelta, false, out delta) || delta > MaximumExactInteger))
+            {
+                Add(ImportCode.InvalidLine, number, "Relative phrase marker requires two nonnegative beat integers: marker and offset increment.");
+                return;
+            }
+            if (line[position..].Any(c => !Whitespace(c)))
+            {
+                Add(ImportCode.InvalidLine, number, relativeTiming
+                    ? "Relative phrase marker requires exactly two beat integers."
+                    : "Absolute phrase marker requires exactly one beat integer.");
+                return;
+            }
+            if (!AbsoluteBeat(marker, out var absoluteMarker) || delta > MaximumExactInteger - relativeBeatOffset)
+            {
+                Add(ImportCode.InvalidTiming, number, "Accumulated relative marker/offset exceeds the exact beat range.");
+                return;
+            }
+            var markerSeconds = absoluteMarker * secondsPerBeat;
+            if (!double.IsFinite(markerSeconds))
+            {
+                Add(ImportCode.InvalidTiming, number, "Converted phrase marker time overflows.");
+                return;
+            }
+            if (phraseNotes.Count == 0)
+                Add(ImportCode.PhraseMarker, number, relativeTiming
+                    ? "Empty/consecutive marker creates no phrase; its relative offset increment still applies."
+                    : "Empty/consecutive phrase marker is ignored.", ValidationSeverity.Warning);
+            else if (markerSeconds < phraseNotes.Max(n => n.EndSeconds))
+                Add(ImportCode.PhraseMarker, number, "Phrase marker precedes the last note end; note timing is retained.", ValidationSeverity.Warning);
+            ClosePhrase();
+            // Apply only after interpreting this marker against the previous offset, even for empty groups.
+            relativeBeatOffset += delta;
         }
 
         private void ClosePhrase()

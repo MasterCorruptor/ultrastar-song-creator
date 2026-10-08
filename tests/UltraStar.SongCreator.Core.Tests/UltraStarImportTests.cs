@@ -196,7 +196,7 @@ public class UltraStarImportTests
     [Fact]
     public void RelativeModeNeverSilentlyInterpretedAsAbsolute()
     {
-        Error(Parse(": 0 4 0 La\nE", "#RELATIVE:yEs\n"), ImportCode.UnsupportedRelativeTiming);
+        Success(Parse(": 0 4 0 La\nE", "#RELATIVE:yEs\n"));
         Error(Parse(": 0 4 0 La\n- 8 16\nE"), ImportCode.InvalidLine);
         Success(Parse(": 0 4 0 La\nE", "#RELATIVE:no\n"));
     }

@@ -1,0 +1,20 @@
+#TITLE:Relativ syntetisk øvelse
+#ARTIST:Test
+#MP3:missing.wav
+#BPM:120
+#GAP:1500
+#VIDEO:missing.mp4
+#VIDEOGAP:0.25
+#RELATIVE:yEs
+#ALBUM:Bevares
+#COVER:cover.png
+#TEST-CUSTOM:a:b
+: 4 4 0 Først
+- 10 16
+* 0 4 -2 neste 
+: 4 4 2 del
+- 10 12
+R 0 2 900 Rap 
+G 2 2 -900 gull 
+F 4 4 0 fri
+E
