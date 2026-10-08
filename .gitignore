@@ -29,3 +29,11 @@ Desktop.ini
 /tools/phase1/NativeProbe/bin/
 /tools/phase1/NativeProbe/obj/
 /tools/phase1/**/__pycache__/
+
+# Regenererbare produkt-build og testresultater
+/src/**/bin/
+/src/**/obj/
+/tests/**/bin/
+/tests/**/obj/
+/TestResults/
+**/TestResults/
