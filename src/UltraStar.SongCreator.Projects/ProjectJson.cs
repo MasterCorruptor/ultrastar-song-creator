@@ -17,7 +17,16 @@ internal static class ProjectJson
         RespectNullableAnnotations = true,
         WriteIndented = true,
         MaxDepth = 64,
-        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: false) }
+        Converters =
+        {
+            new NamedEnumConverter<MediaKind>(("audio", MediaKind.Audio), ("video", MediaKind.Video)),
+            new NamedEnumConverter<NoteType>(
+                ("normal", NoteType.Normal), ("golden", NoteType.Golden), ("freestyle", NoteType.Freestyle),
+                ("rap", NoteType.Rap), ("goldenRap", NoteType.GoldenRap)),
+            new NamedEnumConverter<AnalysisKind>(
+                ("waveform", AnalysisKind.Waveform), ("pitchCurve", AnalysisKind.PitchCurve), ("beatGrid", AnalysisKind.BeatGrid),
+                ("vocalTrack", AnalysisKind.VocalTrack), ("alignment", AnalysisKind.Alignment), ("confidence", AnalysisKind.Confidence))
+        }
     };
 
     internal static byte[] Encode(Song song)
@@ -87,6 +96,26 @@ internal static class ProjectJson
     private static T Required<T>(T? value) where T : class =>
         value ?? throw new JsonException("Null is not permitted for this v1 field.");
 
+    // Freeze v1 names independently of future domain enum additions.
+    private sealed class NamedEnumConverter<T>(params (string Name, T Value)[] entries) : JsonConverter<T> where T : struct, Enum
+    {
+        private readonly Dictionary<string, T> values = entries.ToDictionary(e => e.Name, e => e.Value, StringComparer.Ordinal);
+        private readonly Dictionary<T, string> names = entries.ToDictionary(e => e.Value, e => e.Name);
+
+        public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType == JsonTokenType.String && values.TryGetValue(reader.GetString()!, out var value))
+                return value;
+            throw new JsonException("Expected one defined v1 enum name.");
+        }
+
+        public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+        {
+            if (!names.TryGetValue(value, out var name)) throw new JsonException("Enum value is not defined in v1.");
+            writer.WriteStringValue(name);
+        }
+    }
+
     private sealed record Envelope
     {
         public required string Format { get; init; }
@@ -107,32 +136,50 @@ internal static class ProjectJson
 
         internal static SongDocument From(Song song) => new()
         {
-            Id = song.Id, Metadata = new()
+            Id = song.Id,
+            Metadata = new()
             {
-                Title = Required(song.Metadata.Title), Artist = Required(song.Metadata.Artist), Language = song.Metadata.Language
+                Title = Required(song.Metadata.Title),
+                Artist = Required(song.Metadata.Artist),
+                Language = song.Metadata.Language
             },
             Media = song.Media.Select(m => new MediaDocument
             {
-                Id = m.Id, Kind = m.Kind, Location = Required(m.Location), Source = m.Source
+                Id = m.Id,
+                Kind = m.Kind,
+                Location = Required(m.Location),
+                Source = m.Source
             }).ToArray(),
-            AudioOffsetSeconds = song.AudioOffsetSeconds, VideoOffsetSeconds = song.VideoOffsetSeconds,
+            AudioOffsetSeconds = song.AudioOffsetSeconds,
+            VideoOffsetSeconds = song.VideoOffsetSeconds,
             BeatsPerMinute = song.BeatsPerMinute,
             Phrases = song.Phrases.Select(p => new PhraseDocument
             {
-                Id = p.Id, StartSeconds = p.StartSeconds, EndSeconds = p.EndSeconds,
+                Id = p.Id,
+                StartSeconds = p.StartSeconds,
+                EndSeconds = p.EndSeconds,
                 Notes = p.Notes.Select(n => new NoteDocument
                 {
-                    Id = n.Id, StartSeconds = n.StartSeconds, DurationSeconds = n.DurationSeconds,
-                    MidiPitch = n.MidiPitch, Text = Required(n.Text), Type = n.Type,
-                    Confidence = n.Confidence, AnalysisReferences = n.AnalysisReferences.ToArray()
+                    Id = n.Id,
+                    StartSeconds = n.StartSeconds,
+                    DurationSeconds = n.DurationSeconds,
+                    MidiPitch = n.MidiPitch,
+                    Text = Required(n.Text),
+                    Type = n.Type,
+                    Confidence = n.Confidence,
+                    AnalysisReferences = n.AnalysisReferences.ToArray()
                 }).ToArray()
             }).ToArray(),
             Analysis = new()
             {
                 Artifacts = song.Analysis.Artifacts.Select(a => new ArtifactDocument
                 {
-                    Id = a.Id, Kind = a.Kind, SourceMediaId = a.SourceMediaId,
-                    Producer = Required(a.Producer), ModelRevision = a.ModelRevision, ContentReference = a.ContentReference,
+                    Id = a.Id,
+                    Kind = a.Kind,
+                    SourceMediaId = a.SourceMediaId,
+                    Producer = Required(a.Producer),
+                    ModelRevision = a.ModelRevision,
+                    ContentReference = a.ContentReference,
                     Points = a.Points.Select(p => new PointDocument { TimeSeconds = p.TimeSeconds, Value = p.Value }).ToArray()
                 }).ToArray()
             }
@@ -140,31 +187,50 @@ internal static class ProjectJson
 
         internal Song ToSong() => new()
         {
-            Id = Id, Metadata = new()
+            Id = Id,
+            Metadata = new()
             {
-                Title = Required(Required(Metadata).Title), Artist = Required(Metadata.Artist), Language = Metadata.Language
+                Title = Required(Required(Metadata).Title),
+                Artist = Required(Metadata.Artist),
+                Language = Metadata.Language
             },
             Media = Required(Media).Select(m => new MediaReference
             {
-                Id = Required(m).Id, Kind = m.Kind, Location = Required(m.Location), Source = m.Source
+                Id = Required(m).Id,
+                Kind = m.Kind,
+                Location = Required(m.Location),
+                Source = m.Source
             }).ToImmutableArray(),
-            AudioOffsetSeconds = AudioOffsetSeconds, VideoOffsetSeconds = VideoOffsetSeconds, BeatsPerMinute = BeatsPerMinute,
+            AudioOffsetSeconds = AudioOffsetSeconds,
+            VideoOffsetSeconds = VideoOffsetSeconds,
+            BeatsPerMinute = BeatsPerMinute,
             Phrases = Required(Phrases).Select(p => new Phrase
             {
-                Id = Required(p).Id, StartSeconds = p.StartSeconds, EndSeconds = p.EndSeconds,
+                Id = Required(p).Id,
+                StartSeconds = p.StartSeconds,
+                EndSeconds = p.EndSeconds,
                 Notes = Required(p.Notes).Select(n => new Note
                 {
-                    Id = Required(n).Id, StartSeconds = n.StartSeconds, DurationSeconds = n.DurationSeconds,
-                    MidiPitch = n.MidiPitch, Text = Required(n.Text), Type = n.Type,
-                    Confidence = n.Confidence, AnalysisReferences = Required(n.AnalysisReferences).ToImmutableArray()
+                    Id = Required(n).Id,
+                    StartSeconds = n.StartSeconds,
+                    DurationSeconds = n.DurationSeconds,
+                    MidiPitch = n.MidiPitch,
+                    Text = Required(n.Text),
+                    Type = n.Type,
+                    Confidence = n.Confidence,
+                    AnalysisReferences = Required(n.AnalysisReferences).ToImmutableArray()
                 }).ToImmutableArray()
             }).ToImmutableArray(),
             Analysis = new()
             {
                 Artifacts = Required(Required(Analysis).Artifacts).Select(a => new AnalysisArtifact
                 {
-                    Id = Required(a).Id, Kind = a.Kind, SourceMediaId = a.SourceMediaId,
-                    Producer = Required(a.Producer), ModelRevision = a.ModelRevision, ContentReference = a.ContentReference,
+                    Id = Required(a).Id,
+                    Kind = a.Kind,
+                    SourceMediaId = a.SourceMediaId,
+                    Producer = Required(a.Producer),
+                    ModelRevision = a.ModelRevision,
+                    ContentReference = a.ContentReference,
                     Points = Required(a.Points).Select(p => new AnalysisPoint(Required(p).TimeSeconds, p.Value)).ToImmutableArray()
                 }).ToImmutableArray()
             }

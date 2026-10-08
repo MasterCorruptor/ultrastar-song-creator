@@ -54,6 +54,9 @@ public class ProjectRobustnessTests
     [InlineData("nullPoint")]
     [InlineData("badEnum")]
     [InlineData("numericEnum")]
+    [InlineData("compositeEnum")]
+    [InlineData("wrongEnumCase")]
+    [InlineData("numericStringEnum")]
     [InlineData("badGuid")]
     [InlineData("wrongCase")]
     public async Task SchemaFailuresDoNotBecomeDefaultValuesOrSilentDataLoss(string mutation)
@@ -76,6 +79,9 @@ public class ProjectRobustnessTests
             case "nullPoint": song["analysis"]!["artifacts"]![0]!["points"]![0] = null; break;
             case "badEnum": note["type"] = "mystery"; break;
             case "numericEnum": note["type"] = 0; break;
+            case "compositeEnum": note["type"] = "golden, normal"; break;
+            case "wrongEnumCase": note["type"] = "GOLDEN"; break;
+            case "numericStringEnum": note["type"] = "1"; break;
             case "badGuid": note["id"] = "not-a-guid"; break;
             case "wrongCase": note.AsObject().Remove("startSeconds"); note["StartSeconds"] = 1; break;
         }

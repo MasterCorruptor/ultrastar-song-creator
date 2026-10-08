@@ -29,3 +29,7 @@ Prosjektlagring, import/eksport, GUI, playback og Python er utenfor Fase 2.1.
 Warnings blokkerer ikke MoveNote. Kommandoen kontrollerer egen målidentitet, notevarighet og frase-/tidsgrenser, men blokkerer ikke reparasjon av timing på grunn av en urelatert eksisterende tempo-/draftfeil. Validatoren kan kjøres separat på hele utkastet. Manglende freestyle-tekst er tillatt; manglende tekst for øvrige notetyper gir warning. Uinitialiserte collections/null objekter gir strukturerte errors. Kun finite datapunkter tillates i det minimale analyselaget; detaljert payload-/modellvalidering er senere arbeid.
 
 Samlingene bevarer innlagt rekkefølge; flytting endrer ikke lyrics-rekkefølge eller sorterer noter automatisk. Phrase.Text er avledet fra note-teksten i denne rekkefølgen, ikke en separat lyricsfasit. En no-op lager ingen historikkpost og beholder redo. Historikken bevarer hele immutable snapshots med delt analysedata; historikkbegrensning/lagring og flertrådsredigering kommer senere.
+
+## Separat prosjektlagring – Fase 2.2
+
+Projects-laget mapper domenet til eksplisitte [v1-DTO-er](PROJECT_FORMAT.md) og lokal JSON-fil. Core kjenner fortsatt ikke JSON, filbaner for prosjektfilen eller save/load. Aktuelle brukerendringer og rå analysepunkter lagres uten ny analyse; undo-stakkene er ikke persistente. Datakontrakten for v1 er skilt fra domenets fremtidige utvikling.

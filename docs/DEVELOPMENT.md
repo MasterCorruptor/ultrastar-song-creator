@@ -57,7 +57,7 @@ MIT er bekreftet for egen prosjektkode gjennom prosjekteierens vedtak 2026-10-08
 
 ## Core build og test – Fase 2.1
 
-Kjør fra prosjektroten med .NET 10 SDK. global.json tillater ikke prerelease eller et annet feature band. Solution inneholder bare Core og Core.Tests; Phase 1-prober bygges separat. Restore har nettbehov første gang; selve build/test krever ingen konto, modeller, medier eller nettverksbruk fra domenet.
+Kjør fra prosjektroten med .NET 10 SDK. global.json tillater ikke prerelease eller et annet feature band. Solution inneholder Core, Projects og Core.Tests; Phase 1-prober bygges separat. Restore har nettbehov første gang; selve build/test krever ingen konto, modeller, medier eller nettverksbruk fra domenet.
 
 ```text
 dotnet restore UltraStar.SongCreator.slnx --locked-mode
@@ -74,4 +74,14 @@ Windows: locked restore, Release build og 55/55 tester bestod uten advarsler. Li
 
 En ferdig [GitHub Actions-mal](../tools/ci/core.yml) beskriver locked restore/build/test/format på Windows og Ubuntu, med actions pinnet til commit-SHA. Den er ikke aktiv: GitHub avviste workflow-push fordi dagens tilgang mangler workflow-rettighet. Aktiver senere ved å kopiere malen til .github/workflows/core.yml og publisere med autorisert workflow-tilgang. Lokale Windows/Linux-prøver bestod; ingen CI-resultat er påstått. Core-CI verifiserer ikke native GUI/audio eller en installer.
 
-[Core-kontrakten](CORE_DOMAIN.md) beskriver tid/pitch, snapshots, referanser og command-policy. Prosjektserialisering, migrering, UltraStar parser/writer og eksport er neste mulige deloppgaver og er ikke implementert.
+[Core-kontrakten](CORE_DOMAIN.md) beskriver tid/pitch, snapshots, referanser og command-policy. Fase 2.2 implementerer versjonert prosjektlagring. UltraStar parser/writer og eksport er neste mulige deloppgaver og er ikke implementert.
+
+## Prosjektlagring – Fase 2.2
+
+[Format v1](PROJECT_FORMAT.md) bruker UTF-8 JSON og anbefalt filendelse .uscproject. API-en er ProjectStore.SaveAsync(path, song, cancellationToken) og LoadAsync(path, cancellationToken) i UltraStar.SongCreator.Projects. Load returnerer Song, schemaVersion, absolutt prosjektfilbane og validatorfunn. ProjectFormatException skiller invalid JSON/envelope/song, unsupported version og too-large; vanlige fil-/tilgangsfeil beholder .NETs I/O-exceptions.
+
+Core holdes uavhengig av JSON/fil-I/O. Projects har bare en ProjectReference til Core; eksterne runtime-/testpakker er uendret. Bygg/test/format med de samme solution-kommandoene ovenfor. .editorconfig sikrer UTF-8/LF og fire spaces for C#; masteren formatteres ikke.
+
+106/106 tester bestod på Windows og nettisolert Linux-container med SDK 10.0.401. Dette inkluderer tidligere 55 domenetester og 51 lagrings-/robusthetstester, med en håndskrevet v1-fixture, redigeringsrundtur, full felt-/referansebevaring, Unicode/kultur, schema/version-feil, grenser, cancellation og filbevaring/opprydding ved feil. Locked restore, Release build uten advarsler og formatkontroll bestod. Testfiler ligger under .agent-local/project-storage-tests og ryddes etter testene.
+
+Filer og referanser gjenåpnes uten lyd, modeller eller inferens. Ingen mediakopiering, nettverkshenting, GUI eller persistent undo-historikk er implementert. v1 har ingen eldre støtteversjon å migrere fra; fremtidige versjoner må legge til eksplisitt migrasjon. Standard filgrense er 64 MiB. Se formatdokumentet for rename-/cancellation-/krasjavgrensninger.

@@ -60,7 +60,11 @@ public class ProjectRoundTripTests
         var song = SongFixture.Create();
         var notes = Enum.GetValues<NoteType>().Select((kind, i) => new Note
         {
-            StartSeconds = i, DurationSeconds = 0.25, Type = kind, Text = "x", Confidence = i % 2 == 0 ? null : 0,
+            StartSeconds = i,
+            DurationSeconds = 0.25,
+            Type = kind,
+            Text = "x",
+            Confidence = i % 2 == 0 ? null : 0,
             MidiPitch = i == 0 ? 0 : 127
         }).ToImmutableArray();
         song = song with
@@ -71,8 +75,12 @@ public class ProjectRoundTripTests
             {
                 Artifacts = Enum.GetValues<AnalysisKind>().Select(kind => new AnalysisArtifact
                 {
-                    Kind = kind, Producer = "test", ModelRevision = null, ContentReference = null,
-                    SourceMediaId = null, Points = []
+                    Kind = kind,
+                    Producer = "test",
+                    ModelRevision = null,
+                    ContentReference = null,
+                    SourceMediaId = null,
+                    Points = []
                 }).ToImmutableArray()
             },
             Media = [song.Media[0], new() { Kind = MediaKind.Video, Location = "video.mp4", Source = null }]
@@ -113,7 +121,8 @@ public class ProjectRoundTripTests
         song = SongFixture.WithFirstNote(song, song.Phrases[0].Notes[0] with { Text = "", DurationSeconds = 2 });
         song = song with
         {
-            Metadata = new(), Media = [song.Media[0] with { Location = "media/æ.wav" }],
+            Metadata = new(),
+            Media = [song.Media[0] with { Location = "media/æ.wav" }],
             Analysis = song.Analysis with { Artifacts = [song.Analysis.Artifacts[0] with { ContentReference = "../cache/curve.json" }] }
         };
         var store = new ProjectStore();
