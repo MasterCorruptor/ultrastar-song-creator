@@ -7,7 +7,7 @@ Scope: [arbeidsordren](../../PHASE2_FIRST_WORK_ORDER.md). Master og aksepterte A
 
 - [x] Modell/build: GUI-uavhengig Song/Phrase/Note og analyse-/mediareferanser, dokumenterte enheter, meningsfulle modelltester, vellykket build/test og commit.
 - [x] Validering: stabile errors/warnings, grenseverdier og ikke-muterende kontroller; test og commit.
-- [ ] Kjerneredigering: MoveNote og snapshot-basert undo/redo, atomiske feil og redo-forgrening; test og commit.
+- [x] Kjerneredigering: MoveNote og snapshot-basert undo/redo, atomiske feil og redo-forgrening; test og commit.
 - [ ] Overlevering: samlet Windows/Linux-verifikasjon, dependencylisenser/lockfiler, dokumentlenker/masterintegritet, ren commit/push og avgrenset PR.
 
 ## Ressursbruk og gjenopptak
@@ -23,3 +23,5 @@ Oppstart: SDK 10.0.401 fra lokalt evalueringsmiljø gjenbrukes. Core uten ekster
 Kontrollpunkt 1: restore/build Release bestod uten advarsler; 3/3 modelltester bestod på Windows. SDK 10.0.401, xUnit 2.9.3, runner 3.1.4 og Test.Sdk 17.14.1. Neste steg: ren validator og grenseverdier.
 
 Kontrollpunkt 2: 35/35 tester bestod. Validatoren gir stabile paths/koder, errors for strukturelle problemer og warnings for utkastkontekst; ingen mutasjon. Neste steg: MoveNote og undo/redo.
+
+Kontrollpunkt 3: 55/55 tester bestod på Windows. MoveNote bevarer varighet/tekst/confidence/proveniens, undo/redo gjenoppretter eksakte snapshots, feil/no-op bevarer historikken og ny endring etter undo forkaster redo-grenen. Neste steg: format-/Linux-/dependencykontroll og PR.
