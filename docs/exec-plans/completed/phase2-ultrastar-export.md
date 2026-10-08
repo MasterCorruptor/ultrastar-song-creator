@@ -28,3 +28,5 @@ Source headers er proveniens, mens aktuelle noter/metadata/medier/offsets er san
 Ingen relativ output, duett, ny importdialekt, tapsfri råtekst, analyse/GUI/acquisition/playback eller mediatranscoding. Core/prosjektformat og aksepterte ADR-er er uendret. Eksisterende target/source/prosjekt endres ikke av pakkeeksporten. Ingen faktisk installer, hosted CI eller karaoke-app-interop påstås.
 
 Planen avslutter Fase 2.4 som avgrenset deloppgave. Neste foreslåtte trinn er gjennomgang/integrasjon av de stablede PR-ene før ny produktfase; det startes ikke automatisk. Ingen automatisk merge.
+
+Publisert leveranse: [PR #5](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/5), review-klar mot work/phase2-ultrastar-import. Ingen merge utført. Neste foreslåtte arbeidsordre: gjennomgang og integrasjon av PR #1–#5; separat godkjenning før start.
