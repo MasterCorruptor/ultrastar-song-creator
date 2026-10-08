@@ -28,3 +28,5 @@ Stop conditions: uløst autoritetskonflikt, ny uavklart lisens, større scope el
 2026-10-08: Windows og nettisolert Linux bestod 180/180 tester, locked restore og Release build uten warnings. Windows formatkontroll bestod. Metadata-rundtur og v1-migrasjon dekkes; master/aksepterte ADR-er og v1-fixture er byteuendret. Public inventory/lenker/privacy bestod. Ingen ekte lyd, sangtekster eller hardwareinformasjon publiseres.
 
 Status: implementerte kontrollpunkter er verifisert, men Fase 2.3 er ikke avsluttet. Prosjekteierens svar om #RELATIVE:YES er nødvendig for endelig scope. Ny PR holdes draft på work/phase2-project-storage; ingen automatisk merge eller oppstart av writer/eksport.
+
+Publisert draft-PR: [#4](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/4). Tre implementerings-/verifikasjonscommits er pushet; working tree og upstream er konsistente. Neste handling er prosjekteierens relative-mode-svar, deretter eventuell scope-/kodejustering og ferdigstatus. Ikke start writer/eksport automatisk.
