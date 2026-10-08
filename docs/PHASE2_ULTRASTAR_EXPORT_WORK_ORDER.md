@@ -1,6 +1,6 @@
 # Arbeidsordre: Fase 2.4 – UltraStar writer og komplett sangmappe
 
-Status: bestilt 2026-10-08; aktiv. Prosjekteieren godkjente neste avgrensede trinn etter importleveransen og valgte deretter:
+Status: bestilt og gjennomført 2026-10-08; klar for review. Prosjekteieren godkjente neste avgrensede trinn etter importleveransen og valgte deretter:
 - unversionert + UltraStar v1, begge med absolutt tid,
 - automatisk avrunding med rapporterte avvik,
 - komplett sangmappe med kopierte lyd-, bilde- og videofiler nå.
@@ -20,6 +20,8 @@ Autoritet: [masteren](PROJECT_MASTER.md) §9/13–14/16–17 og aksepterte ADR-e
 
 ## Kontrollpunkter og leveranse
 
-Writer/timing verifiseres og committes før pakking/fil-I/O. Etter relevante tester publiseres avgrenset PR mot work/phase2-ultrastar-import. Ingen automatisk merge eller oppstart av neste fase. [Aktiv plan](exec-plans/active/phase2-ultrastar-export.md) følger gjennomføringen.
+Writer/timing verifiseres og committes før pakking/fil-I/O. Etter relevante tester publiseres avgrenset PR mot work/phase2-ultrastar-import. Ingen automatisk merge eller oppstart av neste fase. [Avsluttet plan](exec-plans/completed/phase2-ultrastar-export.md) følger gjennomføringen.
 
 Avgrensning: ingen relativ output, duett, ny importdialekt, tapsfri råtekstreproduksjon, mediakonvertering eller kopi av prosjekt/analysedata til sangmappen. ID/confidence/analyse bevares i prosjektet, mens UltraStar-eksport er formatets representerbare sangdata.
+
+Leveranse: [eksportkontrakt](ULTRASTAR_EXPORT.md), [263/263 Windows/Linux-tester og mediesmoke](PHASE2_EXPORT_RESULTS.md), separat writer/pakker og uendret Core/prosjekt. Ingen automatisk merge/neste arbeidstrinn.

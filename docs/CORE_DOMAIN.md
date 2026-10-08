@@ -39,3 +39,7 @@ Projects-laget mapper domenet til eksplisitte [v1-DTO-er](PROJECT_FORMAT.md) og 
 Song.ImportedSource er valgfri SourceDocument med FormatId, valgfri FileReference og immutable SourceHeader-samling (Name/Value). Den beskriver opprinnelig kildemetadata, ikke aktuell redigert sangsannhet. Originale/ukjente headers og rekkefølge overlever snapshotendringer, undo/redo og [prosjektformat v2](PROJECT_FORMAT_V2.md). Core kjenner ikke headersemantikk, encoding eller UltraStar-fil-I/O. SourceFormatId må være ikke-tom og headernavn/verdier tilstede; duplikater/tomme verdier tillates i proveniensen.
 
 [UltraStar-adapteren](ULTRASTAR_IMPORT.md) bruker denne generiske samlingen, konverterer til sekunder/MIDI og holder kvantiserings-BPM i kilden fremfor å anta musikalsk tempo. Dette endrer ikke domenets tids-/pitch- eller snapshotkontrakt.
+
+## Separat writer/pakker – Fase 2.4
+
+[UltraStar-eksport](ULTRASTAR_EXPORT.md) projiserer immutable Song til formatets representerbare data og kvantiserer i adapteren. Originale sekunder, ID/confidence, analysedata og source metadata muteres ikke. Eksportfilen er adskilt fra prosjektets v1/v2-kontrakt; Core kjenner fortsatt ikke UltraStar-ticks, kopiering, JSON eller codec-/fil-I/O. Ingen Core-kontraktendring inngår.
