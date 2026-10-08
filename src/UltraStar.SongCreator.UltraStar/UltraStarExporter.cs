@@ -148,8 +148,12 @@ public sealed partial class UltraStarExporter
                     Add(ExportCode.TimingRounded, path, "Endpoints rounded to the nearest grid beats; exact deltas are in the note report.", note.Id, ValidationSeverity.Warning);
                 var type = note.Type switch
                 {
-                    NoteType.Normal => ':', NoteType.Golden => '*', NoteType.Freestyle => 'F',
-                    NoteType.Rap => 'R', NoteType.GoldenRap => 'G', _ => throw new InvalidOperationException("Validated note type required.")
+                    NoteType.Normal => ':',
+                    NoteType.Golden => '*',
+                    NoteType.Freestyle => 'F',
+                    NoteType.Rap => 'R',
+                    NoteType.GoldenRap => 'G',
+                    _ => throw new InvalidOperationException("Validated note type required.")
                 };
                 var pitched = note.Type is NoteType.Normal or NoteType.Golden;
                 if (!pitched && note.MidiPitch != 60)
@@ -171,8 +175,11 @@ public sealed partial class UltraStarExporter
             packagedReferences is not null && packagedReferences.TryGetValue(name, out var value) ? value : original;
         var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
-            ["TITLE"] = song.Metadata.Title, ["ARTIST"] = song.Metadata.Artist, ["BPM"] = DecimalText(grid!.Value),
-            ["GAP"] = DecimalText(song.AudioOffsetSeconds * 1000), ["MP3"] = Reference("MP3", audio[0].Location)
+            ["TITLE"] = song.Metadata.Title,
+            ["ARTIST"] = song.Metadata.Artist,
+            ["BPM"] = DecimalText(grid!.Value),
+            ["GAP"] = DecimalText(song.AudioOffsetSeconds * 1000),
+            ["MP3"] = Reference("MP3", audio[0].Location)
         };
         if (song.Metadata.Language is { Length: > 0 } lang) values["LANGUAGE"] = lang;
         if (video.Length == 1)
@@ -203,7 +210,7 @@ public sealed partial class UltraStarExporter
                     Add(ExportCode.HeaderRegenerated, $"Header.{header.Name}", "Source header is regenerated/omitted according to current data and the selected output profile.", severity: ValidationSeverity.Warning);
                 continue;
             }
-            var value = Reference(header.Name, header.Value);
+            var value = header.Value.Trim().Length > 0 ? Reference(header.Name, header.Value) : header.Value;
             if (header.Name.Equals("MEDLEYSTARTBEAT", StringComparison.OrdinalIgnoreCase) ||
                 header.Name.Equals("MEDLEYENDBEAT", StringComparison.OrdinalIgnoreCase))
             {
@@ -241,7 +248,10 @@ public sealed partial class UltraStarExporter
             Add(ExportCode.OutputTooLarge, "Output", "Text exceeds the configured byte limit.");
             return Result();
         }
-        return Result(rendered);
+        var checkedText = new UltraStarImporter(maximumBytes).Parse(rendered);
+        foreach (var error in checkedText.Diagnostics.Where(d => d.Severity == ValidationSeverity.Error))
+            Add(ExportCode.InvalidHeader, $"Output.Line[{error.Line}]", $"Rendered format failed validation: {error.Message}");
+        return Errors() ? Result() : Result(rendered);
     }
 
     private static bool TryDecimal(string value, out double number)

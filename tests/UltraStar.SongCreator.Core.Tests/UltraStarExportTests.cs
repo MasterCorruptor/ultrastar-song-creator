@@ -111,9 +111,12 @@ public class UltraStarExportTests
     [Fact]
     public void MidpointRoundsAwayFromZeroAndAdjacentNotesRemainAdjacent()
     {
-        var song = Song() with { Phrases = [new() { StartSeconds = 0, EndSeconds = 1, Notes =
+        var song = Song() with
+        {
+            Phrases = [new() { StartSeconds = 0, EndSeconds = 1, Notes =
             [new() { StartSeconds = .0625, DurationSeconds = .125, Text = "A" },
-             new() { StartSeconds = .1875, DurationSeconds = .125, Text = "B" }] }] };
+             new() { StartSeconds = .1875, DurationSeconds = .125, Text = "B" }] }]
+        };
         var result = Success(new UltraStarExporter().Render(song, new(ExportFormat.Unversioned, 120)));
         Assert.Equal((1L, 2L), (result.Notes[0].StartBeat, result.Notes[0].EndBeat));
         Assert.Equal((2L, 3L), (result.Notes[1].StartBeat, result.Notes[1].EndBeat));
@@ -134,10 +137,14 @@ public class UltraStarExportTests
         var song = SongFixture.Create() with
         {
             AudioOffsetSeconds = .25,
-            ImportedSource = new() { FormatId = "ultrastar-v1", Headers =
+            ImportedSource = new()
+            {
+                FormatId = "ultrastar-v1",
+                Headers =
                 [new("VERSION", "1.1.0"), new("TITLE", "Old"), new("ARTIST", "Old"), new("BPM", "120"),
                  new("MP3", "stale.wav"), new("AUDIO", "stale.flac"), new("COVER", "cover.png"),
-                 new("LANGUAGE", "Old"), new("X", "one"), new("X", "two")] }
+                 new("LANGUAGE", "Old"), new("X", "one"), new("X", "two")]
+            }
         };
         var source = song.ImportedSource;
         var analysis = song.Analysis;
@@ -183,8 +190,15 @@ public class UltraStarExportTests
     [Fact]
     public void GridChangesRebaseMedleyBeatMetadata()
     {
-        var song = Song() with { ImportedSource = new() { FormatId = "ultrastar-v1", Headers =
-            [new("BPM", "120"), new("MEDLEYSTARTBEAT", "8"), new("MEDLEYENDBEAT", "16")] } };
+        var song = Song() with
+        {
+            ImportedSource = new()
+            {
+                FormatId = "ultrastar-v1",
+                Headers =
+            [new("BPM", "120"), new("MEDLEYSTARTBEAT", "8"), new("MEDLEYENDBEAT", "16")]
+            }
+        };
         var result = Success(new UltraStarExporter().Render(song, new(ExportFormat.V1, 240)));
         Assert.Contains("#MEDLEYSTARTBEAT:16\n", result.Text!);
         Assert.Contains("#MEDLEYENDBEAT:32\n", result.Text!);
@@ -197,8 +211,15 @@ public class UltraStarExportTests
     [InlineData("8", true)]
     public void AmbiguousMedleyIsNotSilentlyReactivatedOrGuessed(string beat, bool relative)
     {
-        var song = Song() with { ImportedSource = new() { FormatId = "ultrastar-unversioned", Headers =
-            [new("BPM", "120"), new("RELATIVE", relative ? "YES" : "NO"), new("MEDLEYSTARTBEAT", beat)] } };
+        var song = Song() with
+        {
+            ImportedSource = new()
+            {
+                FormatId = "ultrastar-unversioned",
+                Headers =
+            [new("BPM", "120"), new("RELATIVE", relative ? "YES" : "NO"), new("MEDLEYSTARTBEAT", beat)]
+            }
+        };
         Error(new UltraStarExporter().Render(song, new(ExportFormat.V1)), ExportCode.InvalidMedley);
     }
 
@@ -212,8 +233,12 @@ public class UltraStarExportTests
         {
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
             var baseline = Song();
-            var song = baseline with { AudioOffsetSeconds = 1e-10, VideoOffsetSeconds = -.25,
-                Media = baseline.Media.Add(new() { Kind = MediaKind.Video, Location = "video.mp4" }) };
+            var song = baseline with
+            {
+                AudioOffsetSeconds = 1e-10,
+                VideoOffsetSeconds = -.25,
+                Media = baseline.Media.Add(new() { Kind = MediaKind.Video, Location = "video.mp4" })
+            };
             var result = Success(new UltraStarExporter().Render(song, new(ExportFormat.V1, 120)));
             Assert.Contains("#GAP:0.", result.Text!);
             Assert.DoesNotContain("E-", result.Text!);
@@ -235,8 +260,11 @@ public class UltraStarExportTests
     [Fact]
     public void LargeGridBpmUsesPlainDecimalAndReparses()
     {
-        var song = Song() with { Phrases = [new() { StartSeconds = 0, EndSeconds = 1e-18, Notes =
-            [new() { StartSeconds = 0, DurationSeconds = 1e-18, Text = "A" }] }] };
+        var song = Song() with
+        {
+            Phrases = [new() { StartSeconds = 0, EndSeconds = 1e-18, Notes =
+            [new() { StartSeconds = 0, DurationSeconds = 1e-18, Text = "A" }] }]
+        };
         var result = Success(new UltraStarExporter().Render(song, new(ExportFormat.V1, 1e20)));
         Assert.Contains("#BPM:100000000000000000000\n", result.Text!);
         Imported(result);
@@ -310,8 +338,15 @@ public class UltraStarExportTests
     [Fact]
     public void SourceEncodingAndRelativeFlagsFollowOutputProfile()
     {
-        var song = Song() with { ImportedSource = new() { FormatId = "ultrastar-unversioned", Headers =
-            [new("BPM", "120"), new("ENCODING", "CP1252"), new("RELATIVE", "YES"), new("VERSION", "1.1.0")] } };
+        var song = Song() with
+        {
+            ImportedSource = new()
+            {
+                FormatId = "ultrastar-unversioned",
+                Headers =
+            [new("BPM", "120"), new("ENCODING", "CP1252"), new("RELATIVE", "YES"), new("VERSION", "1.1.0")]
+            }
+        };
         var writer = new UltraStarExporter();
         var legacy = Success(writer.Render(song, new(ExportFormat.Unversioned)));
         Assert.Contains("#ENCODING:UTF-8\n", legacy.Text!);

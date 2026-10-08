@@ -26,6 +26,8 @@ public sealed record QuantizedNote(Guid NoteId, long StartBeat, long EndBeat, do
     public double DurationDeltaSeconds => ExportedDurationSeconds - OriginalDurationSeconds;
 }
 
+public sealed record ExportProgress(string AssetReference, long BytesCopied, long TotalBytes);
+
 public sealed record PackagedAsset(string SourcePath, string RelativePath, long ByteLength, string Sha256);
 
 public sealed record ExportResult(string? Text, ImmutableArray<ExportDiagnostic> Diagnostics, ImmutableArray<QuantizedNote> Notes)

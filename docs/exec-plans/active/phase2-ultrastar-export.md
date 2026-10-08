@@ -15,8 +15,8 @@ Svar bestemmer acceptance criteria og omfang. Ingen av disse valgene er antatt. 
 ## Kontrollpunkter
 
 - [x] Avgrenset arbeidsordre og eksplisitte eksport-/kvantiserings-/metadataregler.
-- [ ] Separat writer/validering med rapporterte endringer og uten mutasjon av prosjektet.
-- [ ] Meningsfulle import/export-rundturer og uavhengige syntetiske forventningsverdier.
+- [x] Separat writer/validering med rapporterte endringer og uten mutasjon av prosjektet.
+- [x] Meningsfulle import/export-rundturer og uavhengige syntetiske forventningsverdier.
 - [ ] Windows/Linux, locked restore/build/test/format, master-/ADR-/v1-fixtureintegritet og public inventory/privacy.
 - [ ] Dokumentasjon, avgrensede commits og PR mot work/phase2-ultrastar-import; ingen automatisk merge/neste fase.
 
@@ -33,3 +33,5 @@ Ingen produksjonsdependency eller prosjektformatendring er planlagt uten behov/e
 2026-10-08: Prosjekteieren valgte unversionert + v1, begge med absolutt tid; automatisk avrunding med rapporterte avvik; komplett sangmappe med kopiert lyd/bilder/video. Implementeringen deles i writer/timing og pakking/fil-I/O med konsistente commits før sluttsjekk. Relative importer normaliseres til absolutt output. Ingen ny avrundings-/pakkeavklaring står åpen.
 
 2026-10-08: writer/timing-kontrollpunkt: 241/241 Windows-tester bestod (203 tidligere + 38 writer-tester), Release build uten warnings. Ren Render og per-note-endpointrapport er implementert; komplett pakking er neste kontrollpunkt. Source/prosjekt/Core er ikke mutert.
+
+2026-10-08: pakking/fil-I/O-kontrollpunkt: 263/263 tester bestod på Windows (203 tidligere + 38 writer + 22 pakke). Locked restore, Release build uten warnings og formatkontroll bestod. Byte-/SHA-verifisert kopi, lokalt referansegrunnlag, deterministic filename collisions, relocation, mid-copy cancellation, feil/cleanup og målmappe-race er testet. Ingen kilder/prosjekt/Core muteres.
