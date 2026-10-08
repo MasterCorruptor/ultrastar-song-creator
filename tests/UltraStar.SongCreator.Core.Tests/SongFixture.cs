@@ -9,13 +9,19 @@ internal static class SongFixture
         var media = new MediaReference { Location = "synthetic.wav", Source = "test" };
         var artifact = new AnalysisArtifact
         {
-            Kind = AnalysisKind.PitchCurve, Producer = "synthetic", ModelRevision = "fixture-v1",
-            SourceMediaId = media.Id, Points = [new(1, 60.25), new(1.1, 60.5)]
+            Kind = AnalysisKind.PitchCurve,
+            Producer = "synthetic",
+            ModelRevision = "fixture-v1",
+            SourceMediaId = media.Id,
+            Points = [new(1, 60.25), new(1.1, 60.5)]
         };
         return new Song
         {
             Metadata = new() { Title = "Synthetic song", Artist = "Test", Language = "nb" },
-            Media = [media], AudioOffsetSeconds = -0.2, VideoOffsetSeconds = 0.3, BeatsPerMinute = 120,
+            Media = [media],
+            AudioOffsetSeconds = -0.2,
+            VideoOffsetSeconds = 0.3,
+            BeatsPerMinute = 120,
             Analysis = new() { Artifacts = [artifact] },
             Phrases =
             [

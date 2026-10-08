@@ -31,7 +31,7 @@ Den innsendte `Master-plan-for-prosjektet-v0.5(1).txt` er bevart lokalt og ignor
 
 ## Miljø og utviklingskonvensjoner
 
-Dagens minimum er Git. GitHub CLI brukes til repository-opprettelse og synkronisering. C#/.NET 10 LTS + Avalonia med separat Python-analyse er godkjent i ADR-0001. Produktets eksakte runtimepatcher, build-/testoppsett og dependencysett er ennå ikke etablert. Det finnes derfor ennå ingen kommando for å installere, bygge, teste eller kjøre produktet.
+Dagens minimum er Git. GitHub CLI brukes til repository-opprettelse og synkronisering. C#/.NET 10 LTS + Avalonia med separat Python-analyse er godkjent i ADR-0001. Core bygges nå med .NET 10; global.json velger SDK 10.0.401 med latestPatch roll-forward innen samme feature band. Runtimepatch følger valgt SDK for testkjøringen; ingen egen produkt-runtimepakke er distribuert. Se kommandoene nedenfor og [testdependencyinventaret](CORE_DEPENDENCIES.md). GUI og øvrige runtime-/modellpakker er ikke implementert.
 
 Fase 1 har evaluert gjenbruk, Windows/Linux-støtte, kvalitet, integrerbarhet og lisens og er avsluttet 2026-10-08. Prosjekteieren godkjenner vesentlige teknologivalg. Når produktimplementering bestilles, dokumenteres faktiske runtime-versjoner, installasjon, eksterne verktøy/modeller og build-/testkommandoer. Lås eller avgrens versjoner når reproduksjon krever det.
 
@@ -43,7 +43,7 @@ Kontroller den påkrevde strukturen og at lokale dokumentlenker finnes. Bekreft 
 
 Før commit brukes `git diff --cached --check` på de nye grunnlagsfilene. Etter commit kontrolleres ren working tree, branch `main`, upstream `origin/main` og samsvar mellom lokal og ekstern commit. Masterspesifikasjonen beholdes uendret også dersom den inneholder eksisterende formatteringsavvik.
 
-Automatiske produkttester og build er fortsatt ikke etablert. Brukerens arbeidsordre av 2026-10-07 åpnet Fase 1-kartlegging og avgrensede PoC-er. Prosjekteieren godkjente resultatene og avsluttet Fase 1 2026-10-08. Produktimplementering/Fase 2 krever en egen arbeidsordre.
+Core build og domenetester er etablert i Fase 2.1. Brukerens arbeidsordre av 2026-10-07 åpnet Fase 1-kartlegging og avgrensede PoC-er. Prosjekteieren godkjente resultatene og avsluttet Fase 1 2026-10-08. Prosjekteieren bestilte Fase 2.1 2026-10-08 gjennom [arbeidsordren](PHASE2_FIRST_WORK_ORDER.md). Ytterligere deloppgaver krever egne avgrensede bestillinger.
 
 ## Evaluering i Fase 1
 
@@ -54,3 +54,24 @@ Foreslåtte ADR-er kan committes som reviewgrunnlag, men blir ikke aksepterte te
 ## Bekreftet lisensstrategi
 
 MIT er bekreftet for egen prosjektkode gjennom prosjekteierens vedtak 2026-10-08 i [ADR-0002](decisions/ADR-0002-licensing-and-reuse.md). Separate LGPL-codecs tillates med dokumenterte source/notices/utskiftbarhetskrav; hver releaseartefakt må vurderes. Nye dependencies må vurderes separat mot prosjektets permissive mål; vesentlig andre lisens- eller distribusjonskrav krever eksplisitt prosjektvedtak.
+
+## Core build og test – Fase 2.1
+
+Kjør fra prosjektroten med .NET 10 SDK. global.json tillater ikke prerelease eller et annet feature band. Solution inneholder bare Core og Core.Tests; Phase 1-prober bygges separat. Restore har nettbehov første gang; selve build/test krever ingen konto, modeller, medier eller nettverksbruk fra domenet.
+
+```text
+dotnet restore UltraStar.SongCreator.slnx --locked-mode
+dotnet build UltraStar.SongCreator.slnx -c Release --no-restore
+dotnet test UltraStar.SongCreator.slnx -c Release --no-build --no-restore
+dotnet format UltraStar.SongCreator.slnx --no-restore --verify-no-changes
+```
+
+Eksakt brukt SDK: 10.0.401; direkte testpakker: xUnit 2.9.3, runner 3.1.4 og Microsoft.NET.Test.Sdk 17.14.1. Begge prosjekter har lockfil. Core har ingen eksterne PackageReference. Kompilatoradvarsler behandles som feil. .NET-formatverktøyet fra SDK brukes; ingen separat formatter dependency.
+
+Lokalt ble SDK-en under .agent-local/phase1/dotnet gjenbrukt ved å erstatte dotnet med den kjørbare filen og sette DOTNET_CLI_HOME/NUGET_PACKAGES til prosjektets ignorerte cachemapper. Dette er en valgfri lokal oppsettrute, ikke en forutsetning for en ny maskin.
+
+Windows: locked restore, Release build og 55/55 tester bestod uten advarsler. Linux: samme SDK og kilde i Ubuntu-container med nettverket slått av, eksisterende NuGet-cache og egne artifacts under .agent-local/phase2; 55/55 tester bestod. Audit ble deaktivert bare for den nettisolerte restore-prøven fordi vulnerability-listen er en nettressurs; ordinær restore/CI beholder audit.
+
+En ferdig [GitHub Actions-mal](../tools/ci/core.yml) beskriver locked restore/build/test/format på Windows og Ubuntu, med actions pinnet til commit-SHA. Den er ikke aktiv: GitHub avviste workflow-push fordi dagens tilgang mangler workflow-rettighet. Aktiver senere ved å kopiere malen til .github/workflows/core.yml og publisere med autorisert workflow-tilgang. Lokale Windows/Linux-prøver bestod; ingen CI-resultat er påstått. Core-CI verifiserer ikke native GUI/audio eller en installer.
+
+[Core-kontrakten](CORE_DOMAIN.md) beskriver tid/pitch, snapshots, referanser og command-policy. Prosjektserialisering, migrering, UltraStar parser/writer og eksport er neste mulige deloppgaver og er ikke implementert.

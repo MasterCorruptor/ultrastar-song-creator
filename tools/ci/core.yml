@@ -1,0 +1,40 @@
+name: Core build and tests
+
+on:
+  pull_request:
+  push:
+    branches: [main, "work/**"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: core-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    name: Core (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          global-json-file: global.json
+          cache: true
+          cache-dependency-path: |
+            src/UltraStar.SongCreator.Core/packages.lock.json
+            tests/UltraStar.SongCreator.Core.Tests/packages.lock.json
+      - name: Restore locked dependencies
+        run: dotnet restore UltraStar.SongCreator.slnx --locked-mode
+      - name: Build
+        run: dotnet build UltraStar.SongCreator.slnx -c Release --no-restore
+      - name: Test without network or models
+        run: dotnet test UltraStar.SongCreator.slnx -c Release --no-build --no-restore
+      - name: Verify formatting
+        run: dotnet format UltraStar.SongCreator.slnx --no-restore --verify-no-changes
