@@ -1,6 +1,6 @@
 # Utviklings- og repositoryprinsipper
 
-Dette dokumentet beskriver det etablerte Fase 0-grunnlaget den avsluttede Fase 1-evalueringen og aksepterte teknologivalg. Kravene følger [PROJECT_MASTER.md](PROJECT_MASTER.md), særlig §15–19. Ved uløste konflikter mellom lokale autoritative dokumenter skal berørt arbeid stoppes og rapporteres.
+Dette dokumentet beskriver det etablerte Fase 0-grunnlaget, den avsluttede Fase 1-evalueringen og aksepterte teknologivalg. Kravene følger [PROJECT_MASTER.md](PROJECT_MASTER.md), særlig §15–19. Ved uløste konflikter mellom lokale autoritative dokumenter skal berørt arbeid stoppes og rapporteres.
 
 ## Autoritet og synkronisering
 
