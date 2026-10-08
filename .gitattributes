@@ -1,0 +1,2 @@
+# UltraStar lyric spacing is data; retain other whitespace checks.
+tests/UltraStar.SongCreator.Core.Tests/Fixtures/*.txt whitespace=-blank-at-eol
