@@ -1,6 +1,6 @@
 # Prosjektformat v1 – Fase 2.2
 
-Et lokalt prosjekt er én UTF-8 JSON-fil, anbefalt filendelse .uscproject. Dette er et prosjektformat for å fortsette redigering, ikke UltraStar-eksport. Ingen nye runtimepakker kreves.
+Et lokalt prosjekt er én UTF-8 JSON-fil (skrives uten BOM; leser aksepterer UTF-8-BOM), anbefalt filendelse .uscproject. Dette er et prosjektformat for å fortsette redigering, ikke UltraStar-eksport. Ingen nye runtimepakker kreves.
 
 ## Kontrakt
 

@@ -7,7 +7,7 @@ Mål: lagre og gjenåpne dagens redigerte sang og analyse-cache/referanser uten 
 ## Acceptance criteria og kontrollpunkter
 
 - [x] Format/library: separat .NET Projects-lag, eksplisitte DTO-er, v1-discriminator og versjon, tapfri rundtur og håndskrevet fixture; test/commit.
-- [ ] Robusthet: strict schema/unknown-version/error/warning, filgrense og cancellation, gammel fil beskyttet ved mislykket save; test/commit.
+- [x] Robusthet: strict schema/unknown-version/error/warning, filgrense og cancellation, gammel fil beskyttet ved mislykket save; test/commit.
 - [ ] Overlevering: locked build/test på Windows/Linux, format/master/ADR/lenkekontroll, oppdatert status og avgrenset PR.
 
 Scope: snapshot/filformat, analysepunkter/provenance, media-/cache-referanser, eksisterende Song-validator og filoperasjoner. Ingen nye runtime-dependencies; core forblir uavhengig av JSON/fil-I/O.
@@ -23,3 +23,5 @@ Fase 1/2.1 er levert i åpne PR-er #1/#2. Ny PR avgrenses mot work/phase2-core-d
 Neste kontrollpunkt: implementer schema og eksplisitt mapping uten å koble serialisering til domenets avledede properties.
 
 Kontrollpunkt 1: Release build uten advarsler og 60/60 tester bestod på Windows. Uavhengig v1-fixture, alle note-/analyse-enums, redigert tilstand, nullable fields, Unicode, kultur, deterministisk output og advarsler/referanser er prøvd. Neste steg: robusthet og filfeil.
+
+Kontrollpunkt 2: 103/103 Windows-tester bestod, inkludert strict schema, unknown-version, UTF-8/BOM, filgrenser, avbrudd før I/O, gammel-fil-bevaring og temp-opprydding ved rename-feil. OS kan rapportere IOException eller UnauthorizedAccessException for en mappe som mål; begge kontrolleres. Neste steg: format/locked restore, Linux og overlevering.

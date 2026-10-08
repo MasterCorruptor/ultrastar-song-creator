@@ -52,7 +52,7 @@ public sealed class ProjectStore
     {
         cancellationToken.ThrowIfCancellationRequested();
         var path = Path.GetFullPath(filePath);
-        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
+        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read | FileShare.Delete,
             65536, FileOptions.Asynchronous | FileOptions.SequentialScan);
         CheckLength(stream.Length);
         var bytes = new byte[(int)stream.Length];

@@ -23,24 +23,33 @@ internal static class ProjectJson
     internal static byte[] Encode(Song song)
     {
         Validate(song);
-        var document = new Envelope { Format = Format, SchemaVersion = Version, Song = SongDocument.From(song) };
-        return JsonSerializer.SerializeToUtf8Bytes(document, Options);
+        try
+        {
+            var document = new Envelope { Format = Format, SchemaVersion = Version, Song = SongDocument.From(song) };
+            return JsonSerializer.SerializeToUtf8Bytes(document, Options);
+        }
+        catch (JsonException e)
+        {
+            throw new ProjectFormatException(ProjectError.InvalidSong, "Song does not match the v1 storage schema.", inner: e);
+        }
     }
 
     internal static (Song Song, ImmutableArray<ValidationIssue> Issues) Decode(byte[] bytes)
     {
         try
         {
-            using var json = JsonDocument.Parse(bytes, new JsonDocumentOptions { MaxDepth = 64 });
+            ReadOnlyMemory<byte> input = bytes;
+            if (bytes.AsSpan().StartsWith(new byte[] { 0xEF, 0xBB, 0xBF })) input = input[3..];
+            using var json = JsonDocument.Parse(input, new JsonDocumentOptions { MaxDepth = 64 });
             CheckDuplicateProperties(json.RootElement);
             var root = json.RootElement;
             if (root.ValueKind != JsonValueKind.Object ||
                 !root.TryGetProperty("format", out var format) || format.ValueKind != JsonValueKind.String || format.GetString() != Format ||
-                !root.TryGetProperty("schemaVersion", out var version) || !version.TryGetInt32(out var number))
+                !root.TryGetProperty("schemaVersion", out var version) || version.ValueKind != JsonValueKind.Number || !version.TryGetInt32(out var number))
                 throw new ProjectFormatException(ProjectError.InvalidEnvelope, "Missing/invalid project format or schemaVersion.");
             if (number != Version)
                 throw new ProjectFormatException(ProjectError.UnsupportedVersion, $"Unsupported project schema version: {number}.");
-            var document = JsonSerializer.Deserialize<Envelope>(bytes, Options)
+            var document = JsonSerializer.Deserialize<Envelope>(input.Span, Options)
                 ?? throw new JsonException("Project document is null.");
             var song = document.Song.ToSong();
             return (song, Validate(song));
