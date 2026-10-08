@@ -6,7 +6,7 @@ Scope: [arbeidsordren](../../PHASE2_FIRST_WORK_ORDER.md). Master og aksepterte A
 ## Rekkefølge og kontrollpunkter
 
 - [x] Modell/build: GUI-uavhengig Song/Phrase/Note og analyse-/mediareferanser, dokumenterte enheter, meningsfulle modelltester, vellykket build/test og commit.
-- [ ] Validering: stabile errors/warnings, grenseverdier og ikke-muterende kontroller; test og commit.
+- [x] Validering: stabile errors/warnings, grenseverdier og ikke-muterende kontroller; test og commit.
 - [ ] Kjerneredigering: MoveNote og snapshot-basert undo/redo, atomiske feil og redo-forgrening; test og commit.
 - [ ] Overlevering: samlet Windows/Linux-verifikasjon, dependencylisenser/lockfiler, dokumentlenker/masterintegritet, ren commit/push og avgrenset PR.
 
@@ -21,3 +21,5 @@ Fase 1 er godkjent, men PR #1 er ennå ikke merget. Denne branchen bygger på de
 Oppstart: SDK 10.0.401 fra lokalt evalueringsmiljø gjenbrukes. Core uten eksterne runtimepakker. xUnit/VSTest fra SDK-mal brukes som testverktøy; unødvendig coverage-dependency tas ut. Ingen prosjektserialisering, UltraStar-parser/writer, GUI, lyd eller analyse integreres.
 
 Kontrollpunkt 1: restore/build Release bestod uten advarsler; 3/3 modelltester bestod på Windows. SDK 10.0.401, xUnit 2.9.3, runner 3.1.4 og Test.Sdk 17.14.1. Neste steg: ren validator og grenseverdier.
+
+Kontrollpunkt 2: 35/35 tester bestod. Validatoren gir stabile paths/koder, errors for strukturelle problemer og warnings for utkastkontekst; ingen mutasjon. Neste steg: MoveNote og undo/redo.
