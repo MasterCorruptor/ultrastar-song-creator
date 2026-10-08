@@ -36,7 +36,9 @@ internal static class ProjectJson
         {
             var document = new EnvelopeV2
             {
-                Format = Format, SchemaVersion = Version, Song = SongDocument.From(song),
+                Format = Format,
+                SchemaVersion = Version,
+                Song = SongDocument.From(song),
                 ImportedSource = song.ImportedSource is null ? null : SourceDocumentDto.From(song.ImportedSource)
             };
             return JsonSerializer.SerializeToUtf8Bytes(document, Options);
@@ -146,13 +148,15 @@ internal static class ProjectJson
 
         internal static SourceDocumentDto From(SourceDocument source) => new()
         {
-            FormatId = source.FormatId, FileReference = source.FileReference,
+            FormatId = source.FormatId,
+            FileReference = source.FileReference,
             Headers = source.Headers.Select(h => new HeaderDocument { Name = h.Name, Value = h.Value }).ToArray()
         };
 
         internal SourceDocument ToSource() => new()
         {
-            FormatId = Required(FormatId), FileReference = FileReference,
+            FormatId = Required(FormatId),
+            FileReference = FileReference,
             Headers = Required(Headers).Select(h => new SourceHeader(Required(h).Name, Required(h.Value))).ToImmutableArray()
         };
     }

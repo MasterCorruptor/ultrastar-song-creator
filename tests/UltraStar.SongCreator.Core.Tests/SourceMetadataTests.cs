@@ -31,7 +31,8 @@ public class SourceMetadataTests
         using var files = new ProjectTestDirectory();
         var source = new SourceDocument
         {
-            FormatId = "ultrastar-v1", FileReference = "sources/song.txt",
+            FormatId = "ultrastar-v1",
+            FileReference = "sources/song.txt",
             Headers = [new("COVER", "cover.png"), new("ALBUM", "Æ Album"), new("CREATOR", "Test"),
                 new("X-CUSTOM", "a:b"), new("X-CUSTOM", "second"), new("COMMENT", "")]
         };

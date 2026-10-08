@@ -14,6 +14,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" PrivateAssets="all" />
     <ProjectReference Include="../../src/UltraStar.SongCreator.Core/UltraStar.SongCreator.Core.csproj" />
     <ProjectReference Include="../../src/UltraStar.SongCreator.Projects/UltraStar.SongCreator.Projects.csproj" />
+    <ProjectReference Include="../../src/UltraStar.SongCreator.UltraStar/UltraStar.SongCreator.UltraStar.csproj" />
     <Using Include="Xunit" />
   </ItemGroup>
 </Project>
