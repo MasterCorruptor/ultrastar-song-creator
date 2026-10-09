@@ -140,6 +140,14 @@ public class ProjectRoundTripTests
     {
         Assert.Equal(before.Id, after.Id);
         Assert.Equal(before.Metadata, after.Metadata);
+        if (before.ImportedSource is null) Assert.Null(after.ImportedSource);
+        else
+        {
+            Assert.NotNull(after.ImportedSource);
+            Assert.Equal(before.ImportedSource.FormatId, after.ImportedSource.FormatId);
+            Assert.Equal(before.ImportedSource.FileReference, after.ImportedSource.FileReference);
+            Assert.Equal(before.ImportedSource.Headers.ToArray(), after.ImportedSource.Headers.ToArray());
+        }
         Assert.Equal(before.Media.ToArray(), after.Media.ToArray());
         Assert.Equal(before.AudioOffsetSeconds, after.AudioOffsetSeconds);
         Assert.Equal(before.VideoOffsetSeconds, after.VideoOffsetSeconds);

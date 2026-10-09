@@ -1,0 +1,18 @@
+#VERSION:1.1.0
+#TITLE:V1 øvelse 🎵
+#ARTIST:Test
+#MP3:old.mp3
+#AUDIO:media/preferred.flac
+#BPM:10,5
+#GAP:1234,5
+#LANGUAGE:Norwegian
+#P1:Solo
+#COVER:bilder/ø.png
+#ALBUM:Album
+#TEST-CUSTOM: keep:colon 
+P1
+: 42 21 5  Hei 
+- 80
+* 84 7 12 igjen
+E
+#P2:ignored trailer

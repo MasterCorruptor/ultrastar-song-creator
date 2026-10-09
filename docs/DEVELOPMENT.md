@@ -57,7 +57,7 @@ MIT er bekreftet for egen prosjektkode gjennom prosjekteierens vedtak 2026-10-08
 
 ## Core build og test – Fase 2.1
 
-Kjør fra prosjektroten med .NET 10 SDK. global.json tillater ikke prerelease eller et annet feature band. Solution inneholder Core, Projects og Core.Tests; Phase 1-prober bygges separat. Restore har nettbehov første gang; selve build/test krever ingen konto, modeller, medier eller nettverksbruk fra domenet.
+Kjør fra prosjektroten med .NET 10 SDK. global.json tillater ikke prerelease eller et annet feature band. Solution inneholder Core, Projects, UltraStar og Core.Tests; Phase 1-prober bygges separat. Restore har nettbehov første gang; selve build/test krever ingen konto, modeller, medier eller nettverksbruk fra domenet.
 
 ```text
 dotnet restore UltraStar.SongCreator.slnx --locked-mode
@@ -66,7 +66,7 @@ dotnet test UltraStar.SongCreator.slnx -c Release --no-build --no-restore
 dotnet format UltraStar.SongCreator.slnx --no-restore --verify-no-changes
 ```
 
-Eksakt brukt SDK: 10.0.401; direkte testpakker: xUnit 2.9.3, runner 3.1.4 og Microsoft.NET.Test.Sdk 17.14.1. Begge prosjekter har lockfil. Core har ingen eksterne PackageReference. Kompilatoradvarsler behandles som feil. .NET-formatverktøyet fra SDK brukes; ingen separat formatter dependency.
+Eksakt brukt SDK: 10.0.401; direkte testpakker: xUnit 2.9.3, runner 3.1.4 og Microsoft.NET.Test.Sdk 17.14.1. Alle fire prosjekter har lockfil. Core, Projects og UltraStar har ingen eksterne PackageReference. Kompilatoradvarsler behandles som feil. .NET-formatverktøyet fra SDK brukes; ingen separat formatter dependency.
 
 Lokalt ble SDK-en under .agent-local/phase1/dotnet gjenbrukt ved å erstatte dotnet med den kjørbare filen og sette DOTNET_CLI_HOME/NUGET_PACKAGES til prosjektets ignorerte cachemapper. Dette er en valgfri lokal oppsettrute, ikke en forutsetning for en ny maskin.
 
@@ -74,14 +74,24 @@ Windows: locked restore, Release build og 55/55 tester bestod uten advarsler. Li
 
 En ferdig [GitHub Actions-mal](../tools/ci/core.yml) beskriver locked restore/build/test/format på Windows og Ubuntu, med actions pinnet til commit-SHA. Den er ikke aktiv: GitHub avviste workflow-push fordi dagens tilgang mangler workflow-rettighet. Aktiver senere ved å kopiere malen til .github/workflows/core.yml og publisere med autorisert workflow-tilgang. Lokale Windows/Linux-prøver bestod; ingen CI-resultat er påstått. Core-CI verifiserer ikke native GUI/audio eller en installer.
 
-[Core-kontrakten](CORE_DOMAIN.md) beskriver tid/pitch, snapshots, referanser og command-policy. Fase 2.2 implementerer versjonert prosjektlagring. UltraStar parser/writer og eksport er neste mulige deloppgaver og er ikke implementert.
+[Core-kontrakten](CORE_DOMAIN.md) beskriver tid/pitch, snapshots, referanser og command-policy. Fase 2.2 implementerer versjonert prosjektlagring. Fase 2.3 legger til importeren nedenfor. UltraStar writer/eksport er ikke implementert.
 
 ## Prosjektlagring – Fase 2.2
 
-[Format v1](PROJECT_FORMAT.md) bruker UTF-8 JSON og anbefalt filendelse .uscproject. API-en er ProjectStore.SaveAsync(path, song, cancellationToken) og LoadAsync(path, cancellationToken) i UltraStar.SongCreator.Projects. Load returnerer Song, schemaVersion, absolutt prosjektfilbane og validatorfunn. ProjectFormatException skiller invalid JSON/envelope/song, unsupported version og too-large; vanlige fil-/tilgangsfeil beholder .NETs I/O-exceptions.
+Den historiske kontrakten [format v1](PROJECT_FORMAT.md) bruker UTF-8 JSON og anbefalt filendelse .uscproject. API-en er ProjectStore.SaveAsync(path, song, cancellationToken) og LoadAsync(path, cancellationToken) i UltraStar.SongCreator.Projects. Load returnerer Song, schemaVersion, absolutt prosjektfilbane og validatorfunn. ProjectFormatException skiller invalid JSON/envelope/song, unsupported version og too-large; vanlige fil-/tilgangsfeil beholder .NETs I/O-exceptions.
 
 Core holdes uavhengig av JSON/fil-I/O. Projects har bare en ProjectReference til Core; eksterne runtime-/testpakker er uendret. Bygg/test/format med de samme solution-kommandoene ovenfor. .editorconfig sikrer UTF-8/LF og fire spaces for C#; masteren formatteres ikke.
 
 106/106 tester bestod på Windows og nettisolert Linux-container med SDK 10.0.401. Dette inkluderer tidligere 55 domenetester og 51 lagrings-/robusthetstester, med en håndskrevet v1-fixture, redigeringsrundtur, full felt-/referansebevaring, Unicode/kultur, schema/version-feil, grenser, cancellation og filbevaring/opprydding ved feil. Locked restore, Release build uten advarsler og formatkontroll bestod. Testfiler ligger under .agent-local/project-storage-tests og ryddes etter testene.
 
-Filer og referanser gjenåpnes uten lyd, modeller eller inferens. Ingen mediakopiering, nettverkshenting, GUI eller persistent undo-historikk er implementert. v1 har ingen eldre støtteversjon å migrere fra; fremtidige versjoner må legge til eksplisitt migrasjon. Standard filgrense er 64 MiB. Se formatdokumentet for rename-/cancellation-/krasjavgrensninger.
+Filer og referanser gjenåpnes uten lyd, modeller eller inferens. Ingen mediakopiering, nettverkshenting, GUI eller persistent undo-historikk er implementert. v1 har ingen eldre støtteversjon. Fase 2.3 innfører [v2](PROJECT_FORMAT_V2.md) med eksplisitt v1-migrasjon. Standard filgrense er 64 MiB. Se formatdokumentet for rename-/cancellation-/krasjavgrensninger.
+
+## UltraStar-import og prosjektformat v2 – Fase 2.3
+
+UltraStarImporter.Parse(text, sourceFileReference?) og LoadAsync(path, cancellationToken) returnerer et komplett Song-utkast med diagnostikk eller null Song ved formatfeil. [Importprofilen](ULTRASTAR_IMPORT.md) beskriver beat/pitch/offset, encoding, kildemetadata og avgrensninger. Kilden beholdes i Core som generisk SourceDocument; ingen formatparser eller fil-I/O flyttes inn i Core. Projects skriver nå v2 med original metadata, og laster fortsatt v1 uten å endre originalfilen.
+
+203/203 tester bestod på Windows og nettisolert Linux med SDK 10.0.401: de tidligere 106, åtte metadata-/migrasjonstester, 66 absolutte importtester og 23 relative tester. Locked restore, Release build uten warnings og formatkontroll bestod. Linux brukte samme kilde, separat artifacts under .agent-local/phase2-import, eksisterende NuGet-cache og audit deaktivert kun under offline restore. Ingen hosted CI påstås; malen er oppdatert for den nye lockfilen.
+
+Alle fixtures er håndskrevne syntetiske data. Load innhenter verken media/metadata eller modeller. Normale encodingfeil avvises uten gjetting; fil-I/O/cancellation bruker vanlige .NET exceptions. Relativ legacy-modus er avklart og implementert etter [USDX-profilen](RELATIVE_TIMING.md), med eksplisitt kompatibilitets-warning og akkumulerte offset-/tidsgrenser. Relativ tid i v1 avvises. [Planen](exec-plans/completed/phase2-ultrastar-import.md) er avsluttet, og PR #4 er klargjort for review. Ingen eksport/GUI eller automatisk merge inngår.
+
+UltraStar-fixtures har betydningsfulle spaces på slutten av notetekst. .gitattributes unntar bare blank-at-eol for disse .txt-fixturene; øvrig whitespacekontroll beholdes, og testene kontrollerer tekstbevaring.

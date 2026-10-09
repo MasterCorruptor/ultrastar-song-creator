@@ -1,5 +1,7 @@
 # Prosjektformat v1 – Fase 2.2
 
+Historisk kontrakt for v1. Gjeldende skriver bruker [v2 med bevart kildemetadata](PROJECT_FORMAT_V2.md); v1 leses fortsatt uten å endre originalfilen.
+
 Et lokalt prosjekt er én UTF-8 JSON-fil (skrives uten BOM; leser aksepterer UTF-8-BOM), anbefalt filendelse .uscproject. Dette er et prosjektformat for å fortsette redigering, ikke UltraStar-eksport. Ingen nye runtimepakker kreves.
 
 ## Kontrakt

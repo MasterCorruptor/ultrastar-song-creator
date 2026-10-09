@@ -25,3 +25,5 @@ Lockfilene inneholder også NuGets contentHash og transitive versjoner. Bevar pa
 Kilder: [xUnit 2.9.3-lisens](https://github.com/xunit/xunit/blob/v2-2.9.3/license.txt), [VSTest MIT](https://github.com/microsoft/vstest/blob/main/LICENSE) og de inventarførte nupkg-ene. xunit.abstractions 2.0.3 bruker et eldre licenseUrl-felt som peker på xUnits egen lisens; dette er merket som legacy i tabellen, ikke feilaktig som en innebygd lisensfil.
 
 Fase 2.2 legger til Projects med ProjectReference til Core og ingen PackageReference. System.Text.Json og fil-I/O kommer fra .NET 10. Testsettets eksterne pakker og deres versjoner er uendret; prosjekt-referansen er registrert i oppdaterte lockfiler.
+
+Fase 2.3 legger til UltraStar med kun ProjectReference til Core. Text/regex, CodePagesEncodingProvider (1250/1252) og fil-I/O er del av .NET 10-runtime; ingen ekstern NuGet-pakke eller upstream parserkode introduseres. Testpakkenes versjoner/lisenser er uendret, og referansen er låst i oppdaterte lockfiler. Formatnorm og MIT-proveniens står i [importprofilen](ULTRASTAR_IMPORT.md).

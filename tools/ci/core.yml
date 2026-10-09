@@ -30,6 +30,7 @@ jobs:
           cache-dependency-path: |
             src/UltraStar.SongCreator.Core/packages.lock.json
             src/UltraStar.SongCreator.Projects/packages.lock.json
+            src/UltraStar.SongCreator.UltraStar/packages.lock.json
             tests/UltraStar.SongCreator.Core.Tests/packages.lock.json
       - name: Restore locked dependencies
         run: dotnet restore UltraStar.SongCreator.slnx --locked-mode

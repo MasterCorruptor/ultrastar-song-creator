@@ -33,3 +33,9 @@ Samlingene bevarer innlagt rekkefølge; flytting endrer ikke lyrics-rekkefølge 
 ## Separat prosjektlagring – Fase 2.2
 
 Projects-laget mapper domenet til eksplisitte [v1-DTO-er](PROJECT_FORMAT.md) og lokal JSON-fil. Core kjenner fortsatt ikke JSON, filbaner for prosjektfilen eller save/load. Aktuelle brukerendringer og rå analysepunkter lagres uten ny analyse; undo-stakkene er ikke persistente. Datakontrakten for v1 er skilt fra domenets fremtidige utvikling.
+
+## Generisk importkilde – Fase 2.3
+
+Song.ImportedSource er valgfri SourceDocument med FormatId, valgfri FileReference og immutable SourceHeader-samling (Name/Value). Den beskriver opprinnelig kildemetadata, ikke aktuell redigert sangsannhet. Originale/ukjente headers og rekkefølge overlever snapshotendringer, undo/redo og [prosjektformat v2](PROJECT_FORMAT_V2.md). Core kjenner ikke headersemantikk, encoding eller UltraStar-fil-I/O. SourceFormatId må være ikke-tom og headernavn/verdier tilstede; duplikater/tomme verdier tillates i proveniensen.
+
+[UltraStar-adapteren](ULTRASTAR_IMPORT.md) bruker denne generiske samlingen, konverterer til sekunder/MIDI og holder kvantiserings-BPM i kilden fremfor å anta musikalsk tempo. Dette endrer ikke domenets tids-/pitch- eller snapshotkontrakt.
