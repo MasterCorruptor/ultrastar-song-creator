@@ -1,0 +1,148 @@
+{
+  "scope": "Package metadata, not a complete binary/license audit",
+  "packages": [
+    {
+      "id": "Avalonia",
+      "version": "12.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://avaloniaui.net/?utm_source=nuget&utm_medium=referral&utm_content=project_homepage_link"
+    },
+    {
+      "id": "Avalonia.BuildServices",
+      "version": "11.3.2",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://avaloniaui.net/"
+    },
+    {
+      "id": "Avalonia.Fonts.Inter",
+      "version": "12.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://avaloniaui.net/?utm_source=nuget&utm_medium=referral&utm_content=project_homepage_link"
+    },
+    {
+      "id": "Avalonia.HarfBuzz",
+      "version": "12.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://avaloniaui.net/?utm_source=nuget&utm_medium=referral&utm_content=project_homepage_link"
+    },
+    {
+      "id": "Avalonia.Headless",
+      "version": "12.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://avaloniaui.net/?utm_source=nuget&utm_medium=referral&utm_content=project_homepage_link"
+    },
+    {
+      "id": "Avalonia.Remote.Protocol",
+      "version": "12.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://avaloniaui.net/?utm_source=nuget&utm_medium=referral&utm_content=project_homepage_link"
+    },
+    {
+      "id": "Avalonia.Skia",
+      "version": "12.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://avaloniaui.net/?utm_source=nuget&utm_medium=referral&utm_content=project_homepage_link"
+    },
+    {
+      "id": "HarfBuzzSharp",
+      "version": "8.3.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    },
+    {
+      "id": "HarfBuzzSharp.NativeAssets.Linux",
+      "version": "8.3.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    },
+    {
+      "id": "HarfBuzzSharp.NativeAssets.macOS",
+      "version": "8.3.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    },
+    {
+      "id": "HarfBuzzSharp.NativeAssets.WebAssembly",
+      "version": "8.3.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    },
+    {
+      "id": "HarfBuzzSharp.NativeAssets.Win32",
+      "version": "8.3.1.3",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    },
+    {
+      "id": "MicroCom.Runtime",
+      "version": "0.11.6",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT"
+    },
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.4",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux",
+      "version": "3.119.4",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.macOS",
+      "version": "3.119.4",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.WebAssembly",
+      "version": "3.119.4",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Win32",
+      "version": "3.119.4",
+      "license": "MIT",
+      "license_type": "expression",
+      "licenseUrl": "https://licenses.nuget.org/MIT",
+      "projectUrl": "https://go.microsoft.com/fwlink/?linkid=868515"
+    }
+  ]
+}

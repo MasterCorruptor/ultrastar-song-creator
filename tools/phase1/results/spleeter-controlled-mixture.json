@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "model": "spleeter:2stems v1.4.0",
+  "code": "spleeter 2.4.2",
+  "device": "CPU",
+  "model_setup_seconds": 0.0007562000537291169,
+  "inference_seconds": 3.4571851999498904,
+  "duration_seconds": 20.0,
+  "input_vocal_si_sdr_db": 5.912711282618024,
+  "output_vocal_si_sdr_db": 22.092521764275936,
+  "limitations": [
+    "real singing vocadito_6 with synthetic backing, not a commercial multitrack benchmark",
+    "Windows dependency override: tensorflow-io-gcs-filesystem 0.31.0 replaces unavailable 0.32.0",
+    "no redistribution approval for this environment"
+  ]
+}

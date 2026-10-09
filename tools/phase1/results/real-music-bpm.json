@@ -1,0 +1,27 @@
+{
+  "status": "measured",
+  "records": [
+    {
+      "track": "Lower_Loveday_-_Is_It_Right_",
+      "duration_seconds": 29.0,
+      "estimated_bpm": 133.92857142857142,
+      "beat_count": 66
+    },
+    {
+      "track": "Rxbyn_-_Bad_Side",
+      "duration_seconds": 29.0,
+      "estimated_bpm": 144.23076923076923,
+      "beat_count": 71
+    },
+    {
+      "track": "Cortez_-_Feel__Stripped_",
+      "duration_seconds": 29.0,
+      "estimated_bpm": 75.0,
+      "beat_count": 37
+    }
+  ],
+  "limitations": [
+    "no beat/tempo ground truth for these songs; no accuracy claim",
+    "29-second excerpts; half/double tempo and phase require manual confirmation"
+  ]
+}

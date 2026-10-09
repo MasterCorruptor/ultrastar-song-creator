@@ -1,0 +1,48 @@
+{
+  "status": "measured",
+  "dataset": "JamendoLyrics MultiLang",
+  "dataset_revision": "de188c963fd4539bc769b3feb83582e5a9595e36",
+  "model": "faster-whisper-tiny d90ca5fe260221311c53c58e660288d3deb8d356",
+  "records": [
+    {
+      "track": "Lower_Loveday_-_Is_It_Right_",
+      "song_license": "BY-SA",
+      "duration_seconds": 29.0,
+      "known_text_words": 44,
+      "matched_words": 44,
+      "alignment_seconds": 0.1780787999741733,
+      "word_onset_median_error_seconds": 0.11434317879999867,
+      "word_onset_p95_error_seconds": 0.5796190858800001,
+      "word_onsets_within_200ms": 0.7045454545454546
+    },
+    {
+      "track": "Rxbyn_-_Bad_Side",
+      "song_license": "BY",
+      "duration_seconds": 29.0,
+      "known_text_words": 47,
+      "matched_words": 47,
+      "alignment_seconds": 0.14739779999945313,
+      "word_onset_median_error_seconds": 0.11850137649999937,
+      "word_onset_p95_error_seconds": 0.8301204606799986,
+      "word_onsets_within_200ms": 0.8085106382978723
+    },
+    {
+      "track": "Cortez_-_Feel__Stripped_",
+      "song_license": "BY",
+      "duration_seconds": 29.0,
+      "known_text_words": 45,
+      "matched_words": 45,
+      "alignment_seconds": 0.1531126000918448,
+      "word_onset_median_error_seconds": 0.14047678800000263,
+      "word_onset_p95_error_seconds": 0.8749954985799986,
+      "word_onsets_within_200ms": 0.7777777777777778
+    }
+  ],
+  "limitations": [
+    "three preselected English BY/BY-SA songs, first 29 seconds from first annotated word minus 0.5 s",
+    "known correct lyrics supplied; not ASR-generated text",
+    "private find_alignment API, not a supported production adapter",
+    "word onset only; no offset or full-song/global repeat evaluation",
+    "no lyrics or transcript stored in result"
+  ]
+}

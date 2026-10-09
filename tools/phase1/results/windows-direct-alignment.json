@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "engine": "CTranslate2 4.8.2 direct API",
+  "decoder": "PCM16 via minimal FFmpeg; no PyAV/faster-whisper package imported",
+  "reused_helpers": "two unchanged MIT faster-whisper 1.2.1 modules",
+  "records": [
+    {
+      "track": "Lower_Loveday_-_Is_It_Right_",
+      "reference_words": 44,
+      "matched_words": 44,
+      "seconds": 0.24835829995572567,
+      "median_onset_error_seconds": 0.12228514630000298,
+      "p95_onset_error_seconds": 0.5826595067100003
+    },
+    {
+      "track": "Rxbyn_-_Bad_Side",
+      "reference_words": 47,
+      "matched_words": 47,
+      "seconds": 0.17712230002507567,
+      "median_onset_error_seconds": 0.11850137649999937,
+      "p95_onset_error_seconds": 0.984733161609996
+    },
+    {
+      "track": "Cortez_-_Feel__Stripped_",
+      "reference_words": 45,
+      "matched_words": 45,
+      "seconds": 0.17433089995756745,
+      "median_onset_error_seconds": 0.1537130078000004,
+      "p95_onset_error_seconds": 0.8749954985799986
+    }
+  ],
+  "limitations": [
+    "29s known-text windows, not full-song production aligner",
+    "same poor tail timing as tiny alignment baseline",
+    "raw lyrics not stored"
+  ]
+}

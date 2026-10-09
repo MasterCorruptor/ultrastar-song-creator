@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "requirements": "consistent",
+  "stock_pyav_present": false,
+  "faster_whisper_package_present": false,
+  "cpu_libraries_imported": true
+}

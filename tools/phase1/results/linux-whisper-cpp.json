@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "engine": "whisper.cpp 1.9.5",
+  "model": "multilingual tiny GGML, MIT",
+  "device": "CPU",
+  "native_build": "CPU source build; CUDA/Vulkan/OpenMP/FFmpeg/BLAS and AVX/AVX2/FMA/F16C disabled",
+  "records": [
+    {
+      "track": "Lower_Loveday_-_Is_It_Right_",
+      "duration_seconds": 29,
+      "process_seconds_including_model_load": 5.1167201739999655,
+      "word_error_rate": 0.4375,
+      "reference_words": 48,
+      "segments": 8,
+      "dtw_tokens": 64
+    },
+    {
+      "track": "Rxbyn_-_Bad_Side",
+      "duration_seconds": 29,
+      "process_seconds_including_model_load": 5.214932593999947,
+      "word_error_rate": 0.3,
+      "reference_words": 50,
+      "segments": 7,
+      "dtw_tokens": 75
+    },
+    {
+      "track": "Cortez_-_Feel__Stripped_",
+      "duration_seconds": 29,
+      "process_seconds_including_model_load": 7.168130342999575,
+      "word_error_rate": 0.2,
+      "reference_words": 50,
+      "segments": 5,
+      "dtw_tokens": 60
+    }
+  ],
+  "limitations": [
+    "three English 29s real music excerpts; no quality ranking against int8 CTranslate2",
+    "DTW token timestamps produced, not forced alignment of supplied lyrics",
+    "controlled research environment, no clean end-user machine",
+    "raw transcript and system info private"
+  ],
+  "platform": "Linux container"
+}

@@ -1,0 +1,86 @@
+{
+  "source_commit": "330caae0c1acccd2222edc52a05940c574561ce5",
+  "source_url": "https://github.com/FFmpeg/FFmpeg/archive/330caae0c1acccd2222edc52a05940c574561ce5.tar.gz",
+  "source_archive_sha256": "67b5876ee973a26f267280b2c1eb851a0ac7a502382d20e41b7a819111886af9",
+  "status": "passed",
+  "version": "ffmpeg version 8.1.3 Copyright (c) 2000-2026 the FFmpeg developers",
+  "configuration": "configuration: --prefix=PROJECT_LOCAL_PREFIX --target-os=mingw32 --arch=x86_64 --cross-prefix=x86_64-w64-mingw32- --enable-cross-compile --enable-shared --disable-static --disable-autodetect --disable-everything --disable-doc --disable-debug --disable-network --disable-ffplay --disable-avdevice --disable-swscale --enable-protocol=file --enable-demuxer='mp3,wav,flac,ogg,aac,mov' --enable-decoder='mp3float,pcm_s16le,pcm_s24le,pcm_s32le,pcm_f32le,flac,vorbis,aac' --enable-parser='mpegaudio,flac,aac' --enable-encoder=pcm_s16le --enable-muxer=wav --enable-filter='aresample,aformat,anull' --extra-ldflags=-static-libgcc",
+  "ffmpeg_license": "LGPL-2.1-or-later",
+  "gpl_enabled": false,
+  "nonfree_enabled": false,
+  "version3_enabled": false,
+  "decode": {
+    "sample_rate": 48000,
+    "channels": 2,
+    "duration_seconds": 29.0,
+    "pcm16": true
+  },
+  "binaries": [
+    {
+      "name": "avcodec-62.dll",
+      "sha256": "d2a4b8a097d4346ea92bf3e1da94114541a49462e9018b26aae52e8f75958cb9",
+      "bytes": 1006080
+    },
+    {
+      "name": "avcodec.lib",
+      "sha256": "4c1ba18179311fc814c677493dbfbec534dc6923d184aadc05d8a4c96b95510b",
+      "bytes": 130482
+    },
+    {
+      "name": "avfilter-11.dll",
+      "sha256": "1b81048e4330928840e211dfac175464931891c651fe01c390934cd185bdadc5",
+      "bytes": 208384
+    },
+    {
+      "name": "avfilter.lib",
+      "sha256": "7491e26b869507586a1824114878b01ef855c309cb6290599a7389d2885c288f",
+      "bytes": 57188
+    },
+    {
+      "name": "avformat-62.dll",
+      "sha256": "9791c3542f7c64fee85253edd388f308adf4a17923c47cda806affe5374e114f",
+      "bytes": 587264
+    },
+    {
+      "name": "avformat.lib",
+      "sha256": "f13036ddceb5b774c1c8b3a867f31efe1934ba1613b85acb9858cdb4ab0073e3",
+      "bytes": 123614
+    },
+    {
+      "name": "avutil-60.dll",
+      "sha256": "af925f498cc2838d8e8e182436ef698a24fec6c8b74bcabc2a22cfe04832507b",
+      "bytes": 1018880
+    },
+    {
+      "name": "avutil.lib",
+      "sha256": "b2a33b1d3eedcfd39c4a7f6f04985bc82f6d9830250eb9636ae03095d2c248bc",
+      "bytes": 497360
+    },
+    {
+      "name": "ffmpeg.exe",
+      "sha256": "1536c74d0d6776cc49d74b86275c4c52746afe8a83221763c15dc23eeb26d701",
+      "bytes": 456704
+    },
+    {
+      "name": "ffprobe.exe",
+      "sha256": "34e52958884511927807a9992350a1353ffa271ee4ac67f0cc117accb7aec607",
+      "bytes": 206336
+    },
+    {
+      "name": "swresample-6.dll",
+      "sha256": "8a5c3778b61c3877c72da9f4a9545237271fa3cba5dede96074655f31930d2eb",
+      "bytes": 139264
+    },
+    {
+      "name": "swresample.lib",
+      "sha256": "a44abd4bd2bf9ba6ea8ddc09c81aeca59aba2d5fd62d0830b2ca36b913c5951d",
+      "bytes": 19876
+    }
+  ],
+  "source_and_recipe_included_locally": true,
+  "limitations": [
+    "limited declared audio formats, not universal codec support",
+    "compiler runtime notices/source obligations assessed separately",
+    "no public product binary released"
+  ]
+}
