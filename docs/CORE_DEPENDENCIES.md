@@ -27,3 +27,5 @@ Kilder: [xUnit 2.9.3-lisens](https://github.com/xunit/xunit/blob/v2-2.9.3/licens
 Fase 2.2 legger til Projects med ProjectReference til Core og ingen PackageReference. System.Text.Json og fil-I/O kommer fra .NET 10. Testsettets eksterne pakker og deres versjoner er uendret; prosjekt-referansen er registrert i oppdaterte lockfiler.
 
 Fase 2.3 legger til UltraStar med kun ProjectReference til Core. Text/regex, CodePagesEncodingProvider (1250/1252) og fil-I/O er del av .NET 10-runtime; ingen ekstern NuGet-pakke eller upstream parserkode introduseres. Testpakkenes versjoner/lisenser er uendret, og referansen er låst i oppdaterte lockfiler. Formatnorm og MIT-proveniens står i [importprofilen](ULTRASTAR_IMPORT.md).
+
+Fase 2.4 utvider bare UltraStar-adapteren med standard .NET 10 text/fil-I/O og SHA-256. Ingen runtime-/testpakke, lockfil eller avhengighetsgraf endres. Den private FFmpeg-smoken er evalueringsverifikasjon, ikke en produktdependency eller binær redistribusjon; [resultatrapport](PHASE2_EXPORT_RESULTS.md).

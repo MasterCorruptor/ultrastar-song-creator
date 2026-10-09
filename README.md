@@ -4,7 +4,7 @@ UltraStar Song Creator skal bli et desktopverktøy for opprettelse, automatisk g
 
 ## Status
 
-Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-08.** ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, utskiftbar miniaudio-backend, MIT for egen kode og separat dokumenterte LGPL-codecs. Open-Unmix med eksplisitt umxhq er separasjonsbaseline. **Fase 2 er påbegynt:** deloppgave 2.1 har intern sangmodell, validering og MoveNote med undo/redo og domenetester. **Fase 2.2 har versjonert prosjektlagring:** dagens sang, redigerte noter og analysepunkter kan lagres/gjenåpnes lokalt. **Fase 2.3 er implementert og verifisert:** import for unversionerte enkeltstemmer (absolutt og relativ tid) og UltraStar v1, med bevart kildemetadata i prosjektformat v2. Relativ legacy-tid følger dokumentert USDX-kompatibilitet; v1 + relativ tid avvises. GUI og UltraStar-eksport er ikke implementert.
+Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-08.** ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, utskiftbar miniaudio-backend, MIT for egen kode og separat dokumenterte LGPL-codecs. Open-Unmix med eksplisitt umxhq er separasjonsbaseline. **Fase 2 er påbegynt:** deloppgave 2.1 har intern sangmodell, validering og MoveNote med undo/redo og domenetester. **Fase 2.2 har versjonert prosjektlagring:** dagens sang, redigerte noter og analysepunkter kan lagres/gjenåpnes lokalt. **Fase 2.3 er implementert og verifisert:** import for unversionerte enkeltstemmer (absolutt og relativ tid) og UltraStar v1, med bevart kildemetadata i prosjektformat v2. Relativ legacy-tid følger dokumentert USDX-kompatibilitet; v1 + relativ tid avvises. **Fase 2.4 er implementert og verifisert:** unversionert/v1-eksport med absolutt tid, automatisk avrundingsrapport og komplette mapper med byteverifiserte mediekopier. GUI er ikke implementert.
 
 ## Prosjektkilder
 
@@ -18,6 +18,7 @@ Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-
 - [Gjeldende prosjektformat v2](docs/PROJECT_FORMAT_V2.md), [historisk v1](docs/PROJECT_FORMAT.md) og [avsluttet lagringsplan](docs/exec-plans/completed/phase2-project-storage.md) dokumenterer Fase 2.2.
 - [Fase 2.1-arbeidsordre](docs/PHASE2_FIRST_WORK_ORDER.md), [core domain/enheter](docs/CORE_DOMAIN.md) og [testdependencies](docs/CORE_DEPENDENCIES.md) dokumenterer den første kjernedeloppgaven.
 - [UltraStar-importprofil](docs/ULTRASTAR_IMPORT.md), [arbeidsordre](docs/PHASE2_ULTRASTAR_IMPORT_WORK_ORDER.md) og [avsluttet importplan](docs/exec-plans/completed/phase2-ultrastar-import.md) dokumenterer Fase 2.3. [Relativ tidsprofil](docs/RELATIVE_TIMING.md) beskriver avklaringen og kompatibilitetsgrensene.
+- [Eksportkontrakt](docs/ULTRASTAR_EXPORT.md), [resultater](docs/PHASE2_EXPORT_RESULTS.md), [arbeidsordre](docs/PHASE2_ULTRASTAR_EXPORT_WORK_ORDER.md) og [avsluttet eksportplan](docs/exec-plans/completed/phase2-ultrastar-export.md) dokumenterer Fase 2.4.
 - [Evalueringsverktøy](tools/phase1/README.md) inneholder reproduksjonskommandoer; prober bygges separat fra Core/Projects/UltraStar-solution.
 
 ## Struktur

@@ -74,7 +74,7 @@ Windows: locked restore, Release build og 55/55 tester bestod uten advarsler. Li
 
 En ferdig [GitHub Actions-mal](../tools/ci/core.yml) beskriver locked restore/build/test/format på Windows og Ubuntu, med actions pinnet til commit-SHA. Den er ikke aktiv: GitHub avviste workflow-push fordi dagens tilgang mangler workflow-rettighet. Aktiver senere ved å kopiere malen til .github/workflows/core.yml og publisere med autorisert workflow-tilgang. Lokale Windows/Linux-prøver bestod; ingen CI-resultat er påstått. Core-CI verifiserer ikke native GUI/audio eller en installer.
 
-[Core-kontrakten](CORE_DOMAIN.md) beskriver tid/pitch, snapshots, referanser og command-policy. Fase 2.2 implementerer versjonert prosjektlagring. Fase 2.3 legger til importeren nedenfor. UltraStar writer/eksport er ikke implementert.
+[Core-kontrakten](CORE_DOMAIN.md) beskriver tid/pitch, snapshots, referanser og command-policy. Fase 2.2 implementerer versjonert prosjektlagring. Fase 2.3 legger til importeren nedenfor. Fase 2.4 implementerer writer/pakking etter eksportkontrakten nedenfor.
 
 ## Prosjektlagring – Fase 2.2
 
@@ -84,7 +84,7 @@ Core holdes uavhengig av JSON/fil-I/O. Projects har bare en ProjectReference til
 
 106/106 tester bestod på Windows og nettisolert Linux-container med SDK 10.0.401. Dette inkluderer tidligere 55 domenetester og 51 lagrings-/robusthetstester, med en håndskrevet v1-fixture, redigeringsrundtur, full felt-/referansebevaring, Unicode/kultur, schema/version-feil, grenser, cancellation og filbevaring/opprydding ved feil. Locked restore, Release build uten advarsler og formatkontroll bestod. Testfiler ligger under .agent-local/project-storage-tests og ryddes etter testene.
 
-Filer og referanser gjenåpnes uten lyd, modeller eller inferens. Ingen mediakopiering, nettverkshenting, GUI eller persistent undo-historikk er implementert. v1 har ingen eldre støtteversjon. Fase 2.3 innfører [v2](PROJECT_FORMAT_V2.md) med eksplisitt v1-migrasjon. Standard filgrense er 64 MiB. Se formatdokumentet for rename-/cancellation-/krasjavgrensninger.
+Filer og referanser gjenåpnes uten lyd, modeller eller inferens. Prosjektlageret kopierer/henter ikke medier og har ikke GUI eller persistent undo-historikk; Fase 2.4 legger til separat eksportpakker. v1 har ingen eldre støtteversjon. Fase 2.3 innfører [v2](PROJECT_FORMAT_V2.md) med eksplisitt v1-migrasjon. Standard filgrense er 64 MiB. Se formatdokumentet for rename-/cancellation-/krasjavgrensninger.
 
 ## UltraStar-import og prosjektformat v2 – Fase 2.3
 
@@ -95,3 +95,13 @@ UltraStarImporter.Parse(text, sourceFileReference?) og LoadAsync(path, cancellat
 Alle fixtures er håndskrevne syntetiske data. Load innhenter verken media/metadata eller modeller. Normale encodingfeil avvises uten gjetting; fil-I/O/cancellation bruker vanlige .NET exceptions. Relativ legacy-modus er avklart og implementert etter [USDX-profilen](RELATIVE_TIMING.md), med eksplisitt kompatibilitets-warning og akkumulerte offset-/tidsgrenser. Relativ tid i v1 avvises. [Planen](exec-plans/completed/phase2-ultrastar-import.md) er avsluttet, og PR #4 er klargjort for review. Ingen eksport/GUI eller automatisk merge inngår.
 
 UltraStar-fixtures har betydningsfulle spaces på slutten av notetekst. .gitattributes unntar bare blank-at-eol for disse .txt-fixturene; øvrig whitespacekontroll beholdes, og testene kontrollerer tekstbevaring.
+
+## UltraStar writer og komplett sangpakke – Fase 2.4
+
+[Kontrakten](ULTRASTAR_EXPORT.md) har Render og PackageAsync med eksplisitt unversionert/v1-profil, absolutt tid, automatisk endpoint-avrunding og per-note-deltas. Kildens kvantiserings-BPM kan gjenbrukes; for en ny sang gis grid eksplisitt. Current song overrides operative source metadata uten å mutere prosjektet. Ingen ny runtimepakke eller prosjektversjon.
+
+PackageAsync lager en ny mappe med song.txt/media, rebased relative references, portable/collision-safe navn og SHA-/byteverifiserte kopier. Current main audio/video og oppgitte cover/background/vocals/instrumental pakkes. Originaler beholdes og eksisterende mål overskrives ikke. Referansebaser, lokale paths, staging/rename, cancellation og avgrensninger er eksplisitte i kontrakten.
+
+263/263 tester bestod på Windows og nettisolert Linux med SDK 10.0.401: 203 tidligere + 38 writer + 22 pakke. Locked restore, Release build uten warnings og formatkontroll bestod. Linux bruker artifacts under .agent-local/phase2-export og samme offline-policy som tidligere. Praktisk Windows-smoke med gyldig syntetisk WAV/PNG/MPEG4-pakke bestod reimport, checksums og FFmpeg-dekoding; se [resultater](PHASE2_EXPORT_RESULTS.md). Ingen karaokeapp/GUI/native product playback påstås.
+
+Core/Projects/master/aksepterte ADR-er og historisk v1-fixture er byteuendret. Ingen hosted CI er aktivert; dagens mal dekker hele solution uten ekstra prosjekt/lockfil. [Planen](exec-plans/completed/phase2-ultrastar-export.md) er avsluttet. Ingen automatisk merge eller ny fase.
