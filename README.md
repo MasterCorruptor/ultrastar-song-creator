@@ -4,7 +4,7 @@ UltraStar Song Creator skal bli et desktopverktøy for opprettelse, automatisk g
 
 ## Status
 
-Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-08.** ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, utskiftbar miniaudio-backend, MIT for egen kode og separat dokumenterte LGPL-codecs. Open-Unmix med eksplisitt umxhq er separasjonsbaseline. Produktfunksjonalitet er ikke implementert; Fase 2 er ikke startet.
+Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-08.** ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, utskiftbar miniaudio-backend, MIT for egen kode og separat dokumenterte LGPL-codecs. Open-Unmix med eksplisitt umxhq er separasjonsbaseline. **Fase 2 er påbegynt:** deloppgave 2.1 har intern sangmodell, validering og MoveNote med undo/redo og domenetester. GUI, prosjektlagring og UltraStar import/eksport er fortsatt ikke implementert.
 
 ## Prosjektkilder
 
@@ -15,7 +15,7 @@ Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-
 - [Teknologianbefaling og beslutningspunkter](docs/PHASE1_RECOMMENDATION.md), [videre målinger](docs/PHASE1_CONTINUATION_RESULTS.md) og [artefaktlisenser](docs/PHASE1_LICENSES.md) er gjeldende beslutningsgrunnlag.
 - [Akseptert desktop-/analysearkitektur](docs/decisions/ADR-0001-desktop-and-analysis-stack.md) og [lisensstrategi](docs/decisions/ADR-0002-licensing-and-reuse.md) dokumenterer prosjekteierens vedtak.
 - [Avsluttet Fase 1-plan](docs/exec-plans/completed/phase1-feasibility-audit.md) dokumenterer leveransen og aksepterte begrensninger.
-- [Forslag til første Fase 2-arbeidsordre](docs/PHASE2_FIRST_WORK_ORDER.md) avventer bestilling.
+- [Fase 2.1-arbeidsordre](docs/PHASE2_FIRST_WORK_ORDER.md), [core domain/enheter](docs/CORE_DOMAIN.md) og [testdependencies](docs/CORE_DEPENDENCIES.md) dokumenterer den første kjernedeloppgaven.
 - [Evalueringsverktøy](tools/phase1/README.md) inneholder reproduksjonskommandoer; ingen produkt-build er etablert.
 
 ## Struktur
@@ -45,7 +45,15 @@ Mapper som fortsatt er tomme har minimale `.gitkeep`-filer. Lokal agenttilstand 
 
 ## Kom i gang
 
-Fase 0 krever Git for å lese historikk og arbeide med repositoryet. GitHub CLI er brukt til den første GitHub-opprettelsen, men er ikke et krav for applikasjonen eller senere utvikling. Det finnes ennå ingen produktapplikasjon eller etablerte produkt-build-/testkommandoer. Fase 1-prøvene kjøres separat som beskrevet i [tools/phase1/README.md](tools/phase1/README.md). Se [DEVELOPMENT.md](docs/DEVELOPMENT.md) for arbeidsflyt og miljøprinsipper.
+Fase 0 krever Git for å lese historikk og arbeide med repositoryet. GitHub CLI er brukt til den første GitHub-opprettelsen, men er ikke et krav for applikasjonen eller senere utvikling. Det finnes ennå ingen GUI-applikasjon. Bygg/test produktkjernen med .NET 10 SDK fra prosjektroten:
+
+```text
+dotnet restore UltraStar.SongCreator.slnx --locked-mode
+dotnet build UltraStar.SongCreator.slnx -c Release --no-restore
+dotnet test UltraStar.SongCreator.slnx -c Release --no-build --no-restore
+```
+
+Core krever ingen Python, modeller eller mediefiler; restore trenger pakker én gang eller en eksisterende NuGet-cache. Fase 1-prøvene kjøres separat som beskrevet i [tools/phase1/README.md](tools/phase1/README.md). Se [DEVELOPMENT.md](docs/DEVELOPMENT.md) for arbeidsflyt og miljøprinsipper.
 
 ## Lisens
 

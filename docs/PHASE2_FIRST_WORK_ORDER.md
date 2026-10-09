@@ -1,6 +1,6 @@
-# Forslag: Fase 2.1 – intern sangmodell og reverserbar kjerneredigering
+# Arbeidsordre: Fase 2.1 – intern sangmodell og reverserbar kjerneredigering
 
-**Status: forslag til prosjekteier, ikke bestilt eller startet.** Utarbeidet 2026-10-08 etter avsluttet Fase 1. Dette er første del av masterens Fase 2, ikke hele fasen.
+**Status: bestilt og gjennomført 2026-10-08 etter prosjekteierens eksplisitte godkjenning; klar for review.** Utarbeidet 2026-10-08 etter avsluttet Fase 1. Dette er første del av masterens Fase 2, ikke hele fasen.
 
 ## Mål
 
@@ -10,7 +10,7 @@ Etabler en liten, GUI-uavhengig .NET-kjerne som kan representere og validere et 
 
 - [PROJECT_MASTER.md](PROJECT_MASTER.md), særlig §9 intern sangmodell, §12 undo/redo, §13 validering, §16 Fase 2 og §22 arbeidsordre.
 - Akseptert [ADR-0001](decisions/ADR-0001-desktop-and-analysis-stack.md) og [ADR-0002](decisions/ADR-0002-licensing-and-reuse.md).
-- C#/.NET 10 LTS er godkjent. Ingen produktkode, modellkontrakt, prosjektformat eller produkt-build/testkommandoer er etablert.
+- C#/.NET 10 LTS er godkjent. Ved bestilling var ingen produktkode, modellkontrakt, prosjektformat eller produkt-build/testkommandoer etablert.
 
 ## In scope
 
@@ -50,3 +50,7 @@ Stopp berørt arbeid og rapporter hvis modellen krever brudd på master/aksepter
 ## Deliverable
 
 En avgrenset PR med core domain, meningsfulle tester, dokumenterte enheter/kontrakter og reproducerbare build-/testkommandoer. Sluttrapporten angir verifikasjon, begrensninger og neste foreslåtte deloppgave: versjonert prosjektlagring, før UltraStar parser/writer.
+
+## Leveransestatus
+
+Intern sangmodell, ren validator og MoveNote/SongHistory er implementert. 55/55 tester bestod på Windows og i nettisolert Linux-container; Release build uten advarsler og formatkontroll bestod. Se [core-kontrakten](CORE_DOMAIN.md), [utviklingskommandoene](DEVELOPMENT.md) og [avsluttet plan](exec-plans/completed/phase2-core-domain.md). Denne deloppgaven avslutter ikke hele Fase 2; prosjektlagring og UltraStar import/eksport gjenstår.
