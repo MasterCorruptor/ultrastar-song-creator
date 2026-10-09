@@ -37,3 +37,9 @@ Smoke-runner/source/output ligger bare lokalt under .agent-local/phase2-export. 
 ## Integritet og scope
 
 Master, aksepterte ADR-er, Core, Projects og historisk v1-fixture er byteuendret fra Fase 2.3-baseline. Ingen dependency-/project-schema-endring, lyd/model/cachepublisering eller hardwareinformasjon. Full PR-whitespacekontroll, lokale dokumentlenker og public inventory/privacy er kontrollert før publisering. Se [eksportkontrakten](ULTRASTAR_EXPORT.md).
+
+## Reviewrettelse – 2026-10-09
+
+Samlet integrasjonsreview avdekket at avkorting av lange assetnavn kunne etterlate punktum eller space på slutten. Slike navn er ikke portable til Windows. Pakkeren trimmer nå også etter avkorting, før reserved-name- og kollisjonskontrollen. Originalfilene og tekstmetadata endres ikke.
+
+En ny regresjonstest demonstrerte feilen før rettelsen. To testtilfeller dekker avkorting ved punktum og space, faktisk kopiert fil og referansen ved reimport. Hele solution består nå med 265/265 tester på Windows og nettisolert Linux; locked restore, Release build uten advarsler og formatkontroll består. Ingen nye dependencies eller schemaendringer.

@@ -323,6 +323,22 @@ public class SongPackageTests
         Assert.Equal("media/_CON.wav", Assert.Single(result.Assets).RelativePath);
     }
 
+    [Theory]
+    [InlineData('.')]
+    [InlineData(' ')]
+    public async Task TruncationDoesNotLeaveTrailingDotOrSpaceInPackagedName(char separator)
+    {
+        using var files = new ProjectTestDirectory();
+        var original = new string('a', 119) + separator + new string('b', 30);
+        await Asset(files, original);
+        var song = WithSource(files) with { Media = [new() { Location = original }] };
+        var result = UltraStarExportTests.Success(await new UltraStarExporter().PackageAsync(files.FilePath("export"), song, new(ExportFormat.V1)));
+        var asset = Assert.Single(result.Assets);
+        Assert.Equal("media/" + new string('a', 119), asset.RelativePath);
+        Assert.True(File.Exists(Path.Combine(result.DirectoryPath!, asset.RelativePath)));
+        Assert.Equal(asset.RelativePath, UltraStarExportTests.Imported(result).Media[0].Location);
+    }
+
     [Fact]
     public async Task ParentDirectoryAndRenderedHeaderValidationFailBeforeAnyStaging()
     {

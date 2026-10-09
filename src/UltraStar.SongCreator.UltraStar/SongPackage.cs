@@ -142,7 +142,7 @@ public sealed partial class UltraStarExporter
         {
             var extension = Path.GetExtension(name);
             if (extension.Length > 20) extension = "";
-            name = name[..(120 - extension.Length)] + extension;
+            name = (name[..(120 - extension.Length)] + extension).TrimEnd(' ', '.');
         }
         var stem = Path.GetFileNameWithoutExtension(name).TrimEnd(' ', '.').ToUpperInvariant();
         if (stem is "CON" or "PRN" or "AUX" or "NUL" ||
