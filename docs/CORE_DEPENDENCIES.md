@@ -23,3 +23,5 @@ Testsettet kommer fra SDK-malen med coverage-pakken fjernet. Direkte pakker er x
 Lockfilene inneholder også NuGets contentHash og transitive versjoner. Bevar pakkens egne LICENSE/NOTICE ved eventuell redistribusjon; prosjektets MIT erstatter dem ikke. Ingen coverage-, mocking- eller andre assertion-pakker er introdusert.
 
 Kilder: [xUnit 2.9.3-lisens](https://github.com/xunit/xunit/blob/v2-2.9.3/license.txt), [VSTest MIT](https://github.com/microsoft/vstest/blob/main/LICENSE) og de inventarførte nupkg-ene. xunit.abstractions 2.0.3 bruker et eldre licenseUrl-felt som peker på xUnits egen lisens; dette er merket som legacy i tabellen, ikke feilaktig som en innebygd lisensfil.
+
+Fase 2.2 legger til Projects med ProjectReference til Core og ingen PackageReference. System.Text.Json og fil-I/O kommer fra .NET 10. Testsettets eksterne pakker og deres versjoner er uendret; prosjekt-referansen er registrert i oppdaterte lockfiler.
