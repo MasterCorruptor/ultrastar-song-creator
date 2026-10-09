@@ -6,6 +6,8 @@ UltraStar Song Creator skal bli et desktopverktøy for opprettelse, automatisk g
 
 Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-08.** ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, utskiftbar miniaudio-backend, MIT for egen kode og separat dokumenterte LGPL-codecs. Open-Unmix med eksplisitt umxhq er separasjonsbaseline. **Fase 2 er påbegynt:** deloppgave 2.1 har intern sangmodell, validering og MoveNote med undo/redo og domenetester. **Fase 2.2 har versjonert prosjektlagring:** dagens sang, redigerte noter og analysepunkter kan lagres/gjenåpnes lokalt. **Fase 2.3 er implementert og verifisert:** import for unversionerte enkeltstemmer (absolutt og relativ tid) og UltraStar v1, med bevart kildemetadata i prosjektformat v2. Relativ legacy-tid følger dokumentert USDX-kompatibilitet; v1 + relativ tid avvises. **Fase 2.4 er implementert og verifisert:** unversionert/v1-eksport med absolutt tid, automatisk avrundingsrapport og komplette mapper med byteverifiserte mediekopier. GUI er ikke implementert.
 
+**Integrert til main 2026-10-09:** PR #1–#5 er gjennomgått og merget. Samlet verifikasjon: 265/265 tester på Windows og nettisolert Linux. Se [integrasjonsrapporten](docs/INTEGRATION_RESULTS.md). Ingen ny produktfase er startet.
+
 ## Prosjektkilder
 
 - [Master Project Specification v0.5](docs/PROJECT_MASTER.md) er prosjektets autoritative masterspesifikasjon.
