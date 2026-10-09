@@ -105,3 +105,9 @@ PackageAsync lager en ny mappe med song.txt/media, rebased relative references, 
 263/263 tester bestod på Windows og nettisolert Linux med SDK 10.0.401: 203 tidligere + 38 writer + 22 pakke. Locked restore, Release build uten warnings og formatkontroll bestod. Linux bruker artifacts under .agent-local/phase2-export og samme offline-policy som tidligere. Praktisk Windows-smoke med gyldig syntetisk WAV/PNG/MPEG4-pakke bestod reimport, checksums og FFmpeg-dekoding; se [resultater](PHASE2_EXPORT_RESULTS.md). Ingen karaokeapp/GUI/native product playback påstås.
 
 Core/Projects/master/aksepterte ADR-er og historisk v1-fixture er byteuendret. Ingen hosted CI er aktivert; dagens mal dekker hele solution uten ekstra prosjekt/lockfil. [Planen](exec-plans/completed/phase2-ultrastar-export.md) er avsluttet. Ingen automatisk merge eller ny fase.
+
+## Samlet integrasjon – 2026-10-09
+
+Prosjekteieren bestilte gjennomgang/integrasjon av PR #1–#5. Disse er merget til main i rekkefølge med bevart commit-historikk. Samlet kandidat har 265/265 beståtte tester på Windows og nettisolert Linux, locked restore, Release build uten advarsler og formatkontroll. Ett filnavn-portabilitetsfunn ble rettet og regresjonstestet i PR #5 før merge.
+
+[Integrasjonsrapporten](INTEGRATION_RESULTS.md) dokumenterer commits, review, integritet og gjeldende status. Tidligere avsnitt og arbeidsplaner beskriver historiske kontrollpunkter. Master/aksepterte ADR-er og v1-fixture er bevart. Ingen hosted CI, produktinstaller eller ny fase er startet; neste arbeidsordre avgrenses separat.
