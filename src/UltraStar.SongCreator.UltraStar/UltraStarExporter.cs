@@ -44,9 +44,24 @@ public sealed partial class UltraStarExporter
         if (Errors()) return Result();
 
         var source = song.ImportedSource;
-        var headers = source?.Headers ?? [];
-        if (source is not null && source.FormatId is not ("ultrastar-v1" or "ultrastar-unversioned"))
-            Add(ExportCode.UnsupportedSource, "Song.ImportedSource", "Only UltraStar source headers can be interpreted by this adapter.");
+        var localSource = source?.FormatId == "local-media-v1";
+        var headers = localSource ? [] : source?.Headers ?? [];
+        if (localSource)
+        {
+            Add(ExportCode.ProjectOnlyData, "Song.ImportedSource", "Local inspection provenance stays in the project; export uses current song data and an explicit grid.", severity: ValidationSeverity.Warning);
+            foreach (var kind in new[] { "audio", "video" })
+            {
+                var streamCount = source!.Headers.Count(h => h.Name.Split('.') is ["stream", var index, "kind"] &&
+                    int.TryParse(index, NumberStyles.None, CultureInfo.InvariantCulture, out _) && h.Value == kind &&
+                    (kind != "video" || !source.Headers.Any(a => a.Name == "stream." + index + ".attachedPicture" && a.Value == "true")));
+                var mediaKind = kind == "audio" ? MediaKind.Audio : MediaKind.Video;
+                if (streamCount > 1 && song.Media.Any(m => m.Kind == mediaKind &&
+                    string.Equals(m.Location, source.FileReference, OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal)))
+                    Add(ExportCode.AmbiguousMedia, "Song.Media", "UltraStar cannot express the selected stream in a multi-stream source; provide a separately extracted " + kind + " file before export.");
+            }
+        }
+        else if (source is not null && source.FormatId is not ("ultrastar-v1" or "ultrastar-unversioned"))
+            Add(ExportCode.UnsupportedSource, "Song.ImportedSource", "Only documented source profiles can be interpreted by this adapter.");
 
         double? sourceGrid = null;
         var bpms = headers.Where(h => h.Name.Equals("BPM", StringComparison.OrdinalIgnoreCase) && h.Value.Length > 0).ToArray();
