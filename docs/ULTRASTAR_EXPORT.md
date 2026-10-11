@@ -57,3 +57,7 @@ En lokal Windows-smoke brukte gyldig, syntetisk PCM WAV, PNG-cover og MPEG4-vide
 Dette er lokal struktur-/fil-/tidsverifikasjon. Karaokeprogrammenes UI/scoring/native playback er ikke kjørt med den ferdige pakken. Exporteren decoder ikke brukerens medier eller lover støtte for alle codecs/dialekter. Ingen relativ output, duett eller ny GUI er implementert.
 
 Formatkilder/proveniens og MIDI/beat-regler står i [importprofilen](ULTRASTAR_IMPORT.md) og [relativ avklaring](RELATIVE_TIMING.md); de samme pinnede MIT-spesifikasjonene brukes. Ingen upstream writerkode er kopiert.
+
+## Lokalt ervervet sangutkast – Fase 3.1
+
+Source-profilen local-media-v1 fra [Acquisition](LOCAL_MEDIA.md) støttes som prosjektproveniens. Writeren bruker gjeldende sangdata og eksplisitt GridBpm, og beholder tekniske felter/tags i prosjektet med ProjectOnlyData-warning. Ukjente andre source-profiler avvises fortsatt. Originale filer med flere relevante streams kan ikke eksporteres uten å miste sporvalget: AmbiguousMedia blokkerer til aktuelle referanser peker på eksplisitt separate mediefiler etter senere preprocessing. Ingen stream-ekstraksjon eller codec innføres i writeren.

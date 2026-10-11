@@ -13,3 +13,7 @@ For importerte sanger beholdes originale mediereferanser. Relative referanser gj
 Leseren velger den strenge DTO-en for deklarert schemaVersion. v1 konverteres i minnet til dagens Song med ImportedSource = null, uten oppdiktet metadata. LoadedProject.SchemaVersion rapporterer original filversjon. Load skriver aldri om originalfilen. Ved eksplisitt Save skrives v2, også etter v1-load; ingen nedgradering til v1 støttes.
 
 Guid-ID-er, song-data og arrayrekkefølge forblir uendret gjennom migrasjonen. Den uavhengige v1-fixturen og v1-DTO-en beholdes. Prosjektets versjon er adskilt fra UltraStar-sangfilens versjon: schemaVersion 2 betyr ikke støtte for UltraStar v2.
+
+## Lokal medieproveniens – Fase 3.1
+
+Eksisterende generisk importedSource kan også ha formatId local-media-v1 etter [source-kontrakten](LOCAL_MEDIA.md). Tekniske felt, tags og eksplisitt stream-valg lagres uten schemaendring. Aktuelle manuelle Song.Metadata-verdier beholder forrang. Load åpner ikke originalmediet eller starter FFprobe; absolutte originalreferanser må fortsatt finnes ved faktisk bruk/eksport. Historiske v1/v2-felter og migrasjon er uendret.
