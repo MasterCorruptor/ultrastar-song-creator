@@ -19,3 +19,5 @@ Windows-smoke med eksisterende minimal FFprobe 8.1.3 bestod på egen PCM-WAV, MP
 Core/Projects, master, aksepterte ADR-er og historisk v1-fixture er bevart. Ingen ny ekstern NuGet-pakke, schemaVersion eller distribuert runtime. AGENTS er forkortet til et operativt kart med detaljer i docs, i samsvar med masterens §19.
 
 [Source-kontrakt](../../LOCAL_MEDIA.md), [utviklingsguide/evidens](../../DEVELOPMENT.md) og [teststatus for prosjekteieren](../../TESTING_STATUS.md) dokumenterer leveransen. Ingen alpha-/GUI-implementering eller videre deloppgave inngår.
+
+Publisert leveranse: [PR #7](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/7).
