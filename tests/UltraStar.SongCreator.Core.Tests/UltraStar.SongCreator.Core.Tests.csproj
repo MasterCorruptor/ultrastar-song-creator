@@ -15,6 +15,20 @@
     <ProjectReference Include="../../src/UltraStar.SongCreator.Core/UltraStar.SongCreator.Core.csproj" />
     <ProjectReference Include="../../src/UltraStar.SongCreator.Projects/UltraStar.SongCreator.Projects.csproj" />
     <ProjectReference Include="../../src/UltraStar.SongCreator.UltraStar/UltraStar.SongCreator.UltraStar.csproj" />
+    <ProjectReference Include="../../src/UltraStar.SongCreator.Acquisition/UltraStar.SongCreator.Acquisition.csproj" />
+    <ProjectReference Include="../MediaProbe.TestHost/MediaProbe.TestHost.csproj" ReferenceOutputAssembly="false" />
     <Using Include="Xunit" />
   </ItemGroup>
+  <Target Name="CopyMediaProbeTestHost" AfterTargets="Build">
+    <MSBuild Projects="../MediaProbe.TestHost/MediaProbe.TestHost.csproj" Targets="GetTargetPath" Properties="Configuration=$(Configuration)">
+      <Output TaskParameter="TargetOutputs" ItemName="ProbeHostTarget" />
+    </MSBuild>
+    <PropertyGroup>
+      <ProbeHostDirectory>@(ProbeHostTarget->'%(RootDir)%(Directory)')</ProbeHostDirectory>
+    </PropertyGroup>
+    <ItemGroup>
+      <ProbeHostFiles Include="$(ProbeHostDirectory)MediaProbe.TestHost.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ProbeHostFiles)" DestinationFolder="$(OutDir)ProbeHost" />
+  </Target>
 </Project>

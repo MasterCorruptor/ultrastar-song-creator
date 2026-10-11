@@ -8,6 +8,8 @@ Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-
 
 **Integrert til main 2026-10-09:** PR #1–#5 er gjennomgått og merget. Samlet verifikasjon: 265/265 tester på Windows og nettisolert Linux. Se [integrasjonsrapporten](docs/INTEGRATION_RESULTS.md). Ingen ny produktfase er startet.
 
+**Fase 3.1 er implementert og verifisert 2026-10-11:** lokal filinspeksjon, filmetadata/manuelle overrides og lagret source-proveniens. Originalfiler refereres uten kopiering. [Kontrakt](docs/LOCAL_MEDIA.md) og [teststatus for prosjekteieren](docs/TESTING_STATUS.md). Det finnes ennå ingen alpha/beta-app eller produkt-.exe.
+
 ## Prosjektkilder
 
 - [Master Project Specification v0.5](docs/PROJECT_MASTER.md) er prosjektets autoritative masterspesifikasjon.

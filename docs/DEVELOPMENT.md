@@ -111,3 +111,15 @@ Core/Projects/master/aksepterte ADR-er og historisk v1-fixture er byteuendret. I
 Prosjekteieren bestilte gjennomgang/integrasjon av PR #1–#5. Disse er merget til main i rekkefølge med bevart commit-historikk. Samlet kandidat har 265/265 beståtte tester på Windows og nettisolert Linux, locked restore, Release build uten advarsler og formatkontroll. Ett filnavn-portabilitetsfunn ble rettet og regresjonstestet i PR #5 før merge.
 
 [Integrasjonsrapporten](INTEGRATION_RESULTS.md) dokumenterer commits, review, integritet og gjeldende status. Tidligere avsnitt og arbeidsplaner beskriver historiske kontrollpunkter. Master/aksepterte ADR-er og v1-fixture er bevart. Ingen hosted CI, produktinstaller eller ny fase er startet; neste arbeidsordre avgrenses separat.
+
+## Lokal mediekilde – Fase 3.1
+
+Arbeidsordren av 2026-10-11 legger til Acquisition, IMediaSource/IMediaProbe, lokal source og separat FFprobe-inspeksjon. Prosjekteieren valgte referanser til originalfilen og filmetadata med manuelle overrides. [Kontrakten](LOCAL_MEDIA.md) beskriver normalisering, sporvalg, lagret proveniens og eksportgrensene; [teststatus](TESTING_STATUS.md) forklarer hvorfor det ennå ikke finnes en alpha/beta-app.
+
+Solution har fire produktbiblioteker (Core/Projects/UltraStar/Acquisition), Core.Tests og MediaProbe.TestHost. Alle seks har lockfiler. Ingen ny ekstern NuGet-pakke eller schemaVersion. Testhost er bare egen child-prosess-fixture; ikke et produktprogram.
+
+308/308 tester bestod på Windows og nettisolert Linux med SDK 10.0.401: tidligere 265 og 43 nye. Locked restore, Release build uten advarsler og formatkontroll bestod. Prosessprøver bruker faktiske .NET-child-prosesser for argumenter, stdout/stderr, outputgrenser, invalid UTF-8, timeout og cancellation. Linux bruker samme bindede kilde og cache med egne artifacts; audit er deaktivert kun under offline restore.
+
+Praktisk Windows-smoke med den eksisterende minimale FFprobe 8.1.3-builden bestod for egen 2 s PCM-WAV og MPEG4/AAC-video: tags, varighet, manuell tittel, prosjekt-save/load, senere syntetisk note og pakettrundtur. En egen to-spors M4A bekreftet eksplisitt sporvalg og avvisning av tapsfull original-fileksport. Filene forble byteuendret. Ingen media/binærer/cacher eller maskinvareinformasjon publiseres.
+
+Linux-testene verifiserer normalisering/fil-I/O og den faktiske prosessgrensen med egen testhost; selve FFprobe-smoken i dette trinnet er kjørt på Windows. Ingen Linux-codec-/playback-/GUI-/installerakseptanse påstås. CI-malen inkluderer de nye lockfilene, men er fortsatt ikke aktivert. Ingen nettsøk/acquisition-provider, lyrics, analyse, GUI eller videre deloppgave er implementert.

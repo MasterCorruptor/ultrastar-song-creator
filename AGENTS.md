@@ -1,27 +1,23 @@
 # Agentkart
 
-UltraStar Song Creator er et planlagt desktopverktøy for UltraStar-sanger. Editoren er hovedprioriteten; Windows først, senere Linux.
+UltraStar Song Creator skal bli et lokalt desktopverktøy for UltraStar-sanger. Editoren er hovedprioriteten; Windows først, Linux-kompatibel arkitektur.
 
 ## Les først
 
-Les `docs/PROJECT_MASTER.md` (v0.5), arbeidsordren og relevante aksepterte ADR-er i `docs/decisions/`. Masteren regulerer prosjektkravene og endres bare ved eksplisitt arbeidsordre. `docs/DEVELOPMENT.md` beskriver arbeidsflyten; `docs/PHASE1_AUDIT.md` gir aktuell kartlegging. Foreslåtte ADR-er er ikke vedtak.
+Les docs/PROJECT_MASTER.md (v0.5), gjeldende arbeidsordre og relevante aksepterte ADR-er i docs/decisions/. Masteren endres bare etter eksplisitt bestilling. docs/DEVELOPMENT.md beskriver arbeidsflyt/build/test; README og docs/TESTING_STATUS.md beskriver nåværende leveranse. Historiske arbeidsplaner finnes i docs/exec-plans/completed/.
 
-## Autoritet og arbeidsflyt
+## Autoritet og arbeid
 
-Lokal autoritativ working tree på prosjekteierens primærmaskin står over GitHub `main`/`origin/main`, andre stabile referanser og WIP-brancher. Bevar godkjent lokal informasjon; tidsstempler avgjør ikke autoritet. Se masteren §18.5.
+Lokal autoritativ working tree står over GitHub main/origin/main, stabile referanser og WIP-brancher. Bevar godkjent lokal informasjon; tidsstempler avgjør ikke autoritet.
 
-Bruk avgrensede `work/<oppgave>`-brancher for ikke-trivielt arbeid. Commit ved konsistente kontrollpunkter. Integrer når acceptance criteria, verifikasjon og eventuell påkrevd godkjenning er oppfylt. `main` skal være stabil og synkronisert.
+Bruk avgrensede work/<oppgave>-brancher og konsistente checkpoint-commits. Integrer når acceptance criteria, tester og nødvendig godkjenning er oppfylt. main skal være stabil og synkronisert. Arbeid innenfor bestilt scope i src/, tests/, tools/ og relevante docs/rotfiler. Scratch/cache/logg hører hjemme i ignorert .agent-local/; varig kunnskap flyttes til docs/.
 
-## Scope og arkitektur
+## Arkitektur og status
 
-Arbeid i `src/`, `tests/`, `tools/` og relevant `docs/` innenfor arbeidsordren. Endre rotfiler når oppgaven krever det. Fase 1 er avsluttet og godkjent 2026-10-08. Fase 2.1 er implementert og verifisert 2026-10-08: intern sangmodell, validering og MoveNote med undo/redo. Se docs/CORE_DOMAIN.md, docs/PHASE2_FIRST_WORK_ORDER.md og avsluttet plan i docs/exec-plans/completed/. Fase 2.2 er implementert og verifisert: separat Projects-lag med versjonert JSON-lagring etter docs/PROJECT_FORMAT.md. Formatrendringer må få ny schemaVersion og eksplisitt migrasjon; ikke endre v1 stilltiende. Fase 2.3 er implementert og verifisert: separat UltraStar-importer for absolutt tid i unversionerte filer/v1 og relativ legacy-tid etter dokumentert USDX-profil, samt prosjektformat v2 med metadata/migrasjon. Se docs/ULTRASTAR_IMPORT.md, docs/RELATIVE_TIMING.md og avsluttet importplan. V1 + relativ tid og duetter avvises. Fase 2.4 er implementert/verifisert: writer for absolutt unversionert/v1 med automatisk avrundingsrapport og komplett lokalt pakket sangmappe. Se docs/ULTRASTAR_EXPORT.md og avsluttet eksportplan. Core/prosjektformat er uendret; ingen target-overwrite, source-mutasjon, nettverksinnhenting eller codecdependency. Fase 1 og Fase 2.1–2.4 er gjennomgått og integrert til main 2026-10-09; se docs/INTEGRATION_RESULTS.md for reviewrettelse og samlet verifikasjon (265 tester på Windows/Linux). Videre arbeidsordre krever egen avgrensning.
+Bevar acquisition/generation/editor-skillet, immutable intern sangmodell og undo/redo. Core har ikke formatparser/fil-I/O. Prosjektformat har eksplisitt versjonering/migrasjon; historisk v1 endres ikke stilltiende. Fase 1 og Fase 2.1–2.4 er integrert. Fase 3.1 gjelder lokal source/metadata etter docs/LOCAL_MEDIA.md. Ingen GUI finnes; videre deloppgaver avgrenses separat.
 
-Bevar skillet acquisition/generation/editor, separat intern sangmodell og grunnleggende undo/redo. Kjernefunksjoner skal fungere lokalt uten obligatoriske tredjepartskontoer/API-nøkler. ADR-0001 og ADR-0002 er akseptert: C#/.NET 10 LTS + Avalonia, separat Python-analyse, miniaudio/Hexa bak utskiftbart grensesnitt, eksplisitt umxhq og MIT for egen kode med dokumenterte LGPL-codecs. Analyse gir forslag med confidence/manuell korreksjon; modellvalg er utskiftbart og endelig default ASR-modell er ikke valgt. Nye vesentlige teknologivalg krever prosjekteierens vedtak. Uavklarte modell-/binærlisenser blokkerer innføring av berørte komponenter.
+ADR-0001/0002 er akseptert: .NET/Avalonia, Python-prosess, utskiftbar miniaudio-backend, eksplisitt umxhq og MIT egen kode med separate LGPL-forpliktelser. Analyse er forslag med confidence/manuell korreksjon; ASR-default er ikke fastsatt. Ikke omgjør vedtak uten bestilling.
 
 ## Verifikasjon og stopp
 
-Produktkjernen bruker .NET 10; locked restore/build/test og formatkontroll står i docs/DEVELOPMENT.md. Bygg Core-solution; Phase 1-prober ligger utenfor denne. Evalueringskommandoer og begrensninger finnes i `tools/phase1/README.md`. Kontroller også dokumentlenker, masterintegritet og `git diff --check`.
-
-Stopp berørt arbeid og rapporter uløste autoritative dokumentkonflikter, arkitekturbrudd, uavklart lisens eller nødvendig scopeutvidelse. Ikke omgjør aksepterte ADR-er uten arbeidsordre.
-
-Scratch, cache og agenttilstand hører hjemme i Git-ignorert `.agent-local/`. Flytt varig prosjektkunnskap til riktig dokument.
+Kjør locked restore/Release build/test/format etter utviklingsguiden. Kontroller masterintegritet, dokumentlenker og whitespace. Stopp berørt arbeid ved autoritativ konflikt, arkitekturbrudd, uavklart lisens eller nødvendig større scope-/teknologivalg. Kjernefunksjoner skal fungere lokalt uten obligatoriske tredjepartskontoer/API-nøkler.
