@@ -40,4 +40,4 @@ Prosjekteieren har prioritert en tidlig fungerende Windows GUI-prototype. GUI-01
 
 ## Backend før neste GUI-binding
 
-Audio-01 er verifisert på arbeidsbranch etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449/449 Windows/Linux, ekte Windows Wasapi/miniaudio-smoke og Linux native loading uten fysisk device. GUI-01 har fortsatt ingen lyd/playback/waveform/seekkontroller. Full prototype/alpha/release er ikke ferdig. Kontrakt og backend avventer SUPERVISOR-review før videre arbeid.
+Audio-01 er godkjent og integrert etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449/449 Windows/Linux, ekte Windows Wasapi/miniaudio-smoke og Linux native loading uten fysisk device. GUI-01 har fortsatt ingen lyd/playback/waveform/seekkontroller. Full prototype/alpha/release er ikke ferdig. Kontrakt og backend er reviewgodkjent; videre GUI-binding krever separat arbeidsordre.

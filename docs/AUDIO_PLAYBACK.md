@@ -1,6 +1,6 @@
 # Audio-01 – avgrenset PCM-playback-kontrakt
 
-Status 2026-10-12: implementert/verifisert på arbeidsbranch før SUPERVISOR-review. GUI er uendret.
+Status 2026-10-12: godkjent og integrert via [PR #11](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/11). GUI er uendret.
 
 Audio er et separat lag uten Core-/GUI-/fil-I/O-avhengighet. PcmClip eier én defensiv kopi av finite normaliserte float32-interleaved samples (mono/stereo, sample rate 8000–192000). Maks 16 millioner samples (~64 MB); demo 8s/48000/stereo. Ingen immutable Song kopierer PCM; tjenesten binder ett clip for hele levetiden. Tom clip er gyldig.
 
@@ -12,11 +12,11 @@ MiniAudioPlayback eier kjernen og et stabilt native device/GCHandle. Device sett
 
 WaveformEnvelope inneholder bounded immutable per-bucket min/max over alle kanaler og half-open start/end-framegrenser, sample rate og totalframes. Første sample brukes som min/max-seed (ingen falsk nullbaseline). FramesPerBucket>=1, maks 100000 buckets; overskridelse avvises før allokering. Tom clip gir tom envelope; siste delvise bucket slutter eksakt ved FrameCount. Data beregnes én gang fra samme PcmClip, ikke per noteflytting. Envelope er display-data, ikke ny Core-analysis/prosjektkontrakt.
 
-[Arbeidsordre](AUDIO_01_WORK_ORDER.md), [aktiv plan](exec-plans/active/audio-01-pcm-playback.md). Backend er basert på [miniaudios low-level device/callback-kontrakt](https://miniaud.io/docs/manual/index.html), evaluert Hexa.NET.MiniAudio 1.0.1 / miniaudio 0.11.25. Faktisk evidens og [pakke-/nativeinventar](AUDIO_01_DEPENDENCIES.json) følger nedenfor.
+[Arbeidsordre](AUDIO_01_WORK_ORDER.md), [avsluttet plan](exec-plans/completed/audio-01-pcm-playback.md). Backend er basert på [miniaudios low-level device/callback-kontrakt](https://miniaud.io/docs/manual/index.html), evaluert Hexa.NET.MiniAudio 1.0.1 / miniaudio 0.11.25. Faktisk evidens og [pakke-/nativeinventar](AUDIO_01_DEPENDENCIES.json) følger nedenfor.
 
 ## Binding til Song-tid i neste blokk
 
-PositionFrames/SampleRate er mediets source-tid. Fremtidig GUI mapper sangtid = source-tid − Song.AudioOffsetSeconds, og seek mapper source-tid = sangtid + offset etter CORE_DOMAIN. Backend kjenner ikke Song/offsets. Samme mapping brukes for waveform; ingen GUI-timer blir separat playback-klokke. Demo har offset0 og 8s-sang/PCM. Kontrakten må reviewes før denne bindingen implementeres.
+PositionFrames/SampleRate er mediets source-tid. Fremtidig GUI mapper sangtid = source-tid − Song.AudioOffsetSeconds, og seek mapper source-tid = sangtid + offset etter CORE_DOMAIN. Backend kjenner ikke Song/offsets. Samme mapping brukes for waveform; ingen GUI-timer blir separat playback-klokke. Demo har offset0 og 8s-sang/PCM. Kontrakten er reviewet; denne bindingen krever neste separate arbeidsordre.
 
 ## Reproduserbar kontroll
 

@@ -74,6 +74,6 @@ Core/Projects/UltraStar krever ingen Python, modeller eller mediefiler; restore 
 
 GUI-01 er integrert via [PR #10](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/10) etter SUPERVISOR-godkjenning. [Startguide og faktiske begrensninger](docs/GUI_01_TEST_SURFACE.md). Den viser egen testsang og støtter notevalg/flytting/angre/gjør om; ingen lyd eller filåpning. Manuell native Windows-smoke er bekreftet bestått av prosjekteieren; ingen alpha/release påstås.
 
-## Lydbackend – reviewbart checkpoint
+## Integrert lydbackend
 
-Audio-01 finnes på arbeidsbranch: utskiftbar in-memory PCM-playback og waveform-envelope, faktisk Windows miniaudio-device og Linux no-device/library-loading. [Kontrakt/evidens](docs/AUDIO_PLAYBACK.md). GUI-01 er uendret og har fortsatt ingen lydknapper eller waveform; videre binding avventer SUPERVISOR-review.
+Audio-01 er godkjent og integrert via [PR #11](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/11): utskiftbar in-memory PCM-playback og waveform-envelope, faktisk Windows miniaudio-device og Linux no-device/library-loading. [Kontrakt/evidens](docs/AUDIO_PLAYBACK.md). GUI-01 er uendret og har fortsatt ingen lydknapper eller waveform; GUI-binding krever neste separate SUPERVISOR-ordre.
