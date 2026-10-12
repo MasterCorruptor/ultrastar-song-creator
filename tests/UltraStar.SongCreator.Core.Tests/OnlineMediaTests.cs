@@ -49,14 +49,14 @@ public sealed class OnlineMediaTests
             new(Probe, Run, Path.Combine(ProjectTestDirectory.RepositoryRoot, "node-placeholder"),
                 "node", TimeSpan.FromSeconds(5), timeout ?? TimeSpan.FromSeconds(5), maximum);
 
-        private async Task<ProbeOutput> Run(IReadOnlyList<string> args, TimeSpan timeout, CancellationToken token)
+        private async Task<ProbeOutput> Run(IReadOnlyList<string> args, TimeSpan timeout, CancellationToken token, string? directory)
         {
             token.ThrowIfCancellationRequested();
             Calls.Add(args.ToArray());
             if (args.Contains("--flat-playlist")) return new(0, Search, "");
             var position = args.ToList().IndexOf("--output");
             if (position < 0) return new(0, Body, "");
-            var path = args[position + 1];
+            var path = Path.Combine(directory ?? throw new InvalidOperationException("Download cwd is required."), args[position + 1]);
             if (Mode == "fail-video" && path.EndsWith(".mp4")) return new(7, "", "Own error");
             await File.WriteAllBytesAsync(path, Mode.StartsWith("large") ? new byte[2048] : "Own synthetic media"u8.ToArray(), token);
             if (Mode == "residual") await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(path)!, "unwanted.part"), "Own part", token);

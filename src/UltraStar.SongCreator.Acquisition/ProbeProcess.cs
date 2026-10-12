@@ -11,7 +11,7 @@ internal static class ProbeProcess
     private static readonly UTF8Encoding Utf8 = new(false, true);
 
     internal static async Task<ProbeOutput> RunAsync(string executable, IEnumerable<string> arguments,
-        TimeSpan timeout, int maximumOutputBytes, CancellationToken cancellationToken)
+        TimeSpan timeout, int maximumOutputBytes, CancellationToken cancellationToken, string? workingDirectory = null)
     {
         cancellationToken.ThrowIfCancellationRequested();
         using var deadline = new CancellationTokenSource(timeout);
@@ -21,6 +21,7 @@ internal static class ProbeProcess
             StartInfo = new()
             {
                 FileName = executable,
+                WorkingDirectory = workingDirectory is null ? "" : LocalMediaSource.LocalPath(workingDirectory),
                 UseShellExecute = false,
                 CreateNoWindow = true,
                 RedirectStandardInput = true,

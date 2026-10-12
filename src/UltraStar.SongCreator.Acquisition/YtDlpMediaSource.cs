@@ -5,7 +5,7 @@ namespace UltraStar.SongCreator.Acquisition;
 /// <summary>Optional Python-wheel yt-dlp process. No PATH lookup, tool installation, account or automatic first-source selection.</summary>
 public sealed class YtDlpMediaSource : IMediaDownloadSource
 {
-    private readonly Func<IReadOnlyList<string>, TimeSpan, CancellationToken, Task<ProbeOutput>> run;
+    private readonly Func<IReadOnlyList<string>, TimeSpan, CancellationToken, string?, Task<ProbeOutput>> run;
     private readonly LocalMediaSource local;
     private readonly TimeSpan metadataTimeout;
     private readonly TimeSpan downloadTimeout;
@@ -15,15 +15,15 @@ public sealed class YtDlpMediaSource : IMediaDownloadSource
 
     public YtDlpMediaSource(string pythonPath, string javascriptPath, IMediaProbe probe, string javascriptRuntime = "node",
         TimeSpan? metadataTimeout = null, TimeSpan? downloadTimeout = null, long maximumDownloadBytes = 1024L * 1024 * 1024)
-        : this(probe, (args, timeout, token) => ProbeProcess.RunAsync(LocalMediaSource.LocalPath(pythonPath),
-            new[] { "-I", "-X", "utf8", "-m", "yt_dlp" }.Concat(args), timeout, 8 * 1024 * 1024, token),
+        : this(probe, (args, timeout, token, directory) => ProbeProcess.RunAsync(LocalMediaSource.LocalPath(pythonPath),
+            new[] { "-I", "-X", "utf8", "-m", "yt_dlp" }.Concat(args), timeout, 8 * 1024 * 1024, token, directory),
             LocalMediaSource.LocalPath(javascriptPath), javascriptRuntime,
             metadataTimeout ?? TimeSpan.FromSeconds(45), downloadTimeout ?? TimeSpan.FromMinutes(15), maximumDownloadBytes)
     {
         _ = LocalMediaSource.LocalPath(pythonPath);
     }
 
-    internal YtDlpMediaSource(IMediaProbe probe, Func<IReadOnlyList<string>, TimeSpan, CancellationToken, Task<ProbeOutput>> run,
+    internal YtDlpMediaSource(IMediaProbe probe, Func<IReadOnlyList<string>, TimeSpan, CancellationToken, string?, Task<ProbeOutput>> run,
         string javascriptPath, string javascriptRuntime, TimeSpan metadataTimeout, TimeSpan downloadTimeout, long maximumDownloadBytes)
     {
         local = new(probe);
@@ -60,11 +60,11 @@ public sealed class YtDlpMediaSource : IMediaDownloadSource
         return YtDlpJson.Details(output.StandardOutput, url, DateTimeOffset.UtcNow);
     }
 
-    private async Task<ProbeOutput> RunAsync(string[] arguments, TimeSpan timeout, CancellationToken token)
+    private async Task<ProbeOutput> RunAsync(string[] arguments, TimeSpan timeout, CancellationToken token, string? workingDirectory = null)
     {
         token.ThrowIfCancellationRequested();
         ProbeOutput output;
-        try { output = await run(common.Concat(arguments).ToArray(), timeout, token); }
+        try { output = await run(common.Concat(arguments).ToArray(), timeout, token, workingDirectory); }
         catch (MediaAcquisitionException e)
         {
             var error = e.Error switch
@@ -145,8 +145,9 @@ public sealed class YtDlpMediaSource : IMediaDownloadSource
                 var path = Path.Combine(stage, name + "." + format.Extension);
                 await RunAsync(["--no-simulate", "--no-overwrites", "--no-continue", "--no-mtime",
                     "--max-filesize", maximumDownloadBytes.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                    "--format", format.Id, "--output", path, "--paths", "home:" + stage, "--paths", "temp:" + stage,
-                    "--", fresh.Candidate.SourceUrl], downloadTimeout, stop.Token);
+                    // Only a fixed basename reaches yt-dlp template/env expansion. The OS receives the literal directory.
+                    "--format", format.Id, "--output", name + "." + format.Extension,
+                    "--", fresh.Candidate.SourceUrl], downloadTimeout, stop.Token, stage);
                 if (!File.Exists(path) || (File.GetAttributes(path) & FileAttributes.ReparsePoint) != 0)
                     throw new MediaDownloadException(MediaDownloadError.InvalidData, "Tool did not produce the selected regular media file.");
                 var media = await local.InspectAsync(path, stop.Token);
