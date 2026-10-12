@@ -9,3 +9,7 @@ Acceptance: faktisk Windows-start/lukking; visning og notevalg; gyldig flytting;
 Kun nødvendige pinnede Avalonia-pakker med låste versjoner og artefaktvise lisenser/notices. Core forblir GUI-/I/O-uavhengig. Offline uten Python/modeller/media/konto/API. Ingen playback/waveform/playhead/seek, generation, acquisition-UI, prosjektfil-I/O/eksport-UI, installer, release, polering eller brede refaktoreringer.
 
 Commit ved sammenhengende checkpoints, push og stopp for SUPERVISOR-review; ingen merge/neste blokk. Faktisk kvote leses før større blokk og checkpoint. Rapporter modell som ukjent hvis ikke eksponert; bestilt Sol Medium er ikke bekreftet observasjon. Eskaler bare reell autoritet-/lisens-/arkitekturkonflikt eller vesentlig scopeendring.
+
+## Avgrenset native-verifikasjon
+
+SUPERVISOR bestilte gui-01-native-smoke etter reset 2026-10-12: SMALL/SEQUENTIAL, kun eksisterende app og manglende native scenarioer, ingen kode/build-/suitegjentakelse/merge. Ett forsøk og avgrenset gjenoppretting viste fangst-/input-geometrifeil; se [gjeldende evidens](exec-plans/active/gui-01-song-editing.md). Ingen ny ventende apptillatelse er rapportert. Stopp ved dokumentert checkpoint; full acceptance gjenstår.
