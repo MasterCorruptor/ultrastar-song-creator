@@ -3,6 +3,10 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Controls.Shapes;
+using UltraStar.SongCreator.Desktop.Controls;
+using UltraStar.SongCreator.Desktop.Playback;
+using UltraStar.SongCreator.Desktop.Timeline;
 using UltraStar.SongCreator.Core;
 
 namespace UltraStar.SongCreator.Desktop;
@@ -18,20 +22,38 @@ public sealed class EditorWindow : Window
     public TextBlock SelectedLabel { get; } = new();
     public TextBlock MessageLabel { get; } = new() { TextWrapping = TextWrapping.Wrap };
     public TextBlock ValidationLabel { get; } = new() { TextWrapping = TextWrapping.Wrap };
+    public EditorPlaybackSession? Playback { get; }
+    public WaveformControl? Waveform { get; }
+    public Rectangle NotePlayhead { get; } = new() { Width = 2, Height = 360, Fill = Brushes.OrangeRed, IsHitTestVisible = false, IsVisible = false };
+    public ScrollViewer TimelineScroll { get; } = new() { HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto };
+    public TextBlock AudioMessageLabel { get; } = new() { TextWrapping = TextWrapping.Wrap };
+    private readonly TimelineMapping mapping;
+    private bool playbackReleased;
     private Song? rendered;
     private Guid? renderedSelection;
     public const double SecondsScale = 110;
     public const double TimeOrigin = 75;
 
-    public EditorWindow(EditingSession session)
+    public EditorWindow(EditingSession session, EditorPlaybackSession? playback = null)
     {
         Session = session;
-        Title = "UltraStar Song Creator — GUI-01 testflate";
-        Width = 1100; Height = 650; MinWidth = 720; MinHeight = 550;
+        Playback = playback;
+        mapping = playback?.Mapping ?? TimelineMapping.Demo;
+        Title = "UltraStar Song Creator — GUI-02 testflate";
+        Width = 1100; Height = 1000; MinWidth = 720; MinHeight = 550;
         var body = new StackPanel { Margin = new Thickness(20), Spacing = 12 };
         body.Children.Add(new TextBlock { Text = Session.Current.Metadata.Title, FontSize = 24 });
-        body.Children.Add(new TextBlock { Text = "Velg note → skriv starttid → flytt. Tid: sekunder. Pitch: MIDI. Egen testsang uten lyd." });
-        body.Children.Add(new ScrollViewer { Content = Timeline, HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto });
+        body.Children.Add(new TextBlock { Text = "Velg note → skriv starttid → flytt. Tid: sekunder. Pitch: MIDI. Egen testsang og svak syntetisk demotone." });
+        var tracks = new StackPanel { Width = 980, HorizontalAlignment = HorizontalAlignment.Left, Spacing = 0 };
+        if (playback is not null)
+        {
+            Waveform = new WaveformControl(playback.Envelope, mapping, Session.Current.AudioOffsetSeconds);
+            tracks.Children.Add(Waveform);
+            if (playback.Panel is not null) body.Children.Add(playback.Panel);
+            AudioMessageLabel.Text = playback.InitializationError ?? "Svak syntetisk demotone, 8 sekunder. Ingen sangfil er lastet.";
+            body.Children.Add(AudioMessageLabel);
+        }
+        tracks.Children.Add(Timeline); TimelineScroll.Content = tracks; body.Children.Add(TimelineScroll);
         body.Children.Add(SelectedLabel);
         var actions = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10 };
         actions.Children.Add(StartInput); actions.Children.Add(MoveButton); actions.Children.Add(UndoButton); actions.Children.Add(RedoButton);
@@ -41,12 +63,16 @@ public sealed class EditorWindow : Window
         UndoButton.Click += (_, _) => Session.Undo();
         RedoButton.Click += (_, _) => Session.Redo();
         Session.Changed += Refresh;
-        Closed += (_, _) => Session.Changed -= Refresh;
+        if (Playback?.Presenter is { } presenter) presenter.Changed += PlaybackChanged;
+        Closed += (_, _) => ReleasePlayback();
         Refresh(this, EventArgs.Empty);
     }
 
     private void Refresh(object? sender, EventArgs args)
     {
+        if (Waveform is not null) Waveform.AudioOffsetSeconds = Session.Current.AudioOffsetSeconds;
+        if (Playback?.Presenter is { } presenter && presenter.AudioOffsetSeconds != Session.Current.AudioOffsetSeconds)
+            presenter.SetAudioOffset(Session.Current.AudioOffsetSeconds);
         var songChanged = !ReferenceEquals(rendered, Session.Current);
         if (songChanged || renderedSelection != Session.SelectedNoteId)
         {
@@ -55,6 +81,7 @@ public sealed class EditorWindow : Window
                 StartInput.Text = note.StartSeconds.ToString("G17", CultureInfo.InvariantCulture);
             rendered = Session.Current; renderedSelection = Session.SelectedNoteId;
         }
+        UpdatePlayhead();
         SelectedLabel.Text = Session.SelectedNote is { } selected
             ? $"Valgt: {selected.Text.Trim()} · MIDI {selected.MidiPitch} · start {selected.StartSeconds:G} s · varighet {selected.DurationSeconds:G} s"
             : "Ingen note valgt.";
@@ -77,7 +104,7 @@ public sealed class EditorWindow : Window
         for (var s = 0; s <= 8; s++)
         {
             var tick = new TextBlock { Text = $"{s} s", Foreground = Brushes.Black };
-            Canvas.SetLeft(tick, TimeOrigin + s * SecondsScale); Canvas.SetTop(tick, 8); Timeline.Children.Add(tick);
+            mapping.TrySongToX(s, out var tickX); Canvas.SetLeft(tick, tickX); Canvas.SetTop(tick, 8); Timeline.Children.Add(tick);
         }
         for (var pitch = 58; pitch <= 66; pitch++)
         {
@@ -91,16 +118,36 @@ public sealed class EditorWindow : Window
                 Name = "Note_" + note.Id.ToString("N"),
                 Tag = note.Id,
                 Content = note.Text.Trim(),
-                Width = note.DurationSeconds * SecondsScale,
+                Width = note.DurationSeconds * mapping.PixelsPerSecond,
                 Height = 30,
                 Background = note.Id == Session.SelectedNoteId ? Brushes.Gold : Brushes.LightSkyBlue,
                 Foreground = Brushes.Black,
                 HorizontalContentAlignment = HorizontalAlignment.Center
             };
             button.Click += (_, _) => Session.Select(note.Id);
-            Canvas.SetLeft(button, TimeOrigin + note.StartSeconds * SecondsScale);
+            mapping.TrySongToX(note.StartSeconds, out var noteX); Canvas.SetLeft(button, noteX);
             Canvas.SetTop(button, PitchTop(note.MidiPitch)); Timeline.Children.Add(button);
         }
+    }
+    // The line is restored after every immutable-song redraw.
+    private void PlaybackChanged(object? sender, EventArgs args) => UpdatePlayhead();
+    private void UpdatePlayhead()
+    {
+        var view = Playback?.Presenter?.ViewState;
+        if (Waveform is not null) Waveform.PlayheadSongSeconds = view?.SongPositionSeconds;
+        if (!Timeline.Children.Contains(NotePlayhead)) Timeline.Children.Add(NotePlayhead);
+        NotePlayhead.IsVisible = view?.PlayheadX.HasValue == true;
+        if (view?.PlayheadX is { } x) Canvas.SetLeft(NotePlayhead, x);
+    }
+    public void ReleasePlayback()
+    {
+        if (playbackReleased) return;
+        playbackReleased = true;
+        Session.Changed -= Refresh;
+        if (Playback?.Presenter is { } presenter) presenter.Changed -= PlaybackChanged;
+        Playback?.Dispose();
+        NotePlayhead.IsVisible = false;
+        if (Waveform is not null) Waveform.PlayheadSongSeconds = null;
     }
     public static double PitchTop(int midi) => 40 + (66 - midi) * 34;
 }

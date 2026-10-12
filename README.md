@@ -56,7 +56,7 @@ Mapper som fortsatt er tomme har minimale `.gitkeep`-filer. Lokal agenttilstand 
 
 ## Kom i gang
 
-Fase 0 krever Git for å lese historikk og arbeide med repositoryet. GitHub CLI er brukt til den første GitHub-opprettelsen, men er ikke et krav for applikasjonen eller senere utvikling. Det finnes ennå ingen GUI-applikasjon. Bygg/test produktkjernen med .NET 10 SDK fra prosjektroten:
+Fase 0 krever Git for å lese historikk og arbeide med repositoryet. GitHub CLI er brukt til den første GitHub-opprettelsen, men er ikke et krav for applikasjonen eller senere utvikling. En avgrenset GUI-testflate er tilgjengelig; se startguiden nedenfor. Bygg/test produktkjernen med .NET 10 SDK fra prosjektroten:
 
 ```text
 dotnet restore UltraStar.SongCreator.slnx --locked-mode
@@ -76,4 +76,4 @@ GUI-01 er integrert via [PR #10](https://github.com/MasterCorruptor/ultrastar-so
 
 ## Integrert lydbackend
 
-Audio-01 er godkjent og integrert via [PR #11](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/11): utskiftbar in-memory PCM-playback og waveform-envelope, faktisk Windows miniaudio-device og Linux no-device/library-loading. [Kontrakt/evidens](docs/AUDIO_PLAYBACK.md). GUI-01 er uendret og har fortsatt ingen lydknapper eller waveform; GUI-binding krever neste separate SUPERVISOR-ordre.
+Audio-01 er godkjent og integrert via [PR #11](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/11): utskiftbar in-memory PCM-playback og waveform-envelope, faktisk Windows miniaudio-device og Linux no-device/library-loading. [Kontrakt/evidens](docs/AUDIO_PLAYBACK.md). GUI-02 editor-binding er implementert som reviewkandidat; se [start, kontrakt og begrensninger](docs/GUI_02_EDITOR_BINDING.md). Native samlet GUI/playback er ennå ikke testet.

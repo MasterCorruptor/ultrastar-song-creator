@@ -40,4 +40,4 @@ Prosjekteieren har prioritert en tidlig fungerende Windows GUI-prototype. GUI-01
 
 ## Backend før neste GUI-binding
 
-Audio-01 er godkjent og integrert etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449/449 Windows/Linux, ekte Windows Wasapi/miniaudio-smoke og Linux native loading uten fysisk device. GUI-01 har fortsatt ingen lyd/playback/waveform/seekkontroller. Full prototype/alpha/release er ikke ferdig. Kontrakt og backend er reviewgodkjent; videre GUI-binding krever separat arbeidsordre.
+Audio-01 er godkjent og integrert etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449/449 Windows/Linux, ekte Windows Wasapi/miniaudio-smoke og Linux native loading uten fysisk device. På reviewbranchen finnes nå [GUI-02 editor-binding](GUI_02_EDITOR_BINDING.md) med waveform/transport/synkronisert playhead og fortsatt noteoperasjon.490/490 Windows-tester består; native kombinert GUI/playback er ikke testet. Main er ikke oppdatert med kandidaten. Full prototype/alpha/release er ikke ferdig.

@@ -64,8 +64,13 @@ public sealed class PlaybackPanel : UserControl, IDisposable
         position.Text = view.SongPositionSeconds is { } seconds ? seconds.ToString("G8", CultureInfo.InvariantCulture) + " s" : "Posisjon utilgjengelig";
         state.Text = !view.SongPositionSeconds.HasValue ? "Status utilgjengelig" : view.Snapshot.State switch
         {
-            PlaybackState.Stopped => "Stoppet", PlaybackState.Playing => "Spiller", PlaybackState.Paused => "Pause",
-            PlaybackState.Ended => "Slutt på klippet", PlaybackState.Faulted => "Avspillingsfeil", PlaybackState.Disposed => "Avsluttet", _ => "Ukjent status"
+            PlaybackState.Stopped => "Stoppet",
+            PlaybackState.Playing => "Spiller",
+            PlaybackState.Paused => "Pause",
+            PlaybackState.Ended => "Slutt på klippet",
+            PlaybackState.Faulted => "Avspillingsfeil",
+            PlaybackState.Disposed => "Avsluttet",
+            _ => "Ukjent status"
         };
         error.Text = view.Error ?? "";
     }

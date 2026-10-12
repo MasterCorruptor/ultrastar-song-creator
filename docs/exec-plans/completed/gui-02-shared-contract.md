@@ -1,6 +1,6 @@
 # GUI-02 – aktiv felles kontraktplan
 
-STATUS: CHECKPOINT. TASK: gui-02-shared-contract. BRANCH: work/gui-02-shared-contract. Base86660f5ff47e3bffdafa0e28b79a80d364225e80. MODEL USED: ukjent; bestilt Sol Medium. SMALL/PARALLEL_WITH_DEPENDENCIES, foreløpig én worker; ingen ekstra worker/worktree opprettet. Faktisk kvote før start54%femtimer/60%uke igjen.
+STATUS: COMPLETE (SUPERVISOR-godkjent felles grunnlag). TASK: gui-02-shared-contract. BRANCH: work/gui-02-shared-contract. Base86660f5ff47e3bffdafa0e28b79a80d364225e80. MODEL USED: ukjent; bestilt Sol Medium. SMALL/PARALLEL_WITH_DEPENDENCIES, foreløpig én worker; ingen ekstra worker/worktree opprettet. Faktisk kvote før start54%femtimer/60%uke igjen.
 
 [Arbeidsordre](../../GUI_02_SHARED_WORK_ORDER.md), [API-/fileierskap](../../GUI_02_SHARED_CONTRACT.md).
 
@@ -20,3 +20,5 @@ FILES: Timeline/TimelineMapping.cs, TimelineMappingTests.cs, Desktop.csproj og t
 UNRESOLVED: ingen kjent blokkerende feil i mappingen; waveform/presenter/panel/wiring/playback-GUI er ikke implementert. Kontrakten er foreslått for senere workers, må reviewgodkjennes før start. NEXT RECOMMENDED STEP: SUPERVISOR reviewer dette eksakte checkpointet og velger eventuell A/B-dispatch med to isolerte branches/worktrees fra samme reviewed SHA etter samlet kvotevurdering. A eier bare WaveformControl.cs/WaveformControlTests.cs; B bare PlaybackPresenter.cs/PlaybackPanel.cs/PlaybackPanelTests.cs. Begge bygger uten den andre; integrasjonsansvarlig eier felles prosjekt-/lock-/mapping-/app-/docfiler. Ingen slike workers/worktrees opprettes her, ingen merge. OWNER DECISION REQUIRED: NO. LAST COMMIT rapporteres fra Git/finalrapport etter commit/push.
 
 Kvote ved verifisert kontraktcheckpoint:49%femtimer/59%uke gjenstår, faktisk avlest. Ingen samtidig worker startet; samlet neste ressursvurdering tilhører SUPERVISOR.
+
+Godkjent kontraktcommit: 67bf70e6d8bc30c8c7d4caad3754a4a160ee0eb2. Komponenter og [editor binding](../active/gui-02-editor-binding.md) er senere separate leveranser. PR12 er fortsatt referanse, ikke merget.

@@ -1,6 +1,6 @@
 # GUI-02 – delt kontrakt og senere komponenteierskap
 
-Status 2026-10-12: kun forberedende kontrakt/mapping på work/gui-02-shared-contract; avventer SUPERVISOR-review. Ingen waveform-/transportkomponent eller app-wiring er implementert. [Arbeidsordre](GUI_02_SHARED_WORK_ORDER.md), [aktiv plan](exec-plans/active/gui-02-shared-contract.md), [PCM-kontrakt](AUDIO_PLAYBACK.md).
+Status 2026-10-12: felles kontrakt67bf70e og A/B-komponentene er SUPERVISOR-godkjent. Sekvensiell [editor binding](GUI_02_EDITOR_BINDING.md) er implementert på arbeidsbranch og avventer samlet review. Avsnittene nedenfor bevarer den opprinnelige kontraktens API og fileierskap. [Arbeidsordre](GUI_02_SHARED_WORK_ORDER.md), [aktiv plan](exec-plans/completed/gui-02-shared-contract.md), [PCM-kontrakt](AUDIO_PLAYBACK.md).
 
 ## Compilable felles grunnlag
 

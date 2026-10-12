@@ -20,7 +20,7 @@ Nåværende overordnede mål er en fungerende lokal Windows-prototype med funksj
 
 SUPERVISOR velger minste praktiske sammenhengende leveranse fra faktisk status. Arbeidsordre har mål/kontekst, autoritative dokumenter, in/out scope, constraints, acceptance criteria, verifikasjon, checkpoint-/stoppkrav og forventet rapport. Unngå brede «bygg hele fasen/programmet». Gi direkte tydelig delegasjon når tilgjengelig; ellers ferdig instruks for eieren uten behov for omskriving.
 
-Aktuelt vedtak: Fase 3.3, GUI-01 og Audio-01 er integrert. GUI-02 shared contract67bf70e er godkjent for to avgrensede komponentworkers, ingen PR #12-merge ennå. A og B eier ulike nye kode/testfiler; ingen parallelle app-/felles-/lockendringer. Stopp ved komponentcheckpoint før review/sekvensiell integrasjon.
+Aktuelt vedtak: Fase 3.3, GUI-01 og Audio-01 er integrert. GUI-02 shared contract67bf70e er godkjent for to avgrensede komponentworkers, ingen PR #12-merge ennå. A og B eier ulike nye kode/testfiler; ingen parallelle app-/felles-/lockendringer. A/B er godkjent; sekvensiell editor-binding på egen branch stopper ved samlet reviewcheckpoint, uten main-merge.
 
 ## Oppdeling, eierskap og parallellisme
 
@@ -33,7 +33,7 @@ Før ikke-trivielt arbeid velger SUPERVISOR:
 
 Parallellisme er en optimalisering, ingen default. Evaluer fil-/moduloverlapp, gjensidig output-avhengighet, konkurrerende arkitekturvalg, ustabil kontrakt, forventet review-/mergekostnad mot tidsgevinst og mulighet for selvstendige gyldige Git-checkpoints.
 
-Normalgrense er to samtidige implementasjonsarbeidere; en tredje bare ved tydelig uavhengighet og lav review-/mergekostnad. Vurder kvote, reviewbyrde, branchantall, varighet og arkitekturavvik samlet. Aktuelt GUI-02-arbeid er PARALLEL_WITH_DEPENDENCIES med reviewet felles kontrakt67bf70e og nøyaktig to isolerte workers: A waveform, B transport. App-wiring/integrasjon er senere sekvensiell.
+Normalgrense er to samtidige implementasjonsarbeidere; en tredje bare ved tydelig uavhengighet og lav review-/mergekostnad. Vurder kvote, reviewbyrde, branchantall, varighet og arkitekturavvik samlet. Aktuelt GUI-02-arbeid er PARALLEL_WITH_DEPENDENCIES med reviewet felles kontrakt67bf70e og nøyaktig to isolerte workers: A waveform, B transport. A/B er avsluttet; aktuell app-wiring/integrasjon er SEQUENTIAL med en implementasjonsarbeider.
 
 SUPERVISOR kan opprette/anbefale midlertidige workers for tydelig isolerte domene-, parser-, fixture-, GUI-, benchmark/research-, dokumentasjons- eller backendoppgaver. Permanente roller består. Hver worker har avgrenset branch/worktree, eksplisitt scope, fil-/moduleierskap, acceptance og stoppkrav; kontekst kommer fra repo/arbeidsordre, ikke langlivet chat.
 
