@@ -12,6 +12,8 @@ Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-
 
 **Fase 3.2 er implementert og verifisert 2026-10-12:** MusicBrainz-søk på artist/tittel, eksplisitt recording-/utgivelsesvalg og offline lagret katalogproveniens. Manuelle sangdata bevares. [Kontrakt og verifikasjon](docs/RECORDING_SEARCH.md). Ingen medienedlasting eller GUI inngår.
 
+**Fase 3.3 er integrert 2026-10-12 via [PR #9](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/9)**, med YouTube-søk, eksplisitt formatvalg og nedlasting av original lyd/valgfri video. SUPERVISOR har godkjent leveransen og sti-rettingen; [kontrakt](docs/ONLINE_MEDIA.md) og [checkpoint](docs/exec-plans/completed/phase3-media-download.md). Ingen GUI/alpha inngår.
+
 ## Prosjektkilder
 
 - [Master Project Specification v0.5](docs/PROJECT_MASTER.md) er prosjektets autoritative masterspesifikasjon.

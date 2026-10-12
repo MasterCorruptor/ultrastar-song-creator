@@ -1,0 +1,52 @@
+{
+  "checked_at": "2026-10-12",
+  "scope": "Configured external development tools; no bundled binaries or wheels redistributed by this checkpoint.",
+  "packages": [
+    {
+      "name": "yt-dlp",
+      "version": "2026.8.19",
+      "artifact": "yt_dlp-2026.8.19-py3-none-any.whl",
+      "sha256": "1d57897e94c6665a0a6f9bc54b34e584284e32c034ffab3a7df25d8f7b24eedf",
+      "source": "https://github.com/yt-dlp/yt-dlp/tree/2026.08.19",
+      "license": "Unlicense",
+      "requires_dist_without_extras": []
+    },
+    {
+      "name": "yt-dlp-ejs",
+      "version": "0.8.0",
+      "artifact": "yt_dlp_ejs-0.8.0-py3-none-any.whl",
+      "sha256": "79300e5fca7f937a1eeede11f0456862c1b41107ce1d726871e0207424f4bdb4",
+      "source": "https://github.com/yt-dlp/ejs/tree/0.8.0",
+      "license": "Unlicense; embedded meriyah 6.1.4 ISC and astring 1.9.0 MIT notices in solver/lib.min.js",
+      "requires_dist": []
+    }
+  ],
+  "excluded": [
+    "GPL standalone yt-dlp executables",
+    "default extra including GPL mutagen",
+    "remote EJS fetch",
+    "plugins",
+    "browser cookies and accounts",
+    "automatic tool update",
+    "FFmpeg merging or reencoding"
+  ],
+  "javascript": {
+    "supported_configurations": [
+      "explicit node path",
+      "explicit deno path"
+    ],
+    "observed_windows_runtime": "Node.js 24.19.0",
+    "source_license": "https://github.com/nodejs/node/blob/v24.19.0/LICENSE",
+    "distribution_status": "Existing development runtime only. No production runtime artefact is adopted or redistributed; full runtime notices/manifest required before packaging."
+  },
+  "python": {
+    "observed": "3.12",
+    "distribution_status": "Existing configured development Python/venv. No new Python runtime redistribution."
+  },
+  "media_probe": {
+    "inventory": "tools/phase1/results/minimal-codec.json",
+    "observed": "FFprobe 8.1.3 from existing minimal source/build profile",
+    "distribution_status": "Existing development binary only; no new codec build, download or redistribution."
+  },
+  "release_gate": "Preserve each actual artefact's notices and licenses; follow ADR-0002 for complete runtime/codec source and replacement requirements. Media rights are separate."
+}
