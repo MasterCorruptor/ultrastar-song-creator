@@ -1,6 +1,6 @@
 # GUI-02 B – aktiv transportplan
 
-STATUS: CHECKPOINT. TASK: gui-02-transport. BRANCH: work/gui-02-transport. Base67bf70e6d8bc30c8c7d4caad3754a4a160ee0eb2. MODEL USED: ukjent; bestilt Sol Medium. MEDIUM/PARALLEL_WITH_DEPENDENCIES, B av to isolerte workers. Faktisk kvote ved start42%femtimer/58%uke igjen.
+STATUS: COMPLETE (SUPERVISOR-godkjent komponentcheckpoint). TASK: gui-02-transport. BRANCH: work/gui-02-transport. Base67bf70e6d8bc30c8c7d4caad3754a4a160ee0eb2. MODEL USED: ukjent; bestilt Sol Medium. MEDIUM/PARALLEL_WITH_DEPENDENCIES, B av to isolerte workers. Faktisk kvote ved start42%femtimer/58%uke igjen.
 
 [Arbeidsordre](../../GUI_02_TRANSPORT_WORK_ORDER.md), [delt API/lifecycle/filgrenser](../../GUI_02_SHARED_CONTRACT.md).
 
@@ -31,3 +31,5 @@ UNRESOLVED: ingen kjent komponentblokker. App-integrasjon, native playback/lyden
 NEXT RECOMMENDED STEP: SUPERVISOR-review av pushet B-checkpoint, deretter separat avgrenset sekvensiell integrasjonsordre. Ingen PR/merge/cherry-pick nå. OWNER DECISION REQUIRED: NO.
 
 Ressursstatus sist levert av SUPERVISOR før siste retting: 33% femtimer / 57% uke igjen; reset 13Oct02:38 / 18Oct07:04 Oslo. Faktisk modell/reasoning er ikke eksponert og rapporteres ukjent (bestilt Sol Medium). Verifikasjonen gjelder kodefilene i dette checkpointets commit; eksakt SHA leveres i sluttrapporten.
+
+Godkjent B-commit: 14b81dbd8ba57b5ea7753751052c08d4bfb87e10. Fortsettelse: [editor binding](../active/gui-02-editor-binding.md).
