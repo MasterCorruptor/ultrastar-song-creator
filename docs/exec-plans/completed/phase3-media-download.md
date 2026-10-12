@@ -1,12 +1,12 @@
-# Fase 3.3 – godkjent checkpoint, STOP_FOR_RESET
+# Fase 3.3 – avsluttet og integrert
 
-Dato: 2026-10-12. STATUS: CHECKPOINT – godkjent retting, STOP_FOR_RESET, avventer integrasjon. TASK: phase3-media-download-literal-paths (REQUEST_FIX lukket). MODEL USED: ukjent; faktisk modell/reasoning er ikke eksponert. Bestilt av SUPERVISOR: gpt-6.1-sol / medium; dette er bestilt innstilling, ikke en bekreftet observasjon. BRANCH: work/phase3-media-download.
+Dato: 2026-10-12. STATUS: COMPLETE. TASK: phase3-media-download-integration (inkludert godkjent REQUEST_FIX). MODEL USED: ukjent; faktisk modell/reasoning er ikke eksponert. Bestilt av SUPERVISOR: gpt-6.1-sol / medium; dette er bestilt innstilling, ikke en bekreftet observasjon. BRANCH: work/phase3-media-download.
 
-LAST COMMIT (verifisert kodecheckpoint): 71afe4d77ce40e9b3c8c9376e0fac61f40da5910. Denne rapporten og øvrig dokumentasjon kommer i et påfølgende dokumentasjonscheckpoint; siste branch-commit leses fra Git/finalrapporten. Base/stabil main er a6263580f2af286d95e65666124cb04761b71162. Arbeidsbranch er ikke integrert. Ingen integrasjon eller neste implementasjonsblokk startes før ny faktisk kvotekontroll og eksplisitt CONTINUE fra SUPERVISOR.
+LAST COMMIT (verifisert kodecheckpoint): 71afe4d77ce40e9b3c8c9376e0fac61f40da5910. Denne rapporten og øvrig dokumentasjon kommer i et påfølgende dokumentasjonscheckpoint; siste branch-commit leses fra Git/finalrapporten. Base/stabil main er a6263580f2af286d95e65666124cb04761b71162. Integrasjonsreferanse er [PR #9](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/9), med merge-SHA i Git/PR-historikk. Ingen neste implementasjonsblokk startes her.
 
 [Arbeidsordre](../../PHASE3_MEDIA_DOWNLOAD_WORK_ORDER.md), [API-/lagringskontrakt](../../ONLINE_MEDIA.md) og [varig SUPERVISOR-policy](../../SUPERVISOR_POLICY.md). Policyen bevarer operative vedtak fra begge eierinstruksene, uten maskin-/kontodata. Gjeldende oppdeling er SEQUENTIAL med én implementasjonsagent.
 
-## COMPLETED / acceptance criteria
+## Opprinnelig checkpoint – historisk acceptance/evidens
 
 | Akseptanse | Faktisk evidens |
 | --- | --- |
@@ -65,7 +65,7 @@ FILES / MODULES CHANGED: ProbeProcess/YtDlpMediaSource, interne test-runner-sign
 
 UNRESOLVED: korrigert checkpoint venter SUPERVISOR-review; tidligere avgrensninger består. NEXT RECOMMENDED STEP: review avgrenset korrigering, velg reviewstatus og integrer bare ved godkjenning. Ingen merge/GUI-start. OWNER DECISION REQUIRED: NO. Automatisk review-tillegg er dokumentert i SUPERVISOR_POLICY; ingen returmelding kreves.
 
-## SUPERVISOR-godkjenning – 2026-10-12
+## SUPERVISOR-godkjenning og reset-stopp – historisk 2026-10-12
 
 Checkpoint ff73d864bb1e0635efd9954fba1f56623fad1a90 er godkjent for senere kontrollert integrasjon. P2-funnet fra 663fcb7 er lukket. Gjennomgangen bekreftet native WorkingDirectory og faste relative outputnavn, uten global cwd-endring, nye dependencies eller schema-/ADR-/masterendring. Ingen nye blokkerende funn; eksisterende arkitektur-/lisensavgrensninger består. Denne beslutningen erstatter tidligere avventende reviewstatus ovenfor.
 
@@ -74,3 +74,13 @@ Uavhengig SUPERVISOR-kontroll på Windows: Release test --no-build --no-restore 
 Operativ tilstand: STOP_FOR_RESET. Ingen GUI, ny research eller integrasjon før ny faktisk kvotekontroll og eksplisitt CONTINUE-ordre fra SUPERVISOR. Automatisk oppfølging håndterer dette etter reset, uten manuell eierstart. Neste planlagte steg: kontrollert integrasjon av godkjent Fase 3.3, deretter separat avgrenset GUI-ordre med ny kvotevurdering. OWNER DECISION REQUIRED: NO.
 
 Denne avslutningen er kun en dokumentasjonsendring; testsett og nettprober gjentas ikke.
+
+## CONTINUE og kontrollert integrasjon – 2026-10-12
+
+SUPERVISOR opphevet STOP_FOR_RESET for SMALL/SEQUENTIAL phase3-media-download-integration etter reset. ff73d86/71afe4d var godkjent, og a433836 inneholdt bare godkjenningens dokumentasjon. Denne delen erstatter tidligere ventende/reset-/reviewstatus ovenfor.
+
+COMPLETED: godkjent Fase 3.3 inklusive literal-path-rettingen integreres gjennom [PR #9](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/9). Gjeldende status er oppdatert, planen avsluttet/flyttet til completed og berørte lenker rettet. MAIN-verifikasjon og faktisk merge-SHA rapporteres i Git/finalrapporten; PR-en er varig integrasjonsreferanse.
+
+VERIFICATION: faktisk fjernbase a626358 og godkjent branch a433836 kontrollert før dokumentasjonsendringer; kode/tests/tools identiske med 71afe4d. Master/aksepterte ADR-er, locks og historiske fixtures bevart. Dokumentlenker/inventar/privacy/whitespace og faktisk PR-head/base kontrolleres før merge; ren lokal main/upstream/GitHub-main og samme tre kontrolleres etterpå. Ingen source-endring; 422 Windows/Linux-tester og faktiske offline-prober spores til 71afe4d. SUPERVISORs uavhengige Windows-evidens ovenfor gjenbrukes, ingen test-/nett-smoke gjentas.
+
+FILES / MODULES CHANGED: kun status-/arbeidsordre-/policy-/utviklingsdokumentasjon, avsluttet plan og berørte lenker. Ingen GUI, dependencies, CI-aktivering eller releasepakking. UNRESOLVED: eksisterende produkt-/kilde-/codec-/Linux-nettmediaavgrensninger består; hele Fase 3 er ikke avsluttet. NEXT RECOMMENDED STEP: SUPERVISORs integrasjonskontroll, deretter separat avgrenset Windows Avalonia-testflate med Song/timeline/noter, MoveNote og undo/redo. Ingen automatisk GUI-start i denne ordren. OWNER DECISION REQUIRED: NO.

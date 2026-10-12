@@ -7,7 +7,7 @@ Status 2026-10-12: det finnes ingen alpha-/betaversjon av UltraStar Song Creator
 - Sangmodell, validering og MoveNote med undo/redo.
 - Prosjektlagring/gjenåpning, UltraStar-import og eksport med komplett sangmappe.
 - Fase 3.1: lokal filinspeksjon, metadata/manuelle overrides, stream-valg og lagret proveniens.
-- Fase 3.3 på arbeidsbranch (venter review): YouTube-søk, eksplisitt formatvalg og lokal originalnedlasting etter [kontrakten](ONLINE_MEDIA.md).
+- Fase 3.3 integrert: YouTube-søk, eksplisitt formatvalg og lokal originalnedlasting etter [kontrakten](ONLINE_MEDIA.md).
 - Fase 3.2: valgfritt MusicBrainz-søk og eksplisitt innspillingsvalg etter [kontrakten](RECORDING_SEARCH.md), med offline lagring.
 
 Disse har ennå ingen filvelger, menyer, playbackknapper eller visuell redigering. Manuell overstyring skjer via API.
@@ -36,4 +36,4 @@ En meningsfull alpha trenger en sammenhengende brukerflate: åpne/opprette prosj
 
 Ingen GUI eller alpha-distribusjon er startet gjennom Fase 3.1/3.2/3.3.
 
-Prosjekteieren har prioritert en tidlig fungerende Windows GUI-prototype. Første separate testflate avventer review av [Fase 3.3-checkpointet](exec-plans/active/phase3-media-download.md) etter [SUPERVISOR-policyen](SUPERVISOR_POLICY.md); den er ikke implementert her.
+Prosjekteieren har prioritert en tidlig fungerende Windows GUI-prototype. Første separate testflate krever neste avgrensede SUPERVISOR-ordre etter det godkjente/integrerte [Fase 3.3-checkpointet](exec-plans/completed/phase3-media-download.md) etter [SUPERVISOR-policyen](SUPERVISOR_POLICY.md); den er ikke implementert her.

@@ -1,6 +1,6 @@
 # Nettmedia – Fase 3.3
 
-Status 2026-10-12: implementert/verifisert på arbeidsbranch, avventer SUPERVISOR-review før integrasjon. [Arbeidsordre](PHASE3_MEDIA_DOWNLOAD_WORK_ORDER.md) og [checkpoint](exec-plans/active/phase3-media-download.md). Ingen GUI eller full Fase 3-avslutning inngår.
+Status 2026-10-12: integrert etter SUPERVISOR-godkjenning og CONTINUE via [PR #9](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/9). [Arbeidsordre](PHASE3_MEDIA_DOWNLOAD_WORK_ORDER.md) og [checkpoint](exec-plans/completed/phase3-media-download.md). Ingen GUI eller full Fase 3-avslutning inngår.
 
 ## Kontrakt og brukerens valg
 
@@ -54,4 +54,4 @@ Den gamle upstream-testvideoen var utilgjengelig, mens den eksplisitte korte rø
 
 Rå absolutt --output kunne ekspandere %(title)s/%(id)s og miljøvariabler og skrive utenfor eid staging. Rå --paths ville også ekspandere miljøvariabler. Rettet med native prosess-cwd + faste relative filnavn, uten ny dependency/nett-smoke.
 
-422/422 tester består på Windows og nettisolert Linux (414 + åtte parametriserte native prosesstester; hver dekker suksess, feil og avbrudd etter første fil). [Pinnet offline-probe](../tools/acquisition/test_literal_paths.py) bruker faktisk yt-dlp 2026.08.19 CLI-parsing/prepare_filename/get_output_path: 16 bokstavelige audio/video-filkontroller per OS. Den gjenskaper gammel rå-template-feil (12 Windows / 10 Linux) og rå-paths-feil (8 Windows / 4 Linux) uten å skrive til feilaktige stier. Nett er sperret, scratch ryddes; [checkpointet](exec-plans/active/phase3-media-download.md) venter review.
+422/422 tester består på Windows og nettisolert Linux (414 + åtte parametriserte native prosesstester; hver dekker suksess, feil og avbrudd etter første fil). [Pinnet offline-probe](../tools/acquisition/test_literal_paths.py) bruker faktisk yt-dlp 2026.08.19 CLI-parsing/prepare_filename/get_output_path: 16 bokstavelige audio/video-filkontroller per OS. Den gjenskaper gammel rå-template-feil (12 Windows / 10 Linux) og rå-paths-feil (8 Windows / 4 Linux) uten å skrive til feilaktige stier. Nett er sperret, scratch ryddes; [checkpointet](exec-plans/completed/phase3-media-download.md) er avsluttet etter godkjenning/integrasjon.

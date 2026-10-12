@@ -20,7 +20,7 @@ Nåværende overordnede mål er en fungerende lokal Windows-prototype med funksj
 
 SUPERVISOR velger minste praktiske sammenhengende leveranse fra faktisk status. Arbeidsordre har mål/kontekst, autoritative dokumenter, in/out scope, constraints, acceptance criteria, verifikasjon, checkpoint-/stoppkrav og forventet rapport. Unngå brede «bygg hele fasen/programmet». Gi direkte tydelig delegasjon når tilgjengelig; ellers ferdig instruks for eieren uten behov for omskriving.
 
-Aktuelt vedtak: Fase 3.3 ferdigstilles/verifiseres på arbeidsbranch og stoppes ved checkpoint før integrasjon. Neste GUI-leveranse er separat og avventer review; waveform/playback/seek hører til en senere separat blokk. Dette endrer ikke Fase 3.3-scope eller master.
+Aktuelt vedtak: godkjent Fase 3.3 er integrert etter CONTINUE 2026-10-12. STOP_FOR_RESET er opphevet for integrasjonen. Neste GUI-leveranse er separat og krever ny avgrenset ordre etter integrasjonskontroll; waveform/playback/seek hører til en senere separat blokk. Dette endrer ikke Fase 3.3-scope eller master.
 
 ## Oppdeling, eierskap og parallellisme
 
@@ -50,7 +50,7 @@ SUPERVISOR klassifiserer kompleksitet, usikkerhet, arkitekturrisiko, debugging, 
 
 Normal eskalering er Sol Medium → Sol High → Astra Medium → Astra High ved faktisk behov. Før eskalering/restart undersøkes om hindringen er modellkapasitet, uklare krav, uferdig avhengighet, dårlig oppdeling eller konkret feil; treg framdrift alene er ikke grunn.
 
-Modellvalg er utførelsesdetalj og skal ikke bli produksjonsarkitektur. Aktuelle plattformmuligheter eller prosjektbevis kan begrunne annen policy. Denne pågående Fase 3.3-oppgaven beholder sine modellinnstillinger; faktisk modell/reasoning rapporteres som ukjent hvis ikke eksponert.
+Modellvalg er utførelsesdetalj og skal ikke bli produksjonsarkitektur. Aktuelle plattformmuligheter eller prosjektbevis kan begrunne annen policy. Hver oppgave rapporterer faktisk modell/reasoning som ukjent hvis ikke eksponert.
 
 Hent faktisk femtimers-/ukeskvote og reset-tider før MEDIUM/LARGE-blokker, før parallellstart og etter større checkpoints. Ikke estimer tilgjengelig kapasitet når den kan leses direkte. Klassifiser oppgaver SMALL/MEDIUM/LARGE/RESEARCH-HEAVY og vurder samlet ressursbehov for alle samtidige workers, med margin til trygge checkpoints. Ved utilstrekkelig margin: reduser scope/concurrency, kjør sekvensielt eller STOP_FOR_RESET.
 

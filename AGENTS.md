@@ -14,11 +14,11 @@ Bruk avgrensede work/<oppgave>-brancher og konsistente checkpoint-commits. Integ
 
 ## Arkitektur og status
 
-Bevar acquisition/generation/editor-skillet, immutable sangmodell og undo/redo. Core har ikke formatparser/fil-I/O. Prosjektformat versjoneres/migreres eksplisitt; historisk v1 endres ikke stilltiende. Fase 1, 2.1–2.4 og 3.1–3.2 er integrert. Fase 3.3 venter review etter docs/ONLINE_MEDIA.md og checkpoint i docs/exec-plans/active/. Ingen GUI finnes.
+Bevar acquisition/generation/editor-skillet, immutable sangmodell og undo/redo. Core har ikke formatparser/fil-I/O. Prosjektformat versjoneres/migreres eksplisitt; historisk v1 endres ikke stilltiende. Fase 1, 2.1–2.4 og 3.1–3.3 er integrert. Fase 3.3 følger docs/ONLINE_MEDIA.md og avsluttet plan i docs/exec-plans/completed/. Ingen GUI finnes.
 
 ADR-0001/0002 er akseptert: .NET/Avalonia, Python-prosess, utskiftbar miniaudio-backend, eksplisitt umxhq og MIT egen kode med separate LGPL-forpliktelser. Analyse er forslag med confidence/manuell korreksjon; ASR-default er ikke fastsatt. Ikke omgjør vedtak uten bestilling.
 
-SUPERVISOR koordinerer/reviewer; AGENT implementerer etter docs/SUPERVISOR_POLICY.md. Gjeldende arbeid er sekvensielt med stopp ved checkpoint før integrasjon.
+SUPERVISOR koordinerer/reviewer; AGENT implementerer etter docs/SUPERVISOR_POLICY.md. Neste arbeid er sekvensielt og krever avgrenset SUPERVISOR-ordre.
 
 ## Verifikasjon og stopp
 

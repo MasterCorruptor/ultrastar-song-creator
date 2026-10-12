@@ -132,9 +132,9 @@ Bestilt/avklart 2026-10-12: MusicBrainz og eksplisitt recording-/release-valg f�
 
 En avgrenset live MusicBrainz-prøve av artist+tittel bestod, inkludert offline valgt-ID-rundtur; detaljer/begrensninger står i kontrakten. Ingen new dependency/lockfil/schema, Core-/Projects-/UltraStar-/ADR-/masterendring. Hosted CI og GUI er fortsatt ikke etablert.
 
-## Nettmedia – Fase 3.3 checkpoint
+## Nettmedia – Fase 3.3 integrert
 
-Fase 3.3 er implementert på work/phase3-media-download og venter SUPERVISOR-review før merge. [Kontrakten](ONLINE_MEDIA.md) og [checkpointet](exec-plans/active/phase3-media-download.md) beskriver acceptance/evidens. [SUPERVISOR-policy](SUPERVISOR_POLICY.md) dokumenterer eiermandatet, sekvensiell/parallel arbeidsfordeling, modell-/kvotepolicy og rapport-/reviewkrav.
+Fase 3.3 er integrert via [PR #9](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/9) etter SUPERVISOR-godkjenning og CONTINUE 2026-10-12. [Kontrakten](ONLINE_MEDIA.md) og [checkpointet](exec-plans/completed/phase3-media-download.md) beskriver acceptance/evidens. [SUPERVISOR-policy](SUPERVISOR_POLICY.md) dokumenterer eiermandatet, sekvensiell/parallel arbeidsfordeling, modell-/kvotepolicy og rapport-/reviewkrav.
 
 Konfigurer en egen Python 3.12-venv og installer bare hashlåste wheels:
 ```powershell
@@ -151,4 +151,4 @@ Windows faktisk adapterprøve lastet eksplisitte originale audio-/videoformater,
 
 CI-malen er fortsatt ikke aktivert. Den historiske workflow-rettighetsblokkeringen er løst, men aktivering er en egen avgrenset oppgave og ikke del av Fase 3.3.
 
-Fase 3.3 REQUEST_FIX literal-paths: native staging-cwd og faste relative --output-navn erstatter rå absolutt output/--paths. 422/422 tester består på begge OS, med åtte native foreldresti-/cleanup-regresjoner. tools/acquisition/test_literal_paths.py validerer faktisk pinnet yt-dlp-template/path-oppførsel uten nett (venv-python på Windows, hashkontrollert wheel-import på Linux) og gjenskaper opprinnelig feil. Ingen nye pakker/nettmedia-smoke. Korrigert checkpoint venter SUPERVISOR-review.
+Fase 3.3 REQUEST_FIX literal-paths: native staging-cwd og faste relative --output-navn erstatter rå absolutt output/--paths. 422/422 tester består på begge OS, med åtte native foreldresti-/cleanup-regresjoner. tools/acquisition/test_literal_paths.py validerer faktisk pinnet yt-dlp-template/path-oppførsel uten nett (venv-python på Windows, hashkontrollert wheel-import på Linux) og gjenskaper opprinnelig feil. Ingen nye pakker/nettmedia-smoke. Sti-rettingen er godkjent og inngår i integrasjonen. Kode/tests/tools er byteidentiske med verifisert 71afe4d; dokumentasjons-/mergeendringer alene begrunner ingen gjentakelse av testsett eller nettprober.
