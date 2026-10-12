@@ -131,3 +131,22 @@ Bestilt/avklart 2026-10-12: MusicBrainz og eksplisitt recording-/release-valg f�
 360/360 tester bestod på Windows og nettisolert Linux med SDK 10.0.401 (308 tidligere + 52 nye): query/Unicode, core-kandidater, HTTP-status/body/timeout/cancellation, felles throttle/cooldown, eksplisitt valg, frozen persistence, save/load, undo/redo og eksportens current metadata. Locked restore, Release build uten advarsler og formatkontroll bestod. Linux brukte eksisterende cache, egne artifacts og audit deaktivert kun under offline restore.
 
 En avgrenset live MusicBrainz-prøve av artist+tittel bestod, inkludert offline valgt-ID-rundtur; detaljer/begrensninger står i kontrakten. Ingen new dependency/lockfil/schema, Core-/Projects-/UltraStar-/ADR-/masterendring. Hosted CI og GUI er fortsatt ikke etablert.
+
+## Nettmedia – Fase 3.3 checkpoint
+
+Fase 3.3 er implementert på work/phase3-media-download og venter SUPERVISOR-review før merge. [Kontrakten](ONLINE_MEDIA.md) og [checkpointet](exec-plans/active/phase3-media-download.md) beskriver acceptance/evidens. [SUPERVISOR-policy](SUPERVISOR_POLICY.md) dokumenterer eiermandatet, sekvensiell/parallel arbeidsfordeling, modell-/kvotepolicy og rapport-/reviewkrav.
+
+Konfigurer en egen Python 3.12-venv og installer bare hashlåste wheels:
+```powershell
+python -m venv .agent-local/media-dev
+.agent-local/media-dev/Scripts/python.exe -m pip install --no-deps --require-hashes -r tools/acquisition/requirements-media.txt
+```
+Dette er en utviklingsrute på Windows; Linux-venv bruker bin/python. Produktet installerer ingen verktøy i dette checkpointet. Konfigurer en kompatibel lokal Node/Deno-runtime og eksisterende egnet FFprobe via absolutte baner. Windows-nettprøven brukte Node 24.19.0, EJS 0.8.0 og minimal FFprobe 8.1.3; ingen ny runtimepakke vedtas/distribueres. Actual wheel-hashes/notices og avgrensninger står i [inventaret](../tools/acquisition/dependencies.json).
+
+API-sekvens: SearchAsync → brukerens eksplisitte source-URL → ResolveAsync → MediaDownloadChoices.Select med konkrete format-ID-er → DownloadAsync til ny mappe → DownloadedMediaDraft.Create med eventuelle manuelle overrides/eksplisitt recording choice → ProjectStore. Ikke velg første kandidat/format skjult, og ikke anta at YouTube-uploader er artist. Ingen GUI inngår.
+
+414/414 tester bestod på Windows og nettisolert Linux med SDK 10.0.401 (360 tidligere + 54 nye), locked restore og Release build uten advarsler. SDK format/verify-no-changes og integritets-/inventar-/lenke-/whitespacekontroll bestod. Linux brukte egen artifacts og audit av kun ved offline restore; faktisk ekstern provider-runtime/nettmedia ble prøvd på Windows.
+
+Windows faktisk adapterprøve lastet eksplisitte originale audio-/videoformater, inspiserte/hashkontrollerte dem, bevarte eiermetadata gjennom offline save/load og pakket to eksportassets. Privat smoke har egen syntetisk note for eksport; den er ingen sanggenerering, produktdefault eller kvalitets-/tilgjengelighetsgaranti. Private medier, rå data/signed URLs, runtime/binærer og konto-/maskindata publiseres ikke.
+
+CI-malen er fortsatt ikke aktivert. Den historiske workflow-rettighetsblokkeringen er løst, men aktivering er en egen avgrenset oppgave og ikke del av Fase 3.3.

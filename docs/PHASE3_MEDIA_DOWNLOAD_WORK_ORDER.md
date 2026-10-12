@@ -19,3 +19,7 @@ Lagret kilde-ID/URL, valgte formater, faktisk størrelse/hash og hentetid skal k
 Meningsfulle syntetiske tester for URL/query, metadata/formater/valg, feil/timeout/cancellation/bytegrenser, filbevaring/opprydding, faktisk prosessgrense, draft/proveniens, save/load og eksport. Locked restore/build/test/format på Windows og nettisolert Linux. Avgrenset nettprøve hvis anonym YouTube er tilgjengelig; nettblokkering rapporteres uten omgåelse eller falsk bestått-status. Kontroller masterintegritet, dokumentlenker, inventar/privacy og whitespace.
 
 Ingen lyrics, cover, generation, GUI/alpha, installer eller full Fase 3-avslutning. Ingen videre deloppgave startes automatisk. Stopp ved uavklart lisens, nødvendig konto/nøkkel eller vesentlig endring av vedtatt scope/stack.
+
+## Gjeldende checkpointkrav
+
+Prosjekteierautorisert SUPERVISOR-ordre av 2026-10-12 krever verifisert commit/checkpointrapport og stopp før integrasjon. Gjeldende fordeling er SEQUENTIAL med én implementasjonsagent. [Policyen](SUPERVISOR_POLICY.md) bevarer begge eierinstruksene; [checkpointet](exec-plans/active/phase3-media-download.md) er reviewgrunnlaget. Neste GUI-blokk starter ikke gjennom denne arbeidsordren.
