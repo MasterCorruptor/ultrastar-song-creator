@@ -156,3 +156,7 @@ Fase 3.3 REQUEST_FIX literal-paths: native staging-cwd og faste relative --outpu
 ## GUI-01 integrert
 
 [Startguide/kontrakt](GUI_01_TEST_SURFACE.md), [arbeidsordre](GUI_01_WORK_ORDER.md), [avsluttet plan](exec-plans/completed/gui-01-song-editing.md) og [faktisk pakkeinventar](GUI_01_DEPENDENCIES.json). Desktop og isolert Desktop.Tests er lagt til solution. Windows/Linux locked restore/Release build/test består (432 totalt); SDK-format består. Native Windows-scenarioene, inklusive input og normal close, er manuelt bekreftet bestått av prosjekteieren. Computer Use-fangst feilet; skjermbilde mangler. SUPERVISOR har godkjent acceptance, og GUI-01 integreres via [PR #10](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/10). Ingen videre blokk starter her.
+
+## Audio-01 checkpoint
+
+[Arbeidsordre](AUDIO_01_WORK_ORDER.md), [kontrakt/reproduksjon/evidens](AUDIO_PLAYBACK.md), [aktiv plan](exec-plans/active/audio-01-pcm-playback.md) og [pakke/native/notices-inventar](AUDIO_01_DEPENDENCIES.json). Audio har ingen Core-/GUI-/fil-I/O-reference; Audio.Tests og AudioProbe er egne solutionprosjekter. 449 Windows/Linux-tester og native Windows-default-device-smoke består. Linux fysisk device og akustisk hørbarhet/latency er ikke verifisert. Native callbackformat/null-backend/lifecycle kontrolleres; GUI-01 og lagringskontrakter er bevart. Stopp før review/merge/GUI-binding.

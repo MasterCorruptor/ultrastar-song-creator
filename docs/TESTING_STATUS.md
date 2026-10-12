@@ -37,3 +37,7 @@ En meningsfull alpha trenger en sammenhengende brukerflate: åpne/opprette prosj
 Fase 3.1–3.3 har ingen GUI; separat GUI-01 er nå integrert. Ingen alpha-distribusjon.
 
 Prosjekteieren har prioritert en tidlig fungerende Windows GUI-prototype. GUI-01 er bestilt separat etter det godkjente/integrerte [Fase 3.3-checkpointet](exec-plans/completed/phase3-media-download.md) etter [SUPERVISOR-policyen](SUPERVISOR_POLICY.md); se GUI-01-startguiden for faktisk checkpointstatus.
+
+## Backend før neste GUI-binding
+
+Audio-01 er verifisert på arbeidsbranch etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449/449 Windows/Linux, ekte Windows Wasapi/miniaudio-smoke og Linux native loading uten fysisk device. GUI-01 har fortsatt ingen lyd/playback/waveform/seekkontroller. Full prototype/alpha/release er ikke ferdig. Kontrakt og backend avventer SUPERVISOR-review før videre arbeid.
