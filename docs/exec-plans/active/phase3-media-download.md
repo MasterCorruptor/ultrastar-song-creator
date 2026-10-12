@@ -1,8 +1,8 @@
-# Fase 3.3 – checkpoint for SUPERVISOR-review
+# Fase 3.3 – godkjent checkpoint, STOP_FOR_RESET
 
-Dato: 2026-10-12. STATUS: CHECKPOINT. TASK: phase3-media-download-literal-paths (REQUEST_FIX). MODEL USED: ukjent; faktisk modell/reasoning er ikke eksponert. Bestilt av SUPERVISOR: gpt-6.1-sol / medium; dette er bestilt innstilling, ikke en bekreftet observasjon. BRANCH: work/phase3-media-download.
+Dato: 2026-10-12. STATUS: CHECKPOINT – godkjent retting, STOP_FOR_RESET, avventer integrasjon. TASK: phase3-media-download-literal-paths (REQUEST_FIX lukket). MODEL USED: ukjent; faktisk modell/reasoning er ikke eksponert. Bestilt av SUPERVISOR: gpt-6.1-sol / medium; dette er bestilt innstilling, ikke en bekreftet observasjon. BRANCH: work/phase3-media-download.
 
-LAST COMMIT (verifisert kodecheckpoint): 71afe4d77ce40e9b3c8c9376e0fac61f40da5910. Denne rapporten og øvrig dokumentasjon kommer i et påfølgende dokumentasjonscheckpoint; siste branch-commit leses fra Git/finalrapporten. Base/stabil main er a6263580f2af286d95e65666124cb04761b71162. Arbeidsbranch er ikke integrert. Ingen neste implementasjonsblokk startes før SUPERVISOR-review.
+LAST COMMIT (verifisert kodecheckpoint): 71afe4d77ce40e9b3c8c9376e0fac61f40da5910. Denne rapporten og øvrig dokumentasjon kommer i et påfølgende dokumentasjonscheckpoint; siste branch-commit leses fra Git/finalrapporten. Base/stabil main er a6263580f2af286d95e65666124cb04761b71162. Arbeidsbranch er ikke integrert. Ingen integrasjon eller neste implementasjonsblokk startes før ny faktisk kvotekontroll og eksplisitt CONTINUE fra SUPERVISOR.
 
 [Arbeidsordre](../../PHASE3_MEDIA_DOWNLOAD_WORK_ORDER.md), [API-/lagringskontrakt](../../ONLINE_MEDIA.md) og [varig SUPERVISOR-policy](../../SUPERVISOR_POLICY.md). Policyen bevarer operative vedtak fra begge eierinstruksene, uten maskin-/kontodata. Gjeldende oppdeling er SEQUENTIAL med én implementasjonsagent.
 
@@ -64,3 +64,13 @@ Reproduser [proben](../../../tools/acquisition/test_literal_paths.py): Windows k
 FILES / MODULES CHANGED: ProbeProcess/YtDlpMediaSource, interne test-runner-signaturer, native regresjoner/offline-probe, ONLINE_MEDIA/utviklings-/arbeidsordre/checkpoint og kort automatisk-review-policy. Ingen ny nettmedia-smoke; opprinnelig Windows-nettprøve ovenfor er historisk evidens, ikke kjørt på nytt etter rettingen.
 
 UNRESOLVED: korrigert checkpoint venter SUPERVISOR-review; tidligere avgrensninger består. NEXT RECOMMENDED STEP: review avgrenset korrigering, velg reviewstatus og integrer bare ved godkjenning. Ingen merge/GUI-start. OWNER DECISION REQUIRED: NO. Automatisk review-tillegg er dokumentert i SUPERVISOR_POLICY; ingen returmelding kreves.
+
+## SUPERVISOR-godkjenning – 2026-10-12
+
+Checkpoint ff73d864bb1e0635efd9954fba1f56623fad1a90 er godkjent for senere kontrollert integrasjon. P2-funnet fra 663fcb7 er lukket. Gjennomgangen bekreftet native WorkingDirectory og faste relative outputnavn, uten global cwd-endring, nye dependencies eller schema-/ADR-/masterendring. Ingen nye blokkerende funn; eksisterende arkitektur-/lisensavgrensninger består. Denne beslutningen erstatter tidligere avventende reviewstatus ovenfor.
+
+Uavhengig SUPERVISOR-kontroll på Windows: Release test --no-build --no-restore → 422/422; faktisk yt-dlp 2026.08.19 offline-probe → 16 literal_file_checks, 12 original_unsafe_results, 8 raw_paths_unsafe_results, network forbidden, scratch cleaned; git diff --check bestod. Linux 422/422 og Linux-proben er gjennomgått som AGENT-evidens, ikke kjørt på nytt av SUPERVISOR. Bare dokumentasjon etter kodecommit 71afe4d; ren working tree, HEAD/origin-arbeidsbranch identiske ff73d86 og main/origin/main fortsatt a626358 ved review.
+
+Operativ tilstand: STOP_FOR_RESET. Ingen GUI, ny research eller integrasjon før ny faktisk kvotekontroll og eksplisitt CONTINUE-ordre fra SUPERVISOR. Automatisk oppfølging håndterer dette etter reset, uten manuell eierstart. Neste planlagte steg: kontrollert integrasjon av godkjent Fase 3.3, deretter separat avgrenset GUI-ordre med ny kvotevurdering. OWNER DECISION REQUIRED: NO.
+
+Denne avslutningen er kun en dokumentasjonsendring; testsett og nettprober gjentas ikke.
