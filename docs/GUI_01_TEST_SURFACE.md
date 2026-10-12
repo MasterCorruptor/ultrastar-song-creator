@@ -1,6 +1,6 @@
 # GUI-01 – lokal sangredigeringstestflate
 
-Status 2026-10-12: implementert på work/gui-01-song-editing, checkpoint før SUPERVISOR-review. Dette er første avgrensede GUI-testflate, ikke en alpha/release. [Arbeidsordre](GUI_01_WORK_ORDER.md), [checkpoint](exec-plans/active/gui-01-song-editing.md).
+Status 2026-10-12: godkjent og integrert via [PR #10](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/10). Dette er første avgrensede GUI-testflate, ikke en alpha/release. [Arbeidsordre](GUI_01_WORK_ORDER.md), [checkpoint](exec-plans/completed/gui-01-song-editing.md).
 
 ## Start på Windows
 
@@ -39,7 +39,7 @@ Native Windows-prosess/vindu ble startet og observert som responderende. Første
 
 Prosjekteieren gjennomførte deretter den avtalte manuelle native Windows-prøven og bekreftet direkte i chat 2026-10-12: «Alle tester er bestått med forventet resultat». Bekreftelsen gjelder Hei-valg, flytting 1→2,5 med blokkoppdatering, Angre→1/Gjør om→2,5, avvisning av NaN/−1/7,5 uten noteendring, overlapp-warning ved start3 og normal X-lukking. Dette er eierobservert manuell evidens, ikke vellykket AGENT-automatisering eller en ny 432-testsuite. Eksakte snapshotreferanser er dekket av tidligere headless-tester.
 
-Native scenario-gapet er lukket med den manuelle bekreftelsen; endelig SUPERVISOR-review/merge gjenstår. Computer Use-fangstproblemet er fortsatt et verktøyhinder med ubekreftet årsak, ingen påvist produktdefekt. Skjermbilde er ikke tilgjengelig; ingen native Linux-GUI-smoke påstås. Kode og tidligere Windows/Linux build/test/format-evidens er uendret.
+Native scenario-gapet er lukket med den manuelle bekreftelsen; SUPERVISOR har godkjent acceptance og kontrollert integrasjon. Computer Use-fangstproblemet er fortsatt et verktøyhinder med ubekreftet årsak, ingen påvist produktdefekt. Skjermbilde er ikke tilgjengelig; ingen native Linux-GUI-smoke påstås. Kode og tidligere Windows/Linux build/test/format-evidens er uendret.
 
 Ingen lyd/playback/waveform/seek, acquisition/generation, filvelger/prosjektlagring/eksport, installer eller release inngår.
 

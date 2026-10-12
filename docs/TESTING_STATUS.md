@@ -1,6 +1,6 @@
 # Hva kan testes nå?
 
-Status 2026-10-12: ingen alpha-/beta eller installer. Første avgrensede GUI-01 testflate finnes på arbeidsbranch før review; [startguide og begrensninger](GUI_01_TEST_SURFACE.md). Solution bygger nå også Desktop.exe. Native input og normal close er manuelt verifisert av prosjekteieren med forventet resultat; endelig review gjenstår.
+Status 2026-10-12: ingen alpha-/beta eller installer. Første avgrensede GUI-01 testflate er godkjent og integrert; [startguide og begrensninger](GUI_01_TEST_SURFACE.md). Solution bygger nå også Desktop.exe. Native input og normal close er manuelt verifisert av prosjekteieren med forventet resultat; SUPERVISOR har godkjent acceptance.
 
 ## Dagens funksjoner
 
@@ -34,6 +34,6 @@ Den lokale illustrasjonen .agent-local/phase1/timeline-results/timeline-0-8.png 
 
 En meningsfull alpha trenger en sammenhengende brukerflate: åpne/opprette prosjekt, vise sangdata, gjøre en avgrenset redigering, lagre og eksportere med forståelige feil. Playback/timeline kommer som avgrenset editorarbeid. Masterplanen legger Acquisition i Fase 3, Generation i Fase 4 og editor i Fase 5. En tidligere testflate er et eget prioriteringsvalg for prosjekteieren.
 
-Fase 3.1–3.3 har ingen GUI; separat GUI-01 finnes nå på arbeidsbranch. Ingen alpha-distribusjon.
+Fase 3.1–3.3 har ingen GUI; separat GUI-01 er nå integrert. Ingen alpha-distribusjon.
 
 Prosjekteieren har prioritert en tidlig fungerende Windows GUI-prototype. GUI-01 er bestilt separat etter det godkjente/integrerte [Fase 3.3-checkpointet](exec-plans/completed/phase3-media-download.md) etter [SUPERVISOR-policyen](SUPERVISOR_POLICY.md); se GUI-01-startguiden for faktisk checkpointstatus.

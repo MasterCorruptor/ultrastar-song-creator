@@ -1,6 +1,6 @@
-# GUI-01 – aktiv plan
+# GUI-01 – avsluttet plan
 
-STATUS: CHECKPOINT. TASK: gui-01-song-editing-test-surface. BRANCH: work/gui-01-song-editing. Base: 005a7089742ce7ad33f3103460a7446ee6e20164. MODEL USED: ukjent; bestilt Sol Medium. MEDIUM/SEQUENTIAL, én worker.
+STATUS: COMPLETE. TASK: gui-01-integration (godkjent testflate/native-verifikasjon). BRANCH: work/gui-01-song-editing. Base: 005a7089742ce7ad33f3103460a7446ee6e20164. MODEL USED: ukjent; bestilt Sol Medium. MEDIUM/SEQUENTIAL, én worker.
 
 [Arbeidsordre](../../GUI_01_WORK_ORDER.md). Kvote før start: 73 % femtimer / 78 % uke gjenstår, avlest kontoverktøy; ingen ekstra workers.
 
@@ -9,7 +9,7 @@ STATUS: CHECKPOINT. TASK: gui-01-song-editing-test-surface. BRANCH: work/gui-01-
 3. Locked restore/build/test/format; faktisk Windows input-smoke; Linux build/headless når praktisk; integritet/lisens/inventar.
 4. Oppdater startinstruks/status/evidens; commit/push; stopp for SUPERVISOR-review. Ingen merge eller playback.
 
-## Verifisert implementasjonscheckpoint
+## Historisk implementasjonscheckpoint
 
 COMPLETED: Desktop-vindu, deterministisk egen Song, sekund-/MIDI-timeline med notevalg, MoveNote/SongHistory, undo/redo/validering og startscript. Ingen Core-/prosjekt-/formatendring. [Startguide/kontrakt](../../GUI_01_TEST_SURFACE.md) og [pakkemanifest](../../GUI_01_DEPENDENCIES.json).
 
@@ -62,3 +62,13 @@ Etter den konkrete firepunkts manuelle oppskriften bekreftet prosjekteieren dire
 COMPLETED: native scenario-gap lukket med eksplisitt menneskelig evidens. VERIFICATION: bare dokumentasjon/status endret; tidligere 432 Windows/Linux/build/format gjenbrukes kildeidentisk, ingen suite/build/restore gjentas. Dokumentlenker/privacy/whitespace og git/sourceidentitet kontrolleres. FILES: testguide, denne aktive planen og korte statushenvisninger i AGENTS/README/TESTING_STATUS/DEVELOPMENT.
 
 UNRESOLVED: ingen gjenværende native scenario-gap etter eierens bekreftelse; automatisert fangst/screenshot er fortsatt utilgjengelig. Ingen native Linux-GUI, lyd eller release inngår. NEXT RECOMMENDED STEP: endelig SUPERVISOR-review og uttrykkelig integrasjonsordre. PR #10 holdes draft; ingen merge/ny blokk. OWNER DECISION REQUIRED: NO. LAST COMMIT leses fra Git/finalrapport etter dokumentasjonscommit.
+
+## Gjeldende avslutning – godkjent integrasjon
+
+SUPERVISOR ga CONTINUE for gui-01-integration etter review av 1374d99, samme src/tests/tools som 1f95b8c, uavhengig kontroll av 50 pakkehashes og direkte eierbekreftet native Windows-smoke. Automatisert native input/screenshot er fortsatt ikke bestått; menneskelig scenario-evidens lukker acceptance-gapet, skjermbilde var valgfritt. Tidligere ventende/gap-/draftstatus ovenfor er historisk og erstattes av denne godkjenningen.
+
+STATUS: COMPLETE. TASK: gui-01-integration. MODEL USED: ukjent; bestilt Sol Medium. SMALL/SEQUENTIAL, én worker. BRANCH: work/gui-01-song-editing → main. PR: [#10](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/10). LAST COMMIT/merge-SHA leses fra Git/PR/finalrapport etter integrasjon.
+
+COMPLETED: godkjent GUI-01, startguide og pinnede pakker integreres kontrollert; planen flyttet til completed og status/lenker rettet. VERIFICATION: main-base 005a708 og godkjent head 1374d99 kontrollert før dokumentasjon; kode/tests/tools identiske med reviewet 1f95b8c. Tidligere 432/432 Windows/Linux locked restore/build/test/format og manuell Windows-smoke gjenbrukes. Master/ADR/historiske fixtures/eksisterende moduler/locks, offentlig inventar/lenker/privacy/whitespace og PR-identitet kontrolleres før merge. Etter merge kontrolleres identiske trær og ren lokal main=upstream=faktisk GitHub-main. Ingen ny test/build eller dependency.
+
+FILES: bare status/arbeidsordre/testguide/policy og planflytting i integrasjonstrinnet. UNRESOLVED: Computer Use-fangst er fortsatt et verktøyhinder med ubekreftet årsak; ingen native Linux-GUI eller alpha/installer/release. Produktet er avgrenset til egen testsang, uten playback/waveform/seek/fil-I/O. NEXT RECOMMENDED STEP: SUPERVISORs integrasjonskontroll, deretter separat avgrenset playback/waveform-leveranse med samme Song-tidskontrakt og utskiftbar miniaudio-backend. Ingen videre blokk startes her. OWNER DECISION REQUIRED: NO.

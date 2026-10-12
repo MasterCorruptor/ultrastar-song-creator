@@ -20,7 +20,7 @@ Nåværende overordnede mål er en fungerende lokal Windows-prototype med funksj
 
 SUPERVISOR velger minste praktiske sammenhengende leveranse fra faktisk status. Arbeidsordre har mål/kontekst, autoritative dokumenter, in/out scope, constraints, acceptance criteria, verifikasjon, checkpoint-/stoppkrav og forventet rapport. Unngå brede «bygg hele fasen/programmet». Gi direkte tydelig delegasjon når tilgjengelig; ellers ferdig instruks for eieren uten behov for omskriving.
 
-Aktuelt vedtak: godkjent Fase 3.3 er integrert etter CONTINUE 2026-10-12. STOP_FOR_RESET er opphevet for integrasjonen. Integrasjonskontrollen er godkjent; GUI-01 er bestilt MEDIUM/SEQUENTIAL med checkpoint før review/merge; waveform/playback/seek hører til en senere separat blokk. Dette endrer ikke Fase 3.3-scope eller master.
+Aktuelt vedtak: godkjent Fase 3.3 er integrert etter CONTINUE 2026-10-12. STOP_FOR_RESET er opphevet for integrasjonen. Integrasjonskontrollen er godkjent; GUI-01 er godkjent og integrert etter manuell eierverifikasjon og SUPERVISOR-review; waveform/playback/seek hører til en senere separat blokk. Dette endrer ikke Fase 3.3-scope eller master.
 
 ## Oppdeling, eierskap og parallellisme
 

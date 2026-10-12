@@ -12,4 +12,8 @@ Commit ved sammenhengende checkpoints, push og stopp for SUPERVISOR-review; inge
 
 ## Avgrenset native-verifikasjon
 
-SUPERVISOR bestilte gui-01-native-smoke etter reset 2026-10-12: SMALL/SEQUENTIAL, kun eksisterende app og manglende native scenarioer, ingen kode/build-/suitegjentakelse/merge. Ett forsøk og avgrenset gjenoppretting viste fangst-/input-geometrifeil; se [gjeldende evidens](exec-plans/active/gui-01-song-editing.md). Ingen ny ventende apptillatelse er rapportert. Stopp ved dokumentert checkpoint; full acceptance gjenstår.
+SUPERVISOR bestilte gui-01-native-smoke etter reset 2026-10-12: SMALL/SEQUENTIAL, kun eksisterende app og manglende native scenarioer, ingen kode/build-/suitegjentakelse/merge. Ett forsøk og avgrenset gjenoppretting viste fangst-/input-geometrifeil; se [gjeldende evidens](exec-plans/completed/gui-01-song-editing.md). Ingen ny ventende apptillatelse er rapportert. Stopp ved dokumentert checkpoint; full acceptance gjenstår.
+
+## Godkjent integrasjon
+
+SUPERVISOR godkjente GUI-01 acceptance etter direkte eierbekreftelse av alle manuelle native scenarioer og review av kode/pakkehashes. gui-01-integration er SMALL/SEQUENTIAL: avslutt plan/status og integrer via eksisterende PR #10 med kildeidentitet mot 1f95b8c. Ingen ny suite/build ved dokumentasjonsendring. Stopp etter integrasjonsrapport; playback/waveform krever ny separat ordre. Tidligere checkpoint-/verifikasjonstekst ovenfor er historisk.
