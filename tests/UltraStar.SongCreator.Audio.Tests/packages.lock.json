@@ -29,6 +29,19 @@
         "resolved": "3.1.4",
         "contentHash": "5mj99LvCqrq3CNi06xYdyIAXOEh+5b33F2nErCzI5zWiDdLHXiPXEWFSUAF8zlIv0ZWqjZNCwHTQeAPYbF3pCg=="
       },
+      "Hexa.NET.MiniAudio": {
+        "type": "Transitive",
+        "resolved": "1.0.1",
+        "contentHash": "52Guq8glVUDMzoVTuaORF03zi0GWOsZM5XQVfr47GGPcv+QQLNBTMUVmiuCdLChIUzO+PGLtksgTVneqaeB8WQ==",
+        "dependencies": {
+          "HexaGen.Runtime": "1.1.24"
+        }
+      },
+      "HexaGen.Runtime": {
+        "type": "Transitive",
+        "resolved": "1.1.24",
+        "contentHash": "1P5IA09EL514OeKGyJ3mSI5F9MGAId27CoSR0SzVz3Jj6m/7tn/GdONoWEUYacRSc41y+CbR6tVGcZNAldsehA=="
+      },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
         "resolved": "17.14.1",
@@ -94,7 +107,10 @@
         }
       },
       "ultrastar.songcreator.audio": {
-        "type": "Project"
+        "type": "Project",
+        "dependencies": {
+          "Hexa.NET.MiniAudio": "[1.0.1, )"
+        }
       }
     }
   }

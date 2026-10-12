@@ -13,4 +13,8 @@
     <Project Path="tests/UltraStar.SongCreator.Core.Tests/UltraStar.SongCreator.Core.Tests.csproj" />
     <Project Path="tests/UltraStar.SongCreator.Desktop.Tests/UltraStar.SongCreator.Desktop.Tests.csproj" />
   </Folder>
+  <Folder Name="/tools/" />
+  <Folder Name="/tools/audio/">
+    <Project Path="tools/audio/AudioProbe/AudioProbe.csproj" />
+  </Folder>
 </Solution>

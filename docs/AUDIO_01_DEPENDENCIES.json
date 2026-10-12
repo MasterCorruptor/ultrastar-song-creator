@@ -1,0 +1,323 @@
+{
+  "status": "Development/source checkpoint; not a binary release",
+  "packages": [
+    {
+      "package": "Hexa.NET.MiniAudio",
+      "version": "1.0.1",
+      "scopes": [
+        "audio",
+        "tests",
+        "probe"
+      ],
+      "sha256": "35a9a82b85554dd25722290cc3a930f13cc956f483534c841848d2e0fe66e3a1",
+      "contentHash": "52Guq8glVUDMzoVTuaORF03zi0GWOsZM5XQVfr47GGPcv+QQLNBTMUVmiuCdLChIUzO+PGLtksgTVneqaeB8WQ==",
+      "license_type": "file",
+      "license_value": "LICENSE.txt",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/HexaEngine/Hexa.NET.MiniAudio",
+        "commit": "03b58b7e807af64ac42135b0c2f8cde2d8c9cada"
+      },
+      "notice_files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "70b66071714825e8d6339720ed3d8e6c664828333e0d61099e25faf3a7cbf218"
+        }
+      ],
+      "tested_native_assets": [
+        {
+          "path": "runtimes/linux-x64/native/libminiaudio.so",
+          "sha256": "c4d1d6d5a5bc4ce4be809a8737b5b1c0f7ec78726788b2f3629b266e1c2620ec"
+        },
+        {
+          "path": "runtimes/win-x64/native/miniaudio.dll",
+          "sha256": "89a87ec9b74e2f6e41ff78c457aca274f62880099f3973c56c2ba88bd97d722e"
+        }
+      ]
+    },
+    {
+      "package": "HexaGen.Runtime",
+      "version": "1.1.24",
+      "scopes": [
+        "audio",
+        "tests",
+        "probe"
+      ],
+      "sha256": "2c4e211cab1b1df807725f40f5690cb23bccc0b9643eb76a75b390beca03f58a",
+      "contentHash": "1P5IA09EL514OeKGyJ3mSI5F9MGAId27CoSR0SzVz3Jj6m/7tn/GdONoWEUYacRSc41y+CbR6tVGcZNAldsehA==",
+      "license_type": "file",
+      "license_value": "LICENSE.txt",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/JunaMeinhold/HexaGen",
+        "commit": "e8cde045ae0b15284cddd8f79b491af4a8afc420"
+      },
+      "notice_files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "14c7f3bdb1cb325dffb0ccca7288a8edd0338231615a50c8321fadb64d143453"
+        }
+      ],
+      "tested_native_assets": []
+    },
+    {
+      "package": "Microsoft.NET.Test.Sdk",
+      "version": "17.14.1",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "9995330c5bc5a7bc759caadc9d17748616cdbb983c11062df122a74607614ff0",
+      "contentHash": "HJKqKOE+vshXra2aEHpi2TlxYX7Z9VFYkr+E5rwEvHC8eIXiyO+K9kNm8vmNom3e2rA56WqxU+/N9NJlLGXsJQ==",
+      "license_type": "expression",
+      "license_value": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/microsoft/vstest",
+        "commit": "490850ae3fdc1b470e3804ceab4f6a41cf89ae51"
+      },
+      "notice_files": [],
+      "tested_native_assets": []
+    },
+    {
+      "package": "xunit",
+      "version": "2.9.3",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "04fae949b8e5201ecfa07fa8702baca8c0eb3198114194b3793789cc72bf23d7",
+      "contentHash": "TlXQBinK35LpOPKHAqbLY4xlEen9TBafjs0V5KnA4wZsoQLQJiirCR4CbIXvOH8NzkW4YeJKP5P/Bnrodm0h9Q==",
+      "license_type": "expression",
+      "license_value": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/xunit/xunit",
+        "commit": "9712244020d385955d33136b3fe3e87de43539cd"
+      },
+      "notice_files": [],
+      "tested_native_assets": []
+    },
+    {
+      "package": "xunit.runner.visualstudio",
+      "version": "3.1.4",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "5b54674b105a5f2cbd5e6e0e67956a1b67e082d94eaa7fddbc803110e6eff2d4",
+      "contentHash": "5mj99LvCqrq3CNi06xYdyIAXOEh+5b33F2nErCzI5zWiDdLHXiPXEWFSUAF8zlIv0ZWqjZNCwHTQeAPYbF3pCg==",
+      "license_type": "expression",
+      "license_value": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/xunit/visualstudio.xunit",
+        "commit": "50e68bbb8b9ddd4b1bbb95d062b62010caf99909"
+      },
+      "notice_files": [],
+      "tested_native_assets": []
+    },
+    {
+      "package": "Microsoft.CodeCoverage",
+      "version": "17.14.1",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "7fc432b46f06bd1a0fe3baced8a1269c32f1229c9eb1aab6e931630dd5b8d06b",
+      "contentHash": "pmTrhfFIoplzFVbhVwUquT+77CbGH+h4/3mBpdmIlYtBi9nAB+kKI6dN3A/nV4DFi3wLLx/BlHIPK+MkbQ6Tpg==",
+      "license_type": "expression",
+      "license_value": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/microsoft/vstest",
+        "commit": "490850ae3fdc1b470e3804ceab4f6a41cf89ae51"
+      },
+      "notice_files": [
+        {
+          "path": "ThirdPartyNotices.txt",
+          "sha256": "4fc4244935bbe3516164402c573f053a5d246571ed4d357e6cccd8ebec296bbc"
+        },
+        {
+          "path": "build/netstandard2.0/ThirdPartyNotices.txt",
+          "sha256": "4fc4244935bbe3516164402c573f053a5d246571ed4d357e6cccd8ebec296bbc"
+        }
+      ],
+      "tested_native_assets": []
+    },
+    {
+      "package": "Microsoft.TestPlatform.ObjectModel",
+      "version": "17.14.1",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "40c7fa3bec34213fb5e8caf3a3bc27f8ddb47f72f5fe60e1b3faa3984a35ad8b",
+      "contentHash": "xTP1W6Mi6SWmuxd3a+jj9G9UoC850WGwZUps1Wah9r1ZxgXhdJfj1QqDLJkFjHDCvN42qDL2Ps5KjQYWUU0zcQ==",
+      "license_type": "expression",
+      "license_value": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/microsoft/vstest",
+        "commit": "490850ae3fdc1b470e3804ceab4f6a41cf89ae51"
+      },
+      "notice_files": [],
+      "tested_native_assets": []
+    },
+    {
+      "package": "Microsoft.TestPlatform.TestHost",
+      "version": "17.14.1",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "d5cc4759cbc7443ee8ad0dc41043cfc55184913a71a26d7fce82020bd4889c9b",
+      "contentHash": "d78LPzGKkJwsJXAQwsbJJ7LE7D1wB+rAyhHHAaODF+RDSQ0NgMjDFkSA1Djw18VrxO76GlKAjRUhl+H8NL8Z+Q==",
+      "license_type": "expression",
+      "license_value": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/microsoft/vstest",
+        "commit": "490850ae3fdc1b470e3804ceab4f6a41cf89ae51"
+      },
+      "notice_files": [
+        {
+          "path": "ThirdPartyNotices.txt",
+          "sha256": "e2ce7628e0f67d0d724eea9d9286a6938bf1eedd253fc84b23d72ae54778a5f7"
+        }
+      ],
+      "tested_native_assets": []
+    },
+    {
+      "package": "Newtonsoft.Json",
+      "version": "13.0.3",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "872fc189e638ab1056555b03aaa38f68bcb54286e221aa646eb1129babf63c77",
+      "contentHash": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "license_type": "expression",
+      "license_value": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/JamesNK/Newtonsoft.Json",
+        "commit": "0a2e291c0d9c0c7675d445703e51750363a549ef"
+      },
+      "notice_files": [
+        {
+          "path": "LICENSE.md",
+          "sha256": "b98a397897ff55f76cddc380041507a95a896b2946e0188703bf0496793d6516"
+        }
+      ],
+      "tested_native_assets": []
+    },
+    {
+      "package": "xunit.abstractions",
+      "version": "2.0.3",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "d03d72fc2df8880448f7a81bddb00e1bcb5c18f323c7e7cc69b4cfa727469403",
+      "contentHash": "pot1I4YOxlWjIb5jmwvvQNbTrZ3lJQ+jUGkGjWE3hEFM0l5gOnBWS+H3qsex68s5cO52g+44vpGzhAt+42vwKg==",
+      "license_type": null,
+      "license_value": null,
+      "repository": null,
+      "notice_files": [],
+      "tested_native_assets": []
+    },
+    {
+      "package": "xunit.analyzers",
+      "version": "1.18.0",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "0ce81a98b9df8bd51ae480e6dc9566f4c68e15b4926e6ab997c8f634f3b7a9dd",
+      "contentHash": "OtFMHN8yqIcYP9wcVIgJrq01AfTxijjAqVDy/WeQVSyrDC1RzBWeQPztL49DN2syXRah8TYnfvk035s7L95EZQ==",
+      "license_type": "expression",
+      "license_value": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/xunit/xunit.analyzers",
+        "commit": "2620a4ddabcba16ceb64ea9ad19c566252015fe8"
+      },
+      "notice_files": [],
+      "tested_native_assets": []
+    },
+    {
+      "package": "xunit.assert",
+      "version": "2.9.3",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "bc760e75ef1b775d293a6afb89301836d3e5a87cec265e31dedd430ee61d0c20",
+      "contentHash": "/Kq28fCE7MjOV42YLVRAJzRF0WmEqsmflm0cfpMjGtzQ2lR5mYVj1/i0Y8uDAOLczkL3/jArrwehfMD0YogMAA==",
+      "license_type": "expression",
+      "license_value": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/xunit/xunit",
+        "commit": "9712244020d385955d33136b3fe3e87de43539cd"
+      },
+      "notice_files": [],
+      "tested_native_assets": []
+    },
+    {
+      "package": "xunit.core",
+      "version": "2.9.3",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "aa4550f09c3f2d95a6c62ae43cec22af2edbbd99f722e691ceefeca761fc6a7c",
+      "contentHash": "BiAEvqGvyme19wE0wTKdADH+NloYqikiU0mcnmiNyXaF9HyHmE6sr/3DC5vnBkgsWaE6yPyWszKSPSApWdRVeQ==",
+      "license_type": "expression",
+      "license_value": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/xunit/xunit",
+        "commit": "9712244020d385955d33136b3fe3e87de43539cd"
+      },
+      "notice_files": [],
+      "tested_native_assets": []
+    },
+    {
+      "package": "xunit.extensibility.core",
+      "version": "2.9.3",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "99ca555fe9b447b1747aff426819db6a2f60b6ee0655caa28c4b91a9ef3d0f48",
+      "contentHash": "kf3si0YTn2a8J8eZNb+zFpwfoyvIrQ7ivNk5ZYA5yuYk1bEtMe4DxJ2CF/qsRgmEnDr7MnW1mxylBaHTZ4qErA==",
+      "license_type": "expression",
+      "license_value": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/xunit/xunit",
+        "commit": "9712244020d385955d33136b3fe3e87de43539cd"
+      },
+      "notice_files": [],
+      "tested_native_assets": []
+    },
+    {
+      "package": "xunit.extensibility.execution",
+      "version": "2.9.3",
+      "scopes": [
+        "tests"
+      ],
+      "sha256": "dabc4cb360ede1c01c98e14cc0fe587774693f40679a22fc71794acac5d8d23c",
+      "contentHash": "yMb6vMESlSrE3Wfj7V6cjQ3S4TXdXpRqYeNEI3zsX31uTsGMJjEw6oD5F5u1cHnMptjhEECnmZSsPxB6ChZHDQ==",
+      "license_type": "expression",
+      "license_value": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/xunit/xunit",
+        "commit": "9712244020d385955d33136b3fe3e87de43539cd"
+      },
+      "notice_files": [],
+      "tested_native_assets": []
+    }
+  ],
+  "miniaudio_native_source": {
+    "version": "0.11.25",
+    "source_commit": "9634bedb5b5a2ca38c1ee7108a9358a4e233f14d",
+    "source_url": "https://github.com/mackron/miniaudio/tree/9634bedb5b5a2ca38c1ee7108a9358a4e233f14d",
+    "license_sha256": "457f1b500e0adf6bc059edddfa78a2f62012e7c3bb43476c20e0bd23b25ba0eb",
+    "license_notice": "tools/audio/notices/miniaudio-LICENSE",
+    "selected_license": "MIT No Attribution",
+    "provider_build_recipe": "https://github.com/HexaEngine/Hexa.NET.MiniAudio/blob/03b58b7e807af64ac42135b0c2f8cde2d8c9cada/.github/workflows/cmake.yml",
+    "limitations": "Recipe specifies upstream 0.11.25 and uses mutable cmake-actions v1.x.x; independent reproducible binary build not claimed."
+  }
+}

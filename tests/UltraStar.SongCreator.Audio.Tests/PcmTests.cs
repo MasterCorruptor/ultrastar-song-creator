@@ -86,4 +86,29 @@ public sealed class PcmTests
         var commands = Task.Run(() => { for (var i = 0; i < 1000; i++) { p.SeekFrame(i % 7000); p.Play(); p.Pause(); p.Stop(); } p.Dispose(); });
         await Task.WhenAll(render, commands); var output = new float[] { 1, 1 }; p.Render(output); Assert.All(output, v => Assert.Equal(0, v)); Assert.Equal(PlaybackState.Disposed, p.Snapshot.State);
     }
+
+    [Theory]
+    [InlineData(1, 1)]
+    [InlineData(1, 127)]
+    [InlineData(2, 13)]
+    [InlineData(2, 512)]
+    public void RenderChunksMatchReferenceSamplesAndTailExactly(int channels, int chunkFrames)
+    {
+        var input = Enumerable.Range(0, 1503 * channels).Select(i => (i % 101 - 50) / 50f).ToArray();
+        using var p = new PcmPlayback(new PcmClip(48000, channels, input)); p.SeekFrame(11); p.Play();
+        var output = new float[chunkFrames * channels]; long position = 11;
+        while (position < 1503)
+        {
+            p.Render(output); var consumed = Math.Min(chunkFrames, 1503 - position);
+            for (var f = 0; f < chunkFrames; f++) for (var c = 0; c < channels; c++)
+                Assert.Equal(f < consumed ? input[(position + f) * channels + c] : 0, output[f * channels + c]);
+            position += consumed; Assert.Equal(position, p.Snapshot.PositionFrames);
+        }
+        Assert.Equal(PlaybackState.Ended, p.Snapshot.State);
+    }
+    [Fact]
+    public void NativeLibraryIsLoadableAtThePinnedAbiVersion()
+    {
+        Assert.Equal("0.11.25", MiniAudioPlayback.NativeVersion);
+    }
 }
