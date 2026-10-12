@@ -31,7 +31,7 @@ Den innsendte `Master-plan-for-prosjektet-v0.5(1).txt` er bevart lokalt og ignor
 
 ## Miljø og utviklingskonvensjoner
 
-Dagens minimum er Git. GitHub CLI brukes til repository-opprettelse og synkronisering. C#/.NET 10 LTS + Avalonia med separat Python-analyse er godkjent i ADR-0001. Core bygges nå med .NET 10; global.json velger SDK 10.0.401 med latestPatch roll-forward innen samme feature band. Runtimepatch følger valgt SDK for testkjøringen; ingen egen produkt-runtimepakke er distribuert. Se kommandoene nedenfor og [testdependencyinventaret](CORE_DEPENDENCIES.md). GUI og øvrige runtime-/modellpakker er ikke implementert.
+Dagens minimum er Git. GitHub CLI brukes til repository-opprettelse og synkronisering. C#/.NET 10 LTS + Avalonia med separat Python-analyse er godkjent i ADR-0001. Core bygges nå med .NET 10; global.json velger SDK 10.0.401 med latestPatch roll-forward innen samme feature band. Runtimepatch følger valgt SDK for testkjøringen; ingen egen produkt-runtimepakke er distribuert. Se kommandoene nedenfor og [testdependencyinventaret](CORE_DEPENDENCIES.md). GUI-01 er integrert; øvrige runtime-/modellpakker er ikke implementert.
 
 Fase 1 har evaluert gjenbruk, Windows/Linux-støtte, kvalitet, integrerbarhet og lisens og er avsluttet 2026-10-08. Prosjekteieren godkjenner vesentlige teknologivalg. Når produktimplementering bestilles, dokumenteres faktiske runtime-versjoner, installasjon, eksterne verktøy/modeller og build-/testkommandoer. Lås eller avgrens versjoner når reproduksjon krever det.
 
@@ -130,7 +130,7 @@ Bestilt/avklart 2026-10-12: MusicBrainz og eksplisitt recording-/release-valg f�
 
 360/360 tester bestod på Windows og nettisolert Linux med SDK 10.0.401 (308 tidligere + 52 nye): query/Unicode, core-kandidater, HTTP-status/body/timeout/cancellation, felles throttle/cooldown, eksplisitt valg, frozen persistence, save/load, undo/redo og eksportens current metadata. Locked restore, Release build uten advarsler og formatkontroll bestod. Linux brukte eksisterende cache, egne artifacts og audit deaktivert kun under offline restore.
 
-En avgrenset live MusicBrainz-prøve av artist+tittel bestod, inkludert offline valgt-ID-rundtur; detaljer/begrensninger står i kontrakten. Ingen new dependency/lockfil/schema, Core-/Projects-/UltraStar-/ADR-/masterendring. Hosted CI og GUI er fortsatt ikke etablert.
+En avgrenset live MusicBrainz-prøve av artist+tittel bestod, inkludert offline valgt-ID-rundtur; detaljer/begrensninger står i kontrakten. Ingen new dependency/lockfil/schema, Core-/Projects-/UltraStar-/ADR-/masterendring. Hosted CI og acquisition-GUI er fortsatt ikke etablert.
 
 ## Nettmedia – Fase 3.3 integrert
 
@@ -152,3 +152,7 @@ Windows faktisk adapterprøve lastet eksplisitte originale audio-/videoformater,
 CI-malen er fortsatt ikke aktivert. Den historiske workflow-rettighetsblokkeringen er løst, men aktivering er en egen avgrenset oppgave og ikke del av Fase 3.3.
 
 Fase 3.3 REQUEST_FIX literal-paths: native staging-cwd og faste relative --output-navn erstatter rå absolutt output/--paths. 422/422 tester består på begge OS, med åtte native foreldresti-/cleanup-regresjoner. tools/acquisition/test_literal_paths.py validerer faktisk pinnet yt-dlp-template/path-oppførsel uten nett (venv-python på Windows, hashkontrollert wheel-import på Linux) og gjenskaper opprinnelig feil. Ingen nye pakker/nettmedia-smoke. Sti-rettingen er godkjent og inngår i integrasjonen. Kode/tests/tools er byteidentiske med verifisert 71afe4d; dokumentasjons-/mergeendringer alene begrunner ingen gjentakelse av testsett eller nettprober.
+
+## GUI-01 integrert
+
+[Startguide/kontrakt](GUI_01_TEST_SURFACE.md), [arbeidsordre](GUI_01_WORK_ORDER.md), [avsluttet plan](exec-plans/completed/gui-01-song-editing.md) og [faktisk pakkeinventar](GUI_01_DEPENDENCIES.json). Desktop og isolert Desktop.Tests er lagt til solution. Windows/Linux locked restore/Release build/test består (432 totalt); SDK-format består. Native Windows-scenarioene, inklusive input og normal close, er manuelt bekreftet bestått av prosjekteieren. Computer Use-fangst feilet; skjermbilde mangler. SUPERVISOR har godkjent acceptance, og GUI-01 integreres via [PR #10](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/10). Ingen videre blokk starter her.
