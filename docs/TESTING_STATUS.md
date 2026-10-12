@@ -41,3 +41,8 @@ Prosjekteieren har prioritert en tidlig fungerende Windows GUI-prototype. GUI-01
 ## Backend før neste GUI-binding
 
 Audio-01 er godkjent og integrert etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449/449 Windows/Linux, ekte Windows Wasapi/miniaudio-smoke og Linux native loading uten fysisk device. På reviewbranchen finnes nå [GUI-02 editor-binding](GUI_02_EDITOR_BINDING.md) med waveform/transport/synkronisert playhead og fortsatt noteoperasjon.490/490 Windows-tester består; native kombinert GUI/playback er ikke testet. Main er ikke oppdatert med kandidaten. Full prototype/alpha/release er ikke ferdig.
+
+
+## GUI-02 verifikasjon 2026-10-13
+
+[Native rapport/manuelle steg](GUI_02_NATIVE_VERIFICATION.md): Windows-kandidatvinduets faktiske lydinit/initialstatus og normal Alt+F4-prosessavslutning er bekreftet; screenshotfangst feilet. Kombinert visuell/hørbar acceptance gjenstår. Samlet kandidat har nå490/490 Windows og nettisolerte Linux-tester med locked restore/Release-build; ingen fysisk Linux-device. Draft PR13 er ikke merget og prototypemilepælen er ikke sluttgodkjent.

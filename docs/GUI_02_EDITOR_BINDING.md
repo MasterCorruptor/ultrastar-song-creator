@@ -25,3 +25,8 @@ Samlet Windows locked restore, Release solution build uten warnings/errors og490
 Samlet solution-formatkontroll avdekket fem whitespaceavvik i B-panelets switch-armer; kun formatering er korrigert uten API-/adferdsendring. verify-no-changes kontrolleres før commit. Ingen dependency-/lock-/Core-/Audio-/master-/ADR-endring.
 
 Headless gir ingen ny native GUI-/hørbarhet-/latencyakseptanse. Ingen ny Linux-/tone-/CU-test er kjørt. Ingen alpha/beta/installer/release eller generell filåpning/lagring/eksportflyt i GUI. Tidligere native Audio-01 og manuell GUI-01-evidens dekker ikke automatisk denne kombinerte kandidaten.
+
+
+## Verifikasjonsoppfølging 2026-10-13
+
+[Native rapport og manuell sluttest](GUI_02_NATIVE_VERIFICATION.md): faktisk Windows-vindu/lydinit og normal Alt+F4-prosessavslutning er observert. Skjermfangst feilet med FrameArrived timeout; knappe-/visuell/hørbar samlet acceptance gjenstår. Ny samlet nettisolert Linux Release-build/locked restore490/490 består. Tidligere avsnitt beskriver opprinnelig bindingordre; denne oppfølgingen gir fortsatt ingen fysisk Linux-device eller full prototypemilepæl.

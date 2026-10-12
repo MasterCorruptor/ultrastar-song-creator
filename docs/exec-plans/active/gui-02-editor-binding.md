@@ -22,3 +22,12 @@ FILES: EditorWindow.cs, EditorApplication.cs, ny Playback/EditorPlaybackSession.
 UNRESOLVED: ingen kjent headless-komponentblokker. Native kombinert GUI/playback/hørbarhet/normal close og ny Linux-akseptanse er ikke testet i denne ordren. Ingen alpha/release/decoder/filflyt/loop.
 
 NEXT RECOMMENDED STEP: SUPERVISOR-review av en draft PR, deretter separat avgrenset native Windows-prøve dersom godkjent. Ingen main-merge/PR12-lukking/ny oppgave. OWNER DECISION REQUIRED: NO. Eksakt kode-/checkpoint-SHA leveres i sluttrapport og PR; verifikasjonen gjelder kandidatens kode. Faktisk modell/reasoning ukjent; bestilt Sol Medium.
+
+
+## SMALL native-verifikasjon 2026-10-13
+
+SUPERVISOR godkjente3619d1f som kode/headless-checkpoint og bestilte avgrenset Windows-verifikasjon, ingen merge. Faktisk Windows-init i kandidatvinduet returnerte normalt;0s/Stoppet og aktive kontroller er accessibility-observert. En skjermfangst feilet med FrameArrived timed out: timed out waiting on channel. Klikk/visuell/hørbar prøve stoppet uten bypass eller capture-retries. Normal Alt+F4-lukking og avsluttet prosess bekreftet. Ingen ny source-cursorfremgang eller queue-latency målt.
+
+Eksisterende offline Linux-image/SDK/cache gjenbrukt: locked restore, Release-build0warnings/errors,490/490 tester består; egne artifacts. Ingen ny Windows-suite/build eller produktkodeendring. [Eksakt native evidens, outputhashes, grenser og seks manuelle steg](../../GUI_02_NATIVE_VERIFICATION.md).
+
+STATUS: CHECKPOINT, manuell samlet native-akseptanse gjenstår. NEXT: SUPERVISOR owner-facing testoppfølging. OWNER DECISION REQUIRED: NO (bruksakseptanse gjenstår). Faktisk modell/reasoning ukjent, bestilt Sol Medium. Faktisk kvote etter Linux:19% femtimer/55% uke; reset13Oct02:38/18Oct07:04 Oslo. Dokumentcheckpoint pushes på samme branch og draft PR13 oppdateres; main/PR12 bevares.
