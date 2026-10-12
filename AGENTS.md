@@ -14,7 +14,7 @@ Bruk avgrensede work/<oppgave>-brancher og konsistente checkpoint-commits. Integ
 
 ## Arkitektur og status
 
-Bevar acquisition/generation/editor-skillet, immutable intern sangmodell og undo/redo. Core har ikke formatparser/fil-I/O. Prosjektformat har eksplisitt versjonering/migrasjon; historisk v1 endres ikke stilltiende. Fase 1 og Fase 2.1–2.4 er integrert. Fase 3.1 gjelder lokal source/metadata etter docs/LOCAL_MEDIA.md. Ingen GUI finnes; videre deloppgaver avgrenses separat.
+Bevar acquisition/generation/editor-skillet, immutable intern sangmodell og undo/redo. Core har ikke formatparser/fil-I/O. Prosjektformat har eksplisitt versjonering/migrasjon; historisk v1 endres ikke stilltiende. Fase 1 og Fase 2.1–2.4 er integrert. Fase 3.1 gjelder lokal source/metadata etter docs/LOCAL_MEDIA.md. Fase 3.2 gir valgfritt katalogsøk/eksplisitt valg etter docs/RECORDING_SEARCH.md; aktuelle manuelle sangdata bevares. Ingen GUI finnes; videre deloppgaver avgrenses separat.
 
 ADR-0001/0002 er akseptert: .NET/Avalonia, Python-prosess, utskiftbar miniaudio-backend, eksplisitt umxhq og MIT egen kode med separate LGPL-forpliktelser. Analyse er forslag med confidence/manuell korreksjon; ASR-default er ikke fastsatt. Ikke omgjør vedtak uten bestilling.
 

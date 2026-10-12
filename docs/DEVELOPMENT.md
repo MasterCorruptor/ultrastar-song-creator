@@ -123,3 +123,11 @@ Solution har fire produktbiblioteker (Core/Projects/UltraStar/Acquisition), Core
 Praktisk Windows-smoke med den eksisterende minimale FFprobe 8.1.3-builden bestod for egen 2 s PCM-WAV og MPEG4/AAC-video: tags, varighet, manuell tittel, prosjekt-save/load, senere syntetisk note og pakettrundtur. En egen to-spors M4A bekreftet eksplisitt sporvalg og avvisning av tapsfull original-fileksport. Filene forble byteuendret. Ingen media/binærer/cacher eller maskinvareinformasjon publiseres.
 
 Linux-testene verifiserer normalisering/fil-I/O og den faktiske prosessgrensen med egen testhost; selve FFprobe-smoken i dette trinnet er kjørt på Windows. Ingen Linux-codec-/playback-/GUI-/installerakseptanse påstås. CI-malen inkluderer de nye lockfilene, men er fortsatt ikke aktivert. Ingen nettsøk/acquisition-provider, lyrics, analyse, GUI eller videre deloppgave er implementert.
+
+## Innspillingssøk – Fase 3.2
+
+Bestilt/avklart 2026-10-12: MusicBrainz og eksplisitt recording-/release-valg først, med mediesøk/nedlasting som senere leveranse. [Kontrakten](RECORDING_SEARCH.md) beskriver API, HTTP-grense/rate, normalisering, source-choice-v1 og datavilkår. Valget kan undo/redo-bindes til lokal source og lagres/gjenåpnes uten nett eller metadataoverskriving.
+
+360/360 tester bestod på Windows og nettisolert Linux med SDK 10.0.401 (308 tidligere + 52 nye): query/Unicode, core-kandidater, HTTP-status/body/timeout/cancellation, felles throttle/cooldown, eksplisitt valg, frozen persistence, save/load, undo/redo og eksportens current metadata. Locked restore, Release build uten advarsler og formatkontroll bestod. Linux brukte eksisterende cache, egne artifacts og audit deaktivert kun under offline restore.
+
+En avgrenset live MusicBrainz-prøve av artist+tittel bestod, inkludert offline valgt-ID-rundtur; detaljer/begrensninger står i kontrakten. Ingen new dependency/lockfil/schema, Core-/Projects-/UltraStar-/ADR-/masterendring. Hosted CI og GUI er fortsatt ikke etablert.
