@@ -23,3 +23,7 @@ Ingen lyrics, cover, generation, GUI/alpha, installer eller full Fase 3-avslutni
 ## Gjeldende checkpointkrav
 
 Prosjekteierautorisert SUPERVISOR-ordre av 2026-10-12 krever verifisert commit/checkpointrapport og stopp før integrasjon. Gjeldende fordeling er SEQUENTIAL med én implementasjonsagent. [Policyen](SUPERVISOR_POLICY.md) bevarer begge eierinstruksene; [checkpointet](exec-plans/active/phase3-media-download.md) er reviewgrunnlaget. Neste GUI-blokk starter ikke gjennom denne arbeidsordren.
+
+## Avgrenset REQUEST_FIX – 2026-10-12
+
+phase3-media-download-literal-paths er SMALL/SEQUENTIAL etter bekreftet P2 i faktisk yt-dlp-output-template/expand_path. Rett bokstavelige målmapper, også %(...)s, %VAR%, $VAR/${VAR} og vanlig prosent/dollar, uten scope-/dependencyendring. Native cleanup-/publiseringsregresjon og faktisk pinnet offline yt-dlp-probe på Windows/Linux; pushet korrigert checkpoint og stopp for SUPERVISOR-review. Ingen ny nett-smoke/GUI/merge.

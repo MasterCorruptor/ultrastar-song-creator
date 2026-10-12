@@ -150,3 +150,5 @@ API-sekvens: SearchAsync → brukerens eksplisitte source-URL → ResolveAsync �
 Windows faktisk adapterprøve lastet eksplisitte originale audio-/videoformater, inspiserte/hashkontrollerte dem, bevarte eiermetadata gjennom offline save/load og pakket to eksportassets. Privat smoke har egen syntetisk note for eksport; den er ingen sanggenerering, produktdefault eller kvalitets-/tilgjengelighetsgaranti. Private medier, rå data/signed URLs, runtime/binærer og konto-/maskindata publiseres ikke.
 
 CI-malen er fortsatt ikke aktivert. Den historiske workflow-rettighetsblokkeringen er løst, men aktivering er en egen avgrenset oppgave og ikke del av Fase 3.3.
+
+Fase 3.3 REQUEST_FIX literal-paths: native staging-cwd og faste relative --output-navn erstatter rå absolutt output/--paths. 422/422 tester består på begge OS, med åtte native foreldresti-/cleanup-regresjoner. tools/acquisition/test_literal_paths.py validerer faktisk pinnet yt-dlp-template/path-oppførsel uten nett (venv-python på Windows, hashkontrollert wheel-import på Linux) og gjenskaper opprinnelig feil. Ingen nye pakker/nettmedia-smoke. Korrigert checkpoint venter SUPERVISOR-review.

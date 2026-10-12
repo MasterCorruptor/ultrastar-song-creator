@@ -69,3 +69,7 @@ Etter review velges CONTINUE (godkjenn/ny avgrenset ordre), REQUEST_FIX (konkret
 Varig kunnskap finnes i commits/docs/ADR-er/relevante exec-planer/checkpoints. Kortvarig koordinering/logg ligger i ignorert .agent-local/. Ikke anta delt chat-kontekst eller krev at eieren gjenforteller tilgjengelig repo-status. AGENT rapporterer Fase 3.3 i repo/egen sluttrapport; ingen returmelding til SUPERVISOR-chatten er autorisert her.
 
 SUPERVISOR kan selv bestemme sekvens/parallellisme, antall workers, scope, modell/reasoning, branchfordeling, checkpoint og reset-venting innen mandatet. Prinsippet er tydelig eierskap → avgrenset arbeid → passende modell → verifisert checkpoint → supervisorreview → kontrollert integrasjon.
+
+## Automatisk review – operativt eiertillegg 2026-10-12
+
+Eieren har bestilt automatisk SUPERVISOR-review, godkjenning og videreføring innen mandatet uten manuell påminnelse. SUPERVISOR følger opp hvert tiende minutt; faktisk acceptance/evidens, kvote og stopp-/eskaleringsregler gjelder fortsatt. AGENT leverer checkpoint i repo/egen sluttrapport og stopper når arbeidsordren krever review. Dette er arbeidsflytoppfølging, ikke aktivering av produkt-GUI eller hosted CI. Konto-/chat-/automatiserings-ID-er lagres ikke i offentlig repository.

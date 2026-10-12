@@ -1,8 +1,8 @@
 # Fase 3.3 – checkpoint for SUPERVISOR-review
 
-Dato: 2026-10-12. STATUS: CHECKPOINT. TASK: phase3-media-download. MODEL USED: ukjent; faktisk modell/reasoning er ikke eksponert i denne agentkonteksten. BRANCH: work/phase3-media-download.
+Dato: 2026-10-12. STATUS: CHECKPOINT. TASK: phase3-media-download-literal-paths (REQUEST_FIX). MODEL USED: ukjent; faktisk modell/reasoning er ikke eksponert. Bestilt av SUPERVISOR: gpt-6.1-sol / medium; dette er bestilt innstilling, ikke en bekreftet observasjon. BRANCH: work/phase3-media-download.
 
-LAST COMMIT (verifisert kodecheckpoint): ce2fa1edcb9cdc89192e891926f2ef248cc8e1f3. Denne rapporten og øvrig dokumentasjon kommer i et påfølgende dokumentasjonscheckpoint; siste branch-commit leses fra Git/finalrapporten. Base/stabil main er a6263580f2af286d95e65666124cb04761b71162. Arbeidsbranch er ikke integrert. Ingen neste implementasjonsblokk startes før SUPERVISOR-review.
+LAST COMMIT (verifisert kodecheckpoint): 71afe4d77ce40e9b3c8c9376e0fac61f40da5910. Denne rapporten og øvrig dokumentasjon kommer i et påfølgende dokumentasjonscheckpoint; siste branch-commit leses fra Git/finalrapporten. Base/stabil main er a6263580f2af286d95e65666124cb04761b71162. Arbeidsbranch er ikke integrert. Ingen neste implementasjonsblokk startes før SUPERVISOR-review.
 
 [Arbeidsordre](../../PHASE3_MEDIA_DOWNLOAD_WORK_ORDER.md), [API-/lagringskontrakt](../../ONLINE_MEDIA.md) og [varig SUPERVISOR-policy](../../SUPERVISOR_POLICY.md). Policyen bevarer operative vedtak fra begge eierinstruksene, uten maskin-/kontodata. Gjeldende oppdeling er SEQUENTIAL med én implementasjonsagent.
 
@@ -48,3 +48,19 @@ Ingen kjent blokkerende feil for dette avgrensede checkpointet. Begrensninger: Y
 SUPERVISOR reviewer faktisk branch-diff, evidence og policy, og velger CONTINUE/REQUEST_FIX/STOP_FOR_RESET/ESCALATE_TO_OWNER. Ved CONTINUE: integrer Fase 3.3 kontrollert før neste separat bestilte GUI-testflate. Første GUI-blokk er avgrenset til Windows Avalonia, deterministisk ekte Song, timeline/noter, reell MoveNote og undo/redo/validering. Playback/waveform/seek er senere separat blokk. Felles kontrakter skal være reviewet/committet før eventuell parallellisering, og kvoten kontrolleres på nytt før ny MEDIUM-blokk.
 
 OWNER DECISION REQUIRED: NO. Rutinemessige reversible valg holder seg innen eiermandatet. Ingen melding tilbake til SUPERVISOR-chatten er autorisert; checkpoint/finalrapport er informasjonskanalen.
+
+## REQUEST_FIX – bokstavelige nedlastingsstier
+
+Review av 663fcb7 fant blokkerende P2: rå absolutt --output var både output-template og expand_path-input i faktisk pinnet yt-dlp. Prosentmaler/miljøvariabler i lovlige foreldremapper kunne skrive utenfor eid staging og unndra output fra overvåking/cleanup.
+
+COMPLETED: ProbeProcess har valgfri native WorkingDirectory. YtDlpMediaSource sender staging gjennom denne OS-egenskapen og kun audio.m4a/video.mp4 til --output; --paths er fjernet. Metadataoperasjoner/eksisterende FFprobe-kall beholder tidligere cwd. Ingen global cwd, escaping-gjetning, nye providers/runtimes eller schemaendring.
+
+VERIFICATION: locked restore/Release build/format + verify-no-changes består. 422/422 på Windows og nettisolert Linux, 0 warnings/errors. Åtte nye native child-testcases for %(title)s, %(id)s, %PATH%, $PATH, ${PATH}, vanlig/dobbel prosent/dollar og mellomrom/Unicode. Hver dekker publisert lyd/video, feil og cancellation etter lydfil; ingen utilsiktede søskenmapper, eid stage ryddes. Eksisterende bytegrense/filbevaring består.
+
+Faktisk yt-dlp 2026.08.19 offline-probe: 16 korrekte filer per OS; originalfeil gjenskapt i 12/10 rå-template-resultater og 8/4 rå-paths-resultater på Windows/Linux. Faktisk CLI-parsing/prepare_filename/get_output_path, ingen raw-output-mock. Windows brukte eksisterende pinnet venv; Linux hashkontrollert wheel-import i eksisterende Python 3.12.3 uten installasjon, network none. Sockets sperres også i proben.
+
+Reproduser [proben](../../../tools/acquisition/test_literal_paths.py): Windows konfigurert venv-python -I -X utf8 tools/acquisition/test_literal_paths.py; Linux python3 tools/acquisition/test_literal_paths.py --wheel /absolute/path/to/yt_dlp-2026.8.19-py3-none-any.whl i nettisolert testmiljø.
+
+FILES / MODULES CHANGED: ProbeProcess/YtDlpMediaSource, interne test-runner-signaturer, native regresjoner/offline-probe, ONLINE_MEDIA/utviklings-/arbeidsordre/checkpoint og kort automatisk-review-policy. Ingen ny nettmedia-smoke; opprinnelig Windows-nettprøve ovenfor er historisk evidens, ikke kjørt på nytt etter rettingen.
+
+UNRESOLVED: korrigert checkpoint venter SUPERVISOR-review; tidligere avgrensninger består. NEXT RECOMMENDED STEP: review avgrenset korrigering, velg reviewstatus og integrer bare ved godkjenning. Ingen merge/GUI-start. OWNER DECISION REQUIRED: NO. Automatisk review-tillegg er dokumentert i SUPERVISOR_POLICY; ingen returmelding kreves.
