@@ -1,6 +1,6 @@
 # Hva kan testes nå?
 
-Status 2026-10-12: ingen alpha-/beta eller installer. Første avgrensede GUI-01 testflate finnes på arbeidsbranch før review; [startguide og begrensninger](GUI_01_TEST_SURFACE.md). Solution bygger nå også Desktop.exe. Native input/normal close er ikke verifisert.
+Status 2026-10-12: ingen alpha-/beta eller installer. Første avgrensede GUI-01 testflate finnes på arbeidsbranch før review; [startguide og begrensninger](GUI_01_TEST_SURFACE.md). Solution bygger nå også Desktop.exe. Native input og normal close er manuelt verifisert av prosjekteieren med forventet resultat; endelig review gjenstår.
 
 ## Dagens funksjoner
 

@@ -155,4 +155,4 @@ Fase 3.3 REQUEST_FIX literal-paths: native staging-cwd og faste relative --outpu
 
 ## GUI-01 checkpoint
 
-[Startguide/kontrakt](GUI_01_TEST_SURFACE.md), [arbeidsordre](GUI_01_WORK_ORDER.md), [aktiv plan](exec-plans/active/gui-01-song-editing.md) og [faktisk pakkeinventar](GUI_01_DEPENDENCIES.json). Desktop og isolert Desktop.Tests er lagt til solution. Windows/Linux locked restore/Release build/test består (432 totalt); SDK-format består. Native Windows-start er observert, men input/screenshot/normal close avventer apptillatelse; ingen merge eller videre blokk.
+[Startguide/kontrakt](GUI_01_TEST_SURFACE.md), [arbeidsordre](GUI_01_WORK_ORDER.md), [aktiv plan](exec-plans/active/gui-01-song-editing.md) og [faktisk pakkeinventar](GUI_01_DEPENDENCIES.json). Desktop og isolert Desktop.Tests er lagt til solution. Windows/Linux locked restore/Release build/test består (432 totalt); SDK-format består. Native Windows-scenarioene, inklusive input og normal close, er manuelt bekreftet bestått av prosjekteieren. Computer Use-fangst feilet; skjermbilde mangler. Endelig SUPERVISOR-review gjenstår; ingen merge eller videre blokk.

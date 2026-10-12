@@ -25,7 +25,7 @@ Start-Desktop.ps1 er prøvd på Windows: locked restore/build bestod uten advars
 
 ## GUI-01 native-smoke – separat SMALL-ordre 2026-10-12
 
-STATUS: CHECKPOINT (native acceptance fortsatt ufullstendig). TASK: gui-01-native-smoke. MODEL USED: ukjent; bestilt Sol Medium. SEQUENTIAL, én worker. Base/kodecheckpoint: 1f95b8c14e202cdbdb9d9adf303aceea0202fe1e. Egen kvote før start: 97 % femtimer / 67 % uke gjenstår, faktisk avlest etter reset. SUPERVISORs kode-/pakkehashreview godkjente ingen full acceptance og ingen merge. Denne delen er gjeldende native status; tidligere apptidsavbrudd ovenfor er historisk.
+STATUS: CHECKPOINT (native acceptance fortsatt ufullstendig). TASK: gui-01-native-smoke. MODEL USED: ukjent; bestilt Sol Medium. SEQUENTIAL, én worker. Base/kodecheckpoint: 1f95b8c14e202cdbdb9d9adf303aceea0202fe1e. Egen kvote før start: 97 % femtimer / 67 % uke gjenstår, faktisk avlest etter reset. SUPERVISORs kode-/pakkehashreview godkjente ingen full acceptance og ingen merge. Denne delen dokumenterer det historiske automatiseringsforsøket; gjeldende native status følger under manuell eierverifikasjon.
 
 | Native scenario | Faktisk observert resultat |
 | --- | --- |
@@ -42,3 +42,23 @@ COMPLETED: avgrenset verifikasjonsforsøk, presist fangst-/inputhinder og manuel
 VERIFICATION: repo/remote checkpoint og main identitet kontrollert; source/tests/tools fortsatt identiske med 1f95b8c. Dokumentlenker/inventar/privacy/whitespace kontrolleres før commit. Tidligere 432 Windows/Linux-tester/build/format gjenbrukes uten gjentakelse; denne ordren endrer bare dokumentasjon. PR #10 holdes draft, main 005a708 bevart. FILES: denne aktive planen og GUI_01_TEST_SURFACE, arbeidsordrens native-tillegg. LAST COMMIT rapporteres fra Git etter dokumentasjonscommit/push.
 
 UNRESOLVED: skjermfangst/input-geometri hindrer native acceptance. NEXT RECOMMENDED STEP: SUPERVISOR vurderer reparert appkontroll eller konkret manuell eierprøve (Hei→2,5→Angre/Gjør om; NaN/-1/7,5; start3-overlapp; vanlig X-lukking). Ikke ny funksjonsblokk/merge. OWNER DECISION REQUIRED: ingen ny teknologigodkjenning; manuell verifikasjon kan kreve eierens praktiske medvirkning.
+
+## Manuell eierverifikasjon – 2026-10-12
+
+STATUS: CHECKPOINT, native scenarioer bestått manuelt; endelig SUPERVISOR-review gjenstår. TASK: gui-01-native-smoke. MODEL USED: ukjent; bestilt Sol Medium. BRANCH: work/gui-01-song-editing. Kode/tests/tools identiske med 1f95b8c.
+
+Eieren opplyste at annen samtidig datamaskinbruk hadde skjedd under klikktesten. Ett nytt foreground-forsøk gjennom samme Computer Use-workflow fikk fortsatt FrameArrived timed out og ble straks stoppet. Årsaken er ikke teknisk bekreftet; ingen produktdefekt påstås. Ingen ny tillatelsesforespørsel/alternativ automation brukt.
+
+Etter den konkrete firepunkts manuelle oppskriften bekreftet prosjekteieren direkte: «Alle tester er bestått med forventet resultat».
+
+| Native scenario | Evidens/resultat |
+| --- | --- |
+| Hei-valg, flytt start1→2,5 | Eierens manuelle test: forventet valg/starttid/blokkoppdatering bestått. |
+| Angre→1, Gjør om→2,5 | Eierens manuelle test: forventet gjenoppretting bestått. Eksakte snapshotreferanser er tidligere headless-evidens. |
+| NaN, −1, 7,5 | Eierens manuelle test: avvisning uten endret note bestått. |
+| Start3 | Eierens manuelle test: forventet overlapp-warning bestått. |
+| Normal X-lukking | Eierens manuelle test: bestått. Separat prosesskontroll etter bekreftelsen viste 0 GUI-01-prosesser, uten nytt UI-input. |
+
+COMPLETED: native scenario-gap lukket med eksplisitt menneskelig evidens. VERIFICATION: bare dokumentasjon/status endret; tidligere 432 Windows/Linux/build/format gjenbrukes kildeidentisk, ingen suite/build/restore gjentas. Dokumentlenker/privacy/whitespace og git/sourceidentitet kontrolleres. FILES: testguide, denne aktive planen og korte statushenvisninger i AGENTS/README/TESTING_STATUS/DEVELOPMENT.
+
+UNRESOLVED: ingen gjenværende native scenario-gap etter eierens bekreftelse; automatisert fangst/screenshot er fortsatt utilgjengelig. Ingen native Linux-GUI, lyd eller release inngår. NEXT RECOMMENDED STEP: endelig SUPERVISOR-review og uttrykkelig integrasjonsordre. PR #10 holdes draft; ingen merge/ny blokk. OWNER DECISION REQUIRED: NO. LAST COMMIT leses fra Git/finalrapport etter dokumentasjonscommit.

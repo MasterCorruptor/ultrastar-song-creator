@@ -72,4 +72,4 @@ Core/Projects/UltraStar krever ingen Python, modeller eller mediefiler; restore 
 
 ## Første GUI-testflate
 
-GUI-01 finnes på arbeidsbranch, før SUPERVISOR-review. [Startguide og faktiske begrensninger](docs/GUI_01_TEST_SURFACE.md). Den viser egen testsang og støtter notevalg/flytting/angre/gjør om; ingen lyd eller filåpning. Native input-smoke gjenstår, ingen alpha/release påstås.
+GUI-01 finnes på arbeidsbranch, før SUPERVISOR-review. [Startguide og faktiske begrensninger](docs/GUI_01_TEST_SURFACE.md). Den viser egen testsang og støtter notevalg/flytting/angre/gjør om; ingen lyd eller filåpning. Manuell native Windows-smoke er bekreftet bestått av prosjekteieren; endelig review gjenstår, ingen alpha/release påstås.
