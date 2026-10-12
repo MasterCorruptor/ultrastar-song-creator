@@ -10,6 +10,8 @@ Fase 0 er etablert. **Fase 1 er avsluttet og godkjent av prosjekteieren 2026-10-
 
 **Fase 3.1 er implementert og verifisert 2026-10-11:** lokal filinspeksjon, filmetadata/manuelle overrides og lagret source-proveniens. Originalfiler refereres uten kopiering. [Kontrakt](docs/LOCAL_MEDIA.md) og [teststatus for prosjekteieren](docs/TESTING_STATUS.md). Det finnes ennå ingen alpha/beta-app eller produkt-.exe.
 
+**Fase 3.2 er implementert og verifisert 2026-10-12:** MusicBrainz-søk på artist/tittel, eksplisitt recording-/utgivelsesvalg og offline lagret katalogproveniens. Manuelle sangdata bevares. [Kontrakt og verifikasjon](docs/RECORDING_SEARCH.md). Ingen medienedlasting eller GUI inngår.
+
 ## Prosjektkilder
 
 - [Master Project Specification v0.5](docs/PROJECT_MASTER.md) er prosjektets autoritative masterspesifikasjon.

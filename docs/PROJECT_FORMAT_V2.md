@@ -17,3 +17,5 @@ Guid-ID-er, song-data og arrayrekkefølge forblir uendret gjennom migrasjonen. D
 ## Lokal medieproveniens – Fase 3.1
 
 Eksisterende generisk importedSource kan også ha formatId local-media-v1 etter [source-kontrakten](LOCAL_MEDIA.md). Tekniske felt, tags og eksplisitt stream-valg lagres uten schemaendring. Aktuelle manuelle Song.Metadata-verdier beholder forrang. Load åpner ikke originalmediet eller starter FFprobe; absolutte originalreferanser må fortsatt finnes ved faktisk bruk/eksport. Historiske v1/v2-felter og migrasjon er uendret.
+
+Fase 3.2 kan legge catalog.recording.choice.v1 til den lokale source-profilen, med et eget version=1 og frosne DTO-er etter [katalogkontrakten](RECORDING_SEARCH.md). Dette endrer ikke prosjektets root-schema, opprinnelige lokale tags eller current song. Gjenåpning leser valget offline; provider-metadata overskriver ikke manuelle felt.

@@ -1,12 +1,13 @@
 # Hva kan testes nå?
 
-Status 2026-10-11: det finnes ingen alpha-/betaversjon av UltraStar Song Creator med brukergrensesnitt og ingen produkt-.exe/installer. Dagens implementering er kjernemoduler og Acquisition-API. Å bygge solution lager biblioteker og testverktøy.
+Status 2026-10-12: det finnes ingen alpha-/betaversjon av UltraStar Song Creator med brukergrensesnitt og ingen produkt-.exe/installer. Dagens implementering er kjernemoduler og Acquisition-API. Å bygge solution lager biblioteker og testverktøy.
 
 ## Dagens funksjoner
 
 - Sangmodell, validering og MoveNote med undo/redo.
 - Prosjektlagring/gjenåpning, UltraStar-import og eksport med komplett sangmappe.
 - Fase 3.1: lokal filinspeksjon, metadata/manuelle overrides, stream-valg og lagret proveniens.
+- Fase 3.2: valgfritt MusicBrainz-søk og eksplisitt innspillingsvalg etter [kontrakten](RECORDING_SEARCH.md), med offline lagring.
 
 Disse har ennå ingen filvelger, menyer, playbackknapper eller visuell redigering. Manuell overstyring skjer via API.
 
@@ -32,4 +33,4 @@ Den lokale illustrasjonen .agent-local/phase1/timeline-results/timeline-0-8.png 
 
 En meningsfull alpha trenger en sammenhengende brukerflate: åpne/opprette prosjekt, vise sangdata, gjøre en avgrenset redigering, lagre og eksportere med forståelige feil. Playback/timeline kommer som avgrenset editorarbeid. Masterplanen legger Acquisition i Fase 3, Generation i Fase 4 og editor i Fase 5. En tidligere testflate er et eget prioriteringsvalg for prosjekteieren.
 
-Ingen GUI eller alpha-distribusjon er startet gjennom Fase 3.1.
+Ingen GUI eller alpha-distribusjon er startet gjennom Fase 3.1/3.2.
