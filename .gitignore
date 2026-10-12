@@ -37,3 +37,7 @@ Desktop.ini
 /tests/**/obj/
 /TestResults/
 **/TestResults/
+
+# Audio verification harness outputs
+/tools/audio/**/bin/
+/tools/audio/**/obj/
