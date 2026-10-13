@@ -105,7 +105,7 @@ public sealed class RecordingChoiceTests
         await store.SaveAsync(path, song);
         var before = await File.ReadAllBytesAsync(path);
         var loaded = await store.LoadAsync(path); // No provider exists in this test.
-        Assert.Equal(2, loaded.SchemaVersion);
+        Assert.Equal(3, loaded.SchemaVersion);
         Assert.Equal(song.Metadata, loaded.Song.Metadata);
         Assert.Equal(song.ImportedSource!.Headers.ToArray(), loaded.Song.ImportedSource!.Headers.ToArray());
         var choice = RecordingChoices.Read(loaded.Song)!;

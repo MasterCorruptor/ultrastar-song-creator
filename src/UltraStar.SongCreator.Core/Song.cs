@@ -13,6 +13,7 @@ public sealed record Song
     public ImmutableArray<Phrase> Phrases { get; init; } = [];
     public AnalysisData Analysis { get; init; } = new();
     public SourceDocument? ImportedSource { get; init; }
+    public SelectedLyrics? SelectedLyrics { get; init; }
 }
 
 public sealed record SongMetadata

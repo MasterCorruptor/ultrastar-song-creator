@@ -5,10 +5,10 @@ using UltraStar.SongCreator.Core;
 
 namespace UltraStar.SongCreator.Projects;
 
-internal static class ProjectJson
+internal static partial class ProjectJson
 {
     internal const string Format = "ultrastar-song-creator";
-    internal const int Version = 2;
+    internal const int WriterVersion = 3;
 
     private static readonly JsonSerializerOptions Options = new()
     {
@@ -34,12 +34,13 @@ internal static class ProjectJson
         Validate(song);
         try
         {
-            var document = new EnvelopeV2
+            var document = new EnvelopeV3
             {
                 Format = Format,
-                SchemaVersion = Version,
+                SchemaVersion = WriterVersion,
                 Song = SongDocument.From(song),
-                ImportedSource = song.ImportedSource is null ? null : SourceDocumentDto.From(song.ImportedSource)
+                ImportedSource = song.ImportedSource is null ? null : SourceDocumentDto.From(song.ImportedSource),
+                SelectedLyrics = song.SelectedLyrics is null ? null : SelectedLyricsV3Dto.From(song.SelectedLyrics)
             };
             return JsonSerializer.SerializeToUtf8Bytes(document, Options);
         }
@@ -59,24 +60,35 @@ internal static class ProjectJson
             CheckDuplicateProperties(json.RootElement);
             var root = json.RootElement;
             if (root.ValueKind != JsonValueKind.Object ||
-                !root.TryGetProperty("format", out var format) || format.ValueKind != JsonValueKind.String || format.GetString() != Format ||
+                !root.TryGetProperty("format", out var format) || format.ValueKind != JsonValueKind.String || ReadJsonString(format) != Format ||
                 !root.TryGetProperty("schemaVersion", out var version) || version.ValueKind != JsonValueKind.Number || !version.TryGetInt32(out var number))
                 throw new ProjectFormatException(ProjectError.InvalidEnvelope, "Missing/invalid project format or schemaVersion.");
             Song song;
-            if (number == 1)
+            switch (number)
             {
-                var legacy = JsonSerializer.Deserialize<Envelope>(input.Span, Options)
-                    ?? throw new JsonException("Project document is null.");
-                song = legacy.Song.ToSong(); // v1 migration adds no invented source metadata.
+                case 1:
+                    var legacy = JsonSerializer.Deserialize<Envelope>(input.Span, Options)
+                        ?? throw new JsonException("Project document is null.");
+                    song = legacy.Song.ToSong(); // No invented source or lyrics on legacy migration.
+                    break;
+                case 2:
+                    var v2 = JsonSerializer.Deserialize<EnvelopeV2>(input.Span, Options)
+                        ?? throw new JsonException("Project document is null.");
+                    song = v2.Song.ToSong() with { ImportedSource = v2.ImportedSource?.ToSource() };
+                    break;
+                case 3:
+                    PreflightSelectedLyrics(root);
+                    var v3 = JsonSerializer.Deserialize<EnvelopeV3>(input.Span, Options)
+                        ?? throw new JsonException("Project document is null.");
+                    song = v3.Song.ToSong() with
+                    {
+                        ImportedSource = v3.ImportedSource?.ToSource(),
+                        SelectedLyrics = v3.SelectedLyrics?.ToSelected()
+                    };
+                    break;
+                default:
+                    throw new ProjectFormatException(ProjectError.UnsupportedVersion, $"Unsupported project schema version: {number}.");
             }
-            else if (number == Version)
-            {
-                var current = JsonSerializer.Deserialize<EnvelopeV2>(input.Span, Options)
-                    ?? throw new JsonException("Project document is null.");
-                song = current.Song.ToSong() with { ImportedSource = current.ImportedSource?.ToSource() };
-            }
-            else
-                throw new ProjectFormatException(ProjectError.UnsupportedVersion, $"Unsupported project schema version: {number}.");
             return (song, Validate(song), number);
         }
         catch (JsonException e)
@@ -101,12 +113,21 @@ internal static class ProjectJson
             var names = new HashSet<string>(StringComparer.Ordinal);
             foreach (var property in element.EnumerateObject())
             {
-                if (!names.Add(property.Name)) throw new JsonException("Duplicate JSON property.");
+                string name;
+                try { name = property.Name; }
+                catch (InvalidOperationException e) { throw new JsonException("Invalid Unicode in JSON property name.", e); }
+                if (!names.Add(name)) throw new JsonException("Duplicate JSON property.");
                 CheckDuplicateProperties(property.Value);
             }
         }
         else if (element.ValueKind == JsonValueKind.Array)
             foreach (var item in element.EnumerateArray()) CheckDuplicateProperties(item);
+    }
+
+    private static string? ReadJsonString(JsonElement value)
+    {
+        try { return value.GetString(); }
+        catch (InvalidOperationException e) { throw new JsonException("Invalid Unicode in JSON string.", e); }
     }
 
     private static T Required<T>(T? value) where T : class =>

@@ -1,0 +1,19 @@
+{
+  "format": "ultrastar-song-creator",
+  "schemaVersion": 2,
+  "song": {
+    "id": "10000000-0000-0000-0000-000000000001",
+    "metadata": {"title": "Independent v2 Æ", "artist": "Owner", "language": null},
+    "media": [{"id": "10000000-0000-0000-0000-000000000002", "kind": "audio", "location": "../media/a.wav", "source": "local"}],
+    "audioOffsetSeconds": -0.125,
+    "videoOffsetSeconds": 1.5,
+    "beatsPerMinute": 123.25,
+    "phrases": [{"id": "10000000-0000-0000-0000-000000000003", "startSeconds": 1, "endSeconds": 3,
+      "notes": [{"id": "10000000-0000-0000-0000-000000000004", "startSeconds": 1.25, "durationSeconds": 0.5,
+        "midiPitch": 64, "text": "Own ", "type": "rap", "confidence": null, "analysisReferences": []}]}],
+    "analysis": {"artifacts": []}
+  },
+  "importedSource": {"formatId": "ultrastar-v1", "fileReference": "source/original.txt", "headers": [
+    {"name": "TITLE", "value": "Old claim"}, {"name": "x-Choice", "value": " first "},
+    {"name": "x-Choice", "value": "second"}, {"name": "AU", "value": "instrumental"}]}
+}
