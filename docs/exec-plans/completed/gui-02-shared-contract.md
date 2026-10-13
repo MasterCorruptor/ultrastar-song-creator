@@ -21,4 +21,4 @@ UNRESOLVED: ingen kjent blokkerende feil i mappingen; waveform/presenter/panel/w
 
 Kvote ved verifisert kontraktcheckpoint:49%femtimer/59%uke gjenstår, faktisk avlest. Ingen samtidig worker startet; samlet neste ressursvurdering tilhører SUPERVISOR.
 
-Godkjent kontraktcommit: 67bf70e6d8bc30c8c7d4caad3754a4a160ee0eb2. Komponenter og [editor binding](../active/gui-02-editor-binding.md) er senere separate leveranser. PR12 er fortsatt referanse, ikke merget.
+Godkjent kontraktcommit: 67bf70e6d8bc30c8c7d4caad3754a4a160ee0eb2. Komponenter og [editor binding](gui-02-editor-binding.md) er senere separate leveranser. PR12 er fortsatt referanse, ikke merget.

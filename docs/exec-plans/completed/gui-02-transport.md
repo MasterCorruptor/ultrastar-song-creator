@@ -32,4 +32,4 @@ NEXT RECOMMENDED STEP: SUPERVISOR-review av pushet B-checkpoint, deretter separa
 
 Ressursstatus sist levert av SUPERVISOR før siste retting: 33% femtimer / 57% uke igjen; reset 13Oct02:38 / 18Oct07:04 Oslo. Faktisk modell/reasoning er ikke eksponert og rapporteres ukjent (bestilt Sol Medium). Verifikasjonen gjelder kodefilene i dette checkpointets commit; eksakt SHA leveres i sluttrapporten.
 
-Godkjent B-commit: 14b81dbd8ba57b5ea7753751052c08d4bfb87e10. Fortsettelse: [editor binding](../active/gui-02-editor-binding.md).
+Godkjent B-commit: 14b81dbd8ba57b5ea7753751052c08d4bfb87e10. Fortsettelse: [editor binding](gui-02-editor-binding.md).

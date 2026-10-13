@@ -18,7 +18,7 @@ Bevar acquisition/generation/editor-skillet, immutable sangmodell og undo/redo. 
 
 ADR-0001/0002 er akseptert: .NET/Avalonia, Python-prosess, utskiftbar miniaudio-backend, eksplisitt umxhq og MIT egen kode med separate LGPL-forpliktelser. Analyse er forslag med confidence/manuell korreksjon; ASR-default er ikke fastsatt. Ikke omgjør vedtak uten bestilling.
 
-SUPERVISOR koordinerer/reviewer; AGENT implementerer etter docs/SUPERVISOR_POLICY.md. GUI-02: A/B er godkjent; sekvensiell editor-binding avventer review.
+SUPERVISOR koordinerer/reviewer; AGENT implementerer etter docs/SUPERVISOR_POLICY.md. GUI-02 er integrert og eiertestet; se docs/GUI_02_EDITOR_BINDING.md.
 
 ## Verifikasjon og stopp
 

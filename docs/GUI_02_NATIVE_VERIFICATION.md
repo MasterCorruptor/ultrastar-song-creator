@@ -1,8 +1,8 @@
 # GUI-02 native Windows verification
 
-2026-10-13 (Europe/Oslo). STATUS: CHECKPOINT; manuell native Windows-akseptanse bekreftet av prosjekteieren, avventer SUPERVISOR-sluttreview. SMALL/SEQUENTIAL/en worker; bestilt Sol Medium, faktisk modell/reasoning ukjent. SUPERVISOR-ordre etter godkjent kode/headless-checkpoint; ingen mergeordre.
+2026-10-13 (Europe/Oslo). STATUS: COMPLETE; manuell native Windows-akseptanse bekreftet av prosjekteieren og SUPERVISOR-sluttgodkjent. PR13 er integrert som f5132145c6466d6815fb6b4ee857c4e7c15702b3. SMALL/SEQUENTIAL/en worker; bestilt Sol Medium, faktisk modell/reasoning ukjent. SUPERVISOR-ordre etter godkjent kode/headless-checkpoint; ingen mergeordre.
 
-Kandidatkode: 3619d1f18f7a27c9237f30c7e2d96caf46d61ee1, work/gui-02-editor-binding, [draft PR13](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/13). Ingen kilde-, test-, pakke- eller lockendringer i denne verifikasjonen. [Bindingkontrakt](GUI_02_EDITOR_BINDING.md), [Audio-kontrakt](AUDIO_PLAYBACK.md), [aktiv rapport](exec-plans/active/gui-02-editor-binding.md).
+Kandidatkode: 3619d1f18f7a27c9237f30c7e2d96caf46d61ee1, work/gui-02-editor-binding, [merget PR13](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/13). Ingen kilde-, test-, pakke- eller lockendringer i denne verifikasjonen. [Bindingkontrakt](GUI_02_EDITOR_BINDING.md), [Audio-kontrakt](AUDIO_PLAYBACK.md), [avsluttet rapport](exec-plans/completed/gui-02-editor-binding.md).
 
 ## Faktisk Windows-prøve
 
@@ -47,7 +47,7 @@ Start fra repo-roten på work/gui-02-editor-binding:
 
 Rapporter bestått/feil per steg, spesielt hørbarhet og visuell synkronisering. Ingen systemvolum endres av testen. Render-cursor er source-position, ikke målt høyttalertid; OS/device kan ha bufret lyd som kort fortsetter etter pause/seek. Ingen ny queue-latency ble observert/målt og ingen latencygaranti gis.
 
-Headless51 og tidligere Audio-01/device-evidens er separate bevis; de erstatter ikke denne kombinerte native/manuelle sluttesten. Ingen alpha-/releaseakseptanse påstås. Samlet GUI-02-scenario er nå eierbekreftet bestått; neste steg er SUPERVISOR-sluttreview før eventuell separat integrasjonsordre. OWNER DECISION REQUIRED: NO.
+Headless51 og tidligere Audio-01/device-evidens er separate bevis; de erstatter ikke denne kombinerte native/manuelle sluttesten. Ingen alpha-/releaseakseptanse påstås. Samlet GUI-02-scenario er nå eierbekreftet bestått; SUPERVISOR-sluttreview og brukerautorisert PR13-integrasjon er gjennomført. OWNER DECISION REQUIRED: NO.
 
 
 ## Eierbekreftet resultat 2026-10-13
@@ -56,4 +56,4 @@ Etter at AGENT ga startinstruks og de seks manuelle punktene direkte i chat, sva
 
 Evidensen er direkte eierobservert manuell Windows-akseptanse. Det er ingen ny automatisert native-klikk-/skjermfangstprøve, målt latency eller ny490-suite. Koden er uendret siden3619d1f; dokumentcheckpoint9b3e7b0 var gjeldende før bekreftelsen. Eksakt SHA/bygningshash for eierens startscript-run er ikke separat innhentet; ikke likestill det med AGENTs tidligere outputhashes.
 
-Det tidligere manuelle scenario-gapet er lukket av denne bekreftelsen. CU-skjermfangstproblemet består som verktøybegrensning; ingen screenshot er tilgjengelig. Fysisk Linux-device/native GUI, latencygaranti, installer og alpha/release er fortsatt ikke verifisert. Ingen main-merge eller PR12-lukking er utført.
+Det tidligere manuelle scenario-gapet er lukket av denne bekreftelsen. CU-skjermfangstproblemet består som verktøybegrensning; ingen screenshot er tilgjengelig. Fysisk Linux-device/native GUI, latencygaranti, installer og alpha/release er fortsatt ikke verifisert. PR13 er merget; PR12 ble automatisk markert merget av GitHub fordi grunnlaget er inkludert. Ingen separat PR12-lukking.
