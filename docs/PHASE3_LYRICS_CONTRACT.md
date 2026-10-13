@@ -1,6 +1,6 @@
 # Fase 3 Lyrics Acquisition – kontraktforslag
 
-STATUS: CODE APPROVED, compilable in-memory fundament5492b44ab073d52ef46aafdc9fb0717b0335bb5c er SUPERVISOR-kodegodkjent; integrasjon avventer konkret PR. Reviewet retning for avgrenset in-memory fundament. SUPERVISOR har reviewet repo-gap og separat providerresearch; adapter/parser/persistens er ikke del av fundamentet. [Arbeidsordre](PHASE3_LYRICS_WORK_ORDER.md), [aktiv fundamentplan](exec-plans/completed/phase3-lyrics-foundation.md). Autoritet: master§6/Fase3, aksepterte ADR-er og [prosjektformatv2](PROJECT_FORMAT_V2.md).
+STATUS: CODE APPROVED, compilable in-memory fundament5492b44ab073d52ef46aafdc9fb0717b0335bb5c er SUPERVISOR-kodegodkjent; integrert via [PR15](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/15) som458176f13ed7de50cd3b503a7a7b194139444784. Reviewet retning for avgrenset in-memory fundament. SUPERVISOR har reviewet repo-gap og separat providerresearch; adapter/parser/persistens er ikke del av fundamentet. [Arbeidsordre](PHASE3_LYRICS_WORK_ORDER.md), [aktiv fundamentplan](exec-plans/completed/phase3-lyrics-foundation.md). Autoritet: master§6/Fase3, aksepterte ADR-er og [prosjektformatv2](PROJECT_FORMAT_V2.md).
 
 ## Faktisk gap ved main50815d8
 
