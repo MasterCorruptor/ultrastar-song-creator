@@ -1,6 +1,6 @@
 # Fase 3 Lyrics Acquisition – kontraktforslag
 
-STATUS: REVIEWED for avgrenset in-memory fundament. SUPERVISOR har reviewet repo-gap og separat providerresearch; adapter/parser/persistens er ikke del av fundamentet. [Arbeidsordre](PHASE3_LYRICS_WORK_ORDER.md), [aktiv plan](exec-plans/active/phase3-lyrics-contract-preparation.md). Autoritet: master§6/Fase3, aksepterte ADR-er og [prosjektformatv2](PROJECT_FORMAT_V2.md).
+STATUS: IMPLEMENTED CHECKPOINT, compilable fundament avventer SUPERVISOR-kodereview. Reviewet retning for avgrenset in-memory fundament. SUPERVISOR har reviewet repo-gap og separat providerresearch; adapter/parser/persistens er ikke del av fundamentet. [Arbeidsordre](PHASE3_LYRICS_WORK_ORDER.md), [aktiv fundamentplan](exec-plans/active/phase3-lyrics-foundation.md). Autoritet: master§6/Fase3, aksepterte ADR-er og [prosjektformatv2](PROJECT_FORMAT_V2.md).
 
 ## Faktisk gap ved main50815d8
 
@@ -12,19 +12,19 @@ Fase1 [audit](PHASE1_AUDIT.md), [resultater](PHASE1_RESULTS.md) og [lisensmatris
 
 ## Normalisert innhentingsresultat
 
-Foreslått namespace UltraStar.SongCreator.Acquisition.Lyrics. Immutable resultater holdes utenfor Song/History i første fundament. Ingen audiofil/model er nødvendig.
+Faktisk namespace UltraStar.SongCreator.Acquisition.Lyrics. Immutable resultater holdes utenfor Song/History i første fundament. Ingen audiofil/model er nødvendig.
 
-| Objekt | Foreslått innhold |
+| Objekt | Kontraktinnhold |
 | --- | --- |
 | LyricsQuery | Artist og Title, begge obligatoriske ikke-blanke; optional kjent varighet i sekunder/versionhint/recording-ID; Limit1–25. Ingen personlig nøkkel. |
-| LyricsCandidate | ProviderId + opaque Id, artist/title, optional album/version/duration, canonical SourceUrl eller null for manual, UTC RetrievedAt, instrumental-indikasjon, tilgjengelige dokumentvarianter og matchindikasjoner. |
+| LyricsCandidate | ProviderId + opaque Id, artist/title, optional album/version/duration, optional canonical HTTPS SourceUrl (null for manual), UTC RetrievedAt, instrumental-indikasjon, tilgjengelige dokumentvarianter og matchindikasjoner. |
 | LyricsDocument | Exact Unicode text (LF-linjeslutt, behold spaces/linjer/repetisjoner), SyncLevel Plain/Line/Word, immutable lines/words, tidsreferanse LyricsSourceSeconds. Ingen syllable-/note-generering. |
 | LyricsLine/Word | Text, StartSeconds og optional EndSeconds. Word er immutable medlem av en bestemt LyricsLine.Words. Manglende endtid beholdes null, aldri oppdiktet fra neste start eller lyd. |
 | LyricsPage | ProviderId, Query, immutable Candidates, RetrievedAtUtc, ingen pagination-antakelse; første LRCLIB-adapter vil ha maks20 uten paging. Tom side er no-match. |
 | LyricsSelection | Eksakt candidate-identitet fra returnert page og eksplicit valgt dokumentvariant, inklusive frosset tekst/tider/proveniens. Aldri automatisk førstevalg. |
 | LyricsMatchEvidence | Separate artist/title/version-indikasjoner, optional durationdelta-sekunder og tekstlikhetsindikasjon bare når en faktisk referansetekst foreligger. Manglende signal er Unknown/null. Ingen ASR/alignment-score oppfinnes. |
 
-Minimal provider-uavhengig interface foreslås som ILyricsSearchProvider.ProviderId og Task< LyricsPage > SearchAsync(LyricsQuery query, CancellationToken cancellationToken = default). Adaptere normaliserer sine faktiske lookup/search-forskjeller. Ikke følg lyricsfile/andre vilkårlige URL-er fra svar uten separat godkjent allowlist/transportpolicy. Ingen generell plugin-/fetchframework. SearchAsync er tilstrekkelig for planlagt LRCLIB search; ingen Fetch/lookup/pluginframework innføres.
+Provider-uavhengig interface er ILyricsSearchProvider.ProviderId og Task< LyricsPage > SearchAsync(LyricsQuery query, CancellationToken cancellationToken = default). Adaptere normaliserer sine faktiske lookup/search-forskjeller. Ikke følg lyricsfile/andre vilkårlige URL-er fra svar uten separat godkjent allowlist/transportpolicy. Ingen generell plugin-/fetchframework. SearchAsync er tilstrekkelig for planlagt LRCLIB search; ingen Fetch/lookup/pluginframework innføres.
 
 En kandidat kan ha flere varianter (word/line/plain); tilgjengelig kvalitet er basert på validerte tidsdata, ikke bare et providerflagg. En instrumental-kandidat bevares eksplisitt med tomme dokumenter; ukjent instrumental-status er null. Tom lyric-tekst uten instrumental-bekreftelse er ikke en gyldig lyrics-document. Instrumental er ikke no-match/transportfeil og gir ikke tomt sangutkast automatisk.
 
@@ -42,7 +42,7 @@ Search er read-only og returnerer bounded immutable kandidater. Velg eksplisitt 
 
 Caller CancellationToken skal propagere OperationCanceledException, inkludert venting/streamread. Separate LyricsSearchError-verdier: NetworkFailure, TimedOut, HttpFailure, RateLimited (optional bounded RetryAfter/statuscode), Unavailable, ResponseTooLarge og InvalidResponse. Caller cancellation er ikke TimedOut. Ingen evig retry; bounded provider-specific timeout/ratepolicy reviewes før adapterkode. En providers feil må ikke skjule en andens resultater eller sperre manual.
 
-ManualLyrics.Create(text) oppretter en Plain-variant med provider manual og lokal kandidat-ID, ingen oppdiktet artist/source-URL/retrieval fra nettet. Brukerens eksplisitte artist/title kan indgå som brukeroppgitt metadata, ikke dokumenteret provider-match. Samme tekstgrenser/Unicode-validering; manuell redigering er et nytt eksplisitt dokumentvalg. Ingen note-/phrase-/pitch-opprettelse.
+ManualLyrics.Create(text) returnerer et eksplisitt LyricsSelection med en Plain-variant med provider manual og lokal kandidat-ID, ingen oppdiktet artist/source-URL/retrieval fra nettet. Brukerens eksplisitte artist/title kan inngå som brukeroppgitt metadata, ikke dokumentert provider-match. Samme tekstgrenser/Unicode-validering; manuell redigering er et nytt eksplisitt dokumentvalg. Ingen note-/phrase-/pitch-opprettelse.
 
 Masterprioritet word→line→plain styrer hvilke tilgjengelige varianter som anbefales etter matchindikasjoner, ikke skjult autoritativ valg. Flere åpne kilder kommer i separate adaptere, manual er alltid tilgjengelig. Generelt nettsøk og lokal transkripsjon fra master er senere eksplisitte pakker, ikke silently dropped; transkripsjon/alignment krever Generation. Masterens confidence kan senere kombinere tekstmatch, ASR og alignment. Første kontrakt rapporterer matchgrunnlag uten ukalibrert sannsynlighet; dette er ikke Note.Confidence/ASR-confidence.
 
@@ -89,3 +89,18 @@ Dette er kildegrunnlag fra separat read-only research; ingen lyrics-API-kall ell
 - [AMLL TTML](https://github.com/amll-dev/amll-ttml-db), [formatwiki](https://github.com/amll-dev/amll-ttml-db/wiki/%E6%A0%BC%E5%BC%8F%E8%A7%84%E8%8C%83), [generering](https://raw.githubusercontent.com/amll-dev/amll-ttml-db/main/scripts/rebuild-folder/src/main.rs), [lisens](https://raw.githubusercontent.com/amll-dev/amll-ttml-db/main/LICENSE): community ID-/filbasert database, ikke generelt artist/title-search. Word/stavelse/oversettelse/stemmer og revisjon krever separat adapterproveniens; plattform-ID eller CC0-kode/data betyr ikke bevist lydmatch eller klarerte underliggende lyrics.
 
 Egne syntetiske fixtures, ingen hentet sangtekst i Git/distribusjon. Kode-/innholdsrettighetsdistinksjon følger ADR-0002. Ingen provider default/kvalitetsløfte utover denne reviewed implementeringsrekkefølgen.
+
+
+## Compilable API og verifisert fundament
+
+Fire implementerte filer under src/UltraStar.SongCreator.Acquisition/Lyrics: LyricsContracts.cs, LyricsValidation.cs, ManualLyrics.cs og LyricsSelection.cs. Ingen nye prosjektfiler, referanser eller pakker.
+
+- ILyricsSearchProvider: ProviderId, SearchAsync(query, cancellationToken). Ingen implementert HTTP-provider; caller-cancellation/OCE og transportpolicy er en kontrakt for senere adapter, ikke testet nettadferd her.
+- LyricsValidation.Query/Document/Candidate/Page: validerer immutable kontrakter og logisk budget; feil er LyricsValidationException med LyricsValidationError. NormalizeText normaliserer kun linjeslutt og strict Unicode. Bounded raw input tillater opptil2x dokumentgrensen i UTF16 fordi CRLF kan krympe til LF; endelig UTF8/document-budget avgjør gyldighet.
+- ManualLyrics.Create(text): brukerens direkte teksthandling gir Selected plain, generated lokal ID og UTC lokal opprettingstid i RetrievedAtUtc, ingen oppdiktet artist/title/URL, Song-endring eller nett. Metadataoverstyring for manual er ikke implementert i denne minste factory.
+- LyricsSelections.Select(page, providerId, candidateId, documentId): validerer hele siden og velger eksakt ID/variant. Instrumental velges uttrykkelig med null documentId; Missing/Unsupported kan ikke velges. Resultatet deler bare immutable records/arrays med kilden; ingen muterbar kopi, oppslagsfetch eller førstevalg.
+- LyricsSearchException/Error er typede kontrakter for senere transport. MatchEvidence har kun definerte indikasjoner og optional bounded signed durationdelta, ingen kalkulert score/ranking eller numerisk confidence.
+
+59 nye offline tester, alle teksteksempler egenskrevne/inlined: normalizedUnicode/LF/spaces/repetisjoner/trailinglinjer, CRLF-tung grense, utf8/strukturbudget/allevarianter, word-membership/nullend/overlap/samtidighet/grenser, metadata/enum/null/defaultcollection, status/capabilities, duplicate/absent selection og immutable provenance. Ugyldige surrogater opprettes i testkroppen fordi xUnit argumentserialisering kan erstatte dem; dette gir faktisk malformed-input-test, ikke en erstatningstegn-fixture.
+
+Windows SDK10.0.401: locked solution restore, Release solution build0warnings/errors,549/549 tester (Core481=422+59,Audio17,Desktop51) og solution-format verify-no-changes består. Ingen live lyrics/API, fysisk device/tone/CU eller ny Linux-suite. Eksisterende source/schema/locks og master/ADR beholdes.
