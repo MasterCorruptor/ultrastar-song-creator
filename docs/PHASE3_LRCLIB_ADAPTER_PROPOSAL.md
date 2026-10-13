@@ -74,3 +74,16 @@ Classify unsuccessful status FØR errorbody, som aldri logges eller kreves JSON.
 Offline acceptance: encoded query/ingen guessedparams; absent/null/invalid metadata/bools/i64/duration/duplicate/20cap/tailsbeforelimit; Plain+LRC success/errors/zerooffsetdiags/YAMLflag/wordreported/statuscontradictions; no payloadlogging/fetch; non-JSONerrorbody/status404/429/503; streamlimit/depth/UTF8/encoding; completion-spacing/concurrentserialization/caller/deadline/read/gatecooldown/long/extremeRetry-After; borrowedownership/ownedflags/no redirects og selectedprojection utendiagnosticpersistens. Ingen faktisk test/APIrequest er utført i denne proposal.
 
 UNRESOLVED: reviewet diagnostic/allresults API og fallback/extremcooldown/injectiondetaljer; ingen eierbeslutning i seg selv. HTTPkode/v3/mediumarbeid venter på ny ordre og faktisk kvotegating etter reset.
+
+
+## Reviewed shared-seam pakke – 2026-10-14
+
+Denne pakken implementerer kun Acquisition shared diagnostics/provider-results validation før HTTP. Frosne navn: LyricsVariantDiagnostic, LyricsVariantDiagnosticCode og LyricsVariantDiagnosticSeverity i Acquisition.Lyrics; Candidate.VariantDiagnostics default initializedempty ImmutableArray. Recordfields FormatId, VariantId?, Code, Severity, PhysicalLineNumber?. Code: InvalidSyntax/TimingOutOfRange/UnsupportedFormat/NoLyrics/ExplicitZeroOffset; severityInfo/Warning.
+
+FormatId requirednonblank og optional VariantId nonblank hvis oppgitt, høyst256 UTF16 CODE UNITS hver; strictUTF8 BYTE-count er separat budget (opptilflere bytes per tegn). Optional physical line1–20000, maks64 per candidate, null/defaultentry/array og unknownenum avvises som eksisterende InvalidCandidate. Failed variant trenger ikke finnes i Documents. Count32+UTF8FormatId+UTF8VariantId perdiagnostic i candidate/page, uendret256KiB document/4MiB page. Ingen free-form payload/errorbody/messages/URL felter.
+
+Internal LyricsValidation.ValidateProviderResults(providerId, originalQuery, allCandidates, providerMaximum=20) validerer max1–25, query/provider/wholecollection/candidate/duplicate/provider/budget FØR requestedlimit. Shared privatcollectionvalidator brukes også av Page, der originalQuery.Limit og UTC pageinstant fortsatt gjelder. Error: InvalidQuery for query, InvalidPage for provider/collection/max/mismatch, Ambiguous for duplicatecandidate-ID, eksisterende candidate/document/ResponseTooLarge ellers. Ingen fakequery, HTTP-bodyparse eller genericframework.
+
+Eksisterende Acquisition.csproj har InternalsVisibleTo Core.Tests; ingen ny AssemblyInfo/projektendring trengs. Nye egne LyricsVariantDiagnosticTests.cs og LyricsProviderResultValidationTests.cs. Core selected/projection/koder/schema berøres ikke; projection validerer candidate gjennom endret validator og utelater diagnostics fra selectedpayload.
+
+HTTPekstremRetry-After/permanentfailclosed/resetAPI/controlledclientinjection er FORTSATT PENDING transportreview. Ingen slik gate eller transportpolicy er vedtatt/implementert gjennom denne seamoppgaven. Primærkilder og deployed-versionusikkerhet bevares. V3-worker eier isolerte Core/Song/Projects/testfiler, som ikke endres her.
