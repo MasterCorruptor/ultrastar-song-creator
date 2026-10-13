@@ -19,3 +19,12 @@ FILES: nye Acquisition/Lyrics/LrcParser.cs/LrcParseResult.cs, Core.Tests/LrcPars
 UNRESOLVED: kjent syntaksoverlapp mm:ss:ff/HH:MM:SS er dokumentert profiltradeoff, ikke skjult gjetting eller hours-støtte. Nonzerooffset/andre LRC-varianter/HTTP/persistens er utenfor denne ordren. Ingen felles API-endring var nødvendig; ingen kjent kodeblokker.
 
 NEXT RECOMMENDED STEP: SUPERVISOR review av compilable parser/eksakt pushet SHA, deretter separat arbeidsordre dersom godkjent. Ingen PR/merge/neste implementasjon nå. OWNER DECISION REQUIRED: NO (profiltradeoff reviewes av SUPERVISOR). Faktisk modell/reasoning ukjent; bestilt Sol Medium. Kvotegating er gjort; ingen kortvarige kontokvoter/reset/ID-er publiseres. Sluttrapport leverer kode-SHA etter commit/push.
+
+
+## SMALL phase3-lyrics-lrc-literal-fix
+
+SUPERVISOR REQUEST_FIX P2 ved66fce6c: incomplete/literal angle-prefix ble feilklassifisert som enhanced. Reprodusert før retting (5/6 positive literaltests feilet). Bounded lineær shape-scanner krever komplett closing angle-tag og korrekt numeric syntax; ingen word/timing-scopeutvidelse.
+
+VERIFICATION: sluttendringens73/73 målrettede LRC-tests og622/622 samlet Windows (Core554,Audio17,Desktop51), Release0warnings/errors, solution-format verify-no-changes bestått. Existing locked restore/evidens gjenbrukes ved byteidentiske pakker/locks; ingen nye dependencies. Ingen ny suite etter docs-only. Tidligere608 gjelder førfixcheckpointet.
+
+FILES: bare LrcParser.cs, LrcParserTests.cs, LRC_PROFILE.md og denne plan. Shared result/fundament/master/ADRs/locks/øvrige filer er bytekontrollert uendret; doclenker/privacy/whitespace består. STATUS: CHECKPOINT. NEXT: SUPERVISOR-kodereview, ingen PR/merge/neste blokk. OWNER DECISION REQUIRED: NO. Modell/reasoning faktisk ukjent; bestilt Sol Medium. Eksakt nye testetkode-SHA leveres i sluttrapport. Kortvarige kontokvoter publiseres ikke.

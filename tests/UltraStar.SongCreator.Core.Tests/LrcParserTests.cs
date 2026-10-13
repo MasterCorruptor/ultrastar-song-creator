@@ -130,6 +130,37 @@ public sealed class LrcParserTests
     {
         var r = LrcParser.Parse(raw); Assert.Equal(LrcParseStatus.NoLyrics, r.Status); Assert.Null(r.Document);
     }
+    [Theory]
+    [InlineData("Egen <3: glede")]
+    [InlineData("Egen <1:2 apples")]
+    [InlineData("Egen <3")]
+    [InlineData("Egen <00:01.>")]
+    [InlineData("Egen <00:01.1234>")]
+    [InlineData("  æøå <00:01.1  ")]
+    [InlineData("Egen <3: glede>")]
+    [InlineData("Egen <1:2 apples>")]
+    public void LiteralAngleFragmentsRemainExactLyrics(string suffix)
+    {
+        var result = Success("[00:01]" + suffix);
+        Assert.Equal(suffix, result.Document!.Text);
+        Assert.Equal(suffix, Assert.Single(result.Document.Lines).Text);
+    }
+
+    [Theory]
+    [InlineData("Egen <00:01.1>ord")]
+    [InlineData("Egen <1:02>ord")]
+    [InlineData("Egen <1:02:123>ord")]
+    [InlineData("Egen <99999:59.1>ord")]
+    [InlineData("Egen <00:60.1>ord")]
+    [InlineData("Egen <3: glede og <00:01.1>ord")]
+    public void CompleteNumericAngleTimestampIsUnsupportedRegardlessOfBoundsOrPriorLiteral(string suffix)
+    {
+        var result = LrcParser.Parse("[00:01]" + suffix);
+        Assert.Equal(LrcParseStatus.UnsupportedFormat, result.Status);
+        Assert.Null(result.Document);
+        Assert.Equal(LrcDiagnosticCode.UnsupportedSyntax, Assert.Single(result.Diagnostics).Code);
+    }
+
     [Fact]
     public void InvalidUnicodeIsConstructedWithoutXunitSerializationReplacement()
     {

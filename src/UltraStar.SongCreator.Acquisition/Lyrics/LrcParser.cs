@@ -125,12 +125,28 @@ public static class LrcParser
     private static bool Enhanced(string text)
     {
         for (var i = 0; i < text.Length; i++)
-            if (text[i] == '<')
+        {
+            if (text[i] != '<') continue;
+            var next = i + 1;
+            var minutesStart = next;
+            while (next < text.Length && AsciiDigit(text[next])) next++;
+            if (next == minutesStart || next >= text.Length || text[next] != ':')
+            { i = next - 1; continue; }
+            var secondsStart = ++next;
+            while (next < text.Length && AsciiDigit(text[next])) next++;
+            var secondsDigits = next - secondsStart;
+            if (secondsDigits is < 1 or > 2) { i = next - 1; continue; }
+            if (next < text.Length && text[next] is '.' or ':')
             {
-                var next = i + 1;
+                var fractionStart = ++next;
                 while (next < text.Length && AsciiDigit(text[next])) next++;
-                if (next > i + 1 && next < text.Length && text[next] == ':') return true;
+                if (next - fractionStart is < 1 or > 3) { i = next - 1; continue; }
             }
+            // Structural recognition only. Never claim these unsupported word times are valid.
+            if (next < text.Length && text[next] == '>') return true;
+            // Advance past scanned digits; a nested '<' at next is still inspected on the next iteration.
+            i = next - 1;
+        }
         return false;
     }
     private static bool Timestamp(ReadOnlySpan<char> token, out double time, out LrcParseStatus status)
