@@ -1,6 +1,6 @@
 # Agentkart
 
-UltraStar Song Creator skal bli et lokalt desktopverktøy for UltraStar-sanger. Editoren er hovedprioriteten; Windows først, Linux-kompatibel arkitektur.
+UltraStar Song Creator skal bli et lokalt desktopverktøy for UltraStar-sanger. Neste masterdel er Lyrics Acquisition; Windows først, Linux-kompatibel arkitektur.
 
 ## Les først
 
@@ -14,11 +14,11 @@ Bruk avgrensede work/<oppgave>-brancher og konsistente checkpoint-commits. Integ
 
 ## Arkitektur og status
 
-Bevar acquisition/generation/editor-skillet, immutable sangmodell og undo/redo. Core har ikke formatparser/fil-I/O. Prosjektformat versjoneres/migreres eksplisitt; historisk v1 endres ikke stilltiende. Fase 1, 2.1–2.4 og 3.1–3.3 er integrert. Fase 3.3 følger docs/ONLINE_MEDIA.md og avsluttet plan i docs/exec-plans/completed/. GUI-01 er integrert; se docs/GUI_01_TEST_SURFACE.md. Audio-01 er integrert; se docs/AUDIO_PLAYBACK.md.
+Bevar acquisition/generation/editor-skillet, immutable sangmodell og undo/redo. Core har ikke formatparser/fil-I/O. Prosjektformat versjoneres/migreres eksplisitt; historisk v1 endres ikke stilltiende. Fase 1, 2.1–2.4 og 3.1–3.3 er integrert. GUI-01/Audio-01/GUI-02 er integrert; docs/GUI_02_EDITOR_BINDING.md beskriver akseptert prototype.
 
 ADR-0001/0002 er akseptert: .NET/Avalonia, Python-prosess, utskiftbar miniaudio-backend, eksplisitt umxhq og MIT egen kode med separate LGPL-forpliktelser. Analyse er forslag med confidence/manuell korreksjon; ASR-default er ikke fastsatt. Ikke omgjør vedtak uten bestilling.
 
-SUPERVISOR koordinerer/reviewer; AGENT implementerer etter docs/SUPERVISOR_POLICY.md. GUI-02 er integrert og eiertestet; se docs/GUI_02_EDITOR_BINDING.md.
+SUPERVISOR koordinerer/reviewer; AGENT implementerer etter docs/SUPERVISOR_POLICY.md. Stående eiermandat tillater kvotestyrt videre masterarbeid/resume etter reset. Neste ordre: docs/PHASE3_LYRICS_WORK_ORDER.md; providerkode avventer kontraktreview.
 
 ## Verifikasjon og stopp
 
