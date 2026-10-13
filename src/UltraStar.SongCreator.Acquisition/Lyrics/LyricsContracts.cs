@@ -38,6 +38,7 @@ public sealed record LyricsCandidate
     public ImmutableArray<LyricsDocument> Documents { get; init; } = [];
     public LyricsCapabilities Capabilities { get; init; } = new();
     public LyricsMatchEvidence Match { get; init; } = new();
+    public ImmutableArray<LyricsVariantDiagnostic> VariantDiagnostics { get; init; } = [];
 }
 public sealed record LyricsPage(string ProviderId, LyricsQuery Query,
     ImmutableArray<LyricsCandidate> Candidates, DateTimeOffset RetrievedAtUtc);

@@ -9,6 +9,7 @@ public static class LyricsValidation
     public const int MaxCandidates = 25, MaxVariants = 3, MaxUnsupportedFormats = 16;
     public const int MaxDocumentBytes = 256 * 1024, MaxPageBytes = 4 * 1024 * 1024;
     public const int MaxLines = 10000, MaxWords = 50000;
+    public const int MaxVariantDiagnostics = 64, MaxDiagnosticPhysicalLine = 20000;
     public const double MaxTimeSeconds = 14400;
     private static readonly UTF8Encoding Utf8 = new(false, true);
 
@@ -124,20 +125,45 @@ public static class LyricsValidation
         Require(match is not null && Enum.IsDefined(match.Artist) && Enum.IsDefined(match.Title) &&
             Enum.IsDefined(match.Version) && Enum.IsDefined(match.Text) &&
             (match.DurationDeltaSeconds is null || (double.IsFinite(match.DurationDeltaSeconds.Value) && Math.Abs(match.DurationDeltaSeconds.Value) <= MaxTimeSeconds)), error, "Invalid match indication/duration delta.");
+        Require(!candidate.VariantDiagnostics.IsDefault && candidate.VariantDiagnostics.Length <= MaxVariantDiagnostics,
+            error, "Invalid variant diagnostic collection.");
+        foreach (var diagnostic in candidate.VariantDiagnostics)
+        {
+            Require(diagnostic is not null, error, "Null variant diagnostic.");
+            size += 32L + Bytes(diagnostic!.FormatId, MaxIdLength, true, error)
+                + Bytes(diagnostic.VariantId, MaxIdLength, false, error);
+            Require(diagnostic.VariantId is null || !string.IsNullOrWhiteSpace(diagnostic.VariantId), error, "Optional variant identity is blank.");
+            Require(Enum.IsDefined(diagnostic.Code) && Enum.IsDefined(diagnostic.Severity) &&
+                (diagnostic.PhysicalLineNumber is null || diagnostic.PhysicalLineNumber is >= 1 and <= MaxDiagnosticPhysicalLine),
+                error, "Invalid diagnostic code, severity, or physical line.");
+            Budget(size, MaxPageBytes);
+        }
         Budget(size, MaxPageBytes); return size;
     }
     public static void Page(LyricsPage page)
     {
+        Require(page is not null, LyricsValidationError.InvalidPage, "Page is null.");
+        Timestamp(page!.RetrievedAtUtc, LyricsValidationError.InvalidPage);
+        ValidateCollection(page.ProviderId, page.Query, page.Candidates, MaxCandidates, true);
+    }
+    /// <summary>Checks a whole provider batch before local truncation, preserving the original requested limit.</summary>
+    internal static void ValidateProviderResults(string providerId, LyricsQuery originalQuery,
+        ImmutableArray<LyricsCandidate> allCandidates, int providerMaximum = 20) =>
+        ValidateCollection(providerId, originalQuery, allCandidates, providerMaximum, false);
+
+    private static void ValidateCollection(string providerId, LyricsQuery query, ImmutableArray<LyricsCandidate> candidates,
+        int maximumCount, bool enforceRequestedLimit)
+    {
         const LyricsValidationError error = LyricsValidationError.InvalidPage;
-        Require(page is not null, error, "Page is null.");
-        var size = QueryBytes(page!.Query) + Bytes(page.ProviderId, MaxIdLength, true, error);
-        Timestamp(page.RetrievedAtUtc, error);
-        Require(!page.Candidates.IsDefault && page.Candidates.Length <= page.Query.Limit, error, "Invalid candidate collection/limit.");
+        Require(maximumCount is >= 1 and <= MaxCandidates, error, "Invalid provider maximum.");
+        var size = QueryBytes(query) + Bytes(providerId, MaxIdLength, true, error);
+        var allowed = enforceRequestedLimit ? Math.Min(maximumCount, query.Limit) : maximumCount;
+        Require(!candidates.IsDefault && candidates.Length <= allowed, error, "Invalid candidate collection/limit.");
         var ids = new HashSet<string>(StringComparer.Ordinal);
-        foreach (var candidate in page.Candidates)
+        foreach (var candidate in candidates)
         {
             size += CandidateBytes(candidate); Budget(size, MaxPageBytes);
-            Require(candidate.ProviderId == page.ProviderId, error, "Page/candidate provider mismatch.");
+            Require(candidate.ProviderId == providerId, error, "Page/candidate provider mismatch.");
             Require(ids.Add(candidate.Id), LyricsValidationError.Ambiguous, "Duplicate candidate identity.");
         }
     }

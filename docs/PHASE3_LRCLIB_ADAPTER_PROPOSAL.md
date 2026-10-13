@@ -1,6 +1,6 @@
 # LRCLIB first search adapter – proposal
 
-STATUS: PROPOSED, docs-only, ingen HTTP/shared-seamkode. Basebe209abd662b7654fb09171aff70479c1698b530 etter [PR17](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/17); reviewed standalone codedfbc33d og parser6c8a563. [Arbeidsordre](PHASE3_LRCLIB_WORK_ORDER.md), [aktiv plan](exec-plans/active/phase3-lrclib-contract-preparation.md), [lyricsfundament](PHASE3_LYRICS_CONTRACT.md), [LRC-profil](LRC_PROFILE.md). Master/ADR-0002s kode-/innholdsrettighetsgrense består; ingen hentet sangtekst/fixtures/lisenser legges til.
+STATUS: HTTP PROPOSED; shared diagnostics/provider-results seam er IMPLEMENTED CHECKPOINT og avventer kodereview. Ingen HTTPkode. Basebe209abd662b7654fb09171aff70479c1698b530 etter [PR17](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/17); reviewed standalone codedfbc33d og parser6c8a563. [Arbeidsordre](PHASE3_LRCLIB_WORK_ORDER.md), [aktiv plan](exec-plans/active/phase3-lrclib-contract-preparation.md), [lyricsfundament](PHASE3_LYRICS_CONTRACT.md), [LRC-profil](LRC_PROFILE.md). Master/ADR-0002s kode-/innholdsrettighetsgrense består; ingen hentet sangtekst/fixtures/lisenser legges til.
 
 ## Separat read-only research: fakta og usikkerhet
 
@@ -38,7 +38,7 @@ hasWordSync lagres bare som reported capability, ingen Word-document. Nonempty l
 
 Faktisk LyricsCandidate/Page har ingen variantdiagnostic-list; LrcParseResult.Diagnostics forsvinner fra ILyricsSearchProvider.Page hvis den ikke projiseres. UnsupportedFormats er capabilities, ikke errorlager. Ingen hidden sidechannel eller skjult parserfeil.
 
-Minste forslag: LyricsCandidate.VariantDiagnostics med default initialized immutable emptyarray. Ny sealed LyricsVariantDiagnostic(FormatId, VariantId?, Code, Severity, PhysicalLineNumber?), enums Severity Info/Warning og Code InvalidSyntax/TimingOutOfRange/UnsupportedFormat/NoLyrics/ExplicitZeroOffset. FormatID tildeles av appen (plain,lrc-simple-line-v1,lyricsfile-yaml), required bounded256strictUTF8; optional variantID256 kan beskrive MISLYKKET variant og trenger ikke finnes i Documents. PhysicalLineNumber optional1–20000; null når ukjent. Ingen payload/raw snippets/URLs/fri errorbody/message/timestamps.
+Minste forslag: LyricsCandidate.VariantDiagnostics med default initialized immutable emptyarray. Ny sealed LyricsVariantDiagnostic(FormatId, VariantId?, Code, Severity, PhysicalLineNumber?), enums Severity Info/Warning og Code InvalidSyntax/TimingOutOfRange/UnsupportedFormat/NoLyrics/ExplicitZeroOffset. FormatID tildeles av appen (plain,lrc-simple-line-v1,lyricsfile-yaml), required bounded256UTF16 code units med strictUTF8 bytecount; optional variantID256UTF16 kan beskrive MISLYKKET variant og trenger ikke finnes i Documents. PhysicalLineNumber optional1–20000; null når ukjent. Ingen payload/raw snippets/URLs/fri errorbody/message/timestamps.
 
 Maks64diagnostics per kandidat, ingen null/default/ukjente enums. Pagebudget utvides med32bytes struktur + strictUTF8 format/variantstrings perdiagnostic, tell ALLE entries; dokument256KiB uendret. Presis LrcStatus/code-mapping reviewes: information ExplicitZeroOffset, warning NoLyrics/unsupported/malformed/timing. Failed variant ved gyldig plain er warning, fordi dokument ikke er valgt/validert. Candidate.TextStatus fortsatt Available hvis noe gyldig; diagnostic betyr ikke ASR-confidence.
 
@@ -87,3 +87,14 @@ Internal LyricsValidation.ValidateProviderResults(providerId, originalQuery, all
 Eksisterende Acquisition.csproj har InternalsVisibleTo Core.Tests; ingen ny AssemblyInfo/projektendring trengs. Nye egne LyricsVariantDiagnosticTests.cs og LyricsProviderResultValidationTests.cs. Core selected/projection/koder/schema berøres ikke; projection validerer candidate gjennom endret validator og utelater diagnostics fra selectedpayload.
 
 HTTPekstremRetry-After/permanentfailclosed/resetAPI/controlledclientinjection er FORTSATT PENDING transportreview. Ingen slik gate eller transportpolicy er vedtatt/implementert gjennom denne seamoppgaven. Primærkilder og deployed-versionusikkerhet bevares. V3-worker eier isolerte Core/Song/Projects/testfiler, som ikke endres her.
+
+
+## Faktisk shared-kodecheckpoint
+
+Pre-code seamcommit73bb7bf, deretter Acquisition-only LyricsVariantDiagnostic.cs, Candidate.VariantDiagnostics initializer og centralized LyricsValidation-collection/budget. Existing InternalsVisibleTo brukes uten csproj/AssemblyInfo/pakker. ValidateProviderResults er INTERNAL og returnerer void; original query endres ikke. Page bruker samme privat validator med requestedLimit og eksisterende UTC pageinstant, batchhelper bruker validert providerMaximum1–25 uten lokal truncering.
+
+24 nye egne directcontractcases i LyricsVariantDiagnosticTests.cs/LyricsProviderResultValidationTests.cs dekker defaultcompatibility/immutablevalg/failedvariant/UTF16 og UTF8/enums/null/default/count/line, bytebudget med allevarianter og med diagnostics UTEN documents, malformedtail/duplicate/wrongprovider/count21 ved Limit1, returnedsubset/originalquery og samme Coreselectedpayload med/uten diagnostics. Invalid metadata stopper validering; ingendiagnostics persisteres av projection.
+
+Windows SDK10.0.401 lockedrestore, Release0warnings/errors,696/696 (Core628=604+24,Audio17,Desktop51), solution-format verify-no-changes. Tidlig compile-fixture brukte tvetydig ImmutableArray.Create(null), korrigert med typednull før test; produktseam trengte ingen scopeendring. Ingen ny Linux/native/live-provider/HTTP/v3-påstand. Alle eksisterende filer utenfor shared Contracts/Validation og avgrensede docs bevares, inkl worker-owned Core/Projects/tests/parser/sharedselected/projection/locks/master/ADRs. Ingen v3-worktree/filer er pollet eller integrert.
+
+Sharedseam er ennå ikke reviewgodkjent som dependency for HTTP; faktisk nesteordre kommer fra SUPERVISOR. Ingen permanent failclosed transportgate/resetAPI eller publicclientinjection godkjennes av dette checkpointet.
