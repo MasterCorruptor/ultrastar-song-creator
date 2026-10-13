@@ -81,3 +81,7 @@ Audio-01 er godkjent og integrert via [PR #11](https://github.com/MasterCorrupto
 ## Lyrics-fundament – kodegodkjent
 
 Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og eksplisitt kandidatvalg er kodegodkjent ved5492b44;549/549 Windows-tester består. [Kontrakt og grenser](docs/PHASE3_LYRICS_CONTRACT.md). Ingen HTTP-innhenting, LRC-parser, persistens eller lyrics-GUI er implementert; end-to-end Lyrics Acquisition er ikke ferdig. Integrert via [PR15](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/15) som458176f13ed7de50cd3b503a7a7b194139444784; fundamentplanen er avsluttet.
+
+## Simple line-LRC – godkjent pakke
+
+[Avgrenset profil](docs/LRC_PROFILE.md) ved6c8a563: pure bounded parser med bevart tekst/metadata og typed formatfeil,73 parser-tests og622/622 Windows-regresjoner bestått. Bare komplette angle-timestampformer avvises; nonzero offset/andre formater er utenfor profilen. Ingen HTTP, lyrics-GUI eller persistens i pakken; faktisk integrasjon fremgår av GitHub-historikken.
