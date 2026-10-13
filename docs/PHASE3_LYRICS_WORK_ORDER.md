@@ -15,4 +15,4 @@ Forberedelsen er reviewet. MEDIUM/SEQUENTIAL, bestilt Sol Medium, en implementas
 
 Godkjent scope er in-memory uten Song/History/ProjectJson/proveniensheader-endring. LRCLIB er valgt som første senere plain+LRC-adapter; provider-reported flags er separate fra validerte SyncLevel. Instrumental/missing/unsupported er ulike kandidater. Bevar exact Unicode/LF/spaces/null endtider/overlap og eksplicit valg; ingen ukalibrert numerisk sannsynlighet. Ingen parser/HTTP/YAML/XML/nettlyrics/dependency/GUI/Generation/persistens i denne ordren.
 
-Acceptance er covered av59 egne lyrics-tests og samlet549-regresjoner. Commit/push compilable checkpoint og stopp for SUPERVISOR-review, ingen PR/merge/neste blokk. [Gjeldende rapport](exec-plans/active/phase3-lyrics-foundation.md).
+Acceptance er covered av59 egne lyrics-tests og samlet549-regresjoner. Commit/push compilable checkpoint og stopp for SUPERVISOR-review, ingen PR/merge/neste blokk. [Gjeldende rapport](exec-plans/completed/phase3-lyrics-foundation.md).

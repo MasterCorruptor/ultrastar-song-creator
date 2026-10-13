@@ -1,6 +1,6 @@
 # Fase 3 Lyrics Acquisition – kontraktforslag
 
-STATUS: IMPLEMENTED CHECKPOINT, compilable fundament avventer SUPERVISOR-kodereview. Reviewet retning for avgrenset in-memory fundament. SUPERVISOR har reviewet repo-gap og separat providerresearch; adapter/parser/persistens er ikke del av fundamentet. [Arbeidsordre](PHASE3_LYRICS_WORK_ORDER.md), [aktiv fundamentplan](exec-plans/active/phase3-lyrics-foundation.md). Autoritet: master§6/Fase3, aksepterte ADR-er og [prosjektformatv2](PROJECT_FORMAT_V2.md).
+STATUS: CODE APPROVED, compilable in-memory fundament5492b44ab073d52ef46aafdc9fb0717b0335bb5c er SUPERVISOR-kodegodkjent; integrasjon avventer konkret PR. Reviewet retning for avgrenset in-memory fundament. SUPERVISOR har reviewet repo-gap og separat providerresearch; adapter/parser/persistens er ikke del av fundamentet. [Arbeidsordre](PHASE3_LYRICS_WORK_ORDER.md), [aktiv fundamentplan](exec-plans/completed/phase3-lyrics-foundation.md). Autoritet: master§6/Fase3, aksepterte ADR-er og [prosjektformatv2](PROJECT_FORMAT_V2.md).
 
 ## Faktisk gap ved main50815d8
 
@@ -57,14 +57,14 @@ Alternativ for et snevert local-media-only trinn: egen frossen lyrics.selection.
 ## Minste arbeidsrekkefølge og eierskap
 
 1. Review dette kontraktforslaget sammen med separat offisiell API-/lisensresearch. Fastsett supported responseprofiler, time/offsetregler, ratepolicy og om interface trenger lookup/fetch. LRCLIB er reviewet som første senere plain/LRC-adapter; ingen adapterkode i fundamentet.
-2. SEQUENTIAL felles fundament: nye Acquisition/Lyrics/LyricsContracts.cs, LyricsValidation.cs, ManualLyrics.cs, LyricsSelection.cs og tests/UltraStar.SongCreator.Core.Tests/LyricsContractTests.cs/ManualLyricsTests.cs. Håndskrevne egne lyrics-fixtures under tests/UltraStar.SongCreator.Core.Tests/Fixtures/Lyrics/, ingen hentet sangtekst. Eksisterende SDK-glob kan brukes, ingen pakker. Dette er filforslag, ingen klasser opprettet nå.
-3. Etter compilable kontraktcommit/review kan to uavhengige workers tildeles nye egne adapter/parser-filer og tester; konkret provider-ID/filnavn avventer research. Eksempel: en reviewed line-formatparser kontra en HTTP-adapter, bare hvis de bygger uten hverandres ucommittede filer. Delt contracts/validation/fixture/testproject/locks eies bare av integrator. Ikke start parallelt fordi interface bare finnes i denne teksten.
+2. SEQUENTIAL felles fundament: nye Acquisition/Lyrics/LyricsContracts.cs, LyricsValidation.cs, ManualLyrics.cs, LyricsSelection.cs og tests/UltraStar.SongCreator.Core.Tests/LyricsContractTests.cs/ManualLyricsTests.cs. Håndskrevne egne lyrics-fixtures under tests/UltraStar.SongCreator.Core.Tests/Fixtures/Lyrics/, ingen hentet sangtekst. Eksisterende SDK-glob kan brukes, ingen pakker. Disse fire kildefilene og to testfilene er implementert og reviewet ved5492b44ab073d52ef46aafdc9fb0717b0335bb5c. Egen fixturetekst ligger inline i testene; ingen fixturemappe ble nødvendig.
+3. Etter compilable kontraktcommit/review kan to uavhengige workers tildeles nye egne adapter/parser-filer og tester; LRCLIB er reviewet som første senere provider; eksakt parser/adapter-fileierskap krever ny avgrenset ordre. Eksempel: en reviewed line-formatparser kontra en HTTP-adapter, bare hvis de bygger uten hverandres ucommittede filer. Delt contracts/validation/fixture/testproject/locks eies bare av integrator. Compilable interface er reviewet ved5492b44, men nye parallelle pakker krever egen tildeling og dokumenterte stabile avhengigheter.
 4. Separat persistensordre etter model/schema-review, med offline save/load, klare selected-source-proveniens og undo/redo. Full lyrics-resultat skal ikke serialiseres direkte fra fremtidig bevegelig provider-model.
 5. Aggregasjon/ranking og senere GUI-lyricsvalg/alignment bestilles etter egne reviews. GUI-02-funksjoner/master/ADRs bevares.
 
-Fundamenttester: handwritten Unicode/LF/trailing spaces/repetisjoner, plain/manual, line/word gyldige/ugyldige/nullend/simultaneous data, end-/durationbounds, payloadgrenser, instrumental/no-match, duplicate-ID/select/no implicit choice, cancellation og separate failure fixtures. Ingen netttest, medier/modeller eller kvalitetspåstand i denne docs-forberedelsen.
+Fundamenttester: handwritten Unicode/LF/trailing spaces/repetisjoner, plain/manual, line/word gyldige/ugyldige/nullend/simultaneous data, end-/durationbounds, payloadgrenser, instrumental/no-match, duplicate-ID/select/no implicit choice, cancellation og separate failure fixtures. Dette var opprinnelige acceptanceforslag; faktisk fundament har59 nye offline tester med egen tekst. Ingen netttest/medier/modeller/kvalitetspåstand; runtime cancellation/transportfeil testes først i adapterordren.
 
-UNRESOLVED: senere parser-offset/HTTP-policy og generell persistens/v3; live-provider/innholdsrettigheter og lydmatch loves ikke. Neste godkjente trinn er rent provider-uavhengig fundament, ingen Generation/GUI/adapter.
+UNRESOLVED: senere parser-offset/HTTP-policy og generell persistens/v3; live-provider/innholdsrettigheter og lydmatch loves ikke. Fundamentet er kodegodkjent; senere parser/adapter/persistens krever separate arbeidsordrer. Ingen Generation/GUI/adapter i dette fundamentet.
 
 
 ## Reviewed presiseringer 2026-10-13

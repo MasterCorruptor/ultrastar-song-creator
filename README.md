@@ -77,3 +77,7 @@ GUI-01 er integrert via [PR #10](https://github.com/MasterCorruptor/ultrastar-so
 ## Integrert lydbackend
 
 Audio-01 er godkjent og integrert via [PR #11](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/11): utskiftbar in-memory PCM-playback og waveform-envelope, faktisk Windows miniaudio-device og Linux no-device/library-loading. [Kontrakt/evidens](docs/AUDIO_PLAYBACK.md). GUI-02 er integrert via [PR13](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/13): waveform, transport, synkronisert playhead og noteflytting/undo/redo. Alle seks native Windows-scenarioer er eierbekreftet bestått,490/490 tester består på Windows/Linux. [Start og begrensninger](docs/GUI_02_EDITOR_BINDING.md). Avgrenset lokal prototype, ingen alpha/release.
+
+## Lyrics-fundament – kodegodkjent
+
+Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og eksplisitt kandidatvalg er kodegodkjent ved5492b44;549/549 Windows-tester består. [Kontrakt og grenser](docs/PHASE3_LYRICS_CONTRACT.md). Ingen HTTP-innhenting, LRC-parser, persistens eller lyrics-GUI er implementert; end-to-end Lyrics Acquisition er ikke ferdig. Integrasjonen føres i egen konkret PR.

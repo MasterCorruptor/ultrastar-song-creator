@@ -12,4 +12,4 @@ VERIFICATION: ren main og exact baseline før branch; protected master/ADR/kode/
 
 UNRESOLVED: offisielle provider-API-/lisensreview, supported timing/offset/transportprofiler og konkret persistensscope. NEXT RECOMMENDED STEP: SUPERVISOR reviewer dette forslag sammen med research, så bestiller compilable provider-uavhengig fundament eller konkrete rettinger. Ingen PR/merge/providerkode nå. OWNER DECISION REQUIRED: NO for dette forberedelsescheckpointet; eventuelle reelle lisens/arkitekturvalg avgjøres ved review. Eksakt commit-SHA rapporteres etter commit/push.
 
-SUPERVISOR har reviewet forberedelsen og presisert in-memory fundament, LRCLIB som første senere adapter og separate instrumental/missing/unsupported/capabilities. Fortsettelse: [fundament](../active/phase3-lyrics-foundation.md).
+SUPERVISOR har reviewet forberedelsen og presisert in-memory fundament, LRCLIB som første senere adapter og separate instrumental/missing/unsupported/capabilities. Fortsettelse: [fundament](phase3-lyrics-foundation.md).
