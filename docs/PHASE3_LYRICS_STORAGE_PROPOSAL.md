@@ -1,6 +1,6 @@
 # Typed valgt lyrics og prosjektformat v3 – forslag
 
-STATUS: PROPOSED, docs-only, ingen v3/domain/storagekode. [Arbeidsordre](PHASE3_LYRICS_STORAGE_WORK_ORDER.md), [aktiv plan](exec-plans/active/phase3-lyrics-storage-contract-preparation.md). Autoritet: master§6/Fase3/Generation-grenser, aksepterte ADR-er og [formatv2](PROJECT_FORMAT_V2.md). Base94a1a806661e7c8e9093830c9be03b69f25979c4 etter integrert [PR16](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/16); godkjent parserkode6c8a563 og fundament5492b44.
+STATUS: REVIEWED retning; pakke1 standalone selected-types/validation/equality/projection er godkjent. Song-wiring/kommando/v3/storage er fortsatt kun senere forslag. [Arbeidsordre](PHASE3_LYRICS_STORAGE_WORK_ORDER.md), [aktiv plan](exec-plans/completed/phase3-lyrics-storage-contract-preparation.md). Autoritet: master§6/Fase3/Generation-grenser, aksepterte ADR-er og [formatv2](PROJECT_FORMAT_V2.md). Base94a1a806661e7c8e9093830c9be03b69f25979c4 etter integrert [PR16](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/16); godkjent parserkode6c8a563 og fundament5492b44.
 
 ## Faktisk reposjekk og gap
 
@@ -79,3 +79,20 @@ Egenskrevet plain/manual/line/word/instrumental/null, Unicode/spaces/repeated/tr
 Håndskrevne uavhengige v1/v2/v3 fixtures: v1/v2 gamle bytes uendret ved Load, eksplisitt v3 Save og reread full databevaring. Behold historiske v2-reader-tests; ikke mekanisk endre alle writerasserts2→3 uten legacy-kontroll. Ukjente/manglende/dupliserte fields, enum/timestamp/Unicode/timing/array/budgetfeil skal avvises. Failedsave beholder original bytes; new selection/clear/failure/no-op etterUndo skal verifisere redobevaring og exact snapshots.
 
 Åpne reversible valg: endelige Core/DTO/proveniensnavn og budget/no-op implementasjonsdetaljer, selectedpreflight og tilgjengelig parserproveniens før v3 fryses. Ingen stor ownerdecision i seg selv; kontraktreview kreves. Ingen implemented v3/persistens, testsuite, pakker eller live research i dette docscheckpointet.
+
+
+## Reviewed pakke1 – pre-code kontrakt
+
+Staging: første pakke oppretter KUN standalone Core-types/validation/equality og Acquisition projection. Ingen Song.SelectedLyrics, SongValidator, command/History/Projects/schemaendring. Ellers kunne dagens v2-writer stille miste et nytt Song-felt. Neste pakke må parre Song/command med faktisk v3-støtte eller eksplisitt avvisning av unsupported save; det implementeres ikke nå.
+
+Frosne pakke1-navn i namespace UltraStar.SongCreator.Core: SelectedLyrics, SelectedLyricsDocument, SelectedLyricsLine/Word, SelectedLyricsProvenance; enums SelectedLyricsKind/Origin/SyncLevel/TimeReference. Provenance har SourceId/CandidateId/SourceUrl?, CreatedAtUtc?/RetrievedAtUtc?, optional Artist/Title/Album/Version/DurationSeconds. Document har Id/Text/SyncLevel/Lines/TimeReference, lines Text/StartSeconds/EndSeconds?/Words. Selection er Kind/Document?/Provenance. Null modell betyr intet valg.
+
+SelectedLyricsValidation.Validate(SelectedLyrics?) og ValidateDocument(document) er standalone; ugyldig payload kaster SelectedLyricsValidationException med typed error InvalidSelection/InvalidDocument/InvalidProvenance/ResponseTooLarge. Null selection er gyldig. Validate bevarer data, ingen normalisering. Document256KiB og total512KiB/logisk formel ovenfor samt source/UTC/manual/provider-invariants fryses her; full v3-preflight er senere.
+
+SelectedLyricsEquality.AreEqual(left?, right?) validerer BEGGE input før sammenligning; ugyldig input kaster samme typed exception selv ved samme reference. Ordinal tekst/scalar-proveniens og exact finite/null double/timestamps, ordnede recursive immutable arrays. Dokumenthelper DocumentAreEqual validerer dokumenter eksplisitt. Ingen Song/command no-op endnu.
+
+Acquisition.Lyrics.SelectedLyricsProjection.FromSelection(LyricsSelection) validerer hele candidate og valgt association før mapping. For Text krav om akkurat ett matching-ID member med full strukturlikhet; projiser faktiske memberet, ikke et forged payload. Instrumental/null eksplisitt, missing/unsupported avvises. Mapper bruker eksplisitte Core/Acquisition namespacealiases/enum-maps, ingen Core→Acquisition reference, UtcNow/Guid-generator/fetch/parser/normalisering eller unselecteddata. Feil er eksisterende typed Acquisition-validationexception for association og Core typed validationexception for ugyldige projected proveniens/modelldata; ingen ny generic framework.
+
+Manual SourceId manual, lowercase canonical nonempty GUID-D ID, URLnull, CreatedAtUtc fra existing candidate timestamp, RetrievedAtUtcnull. Provider source ikke manual, opaque bounded candidate-ID, optional HTTPSURL, RetrievedAtUtc fra candidate og CreatedAtUtcnull. Dermed bevares faktisk lokale creation/providerretrieval uten oppdiktede tider.
+
+Filer: Core/SelectedLyrics.cs, SelectedLyricsValidation.cs, SelectedLyricsEquality.cs; Acquisition/Lyrics/SelectedLyricsProjection.cs; Core.Tests/SelectedLyricsDomainTests.cs og SelectedLyricsProjectionTests.cs. SDK-globs, ingen csproj/pakke/lock. Egne tests for normalisert tekst/timing/budget/invariants/null, strukturlike separate arrays/allefieldchanges, valgtvariant/proveniens og forgedchoice; eksisterende Song/source/storage bytes/API forblir uendret.
