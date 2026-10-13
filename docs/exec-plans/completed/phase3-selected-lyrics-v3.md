@@ -1,4 +1,10 @@
-LOCAL COMBINED REVIEW: begge kildepakker er SUPERVISOR-kodegodkjent; originalt checkpoint/testhistorikk nedenfor bevares. Lokal combined kandidat inkluderer begge, men remote/main har ikke v3. Publisering er avvist og avventer direkte destinasjonsgodkjenning; ingen push utføres i reviewordren.
+## Aktuell lokal status
+
+Begge kildepakker er SUPERVISOR-kodegodkjent og samlet verifisert ved5ade286:773/773 Windows-tester, build/format/integritet bestått. [Lokal combined-rapport](../../LYRICS_COMBINED_LOCAL_REVIEW.md) er gjeldende evidens og publiseringsstatus. Remote/main er uendret påbe209ab; publisering/main-integrasjon av den kombinerte kandidaten avventer direkte destinasjonsgodkjenning. Ingen push utføres i denne ordren.
+
+## Historisk pakkecheckpoint – original tekst nedenfor
+
+Status/avventende review og testtall i teksten nedenfor gjelder det opprinnelige pakkecheckpointet, ikke nåstatusen. Historisk evidens bevares uendret.
 
 # Selected lyrics editing and project v3
 
