@@ -1,6 +1,6 @@
 # Typed valgt lyrics og prosjektformat v3 – forslag
 
-STATUS: REVIEWED retning; pakke1 standalone selected-types/validation/equality/projection er godkjent. Song-wiring/kommando/v3/storage er fortsatt kun senere forslag. [Arbeidsordre](PHASE3_LYRICS_STORAGE_WORK_ORDER.md), [aktiv plan](exec-plans/completed/phase3-lyrics-storage-contract-preparation.md). Autoritet: master§6/Fase3/Generation-grenser, aksepterte ADR-er og [formatv2](PROJECT_FORMAT_V2.md). Base94a1a806661e7c8e9093830c9be03b69f25979c4 etter integrert [PR16](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/16); godkjent parserkode6c8a563 og fundament5492b44.
+STATUS: IMPLEMENTED CHECKPOINT, pakke1 standalone selected-types/validation/equality/projection avventer kodereview. Retning/API ble reviewet og committet som03a6b00 før kode. Song-wiring/kommando/v3/storage er fortsatt kun senere forslag. [Arbeidsordre](PHASE3_LYRICS_STORAGE_WORK_ORDER.md), [aktiv plan](exec-plans/completed/phase3-lyrics-storage-contract-preparation.md). Autoritet: master§6/Fase3/Generation-grenser, aksepterte ADR-er og [formatv2](PROJECT_FORMAT_V2.md). Base94a1a806661e7c8e9093830c9be03b69f25979c4 etter integrert [PR16](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/16); godkjent parserkode6c8a563 og fundament5492b44.
 
 ## Faktisk reposjekk og gap
 
@@ -78,7 +78,7 @@ Egenskrevet plain/manual/line/word/instrumental/null, Unicode/spaces/repeated/tr
 
 Håndskrevne uavhengige v1/v2/v3 fixtures: v1/v2 gamle bytes uendret ved Load, eksplisitt v3 Save og reread full databevaring. Behold historiske v2-reader-tests; ikke mekanisk endre alle writerasserts2→3 uten legacy-kontroll. Ukjente/manglende/dupliserte fields, enum/timestamp/Unicode/timing/array/budgetfeil skal avvises. Failedsave beholder original bytes; new selection/clear/failure/no-op etterUndo skal verifisere redobevaring og exact snapshots.
 
-Åpne reversible valg: endelige Core/DTO/proveniensnavn og budget/no-op implementasjonsdetaljer, selectedpreflight og tilgjengelig parserproveniens før v3 fryses. Ingen stor ownerdecision i seg selv; kontraktreview kreves. Ingen implemented v3/persistens, testsuite, pakker eller live research i dette docscheckpointet.
+Åpne reversible valg: endelige Core/DTO/proveniensnavn og budget/no-op implementasjonsdetaljer, selectedpreflight og tilgjengelig parserproveniens før v3 fryses. Ingen stor ownerdecision i seg selv; kontraktreview kreves. Dette var docsforberedelsen. Pakke1-testgrunnlaget står nedenfor; ingen v3/persistens eller live research.
 
 
 ## Reviewed pakke1 – pre-code kontrakt
@@ -89,10 +89,19 @@ Frosne pakke1-navn i namespace UltraStar.SongCreator.Core: SelectedLyrics, Selec
 
 SelectedLyricsValidation.Validate(SelectedLyrics?) og ValidateDocument(document) er standalone; ugyldig payload kaster SelectedLyricsValidationException med typed error InvalidSelection/InvalidDocument/InvalidProvenance/ResponseTooLarge. Null selection er gyldig. Validate bevarer data, ingen normalisering. Document256KiB og total512KiB/logisk formel ovenfor samt source/UTC/manual/provider-invariants fryses her; full v3-preflight er senere.
 
-SelectedLyricsEquality.AreEqual(left?, right?) validerer BEGGE input før sammenligning; ugyldig input kaster samme typed exception selv ved samme reference. Ordinal tekst/scalar-proveniens og exact finite/null double/timestamps, ordnede recursive immutable arrays. Dokumenthelper DocumentAreEqual validerer dokumenter eksplisitt. Ingen Song/command no-op endnu.
+SelectedLyricsEquality.AreEqual(left?, right?) validerer BEGGE input før sammenligning; ugyldig input kaster samme typed exception selv ved samme reference. Ordinal tekst/scalar-proveniens og exact finite/null double/timestamps, ordnede recursive immutable arrays. Dokumenthelper DocumentAreEqual validerer dokumenter eksplisitt. Ingen Song/command no-op ennå.
 
 Acquisition.Lyrics.SelectedLyricsProjection.FromSelection(LyricsSelection) validerer hele candidate og valgt association før mapping. For Text krav om akkurat ett matching-ID member med full strukturlikhet; projiser faktiske memberet, ikke et forged payload. Instrumental/null eksplisitt, missing/unsupported avvises. Mapper bruker eksplisitte Core/Acquisition namespacealiases/enum-maps, ingen Core→Acquisition reference, UtcNow/Guid-generator/fetch/parser/normalisering eller unselecteddata. Feil er eksisterende typed Acquisition-validationexception for association og Core typed validationexception for ugyldige projected proveniens/modelldata; ingen ny generic framework.
 
 Manual SourceId manual, lowercase canonical nonempty GUID-D ID, URLnull, CreatedAtUtc fra existing candidate timestamp, RetrievedAtUtcnull. Provider source ikke manual, opaque bounded candidate-ID, optional HTTPSURL, RetrievedAtUtc fra candidate og CreatedAtUtcnull. Dermed bevares faktisk lokale creation/providerretrieval uten oppdiktede tider.
 
 Filer: Core/SelectedLyrics.cs, SelectedLyricsValidation.cs, SelectedLyricsEquality.cs; Acquisition/Lyrics/SelectedLyricsProjection.cs; Core.Tests/SelectedLyricsDomainTests.cs og SelectedLyricsProjectionTests.cs. SDK-globs, ingen csproj/pakke/lock. Egne tests for normalisert tekst/timing/budget/invariants/null, strukturlike separate arrays/allefieldchanges, valgtvariant/proveniens og forgedchoice; eksisterende Song/source/storage bytes/API forblir uendret.
+
+
+## Faktisk standalone kodecheckpoint
+
+Core: SelectedLyrics.cs/SelectedLyricsValidation.cs/SelectedLyricsEquality.cs. Acquisition: Lyrics/SelectedLyricsProjection.cs med eksplisitte namespacealiases/enum-maps. Validering kaster typed standalone error; null valgtmodell er gyldig. Equality validerer begge input, bruker ordinal/exact scalar-proveniensequality og recursive ordnet dokumentinnhold. Projection validerer hele candidate og full valgtmember-association; bare det faktiske valgte dokumentet/proveniens kopieres, uten clocks/IDgenerering/nett/normalisering. Associationfeil har eksisterende Acquisition error, projected provenancefeil har Core typed error.
+
+50 nye egne offline tests: egne manual/plain/line/word/instrumental/null data, Unicode/LF/budget/hierarki/nullends/overlap/UTC/kildeinvariants, alle relevante scalar/array equality-endringer, separate like arrays og deterministic selected-only projection/forgedchoice. En tidlig valid-fixture ble korrigert fordi en flyttet første wordstart brøt rekkefølgen; valideringen var korrekt og sluttfixture endrer en gyldig wordstart.
+
+Windows SDK10.0.401 locked restore, Release0warnings/errors,672/672 (Core604=554+50,Audio17,Desktop51), solution-format verify-no-changes. Ingen ny Linux/native/HTTP/storage/v3test eller attachment/save-loadpåstand. Song/SongValidator/Editing/History/ProjectJson/Store og reviewed foundation/parser forblir byteidentiske. Staging beskytter mot stillev2datatap; senere Song/command/v3-pakke krever ny ordre etter API-review.
