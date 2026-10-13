@@ -19,7 +19,7 @@ public sealed class LyricsVariantDiagnosticTests
         LyricsVariantDiagnosticCode.InvalidSyntax, LyricsVariantDiagnosticSeverity.Warning, 1);
 
     [Fact]
-    public void OldDefaultAndFailedVariantDiagnosticsPreserveSelectionWithoutClaimingSyncOrPersisting()
+    public async Task OldDefaultAndFailedVariantDiagnosticsPreserveSelectionWithoutClaimingSyncOrPersisting()
     {
         var original = Candidate(); Assert.False(original.VariantDiagnostics.IsDefault); Assert.Empty(original.VariantDiagnostics);
         LyricsValidation.Candidate(original);
@@ -36,6 +36,19 @@ public sealed class LyricsVariantDiagnosticTests
             SelectedLyricsProjection.FromSelection(new(original, original.Documents[0])),
             SelectedLyricsProjection.FromSelection(selected)));
         Assert.Null(typeof(Core.SelectedLyrics).GetProperty("VariantDiagnostics"));
+        // Combined contract: transient candidate diagnostics never enter the v3 selected payload.
+        using var files = new ProjectTestDirectory();
+        var song = SongFixture.Create();
+        var store = new global::UltraStar.SongCreator.Projects.ProjectStore();
+        var bare = SelectedLyricsProjection.FromSelection(new(original, original.Documents[0]));
+        var decorated = SelectedLyricsProjection.FromSelection(selected);
+        await store.SaveAsync(files.FilePath("bare"), new Core.SetSelectedLyrics(bare).Apply(song));
+        await store.SaveAsync(files.FilePath("decorated"), new Core.SetSelectedLyrics(decorated).Apply(song));
+        Assert.Equal(await File.ReadAllBytesAsync(files.FilePath("bare")), await File.ReadAllBytesAsync(files.FilePath("decorated")));
+        var loaded = await store.LoadAsync(files.FilePath("decorated"));
+        Assert.Equal(3, loaded.SchemaVersion);
+        Assert.True(Core.SelectedLyricsEquality.AreEqual(decorated, loaded.Song.SelectedLyrics));
+
     }
 
     public static IEnumerable<object[]> InvalidDiagnostics()

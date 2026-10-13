@@ -8,4 +8,4 @@ Acceptance: defaultcompatibility/selection/failed-variant/invalid/null/default/e
 
 Locked restore/Release regressioner/format/doclinks/privacy/whitespace/protectedbaseline, commit/push coherentcheckpoint og STOP for SUPERVISOR. Ingen PR/merge/HTTP/automaticnext. Ingen kortvarige kontokvoter/reset/ID-er irepo; reserve/kvotegating følges.
 
-Compilable checkpoint:24 nye directcontracttests og696 Windows-regresjoner består. Existing friendtesttilgang var tilstrekkelig; ingen AssemblyInfo/projektendring. [Aktiv rapport](exec-plans/active/phase3-lyrics-variant-diagnostics-foundation.md) fører test/byteevidens og stopp for review.
+Compilable checkpoint:24 nye directcontracttests og696 Windows-regresjoner består. Existing friendtesttilgang var tilstrekkelig; ingen AssemblyInfo/projektendring. [Aktiv rapport](exec-plans/completed/phase3-lyrics-variant-diagnostics-foundation.md) fører test/byteevidens og stopp for review.

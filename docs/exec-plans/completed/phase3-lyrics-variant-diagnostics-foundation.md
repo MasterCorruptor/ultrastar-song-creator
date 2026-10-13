@@ -1,3 +1,5 @@
+LOCAL COMBINED REVIEW: begge kildepakker er SUPERVISOR-kodegodkjent; originalt checkpoint/testhistorikk nedenfor bevares. Lokal combined kandidat inkluderer begge, men remote/main har ikke v3. Publisering er avvist og avventer direkte destinasjonsgodkjenning; ingen push utføres i reviewordren.
+
 # Lyrics variant diagnostics foundation
 
 STATUS: CHECKPOINT. TASK phase3-lyrics-variant-diagnostics-foundation MEDIUM/PARALLEL_SAFE. Bestilt Sol Medium/faktisk modell-reasoning ukjent. BRANCH work/phase3-lrclib-contract. [Ordre](../../PHASE3_LYRICS_VARIANT_DIAGNOSTICS_WORK_ORDER.md), [seam](../../PHASE3_LRCLIB_ADAPTER_PROPOSAL.md).

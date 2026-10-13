@@ -1,5 +1,7 @@
 # Project format v3
 
+Status: LOCAL combined candidate, not published/main-integrated. Package sourcebd8addb is code-reviewed; combined diagnostics/v3 verification is recorded in [local integration report](LYRICS_COMBINED_LOCAL_REVIEW.md). No remote publication is authorized by this document.
+
 Frozen profile for the bounded selected-lyrics package. Extends [v2](PROJECT_FORMAT_V2.md) and preserves the frozen v1/v2 song and imported-source payloads.
 
 The UTF-8 JSON root has exactly `format`, `schemaVersion`, `song`, `importedSource`, `selectedLyrics`. `format` is `ultrastar-song-creator`, writer version is 3. `importedSource` and `selectedLyrics` are required nullable properties. The shared legacy `song` payload is unchanged. Readers dispatch explicitly on 1, 2, 3, report the original version, and never rewrite on load. V1 migrates both fields to null; v2 preserves imported source and migrates selected lyrics to null. Explicit save writes v3.

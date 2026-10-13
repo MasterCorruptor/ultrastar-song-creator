@@ -1,3 +1,5 @@
+LOCAL COMBINED REVIEW: begge kildepakker er SUPERVISOR-kodegodkjent; originalt checkpoint/testhistorikk nedenfor bevares. Lokal combined kandidat inkluderer begge, men remote/main har ikke v3. Publisering er avvist og avventer direkte destinasjonsgodkjenning; ingen push utføres i reviewordren.
+
 # Selected lyrics editing and project v3
 
 Status: implementation complete; awaiting supervisor review. Branch work/phase3-selected-lyrics-v3, base be209abd662b7654fb09171aff70479c1698b530. Scope is Core Song/validator/command, independent frozen Projects v3 DTO/preflight, owned tests/fixtures and [format profile](../../PROJECT_FORMAT_V3.md). Shared selected model/validation/equality, Acquisition/parser, dependencies, master, ADRs and historical v1 bytes are protected.
