@@ -51,3 +51,7 @@ Audio-01 er godkjent og integrert etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449
 ## Eierakseptanse 2026-10-13
 
 Prosjekteieren bekreftet direkte i AGENT-chat: «Alle tester bestått med forventet resultat» etter startinstruks og seks manuelle GUI-02-punkter. Hørbarhet, play/pause/seek/stop/EOS, synlige synkroniserte playheads, noteflytting/undo/redo, delt scroll og X-lukking er dermed eierbekreftet bestått. [Proveniens og grenser](GUI_02_NATIVE_VERIFICATION.md). Tidligere utsagn om gjenstående manuell Windows-akseptanse er historiske. SUPERVISOR-sluttreview er gjennomført, PR13 er merget som f5132145c6466d6815fb6b4ee857c4e7c15702b3. Ingen alpha/release.
+
+## Lyrics-fundament – kodegodkjent
+
+Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og eksplisitt kandidatvalg er kodegodkjent ved5492b44;549/549 Windows-tester består. [Kontrakt og grenser](PHASE3_LYRICS_CONTRACT.md). Ingen HTTP-innhenting, LRC-parser, persistens eller lyrics-GUI er implementert; end-to-end Lyrics Acquisition er ikke ferdig. Integrasjonen føres i egen konkret PR.

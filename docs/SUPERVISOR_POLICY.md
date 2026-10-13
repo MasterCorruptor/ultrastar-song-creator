@@ -16,11 +16,11 @@ Eskaler bare reelle eierbeslutninger: hovedstack/ADR-omgjøring, vesentlig scope
 
 ## Prioritering og arbeidsordre
 
-Nåværende overordnede mål er en fungerende lokal Windows-prototype med funksjonell GUI, før visuell polering. Det komplette prototypekontrollpunktet omfatter Avalonia, intern Song/testdata, timeline, waveform, noter, lyd, synkronisert playhead, seek og minst én reell noteoperasjon med konsistent modell. Undo/redo etableres tidlig. Prototypen er ingen release.
+Gjeldende prioritet fra eierordre2026-10-13 er videre arbeid etter masterplanen; neste uferdige masterdel er Lyrics Acquisition (§6/Fase3). GUI-polering er ikke bestilt. Den tidligere lokale Windows-prototypen er akseptert/integrert. Det komplette prototypekontrollpunktet omfatter Avalonia, intern Song/testdata, timeline, waveform, noter, lyd, synkronisert playhead, seek og minst én reell noteoperasjon med konsistent modell. Undo/redo etableres tidlig. Prototypen er ingen release.
 
 SUPERVISOR velger minste praktiske sammenhengende leveranse fra faktisk status. Arbeidsordre har mål/kontekst, autoritative dokumenter, in/out scope, constraints, acceptance criteria, verifikasjon, checkpoint-/stoppkrav og forventet rapport. Unngå brede «bygg hele fasen/programmet». Gi direkte tydelig delegasjon når tilgjengelig; ellers ferdig instruks for eieren uten behov for omskriving.
 
-Aktuelt vedtak: GUI-02 er sluttgodkjent som avgrenset lokal prototype etter kode/headless-review,490/490 Windows/Linux og direkte eierbekreftet seksstegs native Windows-test. PR13 er integrert som f5132145c6466d6815fb6b4ee857c4e7c15702b3; PR12-grunnlaget er inkludert. Ingen ny produktoppgave eller fullrelease er bestilt.
+Aktuelt vedtak: GUI-02 er sluttgodkjent som avgrenset lokal prototype etter kode/headless-review,490/490 Windows/Linux og direkte eierbekreftet seksstegs native Windows-test. PR13 er integrert som f5132145c6466d6815fb6b4ee857c4e7c15702b3; PR12-grunnlaget er inkludert. Det tidligere prototype-only-stoppet er erstattet av videre masterarbeid; første bestilling er avgrenset [Lyrics-kontraktforberedelse](PHASE3_LYRICS_WORK_ORDER.md). Ingen fullrelease er bestilt.
 
 ## Oppdeling, eierskap og parallellisme
 
@@ -33,7 +33,7 @@ Før ikke-trivielt arbeid velger SUPERVISOR:
 
 Parallellisme er en optimalisering, ingen default. Evaluer fil-/moduloverlapp, gjensidig output-avhengighet, konkurrerende arkitekturvalg, ustabil kontrakt, forventet review-/mergekostnad mot tidsgevinst og mulighet for selvstendige gyldige Git-checkpoints.
 
-Normalgrense er to samtidige implementasjonsarbeidere; en tredje bare ved tydelig uavhengighet og lav review-/mergekostnad. Vurder kvote, reviewbyrde, branchantall, varighet og arkitekturavvik samlet. GUI-02-komponentarbeid og sekvensiell app-integrasjon er avsluttet; ingen implementasjonsworker eller ny oppgave startes automatisk.
+Normalgrense er to samtidige implementasjonsarbeidere; en tredje bare ved tydelig uavhengighet og lav review-/mergekostnad. Vurder kvote, reviewbyrde, branchantall, varighet og arkitekturavvik samlet. GUI-02-komponentarbeid og app-integrasjon er avsluttet. SUPERVISOR kan fortsette med nye avgrensede masteroppgaver etter review og faktisk kvotegating.
 
 SUPERVISOR kan opprette/anbefale midlertidige workers for tydelig isolerte domene-, parser-, fixture-, GUI-, benchmark/research-, dokumentasjons- eller backendoppgaver. Permanente roller består. Hver worker har avgrenset branch/worktree, eksplisitt scope, fil-/moduleierskap, acceptance og stoppkrav; kontekst kommer fra repo/arbeidsordre, ikke langlivet chat.
 
@@ -73,3 +73,12 @@ SUPERVISOR kan selv bestemme sekvens/parallellisme, antall workers, scope, model
 ## Automatisk review – operativt eiertillegg 2026-10-12
 
 Eieren har bestilt automatisk SUPERVISOR-review, godkjenning og videreføring innen mandatet uten manuell påminnelse. SUPERVISOR følger opp hvert tiende minutt; faktisk acceptance/evidens, kvote og stopp-/eskaleringsregler gjelder fortsatt. AGENT leverer checkpoint i repo/egen sluttrapport og stopper når arbeidsordren krever review. Dette er arbeidsflytoppfølging, ikke aktivering av produkt-GUI eller hosted CI. Konto-/chat-/automatiserings-ID-er lagres ikke i offentlig repository.
+
+
+## Stående eiermandat – videre masterarbeid 2026-10-13
+
+Eieren har bestilt videre arbeid etter masterplanen og gir SUPERVISOR fullmakt til å starte nødvendige parallelle workers uten rutinemessig ny eiergodkjenning, så lenge bruksgrenser og aksepterte ADR-er/scope respekteres. Normalgrensen er fortsatt høyst to samtidige implementasjonsworkers. Parallelle pakker krever stabil reviewet kontrakt og tydelig fileierskap; ren ekstern research kan kjøres isolert fra integratordocs.
+
+Les faktisk femtimers-/ukeskvote før MEDIUM/LARGE og parallellstart, og vurder samlet kapasitet med reserve til konsistent checkpoint/verifikasjon/review. Ved utilstrekkelig margin: reduser scope/concurrency eller STOP_FOR_RESET etter sikkert commit/checkpoint. Gjenoppta avgrenset masterarbeid etter faktisk reset når avlest kapasitet tillater det; ukekvoten må også ha margin. Ikke bruk resetcredits automatisk. Brukt kvote er ikke en grunn til å la uferdig arbeid ligge usikret.
+
+Autonom review/godkjenning/videre bestilling gjelder reversible rutinevalg innen master og aksepterte ADR-er. Reelle arkitektur-/lisens-/scopekonflikter og faktiske automatiske approval-avslag eskaleres; mandatet omgår ikke plattformkontroller. Arbeidsordrens konkrete stopp/reviewport gjelder fortsatt for hver worker. Ingen konto/chat/automation-ID-er, maskindata eller aktuelle kontokvoter gjøres til produktarkitektur.
