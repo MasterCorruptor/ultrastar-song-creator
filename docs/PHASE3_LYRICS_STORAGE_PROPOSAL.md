@@ -1,6 +1,6 @@
 # Typed valgt lyrics og prosjektformat v3 – forslag
 
-STATUS: IMPLEMENTED CHECKPOINT, pakke1 standalone selected-types/validation/equality/projection avventer kodereview. Retning/API ble reviewet og committet som03a6b00 før kode. Song-wiring/kommando/v3/storage er fortsatt kun senere forslag. [Arbeidsordre](PHASE3_LYRICS_STORAGE_WORK_ORDER.md), [aktiv plan](exec-plans/completed/phase3-lyrics-storage-contract-preparation.md). Autoritet: master§6/Fase3/Generation-grenser, aksepterte ADR-er og [formatv2](PROJECT_FORMAT_V2.md). Base94a1a806661e7c8e9093830c9be03b69f25979c4 etter integrert [PR16](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/16); godkjent parserkode6c8a563 og fundament5492b44.
+STATUS: CODE APPROVED, standalone pakke1 er reviewet veddfbc33dca1e26b74ee1c44e8c1377edde98736b8. Dette er stabilt kode/testgrunnlag; konkret PR/GitHub-historikk angir integrasjonsstatus. Retning/API ble reviewet og committet som03a6b00 før kode. Song-wiring/kommando/v3/storage er fortsatt kun senere forslag. [Arbeidsordre](PHASE3_LYRICS_STORAGE_WORK_ORDER.md), [aktiv plan](exec-plans/completed/phase3-lyrics-storage-contract-preparation.md). Autoritet: master§6/Fase3/Generation-grenser, aksepterte ADR-er og [formatv2](PROJECT_FORMAT_V2.md). Base94a1a806661e7c8e9093830c9be03b69f25979c4 etter integrert [PR16](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/16); godkjent parserkode6c8a563 og fundament5492b44.
 
 ## Faktisk reposjekk og gap
 
@@ -105,3 +105,5 @@ Core: SelectedLyrics.cs/SelectedLyricsValidation.cs/SelectedLyricsEquality.cs. A
 50 nye egne offline tests: egne manual/plain/line/word/instrumental/null data, Unicode/LF/budget/hierarki/nullends/overlap/UTC/kildeinvariants, alle relevante scalar/array equality-endringer, separate like arrays og deterministic selected-only projection/forgedchoice. En tidlig valid-fixture ble korrigert fordi en flyttet første wordstart brøt rekkefølgen; valideringen var korrekt og sluttfixture endrer en gyldig wordstart.
 
 Windows SDK10.0.401 locked restore, Release0warnings/errors,672/672 (Core604=554+50,Audio17,Desktop51), solution-format verify-no-changes. Ingen ny Linux/native/HTTP/storage/v3test eller attachment/save-loadpåstand. Song/SongValidator/Editing/History/ProjectJson/Store og reviewed foundation/parser forblir byteidentiske. Staging beskytter mot stillev2datatap; senere Song/command/v3-pakke krever ny ordre etter API-review.
+
+Sluttreview: uavhengig statisk review uten actionable funn, SUPERVISOR50/50 selected-tests og kontrollert672/672-sluttoutput. Ingen Song/command/v3/native/Linux/HTTP-akseptanse gjennom dette standalone reviewet.

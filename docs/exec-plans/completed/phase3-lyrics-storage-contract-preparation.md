@@ -10,4 +10,4 @@ VERIFICATION: docs/inventory/privacy/whitespace og alle tidligere trackedfiles u
 
 UNRESOLVED: endelige Core/DTO/proveniensnavn og selectedbudget/preflight/no-op-/projectiondetaljer før API/schema fryses. NEXT: SUPERVISOR-kontraktreview og separat integratorordre før kode. OWNER DECISION REQUIRED: NO for disse reversible kontraktvalg. Ingen PR/merge/HTTP/storagekode i TASK B. Faktisk kvotegating er gjort med checkpointreserve; ingen kontodata/resetcredits publiseres. Eksakt proposal-SHA rapporteres etter commit/push.
 
-Pakke1-staging fryser standalone API og projection før Song/v3, slik at dagensv2 ikke stille mister et nytt felt. Videre: [selected foundation](../active/phase3-selected-lyrics-foundation.md).
+Pakke1-staging fryser standalone API og projection før Song/v3, slik at dagensv2 ikke stille mister et nytt felt. Videre: [selected foundation](phase3-selected-lyrics-foundation.md).
