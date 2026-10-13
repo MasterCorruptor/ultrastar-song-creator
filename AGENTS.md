@@ -18,7 +18,7 @@ Bevar acquisition/generation/editor-skillet, immutable sangmodell og undo/redo. 
 
 ADR-0001/0002 er akseptert: .NET/Avalonia, Python-prosess, utskiftbar miniaudio-backend, eksplisitt umxhq og MIT egen kode med separate LGPL-forpliktelser. Analyse er forslag med confidence/manuell korreksjon; ASR-default er ikke fastsatt. Ikke omgjør vedtak uten bestilling.
 
-SUPERVISOR koordinerer/reviewer; AGENT implementerer etter docs/SUPERVISOR_POLICY.md. Stående eiermandat tillater kvotestyrt videre masterarbeid/resume etter reset. Lyrics-fundament/LRC er integrert. Neste ordre: docs/PHASE3_LYRICS_STORAGE_WORK_ORDER.md; ingen lagringskode før review.
+SUPERVISOR koordinerer/reviewer; AGENT implementerer etter docs/SUPERVISOR_POLICY.md. Stående eiermandat tillater kvotestyrt videre masterarbeid/resume etter reset. Lyrics-fundament/LRC/selected-typer er integrert. Neste ordre: docs/PHASE3_LRCLIB_WORK_ORDER.md; ingen HTTPkode før review.
 
 ## Verifikasjon og stopp
 
