@@ -1,6 +1,6 @@
 # Simple line-LRC profil v1
 
-STATUS: CONTRACT CHECKPOINT, godkjent profilretning; implementasjon/kodereview gjenstår. [Arbeidsordre](PHASE3_LYRICS_LRC_WORK_ORDER.md), [aktiv plan](exec-plans/active/phase3-lyrics-lrc-parser.md), [fundament](PHASE3_LYRICS_CONTRACT.md). Ingen universell LRC-støtte eller nett/parserframework.
+STATUS: IMPLEMENTED CHECKPOINT, compilable parser avventer SUPERVISOR-kodereview. Profilcheckpoint2fad741 ble committet før implementasjon. [Arbeidsordre](PHASE3_LYRICS_LRC_WORK_ORDER.md), [aktiv plan](exec-plans/active/phase3-lyrics-lrc-parser.md), [fundament](PHASE3_LYRICS_CONTRACT.md). Ingen universell LRC-støtte eller nett/parserframework.
 
 ## API og resultat
 
@@ -31,3 +31,12 @@ Documentbudget fra fundamentet:64+IDbytes+projectedTextbytes + sum(48+timedLineT
 SUPERVISOR undersøkte [LRCLIB lyricsfile](https://raw.githubusercontent.com/tranxuanthang/lrclib/main/server/src/lyricsfile.rs) for gjentatte prefikser/minute:second/fraksjon og [API](https://lrclib.net/docs) for syncedLyrics som LRC. Upstream trimming/neste-line-end/instrumentalheuristikk adopteres ikke. Ingen upstreamkode/tekstfixtures kopieres. ADR-0002s skille mellom kode-/innholdsrettigheter består.
 
 Kun egenskrevet offline tekst. Ingen HTTP/storage/GUI/Generation, nye pakker eller endring av reviewed Lyrics-fundament.
+
+
+## Verifisert kodecheckpoint
+
+LrcParser.cs/LrcParseResult.cs og egen LrcParserTests.cs implementerer profilen uten endringer i reviewed Lyrics-fundament.59 egne offline parser-tests består: dot/colon/no-fraction, multitag/stable ties/nodedup, fysisk Text-rolle/Unicode/LF/spaces/blanktimed/trailinglines, metadata/au/unknown/hours/enhanced/culture, zero/nonzero/duplicateoffset, overflow/timing0–14400 og input/document/expansion/metadata/physical-line-bounds. Nonzero offset avvises etter bounded scanning slik at dupliserte offsettags også gir konkret MalformedInput.
+
+Windows SDK10.0.401 locked solution restore, Release build0warnings/errors og608/608 tester: Core540 (481 tidligere +59 parser),Audio17,Desktop51. Solution-format verify-no-changes består. Ingen Linux/native/live-provider/HTTP/storage/persistensprøve er utført. Fundamentets historiske549-tall endres ikke retroaktivt.
+
+Kjent profiltradeoff: tre rene kolonfelter tolkes som minute:second:fraction; timerintensjon i samme tekst kan ikke oppdages automatisk. Synlig h/H-markør eller ekstra separator er UnsupportedFormat. Dette er eksplisitt reviewpunkt, ingen universell LRC-garanti eller felles API-endring. Senere HTTP/parser/persistenspakker krever egen ordre.
