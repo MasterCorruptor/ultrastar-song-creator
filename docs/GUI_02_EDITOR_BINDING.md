@@ -30,3 +30,8 @@ Headless gir ingen ny native GUI-/hørbarhet-/latencyakseptanse. Ingen ny Linux-
 ## Verifikasjonsoppfølging 2026-10-13
 
 [Native rapport og manuell sluttest](GUI_02_NATIVE_VERIFICATION.md): faktisk Windows-vindu/lydinit og normal Alt+F4-prosessavslutning er observert. Skjermfangst feilet med FrameArrived timeout; knappe-/visuell/hørbar samlet acceptance gjenstår. Ny samlet nettisolert Linux Release-build/locked restore490/490 består. Tidligere avsnitt beskriver opprinnelig bindingordre; denne oppfølgingen gir fortsatt ingen fysisk Linux-device eller full prototypemilepæl.
+
+
+## Eierakseptanse 2026-10-13
+
+Prosjekteieren bekreftet direkte i AGENT-chat: «Alle tester bestått med forventet resultat» etter startinstruks og seks manuelle GUI-02-punkter. Hørbarhet, play/pause/seek/stop/EOS, synlige synkroniserte playheads, noteflytting/undo/redo, delt scroll og X-lukking er dermed eierbekreftet bestått. [Proveniens og grenser](GUI_02_NATIVE_VERIFICATION.md). Tidligere utsagn om gjenstående manuell Windows-akseptanse er historiske. Avventer SUPERVISOR-sluttreview; ingen main-merge eller alpha/release.

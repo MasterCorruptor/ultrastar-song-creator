@@ -1,6 +1,6 @@
 # GUI-02 editor binding
 
-STATUS: CHECKPOINT (samlet editor-binding ferdig; avventer review). TASK: gui-02-editor-binding. MODEL USED: ukjent; bestilt Sol Medium. BRANCH: work/gui-02-editor-binding. [Arbeidsordre](../../GUI_02_EDITOR_BINDING_WORK_ORDER.md).
+STATUS: CHECKPOINT (kode og manuell Windows-akseptanse bestått; avventer SUPERVISOR-sluttreview). TASK: gui-02-editor-binding. MODEL USED: ukjent; bestilt Sol Medium. BRANCH: work/gui-02-editor-binding. [Arbeidsordre](../../GUI_02_EDITOR_BINDING_WORK_ORDER.md).
 
 Godkjent B 14b81dbd8ba57b5ea7753751052c08d4bfb87e10 + godkjent A 012c794a237af8882e2b08fb0fa639a75f2e9d5c, cherry-picked som c495612. Ingen A-worktreeendring. Felles kontrakt uendret.
 
@@ -31,3 +31,10 @@ SUPERVISOR godkjente3619d1f som kode/headless-checkpoint og bestilte avgrenset W
 Eksisterende offline Linux-image/SDK/cache gjenbrukt: locked restore, Release-build0warnings/errors,490/490 tester består; egne artifacts. Ingen ny Windows-suite/build eller produktkodeendring. [Eksakt native evidens, outputhashes, grenser og seks manuelle steg](../../GUI_02_NATIVE_VERIFICATION.md).
 
 STATUS: CHECKPOINT, manuell samlet native-akseptanse gjenstår. NEXT: SUPERVISOR owner-facing testoppfølging. OWNER DECISION REQUIRED: NO (bruksakseptanse gjenstår). Faktisk modell/reasoning ukjent, bestilt Sol Medium. Faktisk kvote etter Linux:19% femtimer/55% uke; reset13Oct02:38/18Oct07:04 Oslo. Dokumentcheckpoint pushes på samme branch og draft PR13 oppdateres; main/PR12 bevares.
+
+
+## Direkte eierbekreftelse 2026-10-13
+
+Prosjekteieren svarte «Alle tester bestått med forventet resultat» etter AGENTs konkrete startinstruks og seks manuelle scenariotester. Alle seks er registrert som eierobservert bestått, inkludert hørbarhet/visuelt samspill og X-lukking. [Native rapport](../../GUI_02_NATIVE_VERIFICATION.md) skiller dette fra tidligere begrenset AGENT-automatisering og outputhashes. Ingen kildeendring eller ny testsuite er begrunnet av denne dokumentoppdateringen.
+
+STATUS: CHECKPOINT. NEXT RECOMMENDED STEP: SUPERVISOR-sluttreview av samlet GUI-02 acceptance og eventuell separat integrasjonsordre. OWNER DECISION REQUIRED: NO. Manuell Windows-test er ikke lenger et gap; fysisk Linux-device/native GUI/release/latency er fortsatt utenfor evidensen. Bevar main og PR12; ingen ny oppgave.

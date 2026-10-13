@@ -1,6 +1,6 @@
 # GUI-02 native Windows verification
 
-2026-10-13 (Europe/Oslo). STATUS: CHECKPOINT; delvis native evidens, manuell sluttest gjenstår. SMALL/SEQUENTIAL/en worker; bestilt Sol Medium, faktisk modell/reasoning ukjent. SUPERVISOR-ordre etter godkjent kode/headless-checkpoint; ingen mergeordre.
+2026-10-13 (Europe/Oslo). STATUS: CHECKPOINT; manuell native Windows-akseptanse bekreftet av prosjekteieren, avventer SUPERVISOR-sluttreview. SMALL/SEQUENTIAL/en worker; bestilt Sol Medium, faktisk modell/reasoning ukjent. SUPERVISOR-ordre etter godkjent kode/headless-checkpoint; ingen mergeordre.
 
 Kandidatkode: 3619d1f18f7a27c9237f30c7e2d96caf46d61ee1, work/gui-02-editor-binding, [draft PR13](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/13). Ingen kilde-, test-, pakke- eller lockendringer i denne verifikasjonen. [Bindingkontrakt](GUI_02_EDITOR_BINDING.md), [Audio-kontrakt](AUDIO_PLAYBACK.md), [aktiv rapport](exec-plans/active/gui-02-editor-binding.md).
 
@@ -31,7 +31,7 @@ Private stdout/stderr/Linux-output/script ligger under ignorert .agent-local/gui
 
 Eksisterende ultrastar-phase1-linux-image/SDK10.0.401 og NuGet-cache ble gjenbrukt med network none, samme kilde og egne artifacts under .agent-local/gui-02-native/linux-artifacts. Locked restore bruker NuGetAudit=false kun fordi prøven er offline; ordinær restore beholder audit. En samlet Release-build:0 warnings/errors. En samlet testsuite:490/490 (Core422,Audio17,Desktop51). Ingen ny fysisk Linux-device/native GUI/probe, installer eller hørbarhetstest. Ingen nytt oppsett/image/download.
 
-## Gjenstående kort manuell Windows-prøve
+## Manuelt Windows-scenario – eierbekreftet bestått
 
 Start fra repo-roten på work/gui-02-editor-binding:
 ~~~powershell
@@ -47,4 +47,13 @@ Start fra repo-roten på work/gui-02-editor-binding:
 
 Rapporter bestått/feil per steg, spesielt hørbarhet og visuell synkronisering. Ingen systemvolum endres av testen. Render-cursor er source-position, ikke målt høyttalertid; OS/device kan ha bufret lyd som kort fortsetter etter pause/seek. Ingen ny queue-latency ble observert/målt og ingen latencygaranti gis.
 
-Headless51 og tidligere Audio-01/device-evidens er separate bevis; de erstatter ikke denne kombinerte native/manuelle sluttesten. Ingen full prototype-/alpha-/releaseakseptanse påstås. Neste steg: SUPERVISOR følger opp manual acceptance. OWNER DECISION REQUIRED: NO (ingen teknologibeslutning); manuell brukerakseptanse kreves.
+Headless51 og tidligere Audio-01/device-evidens er separate bevis; de erstatter ikke denne kombinerte native/manuelle sluttesten. Ingen alpha-/releaseakseptanse påstås. Samlet GUI-02-scenario er nå eierbekreftet bestått; neste steg er SUPERVISOR-sluttreview før eventuell separat integrasjonsordre. OWNER DECISION REQUIRED: NO.
+
+
+## Eierbekreftet resultat 2026-10-13
+
+Etter at AGENT ga startinstruks og de seks manuelle punktene direkte i chat, svarte prosjekteieren: «Alle tester bestått med forventet resultat». Dette bekrefter samtlige seks scenarioer: hørbar svak demotone/fremgang/pause, søk2,5 og like playheads/stop0, EOS8s, Hei-flytting/Angre/Gjør om under avspilling, felles horisontal scrolling og normal X-lukking uten videre lyd.
+
+Evidensen er direkte eierobservert manuell Windows-akseptanse. Det er ingen ny automatisert native-klikk-/skjermfangstprøve, målt latency eller ny490-suite. Koden er uendret siden3619d1f; dokumentcheckpoint9b3e7b0 var gjeldende før bekreftelsen. Eksakt SHA/bygningshash for eierens startscript-run er ikke separat innhentet; ikke likestill det med AGENTs tidligere outputhashes.
+
+Det tidligere manuelle scenario-gapet er lukket av denne bekreftelsen. CU-skjermfangstproblemet består som verktøybegrensning; ingen screenshot er tilgjengelig. Fysisk Linux-device/native GUI, latencygaranti, installer og alpha/release er fortsatt ikke verifisert. Ingen main-merge eller PR12-lukking er utført.

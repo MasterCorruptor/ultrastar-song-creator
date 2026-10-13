@@ -46,3 +46,8 @@ Audio-01 er godkjent og integrert etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449
 ## GUI-02 verifikasjon 2026-10-13
 
 [Native rapport/manuelle steg](GUI_02_NATIVE_VERIFICATION.md): Windows-kandidatvinduets faktiske lydinit/initialstatus og normal Alt+F4-prosessavslutning er bekreftet; screenshotfangst feilet. Kombinert visuell/hørbar acceptance gjenstår. Samlet kandidat har nå490/490 Windows og nettisolerte Linux-tester med locked restore/Release-build; ingen fysisk Linux-device. Draft PR13 er ikke merget og prototypemilepælen er ikke sluttgodkjent.
+
+
+## Eierakseptanse 2026-10-13
+
+Prosjekteieren bekreftet direkte i AGENT-chat: «Alle tester bestått med forventet resultat» etter startinstruks og seks manuelle GUI-02-punkter. Hørbarhet, play/pause/seek/stop/EOS, synlige synkroniserte playheads, noteflytting/undo/redo, delt scroll og X-lukking er dermed eierbekreftet bestått. [Proveniens og grenser](GUI_02_NATIVE_VERIFICATION.md). Tidligere utsagn om gjenstående manuell Windows-akseptanse er historiske. Avventer SUPERVISOR-sluttreview; ingen main-merge eller alpha/release.
