@@ -1,6 +1,6 @@
 # Hva kan testes nå?
 
-Status 2026-10-12: ingen alpha-/beta eller installer. Første avgrensede GUI-01 testflate er godkjent og integrert; [startguide og begrensninger](GUI_01_TEST_SURFACE.md). Solution bygger nå også Desktop.exe. Native input og normal close er manuelt verifisert av prosjekteieren med forventet resultat; SUPERVISOR har godkjent acceptance.
+Status 2026-10-13: GUI-02 er integrert via PR13 og den avgrensede lokale prototypen er SUPERVISOR-sluttgodkjent. Seks manuelle Windows-scenarioer er eierbekreftet bestått;490/490 Windows/Linux-tester. [Startguide og grenser](GUI_02_EDITOR_BINDING.md). Ingen alpha/beta/installer/release.
 
 ## Dagens funksjoner
 
@@ -10,7 +10,7 @@ Status 2026-10-12: ingen alpha-/beta eller installer. Første avgrensede GUI-01 
 - Fase 3.3 integrert: YouTube-søk, eksplisitt formatvalg og lokal originalnedlasting etter [kontrakten](ONLINE_MEDIA.md).
 - Fase 3.2: valgfritt MusicBrainz-søk og eksplisitt innspillingsvalg etter [kontrakten](RECORDING_SEARCH.md), med offline lagring.
 
-Kjernemodulene har ennå ingen filvelger, menyer eller playbackknapper. GUI-01 gir visuell flytting med undo/redo av egen testsang; acquisition og prosjektfil-I/O er fortsatt API-er.
+GUI-02 har waveform/playback/seek og visuell noteflytting med undo/redo av egen testsang/demotone. Filvelger, menyer, acquisition og prosjektfil-I/O er fortsatt ikke koblet til GUI.
 
 ## Teknisk kontroll
 
@@ -40,14 +40,14 @@ Prosjekteieren har prioritert en tidlig fungerende Windows GUI-prototype. GUI-01
 
 ## Backend før neste GUI-binding
 
-Audio-01 er godkjent og integrert etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449/449 Windows/Linux, ekte Windows Wasapi/miniaudio-smoke og Linux native loading uten fysisk device. På reviewbranchen finnes nå [GUI-02 editor-binding](GUI_02_EDITOR_BINDING.md) med waveform/transport/synkronisert playhead og fortsatt noteoperasjon.490/490 Windows-tester består; native kombinert GUI/playback er ikke testet. Main er ikke oppdatert med kandidaten. Full prototype/alpha/release er ikke ferdig.
+Audio-01 er godkjent og integrert etter [PCM-kontrakten](AUDIO_PLAYBACK.md): 449/449 Windows/Linux, ekte Windows Wasapi/miniaudio-smoke og Linux native loading uten fysisk device. På reviewbranchen finnes nå [GUI-02 editor-binding](GUI_02_EDITOR_BINDING.md) med waveform/transport/synkronisert playhead og fortsatt noteoperasjon.490/490 Windows-tester består; native kombinert GUI/playback er ikke testet. Historisk reviewstatus; kandidaten er senere integrert. Fullprodukt/alpha/release er ikke ferdig.
 
 
 ## GUI-02 verifikasjon 2026-10-13
 
-[Native rapport/manuelle steg](GUI_02_NATIVE_VERIFICATION.md): Windows-kandidatvinduets faktiske lydinit/initialstatus og normal Alt+F4-prosessavslutning er bekreftet; screenshotfangst feilet. Kombinert visuell/hørbar acceptance gjenstår. Samlet kandidat har nå490/490 Windows og nettisolerte Linux-tester med locked restore/Release-build; ingen fysisk Linux-device. Draft PR13 er ikke merget og prototypemilepælen er ikke sluttgodkjent.
+[Native rapport/manuelle steg](GUI_02_NATIVE_VERIFICATION.md): Windows-kandidatvinduets faktiske lydinit/initialstatus og normal Alt+F4-prosessavslutning er bekreftet; screenshotfangst feilet. Kombinert visuell/hørbar acceptance gjenstår. Samlet kandidat har nå490/490 Windows og nettisolerte Linux-tester med locked restore/Release-build; ingen fysisk Linux-device. Dette avsnittet er historisk; senere eierakseptanse og sluttgodkjent integrasjon står nedenfor.
 
 
 ## Eierakseptanse 2026-10-13
 
-Prosjekteieren bekreftet direkte i AGENT-chat: «Alle tester bestått med forventet resultat» etter startinstruks og seks manuelle GUI-02-punkter. Hørbarhet, play/pause/seek/stop/EOS, synlige synkroniserte playheads, noteflytting/undo/redo, delt scroll og X-lukking er dermed eierbekreftet bestått. [Proveniens og grenser](GUI_02_NATIVE_VERIFICATION.md). Tidligere utsagn om gjenstående manuell Windows-akseptanse er historiske. Avventer SUPERVISOR-sluttreview; ingen main-merge eller alpha/release.
+Prosjekteieren bekreftet direkte i AGENT-chat: «Alle tester bestått med forventet resultat» etter startinstruks og seks manuelle GUI-02-punkter. Hørbarhet, play/pause/seek/stop/EOS, synlige synkroniserte playheads, noteflytting/undo/redo, delt scroll og X-lukking er dermed eierbekreftet bestått. [Proveniens og grenser](GUI_02_NATIVE_VERIFICATION.md). Tidligere utsagn om gjenstående manuell Windows-akseptanse er historiske. SUPERVISOR-sluttreview er gjennomført, PR13 er merget som f5132145c6466d6815fb6b4ee857c4e7c15702b3. Ingen alpha/release.
