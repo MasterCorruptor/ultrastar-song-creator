@@ -21,4 +21,4 @@ UNRESOLVED: ingen kjent blokkerende feil i mappingen; waveform/presenter/panel/w
 
 Kvote ved verifisert kontraktcheckpoint:49%femtimer/59%uke gjenstår, faktisk avlest. Ingen samtidig worker startet; samlet neste ressursvurdering tilhører SUPERVISOR.
 
-Godkjent kontraktcommit: 67bf70e6d8bc30c8c7d4caad3754a4a160ee0eb2. Komponenter og [editor binding](gui-02-editor-binding.md) er senere separate leveranser. PR12 er fortsatt referanse, ikke merget.
+Godkjent kontraktcommit: 67bf70e6d8bc30c8c7d4caad3754a4a160ee0eb2. Komponenter og [editor binding](gui-02-editor-binding.md) er senere separate leveranser. Grunnlaget er integrert via [PR13](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/13), merge f5132145c6466d6815fb6b4ee857c4e7c15702b3. GitHub markerte [PR12](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/12) som MERGED fordi67bf70e inngår i den integrerte historikken; ingen separat merge ble utført.
