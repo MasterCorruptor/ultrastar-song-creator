@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Avalonia.Desktop" Version="12.1.3" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.3" />
+    <ProjectReference Include="../UltraStar.SongCreator.Audio/UltraStar.SongCreator.Audio.csproj" />
     <ProjectReference Include="../UltraStar.SongCreator.Core/UltraStar.SongCreator.Core.csproj" />
   </ItemGroup>
 </Project>

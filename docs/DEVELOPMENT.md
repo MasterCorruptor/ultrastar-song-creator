@@ -160,3 +160,7 @@ Fase 3.3 REQUEST_FIX literal-paths: native staging-cwd og faste relative --outpu
 ## Audio-01 integrert
 
 [Arbeidsordre](AUDIO_01_WORK_ORDER.md), [kontrakt/reproduksjon/evidens](AUDIO_PLAYBACK.md), [avsluttet plan](exec-plans/completed/audio-01-pcm-playback.md) og [pakke/native/notices-inventar](AUDIO_01_DEPENDENCIES.json). Audio har ingen Core-/GUI-/fil-I/O-reference; Audio.Tests og AudioProbe er egne solutionprosjekter. 449 Windows/Linux-tester og native Windows-default-device-smoke består. Linux fysisk device og akustisk hørbarhet/latency er ikke verifisert. Native callbackformat/null-backend/lifecycle kontrolleres; GUI-01 og lagringskontrakter er bevart. Audio-01 er godkjent og integrert via [PR #11](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/11). GUI-binding starter først etter ny separat ordre.
+
+## GUI-02 samlet editor-binding – reviewkandidat
+
+[Kontrakt/start/evidens](GUI_02_EDITOR_BINDING.md), [arbeidsordre](GUI_02_EDITOR_BINDING_WORK_ORDER.md) og [aktiv plan](exec-plans/active/gui-02-editor-binding.md). Godkjente A/B-komponenter er samlet sekvensielt; appwiring eier cached PCM/envelope, miniaudio, presenter/panel og close-opprydding. Samlet Windows locked restore/Release build490tester består. Native kombinert GUI/playback, Linux og release er ikke verifisert i denne ordren. Ingen main-merge.
