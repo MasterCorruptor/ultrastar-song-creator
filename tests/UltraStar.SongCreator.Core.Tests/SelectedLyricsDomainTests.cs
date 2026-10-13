@@ -26,7 +26,6 @@ public sealed class SelectedLyricsDomainTests
             new("line", "Egen\n", SelectedLyricsSyncLevel.Line, [new("Egen", 0, null, [])]), Provider()));
         SelectedLyricsValidation.Validate(Model());
         SelectedLyricsValidation.Validate(new(SelectedLyricsKind.Instrumental, null, Provider()));
-        Assert.Null(typeof(Song).GetProperty("SelectedLyrics")); // no field exposed while writer is still v2
     }
     public static IEnumerable<object[]> InvalidModels()
     {

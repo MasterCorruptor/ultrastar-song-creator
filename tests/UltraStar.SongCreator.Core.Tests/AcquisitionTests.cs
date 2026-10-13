@@ -224,7 +224,7 @@ public sealed class AcquisitionTests
         await store.SaveAsync(path, original);
         var saved = await File.ReadAllBytesAsync(path);
         var loaded = await store.LoadAsync(path);
-        Assert.Equal(2, loaded.SchemaVersion);
+        Assert.Equal(3, loaded.SchemaVersion);
         Assert.Equal(original.Metadata, loaded.Song.Metadata);
         Assert.Equal(original.Media.ToArray(), loaded.Song.Media.ToArray());
         Assert.Equal(original.ImportedSource!.Headers.ToArray(), loaded.Song.ImportedSource!.Headers.ToArray());

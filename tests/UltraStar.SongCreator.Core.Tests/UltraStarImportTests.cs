@@ -347,7 +347,7 @@ public class UltraStarImportTests
         var store = new ProjectStore();
         await store.SaveAsync(files.FilePath(), edited);
         var reopened = await store.LoadAsync(files.FilePath());
-        Assert.Equal(2, reopened.SchemaVersion);
+        Assert.Equal(3, reopened.SchemaVersion);
         ProjectRoundTripTests.AssertSameSongValues(edited, reopened.Song);
         Assert.Equal("Eksempel", reopened.Song.ImportedSource!.Headers.Single(h => h.Name == "ALBUM").Value);
         Assert.False(File.Exists(Path.Combine(files.DirectoryPath, "media", "test.wav")));

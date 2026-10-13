@@ -189,7 +189,7 @@ public class RelativeImportTests
         await store.SaveAsync(files.FilePath(), edited);
         File.Delete(sourceFile); // A reopen must use the saved model, not reparse the source.
         var loaded = await store.LoadAsync(files.FilePath());
-        Assert.Equal(2, loaded.SchemaVersion);
+        Assert.Equal(3, loaded.SchemaVersion);
         ProjectRoundTripTests.AssertSameSongValues(edited, loaded.Song);
         Assert.Equal(2.5, loaded.Song.Phrases[1].Notes[0].StartSeconds);
         Assert.Equal("YES", loaded.Song.ImportedSource!.Headers.Single(h => h.Name == "RELATIVE").Value);

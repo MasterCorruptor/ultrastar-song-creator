@@ -7,7 +7,7 @@ namespace UltraStar.SongCreator.Core.Tests;
 public class SourceMetadataTests
 {
     [Fact]
-    public async Task V1LoadsWithoutInventingMetadataAndSavesExplicitlyAsV2()
+    public async Task V1LoadsWithoutInventingMetadataAndSavesExplicitlyAsV3()
     {
         using var files = new ProjectTestDirectory();
         var fixture = Path.Combine(ProjectTestDirectory.RepositoryRoot, "tests", "UltraStar.SongCreator.Core.Tests", "Fixtures", "v1.uscproject");
@@ -18,9 +18,9 @@ public class SourceMetadataTests
         Assert.Equal(1, loaded.SchemaVersion);
         Assert.Null(loaded.Song.ImportedSource);
         Assert.Equal(before, await File.ReadAllBytesAsync(files.FilePath()));
-        await store.SaveAsync(files.FilePath("v2"), loaded.Song);
-        var migrated = await store.LoadAsync(files.FilePath("v2"));
-        Assert.Equal(2, migrated.SchemaVersion);
+        await store.SaveAsync(files.FilePath("v3"), loaded.Song);
+        var migrated = await store.LoadAsync(files.FilePath("v3"));
+        Assert.Equal(3, migrated.SchemaVersion);
         Assert.Equal(before, await File.ReadAllBytesAsync(files.FilePath()));
         ProjectRoundTripTests.AssertSameSongValues(loaded.Song, migrated.Song);
     }
@@ -42,7 +42,7 @@ public class SourceMetadataTests
         var store = new ProjectStore();
         await store.SaveAsync(files.FilePath(), edited);
         var reopened = await store.LoadAsync(files.FilePath());
-        Assert.Equal(2, reopened.SchemaVersion);
+        Assert.Equal(3, reopened.SchemaVersion);
         ProjectRoundTripTests.AssertSameSongValues(edited, reopened.Song);
     }
 
@@ -56,11 +56,8 @@ public class SourceMetadataTests
     {
         using var files = new ProjectTestDirectory();
         var store = new ProjectStore();
-        await store.SaveAsync(files.FilePath(), SongFixture.Create() with
-        {
-            ImportedSource = new() { FormatId = "test", Headers = [new("COVER", "image.png")] }
-        });
-        var root = JsonNode.Parse(await File.ReadAllTextAsync(files.FilePath()))!;
+        var fixture = Path.Combine(ProjectTestDirectory.RepositoryRoot, "tests", "UltraStar.SongCreator.Core.Tests", "Fixtures", "v2.uscproject");
+        var root = JsonNode.Parse(await File.ReadAllTextAsync(fixture))!;
         switch (mutation)
         {
             case "missingSource": root.AsObject().Remove("importedSource"); break;

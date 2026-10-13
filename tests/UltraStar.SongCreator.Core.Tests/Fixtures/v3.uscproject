@@ -1,0 +1,25 @@
+{
+  "format": "ultrastar-song-creator",
+  "schemaVersion": 3,
+  "song": {
+    "id": "20000000-0000-0000-0000-000000000001",
+    "metadata": {"title": "Independent v3", "artist": "Owner", "language": "nb"},
+    "media": [], "audioOffsetSeconds": 0.25, "videoOffsetSeconds": -0.5,
+    "beatsPerMinute": null, "phrases": [], "analysis": {"artifacts": []}
+  },
+  "importedSource": {"formatId": "downloaded-media-v1", "fileReference": null,
+    "headers": [{"name": "X-URL", "value": "https://example.invalid/media"}]},
+  "selectedLyrics": {
+    "kind": "text",
+    "document": {"id": "chosen-word", "text": " Hei 🎵\n Hei 🎵\n", "syncLevel": "word", "timeReference": "lyricsSourceSeconds",
+      "lines": [
+        {"text": " Hei 🎵", "startSeconds": 1, "endSeconds": 3, "words": [
+          {"text": " Hei ", "startSeconds": 1, "endSeconds": 2},
+          {"text": "🎵", "startSeconds": 1, "endSeconds": null}]},
+        {"text": " Hei 🎵", "startSeconds": 1, "endSeconds": null, "words": [
+          {"text": " Hei 🎵", "startSeconds": 1.5, "endSeconds": 4}]}]},
+    "provenance": {"origin": "provider", "sourceId": "fixture", "candidateId": "chosen-candidate",
+      "sourceUrl": "https://example.invalid/lyrics", "createdAtUtc": null, "retrievedAtUtc": "2026-10-13T12:34:56.1234567+00:00",
+      "artist": "Source claim", "title": null, "album": "Æ", "version": "Live", "durationSeconds": 0.25}
+  }
+}
