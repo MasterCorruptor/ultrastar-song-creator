@@ -1,6 +1,6 @@
 # LRCLIB transport — local pre-code proposal
 
-STATUS: ACCEPTED pre-code contract by SUPERVISOR at ed171fe, with the explicit User-Agent/header-limit clarification below. HTTP implementation db51699 is accepted by SUPERVISOR at da3c163; root and independent read-only review found no actionable findings. Approved for work-branch publication/PR, not yet integrated into main. TASK phase3-lrclib-transport-preparation-local, SMALL / SEQUENTIAL. The original pre-code preparation alone granted no implementation/publication authority; the later scoped work order and reviewed close order now authorize them.
+STATUS: ACCEPTED pre-code contract by SUPERVISOR at ed171fe, with the explicit User-Agent/header-limit clarification below. HTTP implementation db51699 is accepted by SUPERVISOR at da3c163; root and independent read-only review found no actionable findings. Integrated through PR20 as main6ddb743 after explicit authorization of that specific next main merge; no standing future-merge permission is inferred. TASK phase3-lrclib-transport-preparation-local, SMALL / SEQUENTIAL. The original pre-code preparation alone granted no implementation/publication authority; the later scoped work order and reviewed close order now authorize them.
 
 [Checkpoint](exec-plans/completed/phase3-lrclib-transport-preparation-local.md), [historical adapter research/proposal](PHASE3_LRCLIB_ADAPTER_PROPOSAL.md), [accepted local decoder](LRCLIB_RESPONSE_PROFILE.md), [lyrics contract](PHASE3_LYRICS_CONTRACT.md).
 
@@ -65,7 +65,7 @@ Offline acceptance must cover:
 Historical preparation stop: after contract acceptance, implementation required quota gating and scoped dispatch. That dispatch was later fulfilled by the HTTP work order; the local implementation/results appear below.
 
 
-## Local implementation checkpoint — 2026-10-14
+## Historical local implementation checkpoint — 2026-10-14
 
 [Work order](PHASE3_LRCLIB_TRANSPORT_WORK_ORDER.md), [completed implementation plan](exec-plans/completed/phase3-lrclib-http-transport.md).
 Implementation/tested SHA db5169965e0e03e36fbaf0570c1eb4c98afd8530; subsequent checkpoint changes are documentation only.
@@ -75,3 +75,5 @@ New public provider and dedicated gate implement this contract around unchanged 
 70 new deterministic offline cases passed. Full Windows solution: 892/892 (Core 824, Audio 17, Desktop 51), zero skipped. Locked restore, Release build with zero warnings/errors and full solution format verification passed. Existing decoder/parser/shared contracts/Core/Projects/MusicBrainz/GUI/dependencies/master/ADRs remain byte-identical to integrated baseline.
 
 No live LRCLIB request, lyric fixture, Linux/native acceptance or GUI integration was performed. API availability, deployed provider compatibility and real song-content rights remain unverified here. Process-lifetime LRCLIB fail-closed behavior for extreme valid wait headers and cooperative synchronous decoding are the accepted operational limits. Implementation review complete at da3c163; publication/PR is authorized by the later close order. The owner has explicitly approved the next main integration for this transport package. Stop at the actual PR/head checkpoint for SUPERVISOR matched-head review/order before merge; this is not a standing approval of all future merges. No automatic next task.
+
+Current delivery: PR20 merged as 6ddb743, with its entire tree identical to reviewed 81e9abd and unchanged tested source db51699. The previous publication stop is historical. [Next flow proposal](PHASE3_LYRICS_FLOW_PROPOSAL.md) awaits separate review; no coordinator/lyrics-GUI implementation or new test result.
