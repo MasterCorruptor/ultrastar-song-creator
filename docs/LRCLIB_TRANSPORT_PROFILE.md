@@ -1,6 +1,6 @@
 # LRCLIB transport — local pre-code proposal
 
-STATUS: ACCEPTED pre-code contract by SUPERVISOR at ed171fe, with the explicit User-Agent/header-limit clarification below. HTTP is now implemented locally at db51699 and awaits implementation review; it is not yet integrated. TASK phase3-lrclib-transport-preparation-local, SMALL / SEQUENTIAL. No HTTP implementation or remote publication is authorized by this document.
+STATUS: ACCEPTED pre-code contract by SUPERVISOR at ed171fe, with the explicit User-Agent/header-limit clarification below. HTTP implementation db51699 is accepted by SUPERVISOR at da3c163; root and independent read-only review found no actionable findings. Approved for work-branch publication/PR, not yet integrated into main. TASK phase3-lrclib-transport-preparation-local, SMALL / SEQUENTIAL. No HTTP implementation or remote publication is authorized by this document.
 
 [Checkpoint](exec-plans/completed/phase3-lrclib-transport-preparation-local.md), [historical adapter research/proposal](PHASE3_LRCLIB_ADAPTER_PROPOSAL.md), [accepted local decoder](LRCLIB_RESPONSE_PROFILE.md), [lyrics contract](PHASE3_LYRICS_CONTRACT.md).
 
@@ -67,11 +67,11 @@ The contract is accepted; the next implementation order still requires actual qu
 
 ## Local implementation checkpoint — 2026-10-14
 
-[Work order](PHASE3_LRCLIB_TRANSPORT_WORK_ORDER.md), [active review checkpoint](exec-plans/active/phase3-lrclib-http-transport.md).
+[Work order](PHASE3_LRCLIB_TRANSPORT_WORK_ORDER.md), [completed implementation plan](exec-plans/completed/phase3-lrclib-http-transport.md).
 Implementation/tested SHA db5169965e0e03e36fbaf0570c1eb4c98afd8530; subsequent checkpoint changes are documentation only.
 
 New public provider and dedicated gate implement this contract around unchanged LrclibJson. Raw Content-Type/Encoding/Length validation rejects malformed headers. A conservative header byte budget also enforces the controlled production bound for terminal fixtures; excess maps to sanitized NetworkFailure, matching transport failure to accept excessive headers. Concurrent provider disposal during an active call remains outside the supported caller contract.
 
 70 new deterministic offline cases passed. Full Windows solution: 892/892 (Core 824, Audio 17, Desktop 51), zero skipped. Locked restore, Release build with zero warnings/errors and full solution format verification passed. Existing decoder/parser/shared contracts/Core/Projects/MusicBrainz/GUI/dependencies/master/ADRs remain byte-identical to integrated baseline.
 
-No live LRCLIB request, lyric fixture, Linux/native acceptance or GUI integration was performed. API availability, deployed provider compatibility and real song-content rights remain unverified here. Process-lifetime LRCLIB fail-closed behavior for extreme valid wait headers and cooperative synchronous decoding are the accepted operational limits. STOP for supervisor implementation review; no publication or automatic next task in this order.
+No live LRCLIB request, lyric fixture, Linux/native acceptance or GUI integration was performed. API availability, deployed provider compatibility and real song-content rights remain unverified here. Process-lifetime LRCLIB fail-closed behavior for extreme valid wait headers and cooperative synchronous decoding are the accepted operational limits. Implementation review complete at da3c163; publication/PR is authorized by the later close order. Stop after publication checkpoint; no main merge or automatic next task.

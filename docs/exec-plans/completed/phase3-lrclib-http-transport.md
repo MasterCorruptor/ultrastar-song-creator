@@ -1,6 +1,6 @@
 # LRCLIB HTTP transport — local implementation checkpoint
 
-STATUS: CHECKPOINT — implementation and required Windows verification complete; awaiting SUPERVISOR review.
+STATUS: COMPLETE — implementation and required Windows verification accepted by SUPERVISOR at da3c163. Root and independent read-only review found no actionable findings. Approved for branch publication/PR; main integration is a separate step.
 TASK: phase3-lrclib-http-transport, MEDIUM / SEQUENTIAL, one worker.
 MODEL USED: Sol High requested; actual model/reasoning not exposed, unknown.
 BRANCH: work/phase3-lrclib-http-transport.
@@ -38,7 +38,7 @@ Only new Acquisition/Lyrics/LrclibProvider.cs, LrclibRequestGate.cs and new Core
 
 ## Unresolved / next step
 
-Supervisor implementation review pending. No live API/deployed-provider interoperability, Linux/native verification, real lyrics/content rights or GUI end-to-end result claimed. Provider disposal during an active call is unsupported; sync decoding is cooperatively canceled; extreme valid Retry-After disables LRCLIB until restart as accepted.
+Supervisor implementation review complete; independent reviewer also found no actionable findings. No live API/deployed-provider interoperability, Linux/native verification, real lyrics/content rights or GUI end-to-end result claimed. Provider disposal during an active call is unsupported; sync decoding is cooperatively canceled; extreme valid Retry-After disables LRCLIB until restart as accepted.
 
-Commit local coherent docs checkpoint, send one authorized callback with tested/current SHA and STOP. No push, PR, merge, extra worker or automatic next feature.
+Publish the accepted work branch and create/attach its PR under the separate approved close/publication order, then send one checkpoint callback and STOP. No merge/main update, extra worker or automatic next feature.
 OWNER DECISION REQUIRED: NO.
