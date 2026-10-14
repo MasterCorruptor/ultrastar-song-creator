@@ -78,3 +78,9 @@ Neste foreslåtte avgrensning er [sangtekstflyt](PHASE3_LYRICS_FLOW_PROPOSAL.md)
 Headless session A er implementert lokalt, med immutable/revisjonert tilstand, ett aktivt søk og én nyeste ventende intensjon, eksplisitt variant/manuell tekst, typed feil og sikker cancellation/disposal-drain. Den låner provider og endrer ikke Song, undo/redo eller prosjektfiler. [Arbeidsordre/API](PHASE3_LYRICS_SESSION_WORK_ORDER.md), [checkpoint](exec-plans/completed/phase3-lyrics-acquisition-session.md).
 
 Ved testet e4b3923 består 47 nye session-cases og 939/939 Windows-tester (Core 871, Audio 17, Desktop 51), zero skipped; locked restore, Release uten warnings/errors og full formatkontroll består. Kontrollerte providers/TCS brukes, ingen live API eller real-time sleeps. Ingen nye Linux/native/GUI/alpha/beta- eller fullworkflow-resultater. Sessionkode er godkjent ved de2b09f av SUPERVISOR og uavhengig reviewer uten actionable findings; B-panelet og samme-history apply er fortsatt neste separate steg.
+
+## Lyrics editor apply B1 — lokalt checkpoint
+
+ApplySelectedLyrics bruker eksisterende EditingSession-historikk mot gjeldende Song. Valgt tekst kan anvendes programmatisk med undo/redo; no-op/ugyldig/null endrer ikke sang eller redo. Null er en eksplisitt avvisning, ikke clear. Ingen tekstpanel/fil- eller nettverksflyt er lagt til. [Kontrakt/report](exec-plans/active/phase3-lyrics-editor-apply.md).
+
+Testet aaedb1d:14nye/953totale Windows-tester(Core871,Audio17,Desktop65), zero skipped; locked restore,Release0warnings/errors og full formatkontroll består. Faktiske source-time/proveniens og øvrige sangfelter bevares. Ingen nytt native/Linux/live/GUI/fullworkflow-resultat. B1 avventer rootreview; B2 og ekstern levering har separate stopp.
