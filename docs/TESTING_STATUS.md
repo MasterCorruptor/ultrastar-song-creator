@@ -78,3 +78,37 @@ Neste foreslåtte avgrensning er [sangtekstflyt](PHASE3_LYRICS_FLOW_PROPOSAL.md)
 Headless session A er implementert lokalt, med immutable/revisjonert tilstand, ett aktivt søk og én nyeste ventende intensjon, eksplisitt variant/manuell tekst, typed feil og sikker cancellation/disposal-drain. Den låner provider og endrer ikke Song, undo/redo eller prosjektfiler. [Arbeidsordre/API](PHASE3_LYRICS_SESSION_WORK_ORDER.md), [checkpoint](exec-plans/completed/phase3-lyrics-acquisition-session.md).
 
 Ved testet e4b3923 består 47 nye session-cases og 939/939 Windows-tester (Core 871, Audio 17, Desktop 51), zero skipped; locked restore, Release uten warnings/errors og full formatkontroll består. Kontrollerte providers/TCS brukes, ingen live API eller real-time sleeps. Ingen nye Linux/native/GUI/alpha/beta- eller fullworkflow-resultater. Sessionkode er godkjent ved de2b09f av SUPERVISOR og uavhengig reviewer uten actionable findings; B-panelet og samme-history apply er fortsatt neste separate steg.
+
+## Lyrics editor apply B1 — lokalt checkpoint
+
+ApplySelectedLyrics bruker eksisterende EditingSession-historikk mot gjeldende Song. Valgt tekst kan anvendes programmatisk med undo/redo; no-op/ugyldig/null endrer ikke sang eller redo. Null er en eksplisitt avvisning, ikke clear. Ingen tekstpanel/fil- eller nettverksflyt er lagt til. [Kontrakt/report](exec-plans/completed/phase3-lyrics-editor-apply.md).
+
+Testet aaedb1d:14nye/953totale Windows-tester(Core871,Audio17,Desktop65), zero skipped; locked restore,Release0warnings/errors og full formatkontroll består. Faktiske source-time/proveniens og øvrige sangfelter bevares. Ingen nytt native/Linux/live/GUI/fullworkflow-resultat. B1 er akseptert av SUPERVISOR ved fb6fcb6. B2 og ekstern levering behandles separat.
+
+## Lyrics panel component B2 — lokalt reviewcheckpoint
+
+Ved testet2d137f4 består24nye/977totale Windows-tester (Core871,Audio17,Desktop89), zero skipped; locked restore,Release0warnings/errors og full formatkontroll består. [Komponentrapport](exec-plans/completed/phase3-lyrics-panel-component.md) beskriver syntetiske headless-prøver for eksplisitt valg/manuell tekst/frozen apply, immediate/stale eligibility, bounded admission og trygg asynkron close med held cancellation/ignored provider og lånt/eid lifetime.
+
+Dette er en selvstendig komponent, ennå ikke koblet til EditorWindow/EditorApplication; B3 wiring/normal-window-close/startup/audio cleanup er neste separate arbeid etter review. Ingen nytt native/manuelt/live/Linux/alpha-beta/fullworkflow-resultat. Bare eksisterende lokal Acquisition-prosjektreferanse er lagt til; ingen nye eksterne pakker. B2 er ikke publisert. Eksakt A099884b er publisert separat i PR21; main er ikke endret av denne leveransen.
+
+B2 REQUEST_FIX ved c83152b: begge P2-funn rettet i eide komponent/testfiler. Eksplisitt forberedelse binder én revisjon og immutable payload; ekstern/reentrant erstatning kan ikke anvendes. Innspillingsvalg venter på eksplisitt variant uten falsk valideringsfeil.31komponent/984totale Windows-tester (Core871,Audio17,Desktop96), zero skipped; locked restore/Release0warnings/format bestått. [Oppdatert rapport/evidens](exec-plans/completed/phase3-lyrics-panel-component.md). Ingen nytt native/live/Linux/B3-resultat.
+
+A er nå integrert via PR21 som main d5a6231 etter ny direkte eiergodkjenning. Hele merge-treet er identisk med godkjent A099884b, testet kode e4b3923 med939cases; dette er ingen ny testkjøring. B2 fixed984cases gjelder separat lokal c83152b og er nå godkjent av SUPERVISOR ved 5d10cfb. Native/live/Linux/B3 er ikke verifisert her.
+
+## B2-komponent sluttgodkjent
+
+SUPERVISOR har godkjent begge reviewrettingene ved5d10cfb/testet c83152b:31komponent/984Windows-cases (Core871,Audio17,Desktop96), zero skipped. Dette er automatisk/offline komponentakseptanse. [Avsluttet plan](exec-plans/completed/phase3-lyrics-panel-component.md). Ingen ny suite for docs-only avslutning; kode/prosjekter/locks/tester bevares. STOP_FOR_RESET før B3 og ny kapasitets-/statuskontroll; native/live/Linux/B3/fullworkflow er fortsatt uverifisert.
+
+## B3 appwiring — lokalt reviewcheckpoint
+
+Testet38e1b5a:16nye/1000totale Windows-tester (Core871,Audio17,Desktop112), zero skipped; locked restore/Release0warnings/full format består. [Faktisk rapport/evidens](exec-plans/completed/phase3-lyrics-app-wiring.md). Produksjon bruker ekte LRCLIB uten startuprequest; samme editorhistorikk/playback er beholdt. Kontrollerte headless-prøver dekker normalclose, UIaudio før drain, held callback/ignored cancellation, delvis startup-eierskap og statisk failureguard. Ingen ny dependency/project/lockfilendring eller faktisk nett/device i testene.
+
+Dette er appkomposisjon via injiserbare interne host-callbacks; faktisk native classic-desktop-loop/manuell Windows, live provider, Linux og fullworkflow er ikke akseptert her. Ingen ny publisering/main-endring. Avventer SUPERVISOR-review; videre fase starter ikke automatisk.
+
+## B3 sluttgodkjent lokalt
+
+SUPERVISOR og uavhengig review har godkjent bc7d17b/testet38e1b5a som automatisk/offline-komposisjon:16nye/1000Windows, zero skipped, ingen actionable funn. [Avsluttet rapport](exec-plans/completed/phase3-lyrics-app-wiring.md). Kode/prosjekt/lock/testbytes bevares ved docsclosure, ingen ny suite. Faktisk native classic-desktop-loop/Show/platforminitialisering/manuell/live/Linux/fullworkflow er fortsatt ikke verifisert. Neste separate ordre klargjør samlet lokal integrasjon for review, uten publisering/mainendring.
+
+## Samlet lokal B1–B3-integrasjon til review
+
+[Integrasjonsrapport](PHASE3_LYRICS_EDITOR_INTEGRATION.md) samler aksepterte kode-/testrefs og presise native/manual/live/Linux-gap. Lokal main-merge9bafcf0 har identisk filinnhold med B3-closure bb0c5d6; source/test/project/lockbytes matcher testet38e1b5a/1000Windows. Ingen ny suite for docs-only/identisk-tre-klargjøring. Main d5a6231 er bevart; ingen ny remote/publisering/nativeUI eller feature startet.

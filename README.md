@@ -92,4 +92,16 @@ Immutable valgt tekst/proveniens kan endres med undo/redo og lagres offline i st
 
 LRCLIB HTTP-transport er integrert via PR20 på main6ddb743 med 892/892 Windows-tester; ikke koblet til GUI eller ferdig alpha/beta. Se [gjeldende teststatus](docs/TESTING_STATUS.md) og [transportkontrakten](docs/LRCLIB_TRANSPORT_PROFILE.md).
 
-[Neste foreslåtte sangtekstflyt](docs/PHASE3_LYRICS_FLOW_PROPOSAL.md) har en kodegodkjent A-session med 939/939 Windows-tester; lyrics-panelet er ikke implementert.
+[Neste foreslåtte sangtekstflyt](docs/PHASE3_LYRICS_FLOW_PROPOSAL.md) har en kodegodkjent A-session med 939/939 Windows-tester; GUI-wiring gjenstår.
+
+B1 apply via eksisterende editorhistorikk er akseptert med 953/953 Windows-tester; [checkpoint](docs/exec-plans/completed/phase3-lyrics-editor-apply.md). B2-komponenten er godkjent etter review, med 984/984 Windows-tester; [checkpoint](docs/exec-plans/completed/phase3-lyrics-panel-component.md). Kobling inn i appvinduet er et senere B3-trinn.
+
+Sangtekstøkten A er integrert via [PR21](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/21) som main d5a6231; lokal/GitHub main er like. Ved B2-avslutningen var panelrettingen godkjent separat lokalt, før kobling inn i appvinduet.
+
+B2 er avsluttet lokalt; B3 ble deretter bestilt etter ny kapasitetskontroll. Ingen ny publisering eller main-endring inngår i avslutningen.
+
+## B3 — lokalt appwiring-checkpoint
+
+Tekstpanelet er nå koblet til editorprototypen med blanke søkefelt, eksplisitt LRCLIB-komposisjon og observert oppstarts-/lukkeopprydding. Samme notehistorikk/timeline/playback bevares.16nye/1000totale Windows-tester består; [rapport](docs/exec-plans/completed/phase3-lyrics-app-wiring.md) er godkjent av SUPERVISOR som lokal offline-komposisjon. Native/manuell/live/Linux og fullworkflow er ikke verifisert. Leveransen er lokal, uten ny publisering/main-integrasjon eller Generation.
+
+Samlet B1–B3 er nå klargjort på en egen lokal integrasjonsbranch, med uendret testet kode og konfliktfri main-ancestry. [Integrasjonsrapport og senere nativeplan](docs/PHASE3_LYRICS_EDITOR_INTEGRATION.md). Avventer review før publisering; ingen ny main-endring/native-test eller videre fase inngår.

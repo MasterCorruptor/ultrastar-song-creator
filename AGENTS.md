@@ -4,7 +4,7 @@ UltraStar Song Creator skal bli et lokalt desktopverktøy for UltraStar-sanger. 
 
 ## Les først
 
-Les docs/PROJECT_MASTER.md (v0.5), gjeldende arbeidsordre og relevante aksepterte ADR-er i docs/decisions/. Masteren endres bare etter eksplisitt bestilling. docs/DEVELOPMENT.md beskriver arbeidsflyt/build/test; README og docs/TESTING_STATUS.md beskriver nåværende leveranse. Historiske arbeidsplaner finnes i docs/exec-plans/completed/.
+Les docs/PROJECT_MASTER.md (v0.5), gjeldende arbeidsordre og relevante aksepterte ADR-er i docs/decisions/. Masteren endres bare etter eksplisitt bestilling. docs/DEVELOPMENT.md beskriver arbeidsflyt/build/test; README og docs/TESTING_STATUS.md beskriver nåværende leveranse. Historiske arbeidsplaner: docs/exec-plans/completed/.
 
 ## Autoritet og arbeid
 
@@ -18,7 +18,7 @@ Bevar acquisition/generation/editor-skillet, immutable sangmodell og undo/redo. 
 
 ADR-0001/0002 er akseptert: .NET/Avalonia, Python-prosess, utskiftbar miniaudio-backend, eksplisitt umxhq og MIT egen kode med separate LGPL-forpliktelser. Analyse er forslag med confidence/manuell korreksjon; ASR-default er ikke fastsatt. Ikke omgjør vedtak uten bestilling.
 
-SUPERVISOR reviewer; AGENT implementerer/rapporterer hendelsesstyrt etter docs/SUPERVISOR_POLICY.md. Stående eiermandat tillater kvotestyrt videre masterarbeid/resume etter reset. Lyrics-fundament/LRC/selected-typer er integrert. HTTP/PR20 integrert; lokal A: docs/PHASE3_LYRICS_SESSION_WORK_ORDER.md; kodegodkjent.
+SUPERVISOR reviewer; AGENT implementerer/rapporterer hendelsesstyrt etter docs/SUPERVISOR_POLICY.md. Eiermandatet tillater kvotestyrt masterarbeid og gjenopptakelse. Lyrics-fundament/LRC/selected-typer er integrert. B1–B3 er akseptert lokalt. Integrasjon: docs/PHASE3_LYRICS_EDITOR_INTEGRATION.md; avventer review før publisering.
 
 ## Verifikasjon og stopp
 

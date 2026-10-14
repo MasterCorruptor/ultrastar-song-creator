@@ -388,6 +388,12 @@
           "xunit.v3.runner.common": "[3.2.2]"
         }
       },
+      "ultrastar.songcreator.acquisition": {
+        "type": "Project",
+        "dependencies": {
+          "UltraStar.SongCreator.Core": "[1.0.0, )"
+        }
+      },
       "ultrastar.songcreator.audio": {
         "type": "Project",
         "dependencies": {
@@ -402,6 +408,7 @@
         "dependencies": {
           "Avalonia.Desktop": "[12.1.3, )",
           "Avalonia.Themes.Fluent": "[12.1.3, )",
+          "UltraStar.SongCreator.Acquisition": "[1.0.0, )",
           "UltraStar.SongCreator.Audio": "[1.0.0, )",
           "UltraStar.SongCreator.Core": "[1.0.0, )"
         }

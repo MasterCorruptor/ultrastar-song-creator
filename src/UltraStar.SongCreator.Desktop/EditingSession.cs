@@ -46,14 +46,36 @@ public sealed class EditingSession(Song initial)
         Changed?.Invoke(this, EventArgs.Empty);
     }
 
+    /// <summary>Applies an explicit validated payload to the current song using the existing history.</summary>
+    public bool ApplySelectedLyrics(SelectedLyrics value)
+    {
+        var changed = false;
+        if (value is null)
+            Message = "Velg en gyldig sangtekst før bruk.";
+        else
+        {
+            try
+            {
+                changed = history.Execute(new SetSelectedLyrics(value));
+                Message = changed ? "Valgt sangtekst er brukt." : "Denne sangteksten er allerede valgt.";
+            }
+            catch (EditRejectedException)
+            {
+                Message = "Sangteksten kunne ikke brukes. Kontroller tekst og kildeinformasjon.";
+            }
+        }
+        Changed?.Invoke(this, EventArgs.Empty);
+        return changed;
+    }
+
     public void Undo()
     {
-        Message = history.Undo() ? "Flyttingen er angret." : "Ingen endring å angre.";
+        Message = history.Undo() ? "Endringen er angret." : "Ingen endring å angre.";
         Changed?.Invoke(this, EventArgs.Empty);
     }
     public void Redo()
     {
-        Message = history.Redo() ? "Flyttingen er gjort om." : "Ingen endring å gjøre om.";
+        Message = history.Redo() ? "Endringen er gjort om." : "Ingen endring å gjøre om.";
         Changed?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -115,3 +115,15 @@ Godkjenningen gjelder det offentlige prosjekt-repositoryet https://github.com/Ma
 Det tidligere decoderstoppets manglende publiseringsfullmakt er løst av denne nye eiergodkjenningen. Historiske faktiske avslag beholdes som historikk; de blir ikke omtolket til vellykket publisering. Ingen push/PR/merge er utført i dette dokumentcheckpointet. SUPERVISOR reviewer det aktuelle dokumentcheckpointet før konkret publiserings-/integrasjonsordre.
 
 «Super bruker» endrer ikke sandbox eller automatiske godkjenningskontroller og tillater ikke force-push, destruktiv synkronisering, publisering til andre destinasjoner eller omgåelse av et nytt avslag. Nye faktiske plattform-/approvalavslag stopper den berørte handlingen og rapporteres etter eksisterende policy.
+
+## Avklart kort rapportering og konkret A-publisering — 2026-10-14
+
+Et faktisk avslag på en omfattende kontrollpunktrapport ble fulgt av ny direkte eiergodkjenning for korte rapporter til prosjektets navngitte SUPERVISOR-chat, også ved senere checkpoints: «Ja, også senere korte rapporter». Send høyst én kort melding (maks120ord) per unik task/SHA/hendelse, med status/testevidens/rapportsti og uten råkode/sangtekst eller omfattende intern historikk. Første korte leveranse er verifisert levert. Tidligere avslag er historiske; et nytt faktisk avslag stopper fortsatt berørt melding uten alternativ kanal.
+
+Eieren godkjente separat eksakt A099884b på work/phase3-lyrics-acquisition-session i det offentlige prosjekt-repositoryet samt PR mot main. Dette er gjennomført som PR21; lokal senere A440ea86 og B1/B2 er ikke publisert gjennom denne handlingen. PR21-merge og nye konkrete publiseringshandlinger vurderes etter gjeldende separate godkjenninger/ordre. Kort rapporteringsfullmakt gir ingen ny publiserings-/mergefullmakt.
+
+## Ny direkte mergefullmakt — 2026-10-14
+
+På konkret spørsmål om merge av PR21 (godkjent A099884b,939tester) til main i MasterCorruptor/ultrastar-song-creator og oppdatering av lokal main, samt senere SUPERVISOR-reviewede PR-merger innen avtalte rammer, svarte eieren «Ja, også senere reviewede merges». Dette autoriserer den konkrete A-integrasjonen og senere faktisk reviewede prosjekt-PR-er innen master/scope/lisens/kvote/fullmakter. Ingen selvreview, force/reset, destruktiv sync, andre destinasjoner eller omgåelse av nye plattformavslag. Kontrollér eksakt reviewet head, base/main, diff/checks/konflikter før hver konkret merge; ny materiell endring krever nytt review. Ved dette historiske fullmaktcheckpointet var B2 REQUEST_FIX ennå ikke godkjent/integrert. Kort checkpoint-rapportering er prosjektstatus uten kontokvote-/bruksdata.
+
+Den konkrete eiergodkjente PR21-integrasjonen er nå utført ved head099884b som main d5a623104b40445f78abbb0cd409b4573153e9bc. GitHub/main og lokal main er verifisert like; hele merge-treet er identisk med godkjent A. B2-reviewretting er ikke publisert/merget. Ingen kodefiler ble endret av dette dokumentcheckpointet.
