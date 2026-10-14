@@ -1,6 +1,6 @@
 # Lyrics panel B — local functional contract proposal
 
-STATUS: Functional direction accepted in principle at301b885. B1 same-history apply contract is frozen below; B2 panel/dispatcher/admission/owned teardown remains proposed pending B1 review and separate dispatch. No UI launch or publication.
+STATUS: B1 and B2 component accepted; B2 fixes at5d10cfb/tested c83152b,31component/984Windows cases. Earlier proposal/checkpoints below are historical. B3 app/window wiring requires a separate order after capacity/status check.
 BASE accepted A440ea86e6e9b9a9cd72d0f8e37dfbb65039093b0, tested A e4b3923 / 47 new / 939 Windows cases; main6ddb743 unchanged.
 [Plan](exec-plans/active/phase3-lyrics-panel-preparation.md), [frozen A/B behavior](PHASE3_LYRICS_FLOW_PROPOSAL.md), [actual A API](PHASE3_LYRICS_SESSION_WORK_ORDER.md).
 
@@ -97,6 +97,8 @@ B1 local implementation checkpoint: aaedb1d,14new/953total Windows tests, zero s
 
 B1 is accepted at fb6fcb6 (tested aaedb1d, 953 Windows cases). B2 is now ordered as a local component and headless tests only: [work order](PHASE3_LYRICS_PANEL_COMPONENT_WORK_ORDER.md). EditorWindow/EditorApplication, playback release and startup/normal-window-close wiring remain B3, requiring later review/order. Earlier pending A publication/callback statements above describe historical preparation only: exact A099884b is published in PR21 and short checkpoint callbacks are explicitly authorized. No B1/B2 publication or merge is included here.
 
-B2 component checkpoint2d137f4 is implemented locally with24new/977total Windows cases; [report](exec-plans/active/phase3-lyrics-panel-component.md) awaits SUPERVISOR review. Only component + internal owned close and headless fixtures; window/app/startup/audio-release wiring remains B3. No new production search is active in the app.
+B2 component checkpoint2d137f4 is implemented locally with24new/977total Windows cases; [report](exec-plans/completed/phase3-lyrics-panel-component.md) awaits SUPERVISOR review. Only component + internal owned close and headless fixtures; window/app/startup/audio-release wiring remains B3. No new production search is active in the app.
 
-B2 review found two P2 selection/status defects; fixes at c83152b have31component/984total Windows cases. [Current report](exec-plans/active/phase3-lyrics-panel-component.md) supersedes initial2d137f4 eligibility evidence; awaits renewed review. No B3 implementation.
+B2 review found two P2 selection/status defects; fixes at c83152b have31component/984total Windows cases. [Current report](exec-plans/completed/phase3-lyrics-panel-component.md) supersedes initial2d137f4 eligibility evidence; awaits renewed review. No B3 implementation.
+
+Final B2 review at5d10cfb closed both P2 findings without remaining actionable component issues. [Completed report](exec-plans/completed/phase3-lyrics-panel-component.md). STOP_FOR_RESET; no B3/worker/publication/integration or native/live/Linux/fullworkflow acceptance begins through this closure.

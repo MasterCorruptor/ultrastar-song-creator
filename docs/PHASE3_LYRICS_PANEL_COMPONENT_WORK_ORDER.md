@@ -1,5 +1,5 @@
 # Lyrics panel component B2
-STATUS: CHECKPOINT — implementation verified; pending SUPERVISOR review. MEDIUM / SEQUENTIAL, one worker. Sol High requested; actual model/reasoning unknown.
+STATUS: COMPLETE — SUPERVISOR accepted component at 5d10cfb; documentation closure only. MEDIUM / SEQUENTIAL, one worker. Sol High requested; actual model/reasoning unknown.
 Base: accepted B1 fb6fcb63fec6df97a7a604e3f2fd34bff8f634c9, source/tests identical to tested aaedb1d (953 Windows cases). Local branch work/phase3-lyrics-panel-component.
 
 ## Scope and ownership
@@ -21,8 +21,12 @@ Targeted tests, coherent code commit, locked restore/Release zero warnings/full 
 
 ## Local verification
 
-Tested implementation2d137f4:24new/977total Windows cases; locked restore/Release0warnings/full format passed. [Actual checkpoint and boundaries](exec-plans/active/phase3-lyrics-panel-component.md). Source/project/lock scope preserved. B3 wiring, native/manual/live/Linux and publication remain outside this checkpoint.
+Tested implementation2d137f4:24new/977total Windows cases; locked restore/Release0warnings/full format passed. [Actual checkpoint and boundaries](exec-plans/completed/phase3-lyrics-panel-component.md). Source/project/lock scope preserved. B3 wiring, native/manual/live/Linux and publication remain outside this checkpoint.
 
 ## Review correction contract
 
-Only explicit manual/variant actions use prepare=true. They authorize the exact immutable snapshot only if the synchronous successful action advances one revision from the admission baseline; reentrant replacements add revisions and reject eligibility. All other intents, including candidate guidance, never authorize Apply. Candidate guidance does not call Select; explicit variant choice does. Tested c83152b:31component/984total Windows cases. [Current evidence](exec-plans/active/phase3-lyrics-panel-component.md).
+Only explicit manual/variant actions use prepare=true. They authorize the exact immutable snapshot only if the synchronous successful action advances one revision from the admission baseline; reentrant replacements add revisions and reject eligibility. All other intents, including candidate guidance, never authorize Apply. Candidate guidance does not call Select; explicit variant choice does. Tested c83152b:31component/984total Windows cases. [Current evidence](exec-plans/completed/phase3-lyrics-panel-component.md).
+
+## Final acceptance
+
+SUPERVISOR accepted fixes at HEAD5d10cfb/tested c83152b:31component/984Windows cases, both P2 findings closed, no remaining actionable component finding. [Completed report](exec-plans/completed/phase3-lyrics-panel-component.md). STOP_FOR_RESET; B3 requires fresh capacity/status check and separate order. No source/project/lock/test change, new full suite, native/live/Linux claim or publication/integration in closure.
