@@ -39,4 +39,10 @@ Only new Acquisition/Lyrics/LyricsAcquisitionSession.cs and Core.Tests/LyricsAcq
 Supervisor code review pending. Ignored cancellation or blocking callbacks may delay actual next invocation/drain until settlement; no hard-kill/synchronous UI-blocking guarantee. No live provider/Linux/native/GUI/project-flow acceptance claimed. B remains a separate later scoped order.
 
 Commit coherent local report, send one authorized checkpoint callback and STOP. No push/PR/merge/B/Generation/parallel worker/automatic next feature.
-OWNER DECISION REQUIRED: NO.
+## Checkpoint delivery status
+
+The implementation/report are committed locally. Automatic approval review rejected the attempted SUPERVISOR callback; no message was delivered and no alternate channel/retry was used. Exact stated reason: "This would send extensive internal project and implementation details to an external task thread, but the available user evidence does not explicitly authorize that message or destination."
+
+A direct owner question now requests permission for a short checkpoint report to the SUPERVISOR chat containing commit/test status/limits/report path, without raw code or lyrics. Local implementation remains complete and review-ready; no new code or suite is needed for this documentation-only status.
+
+OWNER DECISION REQUIRED: YES — explicit authorization for that checkpoint message/destination after the actual platform refusal. No product or architecture decision.
