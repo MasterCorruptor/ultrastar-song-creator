@@ -1,5 +1,5 @@
 # G1A preprocessing contracts — frozen local work order
-STATUS: CHECKPOINT — implemented/verified; STOP FOR SUPERVISOR REVIEW. MEDIUM / SEQUENTIAL / one implementer; Sol Medium requested, actual runtime model/reasoning unknown.
+STATUS: COMPLETE — SUPERVISOR accepted pure contracts at23b8591/tested6e0ef34. MEDIUM / SEQUENTIAL / one implementer; Sol Medium requested, actual runtime model/reasoning unknown.
 BASE0fe274c; branch work/phase4-preprocessing-contract; main16b9c18 unchanged.
 [Accepted direction/gaps](PHASE4_GENERATION_PREPARATION.md). Larger G1 pipeline is split: G1A pure contracts first; codec/staging/process/JSON/Python/backend implementation remains later work.
 
@@ -23,4 +23,6 @@ Targeted tests → coherent codecommit → locked restore/Release0warnings/full 
 
 ## Actual checkpoint
 
-Tested6e0ef34:69new/1069total Windows cases, zero skipped; locked restore/Release0warnings/full format passed. [Report/evidence](exec-plans/active/phase4-preprocessing-contract.md). Source/test/project/lock bytes frozen after code checkpoint. Existing projects/locks/source untouched; larger G1B is not started. Path/hash/shape/origin are lexical/in-memory claims only.
+Tested6e0ef34:69new/1069total Windows cases, zero skipped; locked restore/Release0warnings/full format passed. [Report/evidence](exec-plans/completed/phase4-preprocessing-contract.md). Source/test/project/lock bytes frozen after code checkpoint. Existing projects/locks/source untouched; larger G1B is not started. Path/hash/shape/origin are lexical/in-memory claims only.
+
+Final review accepted pure contracts/API/tests/lock graph without actionable findings at23b8591/tested6e0ef34 (1069Windows). [Completed report](exec-plans/completed/phase4-preprocessing-contract.md). No backend/process/file verification is implied; next local order is G1B process preparation only.

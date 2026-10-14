@@ -1,5 +1,5 @@
 # G1A preprocessing contracts — checkpoint report
-STATUS: CHECKPOINT / STOP FOR SUPERVISOR REVIEW.
+STATUS: COMPLETE — pure in-memory contracts accepted by SUPERVISOR at23b8591/tested6e0ef34.
 TASK phase4-preprocessing-contract, MEDIUM / SEQUENTIAL / one implementer.
 MODEL USED: Sol Medium requested; actual runtime model/reasoning unknown.
 BRANCH work/phase4-preprocessing-contract. BASE0fe274c0dd9c3945a2dba2658c9a1e6eb8824e3d.
@@ -32,3 +32,9 @@ Actual ignored evidence:
 This is in-memory contract acceptance evidence only, not proof of file existence/snapshot/hash/copy/security containment/codec/PCM content, real process cancellation/drain, JSON IPC or Python/backend operation. No staging/FFmpeg/process/worker/model/ASR/GUI/persistence/schema/native/live/Linux/fullworkflow implementation or acceptance is added. Larger G1 and Phase3 gaps remain.
 
 NEXT: SUPERVISOR reviews exact contract/API/source/dependencies/tests/evidence before any G1B work. STOP locally committed; no push/PR/merge/main update/new worker. OWNER DECISION REQUIRED: NO new owner-reserved choice identified. No shared API was changed.
+
+## Final acceptance — current status
+
+SUPERVISOR reviewed both production files, scoped tests/API/evidence, tested-source identity, exact two solution additions and new lock graph at23b8591b913a6d1387c8c0bc3f896f34cdf408da/tested6e0ef348f531bb4f5bea5ade4fb937692491ce2c.69new/1069Windows, zero skipped; no actionable findings. Production lock contains only local projects; external test lock entries match Core.Tests exactly. Earlier pending sections are historical.
+
+This closure changes documentation only; source/test/project/lock/solution bytes stay identical to tested6e0ef34. No new suite and no actual file/hash/codec/process/backend/timealignment acceptance. Next order prepares bounded G1B process API for review only; no runner implementation, nativeUI, publication, main update or new worker.
