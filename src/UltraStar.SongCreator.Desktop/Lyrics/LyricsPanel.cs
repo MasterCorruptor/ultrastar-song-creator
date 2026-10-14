@@ -10,7 +10,8 @@ using UltraStar.SongCreator.Core;
 namespace UltraStar.SongCreator.Desktop.Lyrics;
 
 internal sealed record LyricsPanelReceipt(long Generation, LyricsSessionSnapshot Snapshot,
-    LyricsSessionOutcome? Outcome = null, bool Failed = false);
+    LyricsSessionOutcome? Outcome = null, bool Failed = false,
+    bool PreparationRequested = false, LyricsSessionSnapshot? PreparedSnapshot = null);
 
 /// <summary>Bounded synchronous admission, separate search observation and explicitly transferred ownership.</summary>
 internal sealed class LyricsPanelLifetime
@@ -18,7 +19,7 @@ internal sealed class LyricsPanelLifetime
     private readonly object sync = new();
     private readonly IDisposable? ownedProvider;
     private readonly HashSet<Task> observations = [];
-    private (long Generation, Func<Task<LyricsSessionOutcome>> Action)? pending;
+    private (long Generation, Func<Task<LyricsSessionOutcome>> Action, bool Prepare)? pending;
     private Task pump = Task.CompletedTask;
     private Task<bool>? close;
     private bool running, executing, stopped;
@@ -40,13 +41,13 @@ internal sealed class LyricsPanelLifetime
         lock (sync) return !stopped && latest == generation && !executing && pending is null;
     }
 
-    internal bool Enqueue(long generation, Func<Task<LyricsSessionOutcome>> action)
+    internal bool Enqueue(long generation, Func<Task<LyricsSessionOutcome>> action, bool prepare = false)
     {
         lock (sync)
         {
             if (stopped) return false;
             latest = generation;
-            pending = (generation, action);
+            pending = (generation, action, prepare);
             if (!running)
             {
                 running = true;
@@ -60,7 +61,7 @@ internal sealed class LyricsPanelLifetime
     {
         while (true)
         {
-            (long Generation, Func<Task<LyricsSessionOutcome>> Action) job;
+            (long Generation, Func<Task<LyricsSessionOutcome>> Action, bool Prepare) job;
             lock (sync)
             {
                 if (stopped || pending is null) { running = false; executing = false; return; }
@@ -68,19 +69,27 @@ internal sealed class LyricsPanelLifetime
             }
             Task<LyricsSessionOutcome>? result = null;
             var failed = false;
+            var before = Session.Current.Revision;
             try { result = job.Action(); }
             catch (Exception) { failed = true; }
+            var after = Session.Current;
+            // Only synchronous explicit prepare/select can authorize a payload. A reentrant
+            // Changed observer necessarily adds another revision, invalidating this binding.
+            var prepared = job.Prepare && result?.IsCompletedSuccessfully == true
+                && result.Result.Kind == LyricsSessionOutcomeKind.Succeeded
+                && after.Revision == before + 1 && after.PreparedSelection is not null ? after : null;
             lock (sync) executing = false;
             if (failed) Publish(new(job.Generation, Session.Current, Failed: true));
             else if (result is not null)
             {
                 if (!result.IsCompleted) Publish(new(job.Generation, Session.Current));
-                Observe(job.Generation, result);
+                Observe(job.Generation, result, job.Prepare, prepared);
             }
         }
     }
 
-    private void Observe(long generation, Task<LyricsSessionOutcome> task)
+    private void Observe(long generation, Task<LyricsSessionOutcome> task,
+        bool preparationRequested, LyricsSessionSnapshot? prepared)
     {
         // Register before starting observer so even synchronous completion cannot escape teardown.
         var finished = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -91,7 +100,8 @@ internal sealed class LyricsPanelLifetime
             try
             {
                 var outcome = await task.ConfigureAwait(false);
-                Publish(new(generation, Session.Current, outcome));
+                Publish(new(generation, Session.Current, outcome,
+                    PreparationRequested: preparationRequested, PreparedSnapshot: prepared));
             }
             catch (Exception) { Publish(new(generation, Session.Current, Failed: true)); }
             finally
@@ -279,7 +289,7 @@ public sealed class LyricsPanel : UserControl
         var intent = Invalidate();
         PrepareManualButton.IsEnabled = false;
         StatusLabel.Text = "Forbereder innlimt tekst …";
-        lifetime.Enqueue(intent, () => Task.FromResult(lifetime.Session.SetManualText(text)));
+        lifetime.Enqueue(intent, () => Task.FromResult(lifetime.Session.SetManualText(text)), prepare: true);
     }
 
     private void CandidateChanged(object? sender, SelectionChangedEventArgs e)
@@ -297,9 +307,9 @@ public sealed class LyricsPanel : UserControl
         populating = false;
         // Never prepare an instrumental or available document merely by choosing its candidate.
         var revision = snapshot.Revision;
-        lifetime.Enqueue(intent, () => Task.FromResult(candidate.TextStatus == LyricsTextStatus.Available
-            ? lifetime.Session.Select(revision, candidate.ProviderId, candidate.Id, null)
-            : new LyricsSessionOutcome(LyricsSessionOutcomeKind.Unchanged)));
+        lifetime.Enqueue(intent, () => Task.FromResult(lifetime.Session.Current.Revision == revision
+            ? new LyricsSessionOutcome(LyricsSessionOutcomeKind.Unchanged)
+            : new LyricsSessionOutcome(LyricsSessionOutcomeKind.Rejected)));
     }
 
     private void VariantChanged(object? sender, SelectionChangedEventArgs e)
@@ -311,7 +321,7 @@ public sealed class LyricsPanel : UserControl
         if (candidate is null || variant is null || snapshot?.Page is null) return;
         var intent = Invalidate();
         var revision = snapshot.Revision;
-        lifetime.Enqueue(intent, () => Task.FromResult(lifetime.Session.Select(revision, candidate.ProviderId, candidate.Id, variant.Id)));
+        lifetime.Enqueue(intent, () => Task.FromResult(lifetime.Session.Select(revision, candidate.ProviderId, candidate.Id, variant.Id)), prepare: true);
     }
 
     private void Receipt(LyricsPanelReceipt receipt)
@@ -326,8 +336,15 @@ public sealed class LyricsPanel : UserControl
                 StatusLabel.Text = "Sangteksthandlingen kunne ikke fullføres.";
                 EnableInputs(); return;
             }
-            if (receipt.Outcome?.Kind is LyricsSessionOutcomeKind.Superseded or LyricsSessionOutcomeKind.Closed) return;
-            Render(receipt.Snapshot, receipt.Outcome?.Kind == LyricsSessionOutcomeKind.Rejected);
+            if (receipt.Outcome?.Kind is LyricsSessionOutcomeKind.Superseded or LyricsSessionOutcomeKind.Closed)
+            {
+                accepted = null; ClearEligibility(); EnableInputs();
+                StatusLabel.Text = "Økten er endret. Forbered teksten på nytt.";
+                return;
+            }
+            var bound = ReferenceEquals(receipt.PreparedSnapshot, receipt.Snapshot);
+            var replaced = receipt.PreparationRequested && receipt.Outcome?.Kind == LyricsSessionOutcomeKind.Succeeded && !bound;
+            Render(receipt.Snapshot, receipt.Outcome?.Kind == LyricsSessionOutcomeKind.Rejected || replaced, bound);
         });
     }
 
@@ -348,7 +365,7 @@ public sealed class LyricsPanel : UserControl
         SearchButton.IsEnabled = !string.IsNullOrWhiteSpace(ArtistInput.Text) && !string.IsNullOrWhiteSpace(TitleInput.Text);
         PrepareManualButton.IsEnabled = true;
     }
-    private void Render(LyricsSessionSnapshot snapshot, bool rejected)
+    private void Render(LyricsSessionSnapshot snapshot, bool rejected, bool preparationBound)
     {
         Dispatcher.UIThread.VerifyAccess();
         if (snapshot.Query is not null && snapshot.Query != Query()) return;
@@ -363,7 +380,8 @@ public sealed class LyricsPanel : UserControl
                 LyricsSessionStatus.Results => "Velg innspilling og tekstvariant eksplisitt.",
                 LyricsSessionStatus.NoResults => "Ingen sangtekst funnet. Du kan lime inn tekst.",
                 LyricsSessionStatus.Cancelled => "Søket er avbrutt.",
-                LyricsSessionStatus.ManualReady => "Innlimt tekst er klar til kontroll.",
+                LyricsSessionStatus.ManualReady => preparationBound ? "Innlimt tekst er klar til kontroll."
+                    : "Økten er endret. Forbered teksten på nytt.",
                 LyricsSessionStatus.Disposed => "Sangtekstøkten er lukket.",
                 _ => "Oppgi artist og tittel, eller lim inn tekst."
             };
@@ -385,7 +403,7 @@ public sealed class LyricsPanel : UserControl
             (Candidates.SelectedItem is CandidateChoice c && Variants.SelectedItem is VariantChoice v &&
              c.Value.Id == selected?.Provenance.CandidateId &&
              (selected.Kind == SelectedLyricsKind.Instrumental || v.Id == selected.Document?.Id));
-        ApplyButton.IsEnabled = !rejected && selected is not null && explicitChoice && editing.Current.Id == targetId;
+        ApplyButton.IsEnabled = preparationBound && !rejected && selected is not null && explicitChoice && editing.Current.Id == targetId;
         Preview.Text = ApplyButton.IsEnabled ? selected?.Document?.Text ?? "Instrumental (uten sangtekst)" : "";
         ProvenanceLabel.Text = ApplyButton.IsEnabled ? Provenance(selected!) : "";
         TimingPreview.Text = ApplyButton.IsEnabled ? Timings(selected!) : "";
@@ -395,8 +413,23 @@ public sealed class LyricsPanel : UserControl
     {
         var message = error.Kind switch
         {
-            LyricsSessionErrorKind.Validation => $"Sangtekstvalget er ugyldig ({error.ValidationError}).",
-            LyricsSessionErrorKind.Provider => $"Sangtekstkilden kunne ikke svare ({error.ProviderError}).",
+            LyricsSessionErrorKind.Validation => error.ValidationError switch
+            {
+                LyricsValidationError.InvalidQuery => "Kontroller artist og sangtittel.",
+                LyricsValidationError.InvalidDocument => "Sangteksten er ugyldig eller tom. Kontroller teksten.",
+                LyricsValidationError.ResponseTooLarge => "Sangteksten er for stor. Velg en kortere tekst.",
+                _ => "Sangtekstvalget er ugyldig. Velg på nytt."
+            },
+            LyricsSessionErrorKind.Provider => error.ProviderError switch
+            {
+                LyricsSearchError.NetworkFailure => "Kunne ikke nå sangtekstkilden. Kontroller nettforbindelsen.",
+                LyricsSearchError.TimedOut => "Sangtekstkilden brukte for lang tid. Prøv igjen senere.",
+                LyricsSearchError.RateLimited => "Sangtekstkilden ber deg vente før neste søk.",
+                LyricsSearchError.Unavailable => "Sangtekstkilden er midlertidig utilgjengelig.",
+                LyricsSearchError.ResponseTooLarge => "Svaret fra sangtekstkilden er for stort.",
+                LyricsSearchError.InvalidResponse => "Svaret fra sangtekstkilden er ugyldig.",
+                _ => "Sangtekstkilden kunne ikke svare. Prøv igjen senere."
+            },
             _ => "Sangteksthandlingen kunne ikke fullføres."
         };
         if (error.HttpStatus is { } status) message += $" HTTP {status}.";

@@ -124,6 +124,8 @@ public sealed class LyricsPanelTests
         Dispatcher.UIThread.RunJobs();
         Assert.False(f.Panel.ApplyButton.IsEnabled);
         Assert.Equal(-1, f.Panel.Variants.SelectedIndex);
+        Assert.Contains("Velg innspilling og tekstvariant", f.Panel.StatusLabel.Text);
+        Assert.Null(f.Acquisition.Current.Error);
         await Receipt(f.Lifetime, () => f.Panel.Variants.SelectedIndex = variant, r => r.Outcome is not null);
         Dispatcher.UIThread.RunJobs();
     }
@@ -265,7 +267,8 @@ public sealed class LyricsPanelTests
         await Receipt(f.Lifetime, () => call.Reply.SetException(new LyricsSearchException(error, "private raw lyrics",
             429, retry ? TimeSpan.FromSeconds(7) : null)), r => r.Outcome?.Kind == LyricsSessionOutcomeKind.Failed);
         Dispatcher.UIThread.RunJobs();
-        Assert.Contains(error.ToString(), f.Panel.StatusLabel.Text);
+        Assert.DoesNotContain(error.ToString(), f.Panel.StatusLabel.Text);
+        Assert.Contains(retry ? "vente" : "ugyldig", f.Panel.StatusLabel.Text);
         Assert.DoesNotContain("private", f.Panel.StatusLabel.Text);
         if (retry) Assert.Contains("7 sekunder", f.Panel.StatusLabel.Text);
         Assert.False(f.Panel.ApplyButton.IsEnabled); Assert.Equal(1, f.Provider.Count);
@@ -323,6 +326,111 @@ public sealed class LyricsPanelTests
         f.Panel.Detach();
         Dispatcher.UIThread.RunJobs();
         Assert.False(f.Panel.ApplyButton.IsEnabled); Assert.Null(f.Editing.Current.SelectedLyrics);
+    }
+
+    [AvaloniaTheory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task ReentrantManualObserverCannotReplaceExplicitPayloadEvenWithSameText(bool sameText)
+    {
+        await using var f = new Fixture();
+        await Receipt(f.Lifetime, () => f.Panel.ManualInput.Text = "Egen lokal tekst", r => r.Outcome is not null);
+        Dispatcher.UIThread.RunJobs();
+        EventHandler? replace = null;
+        replace = (_, _) =>
+        {
+            if (f.Acquisition.Current.Status != LyricsSessionStatus.ManualReady) return;
+            f.Acquisition.Changed -= replace;
+            f.Acquisition.SetManualText(sameText ? "Egen lokal tekst" : "Egen ekstern tekst");
+        };
+        f.Acquisition.Changed += replace;
+        var receipt = await Receipt(f.Lifetime, f.Panel.PrepareManual, r => r.Outcome is not null);
+        Dispatcher.UIThread.RunJobs();
+        Assert.True(receipt.PreparationRequested); Assert.Null(receipt.PreparedSnapshot);
+        Assert.False(f.Panel.ApplyButton.IsEnabled); Assert.False(f.Panel.Apply());
+        Assert.Null(f.Editing.Current.SelectedLyrics); Assert.Equal("", f.Panel.Preview.Text);
+        Assert.Contains("ikke lenger gyldig", f.Panel.StatusLabel.Text);
+        // A new explicit action succeeds normally; no implicit retry was issued.
+        await Receipt(f.Lifetime, f.Panel.PrepareManual, r => r.Outcome is not null);
+        Dispatcher.UIThread.RunJobs();
+        var prepared = f.Acquisition.Current.PreparedSelection;
+        Assert.True(f.Panel.Apply()); Assert.Same(prepared, f.Editing.Current.SelectedLyrics);
+        Assert.Equal("Egen lokal tekst", f.Editing.Current.SelectedLyrics!.Document!.Text);
+    }
+
+    [AvaloniaTheory]
+    [InlineData(LyricsSessionStatus.Idle)]
+    [InlineData(LyricsSessionStatus.Searching)]
+    [InlineData(LyricsSessionStatus.Cancelled)]
+    public async Task ReentrantExternalManualReadyDuringNonPreparationNeverEnablesApply(LyricsSessionStatus status)
+    {
+        await using var f = new Fixture();
+        await SetQuery(f);
+        if (status == LyricsSessionStatus.Cancelled) await Search(f);
+        EventHandler? replace = null;
+        replace = (_, _) =>
+        {
+            if (f.Acquisition.Current.Status != status) return;
+            f.Acquisition.Changed -= replace;
+            f.Acquisition.SetManualText("Egen ekstern tekst");
+        };
+        f.Acquisition.Changed += replace;
+        await Receipt(f.Lifetime, () =>
+        {
+            if (status == LyricsSessionStatus.Idle) f.Panel.ManualInput.Text = "Egen lokal tekst";
+            else if (status == LyricsSessionStatus.Searching) f.Panel.Search();
+            else f.Panel.Cancel();
+        }, r => r.Snapshot.Status == LyricsSessionStatus.ManualReady);
+        Dispatcher.UIThread.RunJobs();
+        Assert.False(f.Panel.ApplyButton.IsEnabled); Assert.False(f.Panel.Apply());
+        Assert.Null(f.Editing.Current.SelectedLyrics); Assert.Equal("", f.Panel.Preview.Text);
+        Assert.Contains("Forbered teksten på nytt", f.Panel.StatusLabel.Text);
+        f.Acquisition.Changed -= replace;
+        foreach (var call in f.Provider.All) call.Reply.TrySetCanceled();
+    }
+
+    [AvaloniaFact]
+    public async Task ReentrantObserverCannotReplaceExplicitProviderVariantWithManualPayload()
+    {
+        await using var f = new Fixture();
+        await SetQuery(f); var call = await Search(f); await Results(f, call, Candidate());
+        await Receipt(f.Lifetime, () => f.Panel.Candidates.SelectedIndex = 0, r => r.Outcome is not null);
+        Dispatcher.UIThread.RunJobs();
+        EventHandler? replace = null;
+        replace = (_, _) =>
+        {
+            if (f.Acquisition.Current.Status != LyricsSessionStatus.Results || f.Acquisition.Current.PreparedSelection is null) return;
+            f.Acquisition.Changed -= replace;
+            f.Acquisition.SetManualText("Egen ekstern tekst");
+        };
+        f.Acquisition.Changed += replace;
+        var receipt = await Receipt(f.Lifetime, () => f.Panel.Variants.SelectedIndex = 1, r => r.Outcome is not null);
+        Dispatcher.UIThread.RunJobs();
+        Assert.True(receipt.PreparationRequested); Assert.Null(receipt.PreparedSnapshot);
+        Assert.False(f.Panel.ApplyButton.IsEnabled); Assert.False(f.Panel.Apply());
+        Assert.Null(f.Editing.Current.SelectedLyrics); Assert.Equal("", f.Panel.Preview.Text);
+        Assert.Contains("ikke lenger gyldig", f.Panel.StatusLabel.Text);
+        Assert.Equal(1, f.Provider.Count);
+    }
+
+    [AvaloniaFact]
+    public async Task SwitchingChosenCandidateClearsPreviewWithoutFalseValidationError()
+    {
+        await using var f = new Fixture();
+        await SetQuery(f); var call = await Search(f);
+        await Results(f, call, Candidate(), Candidate() with { Id = "second", Title = "Andre innspilling" });
+        await Choose(f);
+        Assert.True(f.Panel.ApplyButton.IsEnabled);
+        var old = f.Acquisition.Current.PreparedSelection;
+        await Receipt(f.Lifetime, () => f.Panel.Candidates.SelectedIndex = 1, r => r.Outcome is not null);
+        Dispatcher.UIThread.RunJobs();
+        Assert.False(f.Panel.ApplyButton.IsEnabled); Assert.False(f.Panel.Apply()); Assert.Equal("", f.Panel.Preview.Text);
+        Assert.Contains("Velg innspilling og tekstvariant", f.Panel.StatusLabel.Text);
+        Assert.Null(f.Acquisition.Current.Error); Assert.Same(old, f.Acquisition.Current.PreparedSelection);
+        Assert.True(f.Panel.Variants.IsEnabled); Assert.Equal(-1, f.Panel.Variants.SelectedIndex);
+        await Receipt(f.Lifetime, () => f.Panel.Variants.SelectedIndex = 1, r => r.Outcome is not null);
+        Dispatcher.UIThread.RunJobs();
+        Assert.True(f.Panel.Apply()); Assert.Equal("second", f.Editing.Current.SelectedLyrics!.Provenance.CandidateId);
     }
 
     [AvaloniaFact]
