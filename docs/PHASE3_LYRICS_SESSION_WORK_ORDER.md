@@ -2,7 +2,7 @@
 
 TASK phase3-lyrics-acquisition-session, MEDIUM / SEQUENTIAL, one worker. Sol Medium requested; actual model/reasoning unknown. Branch work/phase3-lyrics-acquisition-session from accepted local 136e41e57007fa7baa4e41f39c747abaf87af508, preserving unpublished preparation history; integrated main6ddb743 remains unchanged.
 
-Authority: [frozen behavior](PHASE3_LYRICS_FLOW_PROPOSAL.md), master §6/Fase3, accepted ADRs and DEVELOPMENT. [Plan](exec-plans/active/phase3-lyrics-acquisition-session.md). Only NEW Acquisition/Lyrics/LyricsAcquisitionSession.cs and NEW Core.Tests/LyricsAcquisitionSessionTests.cs. Small public immutable state/error/outcome types share the production file. No existing provider/parser/contracts/Core/Projects/Desktop/schema/packages/locks/tools/master/ADR/license changes.
+Authority: [frozen behavior](PHASE3_LYRICS_FLOW_PROPOSAL.md), master §6/Fase3, accepted ADRs and DEVELOPMENT. [Plan](exec-plans/completed/phase3-lyrics-acquisition-session.md). Only NEW Acquisition/Lyrics/LyricsAcquisitionSession.cs and NEW Core.Tests/LyricsAcquisitionSessionTests.cs. Small public immutable state/error/outcome types share the production file. No existing provider/parser/contracts/Core/Projects/Desktop/schema/packages/locks/tools/master/ADR/license changes.
 
 Precise public API baseline:
 
@@ -21,4 +21,4 @@ Manual invalidates active/pending and uses existing ManualLyrics once; prepared 
 
 Deterministic owned fixtures cover all frozen concurrency/selection/disposal/error criteria. Locked restore, Release, full Windows suite, format, protected byte identity/master/ADRs/deps/privacy/doclinks/whitespace; no live/Linux/native/GUI claim.
 
-Local tested checkpoint + one callback, STOP FOR SUPERVISOR REVIEW. No push/PR/merge/B/Generation/extra worker. No new owner decision.
+Original implementation review stop was satisfied at de2b09f; root and independent review accepted tested e4b3923 without actionable findings. A later close order authorizes work-branch push/PR only, then stop. Callback remains blocked pending separate message-destination approval; use own chat/repo. No merge/main update/B/Generation/extra worker or new product decision.

@@ -73,8 +73,8 @@ Decoder, lyricsdiagnostikk og valgt tekst i prosjekt v3 er integrert i main gjen
 
 Neste foreslåtte avgrensning er [sangtekstflyt](PHASE3_LYRICS_FLOW_PROPOSAL.md): først headless acquisition-session, deretter minimalt tekstpanel og eksplisitt apply/undo. Dette er kun et forslag, ingen ny implementasjon eller GUI-aksept.
 
-## Lyrics acquisition session A — lokalt checkpoint
+## Lyrics acquisition session A — kodegodkjent checkpoint
 
-Headless session A er implementert lokalt, med immutable/revisjonert tilstand, ett aktivt søk og én nyeste ventende intensjon, eksplisitt variant/manuell tekst, typed feil og sikker cancellation/disposal-drain. Den låner provider og endrer ikke Song, undo/redo eller prosjektfiler. [Arbeidsordre/API](PHASE3_LYRICS_SESSION_WORK_ORDER.md), [checkpoint](exec-plans/active/phase3-lyrics-acquisition-session.md).
+Headless session A er implementert lokalt, med immutable/revisjonert tilstand, ett aktivt søk og én nyeste ventende intensjon, eksplisitt variant/manuell tekst, typed feil og sikker cancellation/disposal-drain. Den låner provider og endrer ikke Song, undo/redo eller prosjektfiler. [Arbeidsordre/API](PHASE3_LYRICS_SESSION_WORK_ORDER.md), [checkpoint](exec-plans/completed/phase3-lyrics-acquisition-session.md).
 
-Ved testet e4b3923 består 47 nye session-cases og 939/939 Windows-tester (Core 871, Audio 17, Desktop 51), zero skipped; locked restore, Release uten warnings/errors og full formatkontroll består. Kontrollerte providers/TCS brukes, ingen live API eller real-time sleeps. Ingen nye Linux/native/GUI/alpha/beta- eller fullworkflow-resultater. Sessionkode avventer SUPERVISOR-review; B-panelet og samme-history apply er fortsatt neste separate steg.
+Ved testet e4b3923 består 47 nye session-cases og 939/939 Windows-tester (Core 871, Audio 17, Desktop 51), zero skipped; locked restore, Release uten warnings/errors og full formatkontroll består. Kontrollerte providers/TCS brukes, ingen live API eller real-time sleeps. Ingen nye Linux/native/GUI/alpha/beta- eller fullworkflow-resultater. Sessionkode er godkjent ved de2b09f av SUPERVISOR og uavhengig reviewer uten actionable findings; B-panelet og samme-history apply er fortsatt neste separate steg.

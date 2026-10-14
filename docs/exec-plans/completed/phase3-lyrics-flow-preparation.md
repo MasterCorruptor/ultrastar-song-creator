@@ -22,5 +22,5 @@ Only new proposal/this plan and minimal current-status updates in AGENTS, README
 
 ## Unresolved / next step
 
-Frozen behavior was accepted at136e41e; the later A work order650fc12 fixed its exact API/type baseline and dispatched implementation. Functional media/project GUI gaps and actual lyrics/audio match remain later work, not new blocks on A. The final two-document freeze/callback/reset stop are historical and fulfilled. A was resumed by explicit scoped dispatch after actual capacity verification; no reset credits/purchases. See the [A implementation checkpoint](../active/phase3-lyrics-acquisition-session.md). No push/PR/merge/live API/native UI/extra worker or automatic implementation.
+Frozen behavior was accepted at136e41e; the later A work order650fc12 fixed its exact API/type baseline and dispatched implementation. Functional media/project GUI gaps and actual lyrics/audio match remain later work, not new blocks on A. The final two-document freeze/callback/reset stop are historical and fulfilled. A was resumed by explicit scoped dispatch after actual capacity verification; no reset credits/purchases. See the [A implementation checkpoint](phase3-lyrics-acquisition-session.md). No push/PR/merge/live API/native UI/extra worker or automatic implementation.
 OWNER DECISION REQUIRED: NO.

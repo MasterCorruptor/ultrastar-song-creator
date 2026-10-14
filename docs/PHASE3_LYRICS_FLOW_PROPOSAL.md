@@ -1,6 +1,6 @@
 # Lyrics acquisition flow — proposed next functional slice
 
-STATUS: CONTRACT FROZEN under SUPERVISOR acceptance of the A/B sequence at 10994cf and the required bounded-state/lifetime clarifications below. A session/API is now implemented locally at e4b3923 and awaits code review; B/GUI remains unimplemented. BASE main6ddb743e7d06853eb194bb83505ea62fe489a7b7 (PR20).
+STATUS: CONTRACT FROZEN under SUPERVISOR acceptance of the A/B sequence at 10994cf and the required bounded-state/lifetime clarifications below. A session/API is now implemented locally at e4b3923 and is accepted at de2b09f by root and independent review without actionable findings; B/GUI remains unimplemented. BASE main6ddb743e7d06853eb194bb83505ea62fe489a7b7 (PR20).
 [Plan](exec-plans/completed/phase3-lyrics-flow-preparation.md), [master](PROJECT_MASTER.md) §6/Fase 3–6, [transport](LRCLIB_TRANSPORT_PROFILE.md), [lyrics contract](PHASE3_LYRICS_CONTRACT.md), [selected payload/project v3](PROJECT_FORMAT_V3.md).
 
 ## Actual implemented seams and gaps
@@ -87,6 +87,6 @@ B only after A review: NEW Desktop/Lyrics/LyricsPanel.cs (small UI adapter), nar
 
 Native B acceptance later: manually exercise search/cancel/explicit choice/manual fallback/apply/undo/redo in a visible prototype with synthetic fixtures; actual provider interoperability and real-song matching/content rights remain separately evidenced. No alpha/beta or complete Search→Generate→Edit→Validate→Export claim.
 
-NEXT: A was explicitly dispatched after verified capacity and is locally implemented/tested; [implementation checkpoint](exec-plans/active/phase3-lyrics-acquisition-session.md) awaits SUPERVISOR review. No B implementation, push/PR/merge/live API/native UI or automatic next task. OWNER DECISION REQUIRED: none identified for these reversible routine choices.
+NEXT: A was explicitly dispatched after verified capacity and is locally implemented/tested; [implementation checkpoint](exec-plans/completed/phase3-lyrics-acquisition-session.md) is accepted by SUPERVISOR and independent read-only review at de2b09f. Reviewed work-branch publication/PR is now authorized; stop afterward, with no merge/main update/B/live API/native UI or automatic next task. Callback remains separately blocked pending message-destination approval. OWNER DECISION REQUIRED: none identified for these reversible routine choices.
 
 Implementation evidence: tested e4b39231156732ee1243e3d77898371bc1789bc2, 47 new/939 total Windows tests, zero skipped; locked restore, Release zero warnings/errors and full format verification passed. This is headless A evidence, not lyrics-panel/native/fullworkflow acceptance. CTS cleanup/drain also waits for executing cancellation callbacks; callbacks/provider tasks must eventually settle, without a hard-kill guarantee.

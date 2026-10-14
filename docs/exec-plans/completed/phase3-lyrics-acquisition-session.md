@@ -1,6 +1,6 @@
 # Lyrics acquisition session A — local tested checkpoint
 
-STATUS: CHECKPOINT, implementation/Windows verification complete; STOP FOR SUPERVISOR REVIEW.
+STATUS: COMPLETE — accepted by SUPERVISOR at de2b09f after root and independent read-only review with no actionable findings. Work-branch publication/PR authorized; no main integration in this order.
 TASK: phase3-lyrics-acquisition-session, MEDIUM / SEQUENTIAL, single worker.
 MODEL USED: Sol Medium requested; actual model/reasoning not exposed, unknown.
 BRANCH: work/phase3-lyrics-acquisition-session.
@@ -36,13 +36,13 @@ Early fixture issues (async assertion/Task.Run unwrapping and attribute surrogat
 
 Only new Acquisition/Lyrics/LyricsAcquisitionSession.cs and Core.Tests/LyricsAcquisitionSessionTests.cs, plus scoped work order/active plan/frozen proposal/completed preparation and minimal AGENTS/README/TESTING_STATUS. Existing provider/decoder/parser/shared contracts/Core/Projects/Desktop/audio/tools/master/ADRs/licenses/locks/packages unchanged.
 
-Supervisor code review pending. Ignored cancellation or blocking callbacks may delay actual next invocation/drain until settlement; no hard-kill/synchronous UI-blocking guarantee. No live provider/Linux/native/GUI/project-flow acceptance claimed. B remains a separate later scoped order.
+Supervisor code review complete; independent reviewer also found no actionable findings. Ignored cancellation or blocking callbacks may delay actual next invocation/drain until settlement; no hard-kill/synchronous UI-blocking guarantee. No live provider/Linux/native/GUI/project-flow acceptance claimed. B remains a separate later scoped order.
 
-Commit coherent local report, send one authorized checkpoint callback and STOP. No push/PR/merge/B/Generation/parallel worker/automatic next feature.
+Later close/publication order authorizes the reviewed work-branch push and PR. Report through own chat/durable repo only while callback authorization is unresolved; STOP after publication checkpoint. No merge/main update/B/Generation/parallel worker/automatic next feature.
 ## Checkpoint delivery status
 
 The implementation/report are committed locally. Automatic approval review rejected the attempted SUPERVISOR callback; no message was delivered and no alternate channel/retry was used. Exact stated reason: "This would send extensive internal project and implementation details to an external task thread, but the available user evidence does not explicitly authorize that message or destination."
 
-A direct owner question now requests permission for a short checkpoint report to the SUPERVISOR chat containing commit/test status/limits/report path, without raw code or lyrics. Local implementation remains complete and review-ready; no new code or suite is needed for this documentation-only status.
+A direct owner question now requests permission for a short checkpoint report to the SUPERVISOR chat containing commit/test status/limits/report path, without raw code or lyrics. Local implementation is accepted and ready for reviewed branch publication; no new code or suite is needed for this documentation-only status.
 
-OWNER DECISION REQUIRED: YES — explicit authorization for that checkpoint message/destination after the actual platform refusal. No product or architecture decision.
+OWNER DECISION REQUIRED: YES — explicit authorization for that checkpoint message/destination after the actual platform refusal. This affects callback delivery only, not product-code acceptance or branch publication. No product or architecture decision.
