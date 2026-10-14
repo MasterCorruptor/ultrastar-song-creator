@@ -65,8 +65,16 @@ Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og ekspl
 Immutable valgt tekst/proveniens kan endres med undo/redo og lagres offline i strictv3; v1/v2-lesing og originalfiler bevares. Kandidatdiagnostikk er transient og persisteres ikke.773/773 Windows-tester består. [Gjennomgått evidens](LYRICS_COMBINED_LOCAL_REVIEW.md). Publisering/main-integrasjon er eierautorisert; aktuell PR/Git-historikk angir status. Ingen HTTP-lyricsinnhenting/ny GUI/native/Linux/release er verifisert i pakken.
 
 
-## LRCLIB HTTP transport — kodegodkjent 2026-10-14
+## LRCLIB HTTP transport — integrert 2026-10-14
 
-Decoder, lyricsdiagnostikk og valgt tekst i prosjekt v3 er integrert i main gjennom PR18/PR19. På arbeidsbranchen finnes nå en lokal LrclibProvider med anonymt søk, separat serial gate, completion-spacing, overall deadline, Retry-After og begrenset responstolkning. Den er ikke koblet til GUI; SUPERVISOR og uavhengig reviewer har godkjent leveransen uten actionable findings ved da3c163; [kontrakt](LRCLIB_TRANSPORT_PROFILE.md) og [checkpoint](exec-plans/completed/phase3-lrclib-http-transport.md).
+Decoder, lyricsdiagnostikk og valgt tekst i prosjekt v3 er integrert i main gjennom PR18/PR19. Integrert via PR20 som main6ddb743 finnes nå LrclibProvider med anonymt søk, separat serial gate, completion-spacing, overall deadline, Retry-After og begrenset responstolkning. Den er ikke koblet til GUI; SUPERVISOR og uavhengig reviewer har godkjent leveransen uten actionable findings ved da3c163; [kontrakt](LRCLIB_TRANSPORT_PROFILE.md) og [checkpoint](exec-plans/completed/phase3-lrclib-http-transport.md).
 
 70 nye offline transport-/gate-tester bruker egne syntetiske svar og lokal klokke. Ved testet commit db51699 består 892/892 Windows-tester (Core 824, Audio 17, Desktop 51), locked restore, Release build uten advarsler og full formatkontroll. Ingen nytt live API, ekte sangtekst, Linux/native eller alpha/beta-resultat er påstått. Hele sangtekstflyten og brukergrensesnittet er fortsatt ikke ferdige.
+
+Neste foreslåtte avgrensning er [sangtekstflyt](PHASE3_LYRICS_FLOW_PROPOSAL.md): først headless acquisition-session, deretter minimalt tekstpanel og eksplisitt apply/undo. Dette er kun et forslag, ingen ny implementasjon eller GUI-aksept.
+
+## Lyrics acquisition session A — kodegodkjent checkpoint
+
+Headless session A er implementert lokalt, med immutable/revisjonert tilstand, ett aktivt søk og én nyeste ventende intensjon, eksplisitt variant/manuell tekst, typed feil og sikker cancellation/disposal-drain. Den låner provider og endrer ikke Song, undo/redo eller prosjektfiler. [Arbeidsordre/API](PHASE3_LYRICS_SESSION_WORK_ORDER.md), [checkpoint](exec-plans/completed/phase3-lyrics-acquisition-session.md).
+
+Ved testet e4b3923 består 47 nye session-cases og 939/939 Windows-tester (Core 871, Audio 17, Desktop 51), zero skipped; locked restore, Release uten warnings/errors og full formatkontroll består. Kontrollerte providers/TCS brukes, ingen live API eller real-time sleeps. Ingen nye Linux/native/GUI/alpha/beta- eller fullworkflow-resultater. Sessionkode er godkjent ved de2b09f av SUPERVISOR og uavhengig reviewer uten actionable findings; B-panelet og samme-history apply er fortsatt neste separate steg.
