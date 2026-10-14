@@ -1,8 +1,8 @@
 # Lyrics panel B — local functional contract proposal
 
-STATUS: B1 and B2 component accepted; B2 fixes at5d10cfb/tested c83152b,31component/984Windows cases. Earlier proposal/checkpoints below are historical. B3 app/window wiring requires a separate order after capacity/status check.
+STATUS: B1 and B2 component accepted; B2 fixes at5d10cfb/tested c83152b,31component/984Windows cases. Earlier proposal/checkpoints below are historical. B3 app/window wiring is now accepted locally at bc7d17b/tested38e1b5a. Combined integration/publication and native/manual acceptance remain separate.
 BASE accepted A440ea86e6e9b9a9cd72d0f8e37dfbb65039093b0, tested A e4b3923 / 47 new / 939 Windows cases; main6ddb743 unchanged.
-[Plan](exec-plans/active/phase3-lyrics-panel-preparation.md), [frozen A/B behavior](PHASE3_LYRICS_FLOW_PROPOSAL.md), [actual A API](PHASE3_LYRICS_SESSION_WORK_ORDER.md).
+[Plan](exec-plans/completed/phase3-lyrics-panel-preparation.md), [frozen A/B behavior](PHASE3_LYRICS_FLOW_PROPOSAL.md), [actual A API](PHASE3_LYRICS_SESSION_WORK_ORDER.md).
 
 A source branch and pending publication/callback approvals are preserved. This new local branch is preparation only and must not be used to publish the blocked A payload indirectly. No remote action or callback is authorized by this proposal.
 

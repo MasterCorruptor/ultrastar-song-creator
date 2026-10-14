@@ -1,5 +1,5 @@
 # B3 lyrics application wiring
-STATUS: CHECKPOINT — implemented/verified, pending SUPERVISOR review. MEDIUM / SEQUENTIAL / one implementer, Sol High requested (actual runtime model/reasoning unknown).
+STATUS: COMPLETE — local offline composition accepted at bc7d17b/tested38e1b5a. MEDIUM / SEQUENTIAL / one implementer, Sol High requested (actual runtime model/reasoning unknown).
 Base: accepted local B2 ab5822d0abcdfafb87637ef08b590abc02076771; source/tests identical tested c83152b (984 Windows cases). Branch work/phase3-lyrics-app-wiring. Main/origin/main d5a6231 remains separate A integration.
 
 ## Ownership and boundaries
@@ -25,4 +25,8 @@ Avalonia lifetime interfaces intentionally forbid client implementations. A smal
 
 ## Actual local evidence
 
-Tested code38e1b5a:16new/1000total Windows cases (Core871/Audio17/Desktop112), zero skipped; locked restore/Release0warnings/full format passed. [Checkpoint and explicit limits](exec-plans/active/phase3-lyrics-app-wiring.md). All frozen project/lock/source seams retained; no native/live/Linux or publication acceptance. STOP FOR REVIEW.
+Tested code38e1b5a:16new/1000total Windows cases (Core871/Audio17/Desktop112), zero skipped; locked restore/Release0warnings/full format passed. [Checkpoint and explicit limits](exec-plans/completed/phase3-lyrics-app-wiring.md). All frozen project/lock/source seams retained; no native/live/Linux or publication acceptance. STOP FOR REVIEW.
+
+## Final acceptance
+
+SUPERVISOR and independent review found no actionable findings at bc7d17b/tested38e1b5a (1000Windows). [Completed report](exec-plans/completed/phase3-lyrics-app-wiring.md). Documentation closure preserves tested bytes; native/manual/live/Linux/fullworkflow remain separate. Combined integration preparation is a new local-only order, not publication authority.

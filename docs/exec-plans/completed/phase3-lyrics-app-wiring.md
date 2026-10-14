@@ -1,11 +1,11 @@
 # B3 lyrics app wiring — checkpoint report
-STATUS: CHECKPOINT — implementation and Windows verification complete; STOP FOR SUPERVISOR REVIEW.
+STATUS: COMPLETE — SUPERVISOR accepted offline composition at bc7d17b/tested38e1b5a.
 TASK: phase3-lyrics-app-wiring, MEDIUM / SEQUENTIAL, one implementer.
 MODEL USED: Sol High requested; actual runtime model/reasoning unknown.
 BRANCH: work/phase3-lyrics-app-wiring.
 BASE: accepted B2 ab5822d0abcdfafb87637ef08b590abc02076771 (source/test baseline c83152b/984Windows).
 API/work-order baseline:4fd2b5c. TESTED IMPLEMENTATION/LAST CODE COMMIT:38e1b5a87a303e836f17eb1098bae8d4c8ce0176. Later HEAD is docs-only (resolve git log); source/test/project/lock bytes remain identical to this tested commit.
-[Work order/API](../../PHASE3_LYRICS_APP_WIRING_WORK_ORDER.md), [accepted B2](../completed/phase3-lyrics-panel-component.md).
+[Work order/API](../../PHASE3_LYRICS_APP_WIRING_WORK_ORDER.md), [accepted B2](phase3-lyrics-panel-component.md).
 
 ## Completed
 Existing editor prototype now includes accepted LyricsPanel with the same EditingSession/history and cached playback/timeline. Production explicitly constructs real LrclibProvider, acquisition session and transferred B2 lifetime ownership; no startup search, autopick, fake fallback, metadata overwrite, audio matching or Generation.
@@ -44,3 +44,9 @@ Native Windows/manual app interaction and physical playback, live LRCLIB respons
 
 NEXT RECOMMENDED STEP: SUPERVISOR review actual B3 diff/evidence and decide the next bounded verification/integration order. OWNER DECISION REQUIRED: NO new architecture/scope/licensing choice identified. STOP locally committed; no push/PR/merge/main update/B1-B2 integration/new worker/Generation.
 Main/origin/main stay d5a623104b40445f78abbb0cd409b4573153e9bc; B2 branch ab5822d and earlier A/B1 references preserved.
+
+## Final acceptance — current status
+
+SUPERVISOR and independent review accepted HEADbc7d17ba4b934dcd8aac3512c3c1f98c37c638e4, tested38e1b5a87a303e836f17eb1098bae8d4c8ce0176:16new/1000Windows (Core871/Audio17/Desktop112), zero skipped. No actionable findings in reviewed composition/ownership/normalclose/startup/UIaudio/drain/staticguard. Earlier pending passages above are historical. No new suite for this documentation closure; source/test/project/lock bytes remain identical to38e1b5a.
+
+This is local automatic/offline composition acceptance. Actual native classic-desktop-loop, MainWindow.Show/platform initialization/manual Windows/live provider/Linux/fullworkflow acceptance remains pending. No publication or main integration is claimed. Next separate order prepares combined B1/B2/B3 integration locally for root review, without remote action or feature/Generation work.

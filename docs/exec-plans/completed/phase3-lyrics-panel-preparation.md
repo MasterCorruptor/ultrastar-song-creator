@@ -1,6 +1,6 @@
 # Lyrics panel B — local preparation checkpoint
 
-STATUS: CHECKPOINT, proposed contract ready for SUPERVISOR review; no implementation.
+STATUS: COMPLETE — historical preparation fulfilled by accepted B1/B2/B3.
 TASK: phase3-lyrics-panel-preparation, SMALL / SEQUENTIAL / docs-only, one worker.
 MODEL USED: Sol Medium requested; actual model/reasoning not exposed, unknown.
 BRANCH: work/phase3-lyrics-panel-preparation.
@@ -22,3 +22,7 @@ SUPERVISOR contract/lifetime/file-ownership review pending. Existing A publicati
 
 Commit locally and STOP. Own chat/repo only, no blocked callback retry/push/PR/merge/main update/UI launch/B implementation/extra worker.
 OWNER DECISION REQUIRED: no new product choice; pending external-delivery approvals are separate from this local preparation.
+
+## Closure — current status
+
+Historical contract preparation at301b885 was followed by accepted B1fb6fcb6, B2 fixes5d10cfb/closureab5822d and B3bc7d17b/tested38e1b5a. Preparation scope is fulfilled; earlier pending approval/delivery passages preserve history. A is separately integrated by PR21/main d5a6231. B1/B2/B3 are accepted locally; combined publication/integration is a separate reviewed action. No native/live/Linux/fullworkflow acceptance.

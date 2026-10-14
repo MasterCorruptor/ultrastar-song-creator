@@ -102,4 +102,4 @@ B2 er avsluttet lokalt; B3 ble deretter bestilt etter ny kapasitetskontroll. Ing
 
 ## B3 — lokalt appwiring-checkpoint
 
-Tekstpanelet er nå koblet til editorprototypen med blanke søkefelt, eksplisitt LRCLIB-komposisjon og observert oppstarts-/lukkeopprydding. Samme notehistorikk/timeline/playback bevares.16nye/1000totale Windows-tester består; [rapport](docs/exec-plans/active/phase3-lyrics-app-wiring.md) avventer SUPERVISOR-review. Native/manuell/live/Linux og fullworkflow er ikke verifisert. Leveransen er lokal, uten ny publisering/main-integrasjon eller Generation.
+Tekstpanelet er nå koblet til editorprototypen med blanke søkefelt, eksplisitt LRCLIB-komposisjon og observert oppstarts-/lukkeopprydding. Samme notehistorikk/timeline/playback bevares.16nye/1000totale Windows-tester består; [rapport](docs/exec-plans/completed/phase3-lyrics-app-wiring.md) er godkjent av SUPERVISOR som lokal offline-komposisjon. Native/manuell/live/Linux og fullworkflow er ikke verifisert. Leveransen er lokal, uten ny publisering/main-integrasjon eller Generation.
