@@ -1,6 +1,6 @@
 # LRCLIB transport preparation — local checkpoint
 
-STATUS: CHECKPOINT, proposed transport contract awaiting SUPERVISOR review.
+STATUS: COMPLETE, transport contract accepted by SUPERVISOR at ed171fe with explicit User-Agent/64-KiB header-limit clarification. HTTP not implemented.
 TASK: phase3-lrclib-transport-preparation-local, SMALL / SEQUENTIAL.
 MODEL USED: Sol Medium requested; actual model/reasoning not exposed, unknown.
 BRANCH: work/phase3-lrclib-response-decoder.
@@ -12,7 +12,7 @@ LAST COMMIT: local docs checkpoint containing this report; resolve current HEAD 
 
 Corrected decoder status to local code acceptance for ce5d84f/2c8498f (root and independent static review without actionable findings), retaining actual 49/822 Windows evidence and historical publication-block facts. Later explicit owner authorization resolves the permission gap without claiming a completed push. No main integration or new suite claimed.
 
-Specified local pre-code request/client ownership/test injection, dedicated completion-based gate, overall deadline, bounded body/status/media errors and offline acceptance. Recommended raw Retry-After classification plus process-lifetime LRCLIB-only fail-closed state for unrepresentable valid delta; recommendation remains PROPOSED. No public reset, new package or production code.
+Specified local pre-code request/client ownership/test injection, dedicated completion-based gate, overall deadline, bounded body/status/media errors and offline acceptance. Recommended raw Retry-After classification plus process-lifetime LRCLIB-only fail-closed state for unrepresentable valid delta; recommendation accepted at ed171fe. No public reset, new package or production code.
 
 ## Verification
 
@@ -24,8 +24,8 @@ Minimal six-file docs scope after authorized publication-policy steering, local 
 
 Updated LRCLIB_RESPONSE_PROFILE.md, active decoder checkpoint and PHASE3_LRCLIB_ADAPTER_PROPOSAL.md. New LRCLIB_TRANSPORT_PROFILE.md and this active preparation checkpoint. Authorized steering also updates SUPERVISOR_POLICY.md with the exact public repository and standing owner push approval.
 
-Supervisor acceptance of extreme header policy, constructor/injection and gate/deadline contract remains pending. Historical decoder publication rejection is preserved. New explicit owner authorization on 2026-10-14 covers the decoder/policy and later supervisor-reviewed pushes to the same public repository. No concrete push is performed before this document checkpoint is reviewed and a publication order delivered. Normal approval controls and any new actual rejection remain binding.
+Supervisor accepted extreme header policy, constructor/injection and gate/deadline contract at ed171fe. Historical decoder publication rejection is preserved. New explicit owner authorization on 2026-10-14 covers the decoder/policy and later supervisor-reviewed pushes to the same public repository. Document review and the concrete publication/integration order are complete; actual delivery is verified in the publication checkpoint. Normal approval controls and any new actual rejection remain binding.
 
-Commit locally, send one authorized task + HEAD + CHECKPOINT callback and STOP. No fetch, push, PR, merge, main update, HTTP implementation or automatic next task.
+Preparation checkpoint callback completed and reviewed. Publish/integrate the accepted decoder/docs package under the separate approved order, report actual PR/main SHA and stop. No HTTP implementation or automatic next task.
 
-OWNER DECISION REQUIRED: NO — publication permission explicitly granted; transport proposal still awaits SUPERVISOR contract review.
+OWNER DECISION REQUIRED: NO — publication permission explicitly granted; transport contract review complete. No new product decision.

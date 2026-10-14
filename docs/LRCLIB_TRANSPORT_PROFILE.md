@@ -1,16 +1,16 @@
 # LRCLIB transport — local pre-code proposal
 
-STATUS: PROPOSED, awaiting SUPERVISOR contract review. TASK phase3-lrclib-transport-preparation-local, SMALL / SEQUENTIAL. No HTTP implementation or remote publication is authorized by this document.
+STATUS: ACCEPTED pre-code contract by SUPERVISOR at ed171fe, with the explicit User-Agent/header-limit clarification below. HTTP is not implemented. TASK phase3-lrclib-transport-preparation-local, SMALL / SEQUENTIAL. No HTTP implementation or remote publication is authorized by this document.
 
-[Checkpoint](exec-plans/active/phase3-lrclib-transport-preparation-local.md), [historical adapter research/proposal](PHASE3_LRCLIB_ADAPTER_PROPOSAL.md), [accepted local decoder](LRCLIB_RESPONSE_PROFILE.md), [lyrics contract](PHASE3_LYRICS_CONTRACT.md).
+[Checkpoint](exec-plans/completed/phase3-lrclib-transport-preparation-local.md), [historical adapter research/proposal](PHASE3_LRCLIB_ADAPTER_PROPOSAL.md), [accepted local decoder](LRCLIB_RESPONSE_PROFILE.md), [lyrics contract](PHASE3_LYRICS_CONTRACT.md).
 
 ## Baseline and request
 
-Integrated main42eb9f6 includes shared diagnostics and project v3. Decoder ce5d84f/2c8498f is accepted locally with 49 decoder cases and 822/822 Windows tests, not integrated into main. Its historical publication-permission block is resolved by the later explicit owner approval; actual push awaits current document review/order. Callback-policy5dfda9d is distinct from the later standing public-push authorization recorded in SUPERVISOR_POLICY.md. No new research/live lyrics or new test-suite execution accompanies this proposal.
+Integrated main42eb9f6 includes shared diagnostics and project v3. Decoder ce5d84f/2c8498f is accepted locally with 49 decoder cases and 822/822 Windows tests, not integrated into main. Its historical publication-permission block is resolved by the later explicit owner approval; publication/integration is now approved after document review. Callback-policy5dfda9d is distinct from the later standing public-push authorization recorded in SUPERVISOR_POLICY.md. No new research/live lyrics or new test-suite execution accompanies this proposal.
 
 Proposed public production API: sealed LrclibProvider : ILyricsSearchProvider, IDisposable; public parameterless constructor, ProviderId = lrclib and existing SearchAsync(LyricsQuery, CancellationToken). Validate the original query and send exactly one anonymous GET to https://lrclib.net/api/search with separately URI-escaped track_name=Title and artist_name=Artist. No trimming/guessed query parameters, q fallback, /get, retry, redirects, account keys or other requests. Source/provenance URLs remain inert.
 
-Production owns a controlled HttpClient and HttpClientHandler: AllowAutoRedirect=false, UseCookies=false, AutomaticDecompression=None, ordinary TLS validation, no credentials, default 64-KiB response-header limit. Client Timeout=InfiniteTimeSpan so one explicit overall deadline governs the operation. Send an identifying application User-Agent and Accept: application/json; do not request compression. No public borrowed client/handler or general injection overload.
+Production owns a controlled HttpClient and HttpClientHandler: AllowAutoRedirect=false, UseCookies=false, AutomaticDecompression=None, ordinary TLS validation, no credentials, explicit MaxResponseHeadersLength=64 (KiB). Client Timeout=InfiniteTimeSpan so one explicit overall deadline governs the operation. Send User-Agent: UltraStarSongCreator/0.0-prototype (+https://github.com/MasterCorruptor/ultrastar-song-creator) and Accept: application/json; do not request compression. No public borrowed client/handler or general injection overload.
 
 Proposed internal friend-test constructor: LrclibProvider(HttpClient client, LrclibRequestGate gate, TimeProvider clock). It borrows a terminal fixture client that does not itself follow redirects, and isolated gate/clock; it does not dispose these. Timeout and body limits remain the production constants; fake time exercises them. No global mutable fixture backend. The test constructor is not a production injection guarantee.
 
@@ -24,7 +24,7 @@ A linked 30-second overall deadline begins before gate acquisition/cooldown and 
 
 Actual existing RecordingRequestGate records request start and MusicBrainz creates its deadline after EnterAsync. Neither behavior is copied into this completion-based contract, and those existing files remain unchanged.
 
-## Retry-After recommendation — still proposed
+## Accepted Retry-After contract
 
 For 429/503 only, inspect raw header values through Headers.NonValidated, not merely the typed RetryAfter getter. Missing, ambiguous multiple values, invalid syntax, negative delta or invalid/unrepresentable date use a local one-second cooldown and exposed RetryAfter=null. No raw header or exception text is logged or exposed.
 
@@ -34,9 +34,9 @@ If not a decimal delta, use RetryConditionHeaderValue.TryParse for HTTP-date and
 
 A read-only local .NET 10.0.11 probe found TryParse accepts 2147483647 seconds but rejects 2147483648 and 922337203685, as well as negative/invalid inputs. It also rejects the unrepresentable 922337203686. Thus its false result does not distinguish valid long delta, valid unrepresentable delta and invalid syntax. The raw digit check is necessary. This is a local parser observation, not a new solution test or live provider fact.
 
-**Recommended extreme policy for review:** a syntactically valid nonnegative delta larger than TimeSpan representation marks only the LRCLIB shared gate unavailable for the rest of this process. Original 429 retains RateLimited, original 503 retains Unavailable, both with actual status and null retry metadata plus a static explanation. Later LRCLIB calls return static Unavailable without sending; caller cancellation still takes precedence. Other providers and manual lyrics remain usable. Process restart reconstructs the gate. No public reset API, account/authorization reset or quota-reset mechanism.
+**Accepted extreme policy:** a syntactically valid nonnegative delta larger than TimeSpan representation marks only the LRCLIB shared gate unavailable for the rest of this process. Original 429 retains RateLimited, original 503 retains Unavailable, both with actual status and null retry metadata plus a static explanation. Later LRCLIB calls return static Unavailable without sending; caller cancellation still takes precedence. Other providers and manual lyrics remain usable. Process restart reconstructs the gate. No public reset API, account/authorization reset or quota-reset mechanism.
 
-This conservative policy may disable LRCLIB until restart after a corrupt or adversarial extreme header. It avoids downcapping an unrepresentable wait and avoids adding persistence, a reset interface or arbitrary numeric storage. No smaller bounded wait policy both preserves that advertised duration and offers automatic resumption in TimeSpan; declaring it invalid and waiting one second would violate the no-downcap requirement. SUPERVISOR must explicitly accept or revise the recommendation before code.
+This conservative policy may disable LRCLIB until restart after a corrupt or adversarial extreme header. It avoids downcapping an unrepresentable wait and avoids adding persistence, a reset interface or arbitrary numeric storage. No smaller bounded wait policy both preserves that advertised duration and offers automatic resumption in TimeSpan; declaring it invalid and waiting one second would violate the no-downcap requirement. SUPERVISOR accepted this recommendation in the review of ed171fe; implementation still requires its own bounded order.
 
 ## Overflow-safe shared cooldown
 
@@ -62,4 +62,4 @@ Offline acceptance must cover:
 - Missing/invalid/negative/multiple headers; zero/past/future dates; 2147483648 and maximum whole-second TimeSpan delta retained; next value/extreme digits fail closed; leading zeroes; maximum outstanding cooldown, overflow-free time arithmetic, bounded wait chunks, timeout followed by later gate reuse.
 - Original extreme status/null metadata and later zero-send Unavailable; process/isolated-gate scope. No public reset or global test backend.
 
-The next implementation order requires SUPERVISOR review of this proposed contract and actual quota gating. This local preparation stops at a coherent docs commit and callback; no push, fetch, PR, merge, main update or automatic HTTP implementation.
+The contract is accepted; the next implementation order still requires actual quota gating and explicit scoped dispatch. Preparation is complete. Decoder/docs publication and integration are approved separately under the standing mandate; HTTP implementation does not start automatically.
