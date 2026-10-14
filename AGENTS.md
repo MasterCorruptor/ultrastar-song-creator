@@ -18,7 +18,7 @@ Bevar acquisition/generation/editor-skillet, immutable sangmodell og undo/redo. 
 
 ADR-0001/0002 er akseptert: .NET/Avalonia, Python-prosess, utskiftbar miniaudio-backend, eksplisitt umxhq og MIT egen kode med separate LGPL-forpliktelser. Analyse er forslag med confidence/manuell korreksjon; ASR-default er ikke fastsatt. Ikke omgjør vedtak uten bestilling.
 
-SUPERVISOR reviewer; AGENT implementerer/rapporterer hendelsesstyrt etter docs/SUPERVISOR_POLICY.md. Eiermandatet tillater kvotestyrt masterarbeid og gjenopptakelse. Lyrics-fundament/LRC/selected-typer er integrert. B1 er akseptert. B2 akseptert: docs/exec-plans/completed/phase3-lyrics-panel-component.md. B3 krever ny ordre.
+SUPERVISOR reviewer; AGENT implementerer/rapporterer hendelsesstyrt etter docs/SUPERVISOR_POLICY.md. Eiermandatet tillater kvotestyrt masterarbeid og gjenopptakelse. Lyrics-fundament/LRC/selected-typer er integrert. B1 er akseptert. B2 akseptert: docs/exec-plans/completed/phase3-lyrics-panel-component.md. B3: docs/exec-plans/active/phase3-lyrics-app-wiring.md; review avventes.
 
 ## Verifikasjon og stopp
 

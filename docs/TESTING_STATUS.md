@@ -98,3 +98,9 @@ A er nå integrert via PR21 som main d5a6231 etter ny direkte eiergodkjenning. H
 ## B2-komponent sluttgodkjent
 
 SUPERVISOR har godkjent begge reviewrettingene ved5d10cfb/testet c83152b:31komponent/984Windows-cases (Core871,Audio17,Desktop96), zero skipped. Dette er automatisk/offline komponentakseptanse. [Avsluttet plan](exec-plans/completed/phase3-lyrics-panel-component.md). Ingen ny suite for docs-only avslutning; kode/prosjekter/locks/tester bevares. STOP_FOR_RESET før B3 og ny kapasitets-/statuskontroll; native/live/Linux/B3/fullworkflow er fortsatt uverifisert.
+
+## B3 appwiring — lokalt reviewcheckpoint
+
+Testet38e1b5a:16nye/1000totale Windows-tester (Core871,Audio17,Desktop112), zero skipped; locked restore/Release0warnings/full format består. [Faktisk rapport/evidens](exec-plans/active/phase3-lyrics-app-wiring.md). Produksjon bruker ekte LRCLIB uten startuprequest; samme editorhistorikk/playback er beholdt. Kontrollerte headless-prøver dekker normalclose, UIaudio før drain, held callback/ignored cancellation, delvis startup-eierskap og statisk failureguard. Ingen ny dependency/project/lockfilendring eller faktisk nett/device i testene.
+
+Dette er appkomposisjon via injiserbare interne host-callbacks; faktisk native classic-desktop-loop/manuell Windows, live provider, Linux og fullworkflow er ikke akseptert her. Ingen ny publisering/main-endring. Avventer SUPERVISOR-review; videre fase starter ikke automatisk.

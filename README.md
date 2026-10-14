@@ -96,6 +96,10 @@ LRCLIB HTTP-transport er integrert via PR20 på main6ddb743 med 892/892 Windows-
 
 B1 apply via eksisterende editorhistorikk er akseptert med 953/953 Windows-tester; [checkpoint](docs/exec-plans/completed/phase3-lyrics-editor-apply.md). B2-komponenten er godkjent etter review, med 984/984 Windows-tester; [checkpoint](docs/exec-plans/completed/phase3-lyrics-panel-component.md). Kobling inn i appvinduet er et senere B3-trinn.
 
-Sangtekstøkten A er integrert via [PR21](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/21) som main d5a6231; lokal/GitHub main er like. B2-panelrettingen er godkjent og fortsatt separat lokalt og er ikke koblet inn i appvinduet.
+Sangtekstøkten A er integrert via [PR21](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/21) som main d5a6231; lokal/GitHub main er like. Ved B2-avslutningen var panelrettingen godkjent separat lokalt, før kobling inn i appvinduet.
 
-B2 er avsluttet lokalt; B3 starter først etter ny kapasitetskontroll og konkret SUPERVISOR-ordre. Ingen ny publisering eller main-endring inngår i avslutningen.
+B2 er avsluttet lokalt; B3 ble deretter bestilt etter ny kapasitetskontroll. Ingen ny publisering eller main-endring inngår i avslutningen.
+
+## B3 — lokalt appwiring-checkpoint
+
+Tekstpanelet er nå koblet til editorprototypen med blanke søkefelt, eksplisitt LRCLIB-komposisjon og observert oppstarts-/lukkeopprydding. Samme notehistorikk/timeline/playback bevares.16nye/1000totale Windows-tester består; [rapport](docs/exec-plans/active/phase3-lyrics-app-wiring.md) avventer SUPERVISOR-review. Native/manuell/live/Linux og fullworkflow er ikke verifisert. Leveransen er lokal, uten ny publisering/main-integrasjon eller Generation.
