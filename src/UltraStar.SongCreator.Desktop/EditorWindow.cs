@@ -4,6 +4,8 @@ using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Controls.Shapes;
+using Avalonia.Threading;
+using UltraStar.SongCreator.Desktop.Lyrics;
 using UltraStar.SongCreator.Desktop.Controls;
 using UltraStar.SongCreator.Desktop.Playback;
 using UltraStar.SongCreator.Desktop.Timeline;
@@ -27,6 +29,11 @@ public sealed class EditorWindow : Window
     public Rectangle NotePlayhead { get; } = new() { Width = 2, Height = 360, Fill = Brushes.OrangeRed, IsHitTestVisible = false, IsVisible = false };
     public ScrollViewer TimelineScroll { get; } = new() { HorizontalScrollBarVisibility = Avalonia.Controls.Primitives.ScrollBarVisibility.Auto };
     public TextBlock AudioMessageLabel { get; } = new() { TextWrapping = TextWrapping.Wrap };
+    internal LyricsPanel? Lyrics { get; }
+    internal TextBlock CloseErrorLabel { get; } = new() { TextWrapping = TextWrapping.Wrap };
+    internal Task<bool>? CloseTask { get; private set; }
+    private readonly Func<Task<bool>>? cleanup;
+    private bool finalCloseAllowed;
     private readonly TimelineMapping mapping;
     private bool playbackReleased;
     private Song? rendered;
@@ -35,7 +42,13 @@ public sealed class EditorWindow : Window
     public const double TimeOrigin = 75;
 
     public EditorWindow(EditingSession session, EditorPlaybackSession? playback = null)
+        : this(session, playback, null, null) { }
+
+    internal EditorWindow(EditingSession session, EditorPlaybackSession? playback, LyricsPanel? lyrics, Func<Task<bool>>? cleanup = null)
     {
+        Dispatcher.UIThread.VerifyAccess();
+        Lyrics = lyrics;
+        this.cleanup = cleanup;
         Session = session;
         Playback = playback;
         mapping = playback?.Mapping ?? TimelineMapping.Demo;
@@ -58,6 +71,7 @@ public sealed class EditorWindow : Window
         var actions = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10 };
         actions.Children.Add(StartInput); actions.Children.Add(MoveButton); actions.Children.Add(UndoButton); actions.Children.Add(RedoButton);
         body.Children.Add(actions); body.Children.Add(MessageLabel); body.Children.Add(ValidationLabel);
+        if (Lyrics is not null) { body.Children.Add(Lyrics); body.Children.Add(CloseErrorLabel); }
         Content = new ScrollViewer { Content = body };
         MoveButton.Click += (_, _) => Session.Move(StartInput.Text);
         UndoButton.Click += (_, _) => Session.Undo();
@@ -66,6 +80,54 @@ public sealed class EditorWindow : Window
         if (Playback?.Presenter is { } presenter) presenter.Changed += PlaybackChanged;
         Closed += (_, _) => ReleasePlayback();
         Refresh(this, EventArgs.Empty);
+    }
+
+    protected override void OnClosing(WindowClosingEventArgs e)
+    {
+        base.OnClosing(e);
+        if (Lyrics is null || finalCloseAllowed) return;
+        e.Cancel = true;
+        if (CloseTask is not null) return;
+        var audioReleased = true;
+        try { Lyrics.Detach(); ReleasePlayback(); }
+        catch (Exception) { audioReleased = false; }
+        MoveButton.IsEnabled = UndoButton.IsEnabled = RedoButton.IsEnabled = false;
+        Task<bool> drain;
+        try { drain = cleanup?.Invoke() ?? Lyrics.CloseAsync(); }
+        catch (Exception) { drain = Task.FromResult(false); }
+        CloseTask = ObserveCloseAsync(drain, audioReleased);
+    }
+
+    private async Task<bool> ObserveCloseAsync(Task<bool> drain, bool audioReleased)
+    {
+        bool success;
+        try { success = await drain.ConfigureAwait(false) && audioReleased; }
+        catch (Exception) { success = false; }
+        // Always post: even an already completed cleanup must not recursively close in Closing.
+        var finished = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+        Dispatcher.UIThread.Post(() =>
+        {
+            try
+            {
+                if (success) { FinishClose(); success = !IsVisible; }
+                if (!success) CloseErrorLabel.Text = "Opprydding feilet. Vinduet holdes åpent.";
+                finished.TrySetResult(success);
+            }
+            catch (Exception)
+            {
+                finalCloseAllowed = false;
+                CloseErrorLabel.Text = "Vinduet kunne ikke avsluttes.";
+                finished.TrySetResult(false);
+            }
+        });
+        return await finished.Task.ConfigureAwait(false);
+    }
+
+    internal void FinishClose()
+    {
+        Dispatcher.UIThread.VerifyAccess();
+        finalCloseAllowed = true;
+        Close();
     }
 
     private void Refresh(object? sender, EventArgs args)
@@ -141,6 +203,7 @@ public sealed class EditorWindow : Window
     }
     public void ReleasePlayback()
     {
+        Dispatcher.UIThread.VerifyAccess();
         if (playbackReleased) return;
         playbackReleased = true;
         Session.Changed -= Refresh;
