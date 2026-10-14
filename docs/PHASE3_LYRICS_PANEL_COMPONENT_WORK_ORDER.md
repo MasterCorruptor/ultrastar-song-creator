@@ -1,5 +1,5 @@
 # Lyrics panel component B2
-STATUS: IMPLEMENTING. MEDIUM / SEQUENTIAL, one worker. Sol High requested; actual model/reasoning unknown.
+STATUS: CHECKPOINT — implementation verified; pending SUPERVISOR review. MEDIUM / SEQUENTIAL, one worker. Sol High requested; actual model/reasoning unknown.
 Base: accepted B1 fb6fcb63fec6df97a7a604e3f2fd34bff8f634c9, source/tests identical to tested aaedb1d (953 Windows cases). Local branch work/phase3-lyrics-panel-component.
 
 ## Scope and ownership
@@ -18,3 +18,7 @@ UI actions invalidate eligibility immediately. Receipt renders require latest in
 Deterministic offline/headless tests: no startup request/autopick; explicit queries/cancel/no-results/static errors/diagnostics/variants/instrumental/manual; stale renders/selection/edit invalidation; bounded coalescing/held cancellation callback without blocking UI; same current history/undo/redo/no-op; detach ignores late work; owned close waits admitted work/A drain, repeated close identity, borrowed ownership, observed faults. No native GUI or live provider acceptance.
 
 Targeted tests, coherent code commit, locked restore/Release zero warnings/full Windows suite/format and protected source/master/ADRs/lock/private inventory/document/whitespace checks. Stop committed local checkpoint for SUPERVISOR review. B3 window/app/startup wiring, native/manual/live/Linux verification, B1/B2 publication/merge/main update are outside this order.
+
+## Local verification
+
+Tested implementation2d137f4:24new/977total Windows cases; locked restore/Release0warnings/full format passed. [Actual checkpoint and boundaries](exec-plans/active/phase3-lyrics-panel-component.md). Source/project/lock scope preserved. B3 wiring, native/manual/live/Linux and publication remain outside this checkpoint.

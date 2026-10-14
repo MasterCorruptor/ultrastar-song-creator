@@ -83,4 +83,10 @@ Ved testet e4b3923 består 47 nye session-cases og 939/939 Windows-tester (Core 
 
 ApplySelectedLyrics bruker eksisterende EditingSession-historikk mot gjeldende Song. Valgt tekst kan anvendes programmatisk med undo/redo; no-op/ugyldig/null endrer ikke sang eller redo. Null er en eksplisitt avvisning, ikke clear. Ingen tekstpanel/fil- eller nettverksflyt er lagt til. [Kontrakt/report](exec-plans/completed/phase3-lyrics-editor-apply.md).
 
-Testet aaedb1d:14nye/953totale Windows-tester(Core871,Audio17,Desktop65), zero skipped; locked restore,Release0warnings/errors og full formatkontroll består. Faktiske source-time/proveniens og øvrige sangfelter bevares. Ingen nytt native/Linux/live/GUI/fullworkflow-resultat. B1 avventer rootreview; B2 og ekstern levering har separate stopp.
+Testet aaedb1d:14nye/953totale Windows-tester(Core871,Audio17,Desktop65), zero skipped; locked restore,Release0warnings/errors og full formatkontroll består. Faktiske source-time/proveniens og øvrige sangfelter bevares. Ingen nytt native/Linux/live/GUI/fullworkflow-resultat. B1 er akseptert av SUPERVISOR ved fb6fcb6. B2 og ekstern levering behandles separat.
+
+## Lyrics panel component B2 — lokalt reviewcheckpoint
+
+Ved testet2d137f4 består24nye/977totale Windows-tester (Core871,Audio17,Desktop89), zero skipped; locked restore,Release0warnings/errors og full formatkontroll består. [Komponentrapport](exec-plans/active/phase3-lyrics-panel-component.md) beskriver syntetiske headless-prøver for eksplisitt valg/manuell tekst/frozen apply, immediate/stale eligibility, bounded admission og trygg asynkron close med held cancellation/ignored provider og lånt/eid lifetime.
+
+Dette er en selvstendig komponent, ennå ikke koblet til EditorWindow/EditorApplication; B3 wiring/normal-window-close/startup/audio cleanup er neste separate arbeid etter review. Ingen nytt native/manuelt/live/Linux/alpha-beta/fullworkflow-resultat. Bare eksisterende lokal Acquisition-prosjektreferanse er lagt til; ingen nye eksterne pakker. B2 er ikke publisert. Eksakt A099884b er publisert separat i PR21; main er ikke endret av denne leveransen.

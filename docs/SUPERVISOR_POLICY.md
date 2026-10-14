@@ -115,3 +115,9 @@ Godkjenningen gjelder det offentlige prosjekt-repositoryet https://github.com/Ma
 Det tidligere decoderstoppets manglende publiseringsfullmakt er løst av denne nye eiergodkjenningen. Historiske faktiske avslag beholdes som historikk; de blir ikke omtolket til vellykket publisering. Ingen push/PR/merge er utført i dette dokumentcheckpointet. SUPERVISOR reviewer det aktuelle dokumentcheckpointet før konkret publiserings-/integrasjonsordre.
 
 «Super bruker» endrer ikke sandbox eller automatiske godkjenningskontroller og tillater ikke force-push, destruktiv synkronisering, publisering til andre destinasjoner eller omgåelse av et nytt avslag. Nye faktiske plattform-/approvalavslag stopper den berørte handlingen og rapporteres etter eksisterende policy.
+
+## Avklart kort rapportering og konkret A-publisering — 2026-10-14
+
+Et faktisk avslag på en omfattende kontrollpunktrapport ble fulgt av ny direkte eiergodkjenning for korte rapporter til prosjektets navngitte SUPERVISOR-chat, også ved senere checkpoints: «Ja, også senere korte rapporter». Send høyst én kort melding (maks120ord) per unik task/SHA/hendelse, med status/testevidens/rapportsti og uten råkode/sangtekst eller omfattende intern historikk. Første korte leveranse er verifisert levert. Tidligere avslag er historiske; et nytt faktisk avslag stopper fortsatt berørt melding uten alternativ kanal.
+
+Eieren godkjente separat eksakt A099884b på work/phase3-lyrics-acquisition-session i det offentlige prosjekt-repositoryet samt PR mot main. Dette er gjennomført som PR21; lokal senere A440ea86 og B1/B2 er ikke publisert gjennom denne handlingen. PR21-merge og nye konkrete publiseringshandlinger vurderes etter gjeldende separate godkjenninger/ordre. Kort rapporteringsfullmakt gir ingen ny publiserings-/mergefullmakt.

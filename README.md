@@ -92,6 +92,6 @@ Immutable valgt tekst/proveniens kan endres med undo/redo og lagres offline i st
 
 LRCLIB HTTP-transport er integrert via PR20 på main6ddb743 med 892/892 Windows-tester; ikke koblet til GUI eller ferdig alpha/beta. Se [gjeldende teststatus](docs/TESTING_STATUS.md) og [transportkontrakten](docs/LRCLIB_TRANSPORT_PROFILE.md).
 
-[Neste foreslåtte sangtekstflyt](docs/PHASE3_LYRICS_FLOW_PROPOSAL.md) har en kodegodkjent A-session med 939/939 Windows-tester; lyrics-panelet er ikke implementert.
+[Neste foreslåtte sangtekstflyt](docs/PHASE3_LYRICS_FLOW_PROPOSAL.md) har en kodegodkjent A-session med 939/939 Windows-tester; GUI-wiring gjenstår.
 
-B1 apply via eksisterende editorhistorikk er implementert lokalt med 953/953 Windows-tester og avventer review; [checkpoint](docs/exec-plans/completed/phase3-lyrics-editor-apply.md). Tekstpanelet B2 er ikke implementert.
+B1 apply via eksisterende editorhistorikk er akseptert med 953/953 Windows-tester; [checkpoint](docs/exec-plans/completed/phase3-lyrics-editor-apply.md). B2-komponenten er implementert lokalt med 977/977 Windows-tester og avventer review; [checkpoint](docs/exec-plans/active/phase3-lyrics-panel-component.md). Kobling inn i appvinduet er et senere B3-trinn.
