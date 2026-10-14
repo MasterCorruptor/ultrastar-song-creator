@@ -12,4 +12,4 @@ Offline acceptance: query/handler/ownership; all statuses without reading error 
 
 Locked restore, Release build, full Windows solution tests, solution format, source ownership/master/dependency/privacy/doclinks/whitespace checks. No live API/lyrics, new packages, Linux/native/GUI acceptance or new research.
 
-Original implementation stop: commit coherent evidence locally and STOP FOR SUPERVISOR REVIEW; this stop was satisfied at da3c163 and review is now approved. That implementation order did not authorize publication. A later bounded close/publication order now authorizes work-branch push and PR only; merge/main update and automatic next feature remain excluded.
+Original implementation stop: commit coherent evidence locally and STOP FOR SUPERVISOR REVIEW; this stop was satisfied at da3c163 and review is now approved. That implementation order did not authorize publication. A later bounded close/publication order authorizes work-branch push and PR. The owner then explicitly approved this next main integration; await SUPERVISOR matched-PR-head review/order before merge/local main update. No standing future-merge approval or automatic next feature is inferred.

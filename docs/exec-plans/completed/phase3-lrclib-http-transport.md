@@ -40,5 +40,5 @@ Only new Acquisition/Lyrics/LrclibProvider.cs, LrclibRequestGate.cs and new Core
 
 Supervisor implementation review complete; independent reviewer also found no actionable findings. No live API/deployed-provider interoperability, Linux/native verification, real lyrics/content rights or GUI end-to-end result claimed. Provider disposal during an active call is unsupported; sync decoding is cooperatively canceled; extreme valid Retry-After disables LRCLIB until restart as accepted.
 
-Publish the accepted work branch and create/attach its PR under the separate approved close/publication order, then send one checkpoint callback and STOP. No merge/main update, extra worker or automatic next feature.
+Publish the accepted work branch and create/attach its PR under the separate approved close/publication order, then send one checkpoint callback and STOP. The owner has now explicitly approved this next main integration; await SUPERVISOR review of the actual PR/head and matched integration order before merge/local main update. No standing future-merge approval, extra worker or automatic next feature.
 OWNER DECISION REQUIRED: NO.
