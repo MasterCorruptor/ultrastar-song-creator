@@ -1,6 +1,6 @@
 # LRCLIB first search adapter – proposal
 
-STATUS: HTTP PROPOSED; shared diagnostics/provider-results seam er kodegodkjent vedf596c4a og inngår i lokal combined review. Remote/main har ennå ikke den kombinerte v3-kandidaten. Ingen HTTPkode. Basebe209abd662b7654fb09171aff70479c1698b530 etter [PR17](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/17); reviewed standalone codedfbc33d og parser6c8a563. [Arbeidsordre](PHASE3_LRCLIB_WORK_ORDER.md), [aktiv plan](exec-plans/active/phase3-lrclib-contract-preparation.md), [lyricsfundament](PHASE3_LYRICS_CONTRACT.md), [LRC-profil](LRC_PROFILE.md). Master/ADR-0002s kode-/innholdsrettighetsgrense består; ingen hentet sangtekst/fixtures/lisenser legges til.
+STATUS: HTTP PROPOSED; shared diagnostics/provider-results seam er kodegodkjent vedf596c4a og inngår i lokal combined review. Samlet773/773-pakke er eierautorisert for publisering/integrasjon; faktisk PR/Git-historikk angir status. Ingen HTTPkode. Basebe209abd662b7654fb09171aff70479c1698b530 etter [PR17](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/17); reviewed standalone codedfbc33d og parser6c8a563. [Arbeidsordre](PHASE3_LRCLIB_WORK_ORDER.md), [aktiv plan](exec-plans/active/phase3-lrclib-contract-preparation.md), [lyricsfundament](PHASE3_LYRICS_CONTRACT.md), [LRC-profil](LRC_PROFILE.md). Master/ADR-0002s kode-/innholdsrettighetsgrense består; ingen hentet sangtekst/fixtures/lisenser legges til.
 
 ## Separat read-only research: fakta og usikkerhet
 

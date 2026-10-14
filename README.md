@@ -85,3 +85,7 @@ Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og ekspl
 ## Simple line-LRC – godkjent pakke
 
 [Avgrenset profil](docs/LRC_PROFILE.md) ved6c8a563: pure bounded parser med bevart tekst/metadata og typed formatfeil,73 parser-tests og622/622 Windows-regresjoner bestått. Bare komplette angle-timestampformer avvises; nonzero offset/andre formater er utenfor profilen. Ingen HTTP, lyrics-GUI eller persistens i pakken; faktisk integrasjon fremgår av GitHub-historikken.
+
+## Valgt lyrics og prosjektv3 – godkjent samlet pakke
+
+Immutable valgt tekst/proveniens kan endres med undo/redo og lagres offline i strictv3; v1/v2-lesing og originalfiler bevares. Kandidatdiagnostikk er transient og persisteres ikke.773/773 Windows-tester består. [Gjennomgått evidens](docs/LYRICS_COMBINED_LOCAL_REVIEW.md). Publisering/main-integrasjon er eierautorisert; aktuell PR/Git-historikk angir status. Ingen HTTP-lyricsinnhenting/ny GUI/native/Linux/release er verifisert i pakken.

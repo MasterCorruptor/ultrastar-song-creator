@@ -1,6 +1,6 @@
-## Aktuell lokal status
+## Gjeldende godkjenningsstatus
 
-Begge kildepakker er SUPERVISOR-kodegodkjent og samlet verifisert ved5ade286:773/773 Windows-tester, build/format/integritet bestått. [Lokal combined-rapport](../../LYRICS_COMBINED_LOCAL_REVIEW.md) er gjeldende evidens og publiseringsstatus. Remote/main er uendret påbe209ab; publisering/main-integrasjon av den kombinerte kandidaten avventer direkte destinasjonsgodkjenning. Ingen push utføres i denne ordren.
+Begge kildepakker er SUPERVISOR-kodegodkjent og samlet verifisert ved5ade286:773/773 Windows-tester, build/format/integritet bestått. [Lokal combined-rapport](../../LYRICS_COMBINED_LOCAL_REVIEW.md) er gjeldende evidens og publiseringsstatus. Eier har2026-10-14 eksplisitt godkjent GitHub-destinasjonen og main-integrasjon. Tidligere lokal-only-stopp er opphevet; faktisk integrasjonsstatus angis av GitHub-PR/historikk og sluttverifikasjon. Ingen kodeendring eller ny testsuite begrunnes av dokumentavslutningen.
 
 ## Historisk pakkecheckpoint – original tekst nedenfor
 

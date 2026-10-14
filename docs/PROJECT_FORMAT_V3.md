@@ -1,6 +1,6 @@
 # Project format v3
 
-Status: LOCAL combined candidate, not published/main-integrated. Package sourcebd8addb is code-reviewed; combined diagnostics/v3 verification is recorded in [local integration report](LYRICS_COMBINED_LOCAL_REVIEW.md). No remote publication is authorized by this document.
+Status: reviewed v3 implementation in the approved combined package. Owner authorized publication/main integration2026-10-14; current PR/Git history records integration. Sourcebd8addb and combined773/773 evidence are recorded in [integration report](LYRICS_COMBINED_LOCAL_REVIEW.md).
 
 Frozen profile for the bounded selected-lyrics package. Extends [v2](PROJECT_FORMAT_V2.md) and preserves the frozen v1/v2 song and imported-source payloads.
 
