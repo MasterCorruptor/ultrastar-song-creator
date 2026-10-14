@@ -108,3 +108,7 @@ Dette er appkomposisjon via injiserbare interne host-callbacks; faktisk native c
 ## B3 sluttgodkjent lokalt
 
 SUPERVISOR og uavhengig review har godkjent bc7d17b/testet38e1b5a som automatisk/offline-komposisjon:16nye/1000Windows, zero skipped, ingen actionable funn. [Avsluttet rapport](exec-plans/completed/phase3-lyrics-app-wiring.md). Kode/prosjekt/lock/testbytes bevares ved docsclosure, ingen ny suite. Faktisk native classic-desktop-loop/Show/platforminitialisering/manuell/live/Linux/fullworkflow er fortsatt ikke verifisert. Neste separate ordre klargjør samlet lokal integrasjon for review, uten publisering/mainendring.
+
+## Samlet lokal B1–B3-integrasjon til review
+
+[Integrasjonsrapport](PHASE3_LYRICS_EDITOR_INTEGRATION.md) samler aksepterte kode-/testrefs og presise native/manual/live/Linux-gap. Lokal main-merge9bafcf0 har identisk filinnhold med B3-closure bb0c5d6; source/test/project/lockbytes matcher testet38e1b5a/1000Windows. Ingen ny suite for docs-only/identisk-tre-klargjøring. Main d5a6231 er bevart; ingen ny remote/publisering/nativeUI eller feature startet.
