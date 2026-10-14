@@ -1,6 +1,6 @@
 # Hva kan testes nå?
 
-Status 2026-10-13: GUI-02 er integrert via PR13 og den avgrensede lokale prototypen er SUPERVISOR-sluttgodkjent. Seks manuelle Windows-scenarioer er eierbekreftet bestått;490/490 Windows/Linux-tester. [Startguide og grenser](GUI_02_EDITOR_BINDING.md). Ingen alpha/beta/installer/release.
+Historisk GUI-status 2026-10-13: GUI-02 er integrert via PR13 og den avgrensede lokale prototypen er SUPERVISOR-sluttgodkjent. Seks manuelle Windows-scenarioer er eierbekreftet bestått;490/490 Windows/Linux-tester. [Startguide og grenser](GUI_02_EDITOR_BINDING.md). Ingen alpha/beta/installer/release.
 
 ## Dagens funksjoner
 
@@ -54,7 +54,7 @@ Prosjekteieren bekreftet direkte i AGENT-chat: «Alle tester bestått med forven
 
 ## Lyrics-fundament – kodegodkjent
 
-Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og eksplisitt kandidatvalg er kodegodkjent ved5492b44;549/549 Windows-tester består. [Kontrakt og grenser](PHASE3_LYRICS_CONTRACT.md). Ingen HTTP-innhenting, LRC-parser, persistens eller lyrics-GUI er implementert; end-to-end Lyrics Acquisition er ikke ferdig. Integrert via [PR15](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/15) som458176f13ed7de50cd3b503a7a7b194139444784; fundamentplanen er avsluttet.
+Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og eksplisitt kandidatvalg er kodegodkjent ved5492b44;549/549 Windows-tester består. [Kontrakt og grenser](PHASE3_LYRICS_CONTRACT.md). Ved dette historiske kontrollpunktet var HTTP-innhenting, LRC-parser, persistens og lyrics-GUI ikke implementert; end-to-end Lyrics Acquisition er ikke ferdig. Integrert via [PR15](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/15) som458176f13ed7de50cd3b503a7a7b194139444784; fundamentplanen er avsluttet.
 
 ## Simple line-LRC – godkjent pakke
 
@@ -63,3 +63,10 @@ Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og ekspl
 ## Valgt lyrics og prosjektv3 – godkjent samlet pakke
 
 Immutable valgt tekst/proveniens kan endres med undo/redo og lagres offline i strictv3; v1/v2-lesing og originalfiler bevares. Kandidatdiagnostikk er transient og persisteres ikke.773/773 Windows-tester består. [Gjennomgått evidens](LYRICS_COMBINED_LOCAL_REVIEW.md). Publisering/main-integrasjon er eierautorisert; aktuell PR/Git-historikk angir status. Ingen HTTP-lyricsinnhenting/ny GUI/native/Linux/release er verifisert i pakken.
+
+
+## LRCLIB HTTP transport — kodegodkjent 2026-10-14
+
+Decoder, lyricsdiagnostikk og valgt tekst i prosjekt v3 er integrert i main gjennom PR18/PR19. På arbeidsbranchen finnes nå en lokal LrclibProvider med anonymt søk, separat serial gate, completion-spacing, overall deadline, Retry-After og begrenset responstolkning. Den er ikke koblet til GUI; SUPERVISOR og uavhengig reviewer har godkjent leveransen uten actionable findings ved da3c163; [kontrakt](LRCLIB_TRANSPORT_PROFILE.md) og [checkpoint](exec-plans/completed/phase3-lrclib-http-transport.md).
+
+70 nye offline transport-/gate-tester bruker egne syntetiske svar og lokal klokke. Ved testet commit db51699 består 892/892 Windows-tester (Core 824, Audio 17, Desktop 51), locked restore, Release build uten advarsler og full formatkontroll. Ingen nytt live API, ekte sangtekst, Linux/native eller alpha/beta-resultat er påstått. Hele sangtekstflyten og brukergrensesnittet er fortsatt ikke ferdige.

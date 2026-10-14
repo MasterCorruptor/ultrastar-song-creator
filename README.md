@@ -80,7 +80,7 @@ Audio-01 er godkjent og integrert via [PR #11](https://github.com/MasterCorrupto
 
 ## Lyrics-fundament – kodegodkjent
 
-Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og eksplisitt kandidatvalg er kodegodkjent ved5492b44;549/549 Windows-tester består. [Kontrakt og grenser](docs/PHASE3_LYRICS_CONTRACT.md). Ingen HTTP-innhenting, LRC-parser, persistens eller lyrics-GUI er implementert; end-to-end Lyrics Acquisition er ikke ferdig. Integrert via [PR15](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/15) som458176f13ed7de50cd3b503a7a7b194139444784; fundamentplanen er avsluttet.
+Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og eksplisitt kandidatvalg er kodegodkjent ved5492b44;549/549 Windows-tester består. [Kontrakt og grenser](docs/PHASE3_LYRICS_CONTRACT.md). Ved dette historiske kontrollpunktet var HTTP-innhenting, LRC-parser, persistens og lyrics-GUI ikke implementert; end-to-end Lyrics Acquisition er ikke ferdig. Integrert via [PR15](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/15) som458176f13ed7de50cd3b503a7a7b194139444784; fundamentplanen er avsluttet.
 
 ## Simple line-LRC – godkjent pakke
 
@@ -89,3 +89,5 @@ Provider-uavhengige in-memory lyricsobjekter, validering, manuell tekst og ekspl
 ## Valgt lyrics og prosjektv3 – godkjent samlet pakke
 
 Immutable valgt tekst/proveniens kan endres med undo/redo og lagres offline i strictv3; v1/v2-lesing og originalfiler bevares. Kandidatdiagnostikk er transient og persisteres ikke.773/773 Windows-tester består. [Gjennomgått evidens](docs/LYRICS_COMBINED_LOCAL_REVIEW.md). Publisering/main-integrasjon er eierautorisert; aktuell PR/Git-historikk angir status. Ingen HTTP-lyricsinnhenting/ny GUI/native/Linux/release er verifisert i pakken.
+
+LRCLIB HTTP-transport finnes nå som en kodegodkjent leveranse med 892/892 Windows-tester; ikke koblet til GUI eller ferdig alpha/beta. Se [gjeldende teststatus](docs/TESTING_STATUS.md) og [transportkontrakten](docs/LRCLIB_TRANSPORT_PROFILE.md).
