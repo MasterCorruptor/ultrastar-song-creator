@@ -42,3 +42,9 @@ Seven additional deterministic cases: reentrant manual replacement with differen
 Actual ignored evidence: .agent-local/phase1/continuation/lyrics-panel-b2-fix/restore.log, build.log, tests.log, format.log. These are exact local evidence paths, not distributable product artefacts. Current docs checkpoint keeps source/tests identical to c83152b. 210 other frozen source/test/project/lock/tool/master/ADR files are byte-identical to a07a0d7; master original/privacy/vendor/links/whitespace checks passed.
 
 B3/native/live/Linux remain pending. PR21 A939 merge is separately owner-approved and scheduled after this safe checkpoint; it does not integrate B1/B2. No new feature starts before component review.
+
+## Separate A integration completed after safe B2 checkpoint
+
+After B2 review fixes were tested at c83152b and saved at docs checkpoint fe2bce7, owner-approved PR21 https://github.com/MasterCorruptor/ultrastar-song-creator/pull/21 was merged at exact head099884bc320a7d9a2fd9c95a5fa1eac290aa8ef7. Preflight origin/base/head/diff unchanged, MERGEABLE/CLEAN, no hosted checks configured. Merge commit d5a623104b40445f78abbb0cd409b4573153e9bc is verified on GitHub/main, origin/main and local main. Entire merge tree is identical to approved A099884b; no repeated A suite was required. A939 evidence remains distinct from B2 fixed984 tests.
+
+Local main advanced by ordinary fast-forward fetch without switching/reset/force; A440ea86, B1fb6fcb6 and B preparation301b885 refs preserved. B2 stays on work/phase3-lyrics-panel-component, with no source changes or hidden main integration/publication. Later HEAD is documentation only relative to tested c83152b. STOP FOR SUPERVISOR REVIEW; B3 not started.
