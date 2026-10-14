@@ -10,7 +10,7 @@ Build a borrowed functional view with blank explicit artist/title, search/cancel
 ## Internal API baseline
 Public LyricsPanel(EditingSession, LyricsAcquisitionSession) borrows both resources. Controls and commands require UI thread; Detach disables/unsubscribes/invalidate without disposing borrowed resources. Internal constructor accepts LyricsPanelLifetime. Internal LyricsPanelLifetime(session, ownedProvider=null) borrows by default; explicitly supplying a disposable provider transfers ownership of BOTH provider and its matching session. Composition caller must supply the actual provider used by the session.
 
-Lifetime.Enqueue(generation, action) admits at most one synchronous action plus latest pending intent. Action returns a task; search outcome is observed separately, never holds the admission queue. Completion receipts carry captured generation/revision and static fault indication; observers are isolated. No external callbacks under locks. CloseAsync returns one reusable Task<bool>; false means static cleanup failure. It closes admission/discards pending, starts background cleanup before session DisposeAsync, observes admitted jobs/searches, waits owned A drain, then disposes owned provider. Borrowed close never disposes session/provider.
+Lifetime.Enqueue(generation, action, prepare=false) admits at most one synchronous action plus latest pending intent. Action returns a task; search outcome is observed separately, never holds the admission queue. Completion receipts carry captured generation/revision and static fault indication; observers are isolated. No external callbacks under locks. CloseAsync returns one reusable Task<bool>; false means static cleanup failure. It closes admission/discards pending, starts background cleanup before session DisposeAsync, observes admitted jobs/searches, waits owned A drain, then disposes owned provider. Borrowed close never disposes session/provider.
 
 UI actions invalidate eligibility immediately. Receipt renders require latest intent/input generation, settled admission and exact current revision/query; externally changed or stale snapshots cannot Apply. Frozen Core prepared payload reused at synchronous UI apply point. Stored lyrics/target shown separately from preview.
 
@@ -22,3 +22,7 @@ Targeted tests, coherent code commit, locked restore/Release zero warnings/full 
 ## Local verification
 
 Tested implementation2d137f4:24new/977total Windows cases; locked restore/Release0warnings/full format passed. [Actual checkpoint and boundaries](exec-plans/active/phase3-lyrics-panel-component.md). Source/project/lock scope preserved. B3 wiring, native/manual/live/Linux and publication remain outside this checkpoint.
+
+## Review correction contract
+
+Only explicit manual/variant actions use prepare=true. They authorize the exact immutable snapshot only if the synchronous successful action advances one revision from the admission baseline; reentrant replacements add revisions and reject eligibility. All other intents, including candidate guidance, never authorize Apply. Candidate guidance does not call Select; explicit variant choice does. Tested c83152b:31component/984total Windows cases. [Current evidence](exec-plans/active/phase3-lyrics-panel-component.md).

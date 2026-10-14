@@ -1,10 +1,10 @@
 # Lyrics panel component B2 — checkpoint report
-STATUS: CHECKPOINT — implementation/verification complete; STOP FOR SUPERVISOR REVIEW.
+STATUS: CHECKPOINT — review fixes implemented and verified; STOP FOR SUPERVISOR REVIEW.
 TASK: phase3-lyrics-panel-component. MEDIUM / SEQUENTIAL, single worker.
 MODEL USED: Sol High requested; actual model/reasoning unknown.
 BRANCH: work/phase3-lyrics-panel-component.
 BASE: accepted B1 fb6fcb63fec6df97a7a604e3f2fd34bff8f634c9.
-API baseline:17c0de1. TESTED IMPLEMENTATION/LAST CODE COMMIT:2d137f4770161672aefbd761b7e63815506dbd65. Later current HEAD is a docs-only checkpoint; resolve git log.
+API baseline:17c0de1. TESTED IMPLEMENTATION/LAST CODE COMMIT:c83152b56a34cc7dc3bcdea06d31b7d0f24f00a1. Original component code:2d137f4. Later current HEAD is a docs-only checkpoint; resolve git log.
 [Work order/API](../../PHASE3_LYRICS_PANEL_COMPONENT_WORK_ORDER.md), [parent functional contract](../../PHASE3_LYRICS_PANEL_PROPOSAL.md), [accepted B1](../completed/phase3-lyrics-editor-apply.md).
 
 ## Completed
@@ -29,3 +29,16 @@ Only NEW Desktop/Lyrics/LyricsPanel.cs + Desktop.Tests/LyricsPanelTests.cs, Desk
 B3 EditorWindow/EditorApplication production composition, UI audio release, normal-window-close guard and startup-failure cleanup are NOT implemented here. Component exposes detach/owned close/cleanup result for that later integration. Native/manual/live LRCLIB/Linux/fullworkflow/alpha-beta acceptance remains pending; no new claim or release. No public push/PR/merge/main update for B1/B2 and no new worker.
 
 NEXT RECOMMENDED STEP: SUPERVISOR review actual component diff and evidence, then separately scope B3 wiring if accepted. OWNER DECISION REQUIRED: NO new product/architecture choice. PR21 merge permission is managed separately; this component order does not grant it.
+
+## REQUEST_FIX — actual verification at c83152b
+SUPERVISOR and independent review identified two P2 defects at a07a0d7: a reentrant observer could replace a just-prepared payload before its receipt, and normal candidate choice called Select with no document, producing a false validation error. Both are corrected within the two owned B2 code/test files.
+
+Explicit manual/variant preparation now binds a completed successful synchronous action to exactly one state revision from its admission baseline and the same immutable prepared snapshot. Observation/render must match that binding; newer external state, including identical text, cannot authorize Apply. Search/reset/cancel/candidate guidance never authorize a payload. No reconstruction of ManualLyrics, new timestamps, silent retries or changed A/Core contracts.
+
+Candidate choice only invalidates local preview/eligibility and checks its page revision; Select is deferred to the explicit variant choice. Ordinary candidate→variant and switching a previously selected candidate show normal guidance without an A validation error. Genuine stale choices still reject safely. Normal error statuses use understandable static wording rather than raw enum names.
+
+Seven additional deterministic cases: reentrant manual replacement with different/identical text, external ManualReady during reset/search/cancel, provider variant replaced by observer, and changing a chosen candidate. Existing two-step selection/error tests are strengthened. 31/31 component cases; full Windows984/984 (Core871,Audio17,Desktop96), zero skipped. Locked restore, Release0warnings/errors, full format verify passed; no extra suite after later docs-only changes.
+
+Actual ignored evidence: .agent-local/phase1/continuation/lyrics-panel-b2-fix/restore.log, build.log, tests.log, format.log. These are exact local evidence paths, not distributable product artefacts. Current docs checkpoint keeps source/tests identical to c83152b. 210 other frozen source/test/project/lock/tool/master/ADR files are byte-identical to a07a0d7; master original/privacy/vendor/links/whitespace checks passed.
+
+B3/native/live/Linux remain pending. PR21 A939 merge is separately owner-approved and scheduled after this safe checkpoint; it does not integrate B1/B2. No new feature starts before component review.
