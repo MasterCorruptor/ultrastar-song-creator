@@ -112,3 +112,7 @@ SUPERVISOR og uavhengig review har godkjent bc7d17b/testet38e1b5a som automatisk
 ## Samlet lokal B1–B3-integrasjon til review
 
 [Integrasjonsrapport](PHASE3_LYRICS_EDITOR_INTEGRATION.md) samler aksepterte kode-/testrefs og presise native/manual/live/Linux-gap. Lokal main-merge9bafcf0 har identisk filinnhold med B3-closure bb0c5d6; source/test/project/lockbytes matcher testet38e1b5a/1000Windows. Ingen ny suite for docs-only/identisk-tre-klargjøring. Main d5a6231 er bevart; ingen ny remote/publisering/nativeUI eller feature startet.
+
+## PR22 — samlet sangtekstintegrasjon
+
+Samlet B1–B3 er integrert som main16b9c1891c91c10bd99f377b5fa6e38e1b440f92 ved eksakt reviewet/publisert941e765. GitHub/main, origin/main og lokal main er like; hele merge-treet matcher godkjent941e765, kode/test/prosjekt/lockbytes testet38e1b5a med1000Windows (Core871/Audio17/Desktop112), zero skipped. Ingen ny suite for identisk merge-tre; hosted checks var ikke konfigurert i preflight. [Rapport](PHASE3_LYRICS_EDITOR_INTEGRATION.md). Native/live/Linux/fullworkflow forblir gap; lokal docsclosure er ikke automatisk publisert. Ingen videre fase startet.

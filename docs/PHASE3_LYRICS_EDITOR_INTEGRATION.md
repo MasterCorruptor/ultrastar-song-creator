@@ -1,11 +1,11 @@
 # B1–B3 lyrics editor integration — local preparation
-STATUS: CHECKPOINT / STOP FOR SUPERVISOR REVIEW BEFORE PUBLICATION.
+STATUS: COMPLETE — exact reviewed941e765 published and merged by PR22; current docs closure remains local/unpublished.
 TASK phase3-lyrics-editor-integration; SMALL / SEQUENTIAL / one implementer. Sol Medium requested; actual runtime model/reasoning unknown.
 BRANCH work/phase3-lyrics-editor-integration. Target for a later authorized PR: main at https://github.com/MasterCorruptor/ultrastar-song-creator.
-BASE main/origin/main d5a623104b40445f78abbb0cd409b4573153e9bc; neither ref is changed here.
+REVIEWED BASE before publication: main/origin/main d5a623104b40445f78abbb0cd409b4573153e9bc. Integration result is recorded below.
 PAYLOAD HEAD: resolve git HEAD and ignored .agent-local/phase1/continuation/lyrics-editor-integration/review-payload.json, written after the final local commit.
-TOTAL PUBLIC DIFF: 25 files changed, 2405 insertions and 17 deletions against main d5a6231 (including this report/plans).
-[Active plan](exec-plans/active/phase3-lyrics-editor-integration.md).
+REVIEWED PUBLIC DIFF at941e765: 25 files changed, 2405 insertions and 17 deletions against main d5a6231 (including this report/plans).
+[Active plan](exec-plans/completed/phase3-lyrics-editor-integration.md).
 
 ## Authority / scope / exact accepted chain
 A is already integrated in main through PR21; this payload adds accepted B1+B2+B3, local reference metadata and workflow/status docs. No master/ADR/scope/license or new feature/provider/Generation change.
@@ -36,3 +36,11 @@ Existing ignored Windows evidence: .agent-local/phase1/continuation/lyrics-app-b
 5. Scope Linux smoke separately using the same reviewed code/locked dependencies and available runtime; distinguish headless tests, actual GUI/classic loop and physical playback. Fullworkflow/Generation/release acceptance requires later work and is not unlocked by these checks.
 
 NEXT: review exact combined local payload and prepared PR text. Publish or merge only under a later concrete SUPERVISOR order with applicable human approval and fresh preflight. OWNER DECISION REQUIRED: NO new architecture/scope choice for local preparation. No next feature/worker or native UI launch.
+
+## Actual publication/integration result
+
+[PR22](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/22) was created with the reviewed exact title/body and attached to the AGENT chat. Published head941e76551f8de9bf610c463ef397b9aa14bce2e5, reviewed base d5a623104b40445f78abbb0cd409b4573153e9bc. Preflight verified full per-file publicdiff (25files/+2405/-17), unchanged head/base, clean mergeability and no hosted checks configured. Ordinary head-matched merge produced16b9c1891c91c10bd99f377b5fa6e38e1b440f92.
+
+GitHub/main, origin/main and local main were verified at16b9c1891c91c10bd99f377b5fa6e38e1b440f92; entire merge tree is identical to approved941e765, source/test/project/lock/tool/master/ADR bytes to tested38e1b5a.1000Windows remains the actual historical run at38e1b5a; no new native/live/Linux/fullworkflow/release claim or repeated suite. Local main fast-forwarded without branch switching/reset/force; original A/B1/B2/B3 refs preserved.
+
+Exact result is saved privately in .agent-local/phase1/continuation/lyrics-editor-integration/merge-result.json. Current final documentation closure is saved locally after the merged payload and is not pushed or silently included in PR22. Earlier preparation/pending sections describe the reviewed historical payload and are superseded by this result. STOP: no next feature/Generation/nativeUI/release/worker starts automatically.

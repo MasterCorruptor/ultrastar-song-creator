@@ -105,3 +105,7 @@ B2 er avsluttet lokalt; B3 ble deretter bestilt etter ny kapasitetskontroll. Ing
 Tekstpanelet er nå koblet til editorprototypen med blanke søkefelt, eksplisitt LRCLIB-komposisjon og observert oppstarts-/lukkeopprydding. Samme notehistorikk/timeline/playback bevares.16nye/1000totale Windows-tester består; [rapport](docs/exec-plans/completed/phase3-lyrics-app-wiring.md) er godkjent av SUPERVISOR som lokal offline-komposisjon. Native/manuell/live/Linux og fullworkflow er ikke verifisert. Leveransen er lokal, uten ny publisering/main-integrasjon eller Generation.
 
 Samlet B1–B3 er nå klargjort på en egen lokal integrasjonsbranch, med uendret testet kode og konfliktfri main-ancestry. [Integrasjonsrapport og senere nativeplan](docs/PHASE3_LYRICS_EDITOR_INTEGRATION.md). Avventer review før publisering; ingen ny main-endring/native-test eller videre fase inngår.
+
+## Sangtekstflyt B1–B3 integrert
+
+[PR22](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/22) er merget som main16b9c18; GitHub/main og lokal main samsvarer. Hele merge-treet er identisk med godkjent941e765/testet kode38e1b5a (1000/1000Windows). [Integrasjonsrapport](docs/PHASE3_LYRICS_EDITOR_INTEGRATION.md). Native/manuell/live/Linux/fullworkflow er fortsatt ikke verifisert; ingen Generation/release er startet. Denne lokale sluttdokumentasjonen er ikke publisert gjennom PR22.
