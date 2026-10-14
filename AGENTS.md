@@ -1,6 +1,6 @@
 # Agentkart
 
-UltraStar Song Creator skal bli et lokalt desktopverktøy for UltraStar-sanger. Neste masterdel er Lyrics Acquisition; Windows først, Linux-kompatibel arkitektur.
+UltraStar Song Creator skal bli et lokalt desktopverktøy for UltraStar-sanger. Generation-forberedelse pågår; Windows først, Linux-kompatibel arkitektur.
 
 ## Les først
 
@@ -18,7 +18,7 @@ Bevar acquisition/generation/editor-skillet, immutable sangmodell og undo/redo. 
 
 ADR-0001/0002 er akseptert: .NET/Avalonia, Python-prosess, utskiftbar miniaudio-backend, eksplisitt umxhq og MIT egen kode med separate LGPL-forpliktelser. Analyse er forslag med confidence/manuell korreksjon; ASR-default er ikke fastsatt. Ikke omgjør vedtak uten bestilling.
 
-SUPERVISOR reviewer; AGENT implementerer/rapporterer hendelsesstyrt etter docs/SUPERVISOR_POLICY.md. Eiermandatet tillater kvotestyrt masterarbeid og gjenopptakelse. Lyrics-fundament/LRC/selected-typer er integrert. B1–B3 er integrert via PR22. Rapport: docs/PHASE3_LYRICS_EDITOR_INTEGRATION.md; native/live/Linux gjenstår.
+SUPERVISOR reviewer; AGENT implementerer/rapporterer hendelsesstyrt etter docs/SUPERVISOR_POLICY.md. Eiermandatet tillater kvotestyrt masterarbeid og gjenopptakelse. Lyrics-fundament/LRC/selected-typer er integrert. B1–B3 er integrert via PR22. Gap og G1-forslag: docs/PHASE4_GENERATION_PREPARATION.md; Fase3 er ikke ferdig.
 
 ## Verifikasjon og stopp
 
