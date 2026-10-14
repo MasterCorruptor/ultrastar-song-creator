@@ -92,4 +92,4 @@ Immutable valgt tekst/proveniens kan endres med undo/redo og lagres offline i st
 
 LRCLIB HTTP-transport er integrert via PR20 på main6ddb743 med 892/892 Windows-tester; ikke koblet til GUI eller ferdig alpha/beta. Se [gjeldende teststatus](docs/TESTING_STATUS.md) og [transportkontrakten](docs/LRCLIB_TRANSPORT_PROFILE.md).
 
-[Neste foreslåtte sangtekstflyt](docs/PHASE3_LYRICS_FLOW_PROPOSAL.md) er under review; koordinator og lyrics-panel er ikke implementert.
+[Neste foreslåtte sangtekstflyt](docs/PHASE3_LYRICS_FLOW_PROPOSAL.md) har en lokal implementert A-session under review; lyrics-panelet er ikke implementert.

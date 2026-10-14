@@ -1,6 +1,6 @@
 # Lyrics flow preparation — local checkpoint
 
-STATUS: CONTRACT_FROZEN / STOP_FOR_RESET. SUPERVISOR accepted the A/B sequence at 10994cf; requested bounded-state/lifetime clarifications applied. No implementation.
+STATUS: COMPLETE — final contract136e41e accepted by SUPERVISOR. Historical STOP_FOR_RESET completed after verified capacity and explicit A dispatch. SUPERVISOR accepted the A/B sequence at 10994cf; requested bounded-state/lifetime clarifications applied. No implementation.
 TASK: phase3-lyrics-flow-preparation, SMALL / SEQUENTIAL / docs-only, one worker.
 MODEL USED: Sol Medium requested; actual model/reasoning not exposed, unknown.
 BRANCH: work/phase3-lyrics-flow-preparation.
@@ -22,5 +22,5 @@ Only new proposal/this plan and minimal current-status updates in AGENTS, README
 
 ## Unresolved / next step
 
-Frozen behavior follows SUPERVISOR contract clarifications; exact API/type signatures belong to the next same-scope implementation baseline. No implementation dispatched yet. Functional media/project GUI gaps and actual lyrics/audio match remain later work, not new blocks on A. Commit final two-document clarification locally, send one unique CONTRACT_FROZEN / STOP_FOR_RESET callback and stop for reset. Resume A only under a new explicit SUPERVISOR scoped dispatch after fresh actual capacity reading, not elapsed time. No reset credits/purchases. No push/PR/merge/live API/native UI/extra worker or automatic implementation.
+Frozen behavior was accepted at136e41e; the later A work order650fc12 fixed its exact API/type baseline and dispatched implementation. Functional media/project GUI gaps and actual lyrics/audio match remain later work, not new blocks on A. The final two-document freeze/callback/reset stop are historical and fulfilled. A was resumed by explicit scoped dispatch after actual capacity verification; no reset credits/purchases. See the [A implementation checkpoint](../active/phase3-lyrics-acquisition-session.md). No push/PR/merge/live API/native UI/extra worker or automatic implementation.
 OWNER DECISION REQUIRED: NO.

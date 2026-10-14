@@ -1,7 +1,7 @@
 # Lyrics acquisition flow — proposed next functional slice
 
-STATUS: CONTRACT FROZEN under SUPERVISOR acceptance of the A/B sequence at 10994cf and the required bounded-state/lifetime clarifications below. No new API, coordinator or GUI is implemented. BASE main6ddb743e7d06853eb194bb83505ea62fe489a7b7 (PR20).
-[Plan](exec-plans/active/phase3-lyrics-flow-preparation.md), [master](PROJECT_MASTER.md) §6/Fase 3–6, [transport](LRCLIB_TRANSPORT_PROFILE.md), [lyrics contract](PHASE3_LYRICS_CONTRACT.md), [selected payload/project v3](PROJECT_FORMAT_V3.md).
+STATUS: CONTRACT FROZEN under SUPERVISOR acceptance of the A/B sequence at 10994cf and the required bounded-state/lifetime clarifications below. A session/API is now implemented locally at e4b3923 and awaits code review; B/GUI remains unimplemented. BASE main6ddb743e7d06853eb194bb83505ea62fe489a7b7 (PR20).
+[Plan](exec-plans/completed/phase3-lyrics-flow-preparation.md), [master](PROJECT_MASTER.md) §6/Fase 3–6, [transport](LRCLIB_TRANSPORT_PROFILE.md), [lyrics contract](PHASE3_LYRICS_CONTRACT.md), [selected payload/project v3](PROJECT_FORMAT_V3.md).
 
 ## Actual implemented seams and gaps
 
@@ -24,13 +24,13 @@ Transport/decoder and selected payload are integrated and tested; the missing wo
 
 A can ship independently and does not pretend to expose user-facing lyrics acquisition. B depends on A's accepted public contract; do not parallelize these slices against an unstable contract. Real media/project GUI and Generation are separately scoped subsequent work, not prerequisites for A and not silently included in B.
 
-## Frozen A behavior — API baseline remains a scoped implementation step
+## Frozen A behavior — implemented API baseline
 
-New LyricsAcquisitionSession(ILyricsSearchProvider provider), IAsyncDisposable, presentation-neutral and provider-borrowing. Proposed action/type names below identify the seam; the next implementation baseline may specify exact signatures/types inside the same owned file without changing this frozen behavior. Provider ownership stays with composition; no fake production default, plugin framework or new transport injection.
+New LyricsAcquisitionSession(ILyricsSearchProvider provider), IAsyncDisposable, presentation-neutral and provider-borrowing. The [A work order](PHASE3_LYRICS_SESSION_WORK_ORDER.md) spells the implemented action/type signatures inside the same owned file, preserving this frozen behavior. Provider ownership stays with composition; no fake production default, plugin framework or new transport injection.
 
 Expose one immutable Current snapshot and Changed signal with monotonic revision. Snapshot includes status Idle/Searching/Results/NoResults/Failed/Cancelled/ManualReady/Disposed, bounded original query, eligible validated page, explicit preview/prepared Core.SelectedLyrics and bounded typed error. No Song, history or file I/O.
 
-Proposed actions: SearchAsync(query, callerToken), Cancel(), Reset(), Select(revision, providerId, candidateId, documentId), SetManualText(text), DisposeAsync(). SearchAsync returns an observed task with a bounded per-intent outcome (completed, rejected/failed, canceled, superseded or closed); expected validation/provider/cancellation outcomes update typed state, not raw exceptions. Superseded tasks settle deterministically even if their old provider call has not settled. Misuse after closure throws ObjectDisposedException.
+Implemented A actions: SearchAsync(query, callerToken), Cancel(), Reset(), Select(revision, providerId, candidateId, documentId), SetManualText(text), DisposeAsync(). SearchAsync returns an observed task with a bounded per-intent outcome (completed, rejected/failed, canceled, superseded or closed); expected validation/provider/cancellation outcomes update typed state, not raw exceptions. Superseded tasks settle deterministically even if their old provider call has not settled. Misuse after closure throws ObjectDisposedException.
 
 ### Bounded work and latest intent
 
@@ -87,4 +87,6 @@ B only after A review: NEW Desktop/Lyrics/LyricsPanel.cs (small UI adapter), nar
 
 Native B acceptance later: manually exercise search/cancel/explicit choice/manual fallback/apply/undo/redo in a visible prototype with synthetic fixtures; actual provider interoperability and real-song matching/content rights remain separately evidenced. No alpha/beta or complete Search→Generate→Edit→Validate→Export claim.
 
-NEXT: accepted behavior frozen; preserve this local docs checkpoint and STOP_FOR_RESET. A implementation requires a new explicit SUPERVISOR scoped dispatch after fresh actual capacity reading; elapsed time alone is not authorization. No reset credits/purchases, implementation, push/PR/merge/live API/native UI or automatic next task. OWNER DECISION REQUIRED: none identified for these reversible routine choices.
+NEXT: A was explicitly dispatched after verified capacity and is locally implemented/tested; [implementation checkpoint](exec-plans/active/phase3-lyrics-acquisition-session.md) awaits SUPERVISOR review. No B implementation, push/PR/merge/live API/native UI or automatic next task. OWNER DECISION REQUIRED: none identified for these reversible routine choices.
+
+Implementation evidence: tested e4b39231156732ee1243e3d77898371bc1789bc2, 47 new/939 total Windows tests, zero skipped; locked restore, Release zero warnings/errors and full format verification passed. This is headless A evidence, not lyrics-panel/native/fullworkflow acceptance. CTS cleanup/drain also waits for executing cancellation callbacks; callbacks/provider tasks must eventually settle, without a hard-kill guarantee.
