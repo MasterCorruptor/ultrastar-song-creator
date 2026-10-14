@@ -66,13 +66,13 @@ SUPERVISOR reviewer faktisk diff, acceptance/evidens, Git-status, arkitektur, de
 
 Etter review velges CONTINUE (godkjenn/ny avgrenset ordre), REQUEST_FIX (konkret korrigering), STOP_FOR_RESET (sikkert checkpoint/oppgi relevant reset) eller ESCALATE_TO_OWNER (beslutning utenfor fullmakt). Bare reelle eierbeslutninger skal kreve eierhandling.
 
-Varig kunnskap finnes i commits/docs/ADR-er/relevante exec-planer/checkpoints. Kortvarig koordinering/logg ligger i ignorert .agent-local/. Ikke anta delt chat-kontekst eller krev at eieren gjenforteller tilgjengelig repo-status. AGENT rapporterer Fase 3.3 i repo/egen sluttrapport; ingen returmelding til SUPERVISOR-chatten er autorisert her.
+Varig kunnskap finnes i commits/docs/ADR-er/relevante exec-planer/checkpoints. Kortvarig koordinering/logg ligger i ignorert .agent-local/. Ikke anta delt chat-kontekst eller krev at eieren gjenforteller tilgjengelig repo-status. AGENT lagrer varige rapporter i repo og sender autoriserte kontrollpunktrapporter til SUPERVISOR etter eiertillegget av 2026-10-14 nedenfor.
 
 SUPERVISOR kan selv bestemme sekvens/parallellisme, antall workers, scope, modell/reasoning, branchfordeling, checkpoint og reset-venting innen mandatet. Prinsippet er tydelig eierskap → avgrenset arbeid → passende modell → verifisert checkpoint → supervisorreview → kontrollert integrasjon.
 
 ## Automatisk review – operativt eiertillegg 2026-10-12
 
-Eieren har bestilt automatisk SUPERVISOR-review, godkjenning og videreføring innen mandatet uten manuell påminnelse. SUPERVISOR følger opp hvert tiende minutt; faktisk acceptance/evidens, kvote og stopp-/eskaleringsregler gjelder fortsatt. AGENT leverer checkpoint i repo/egen sluttrapport og stopper når arbeidsordren krever review. Dette er arbeidsflytoppfølging, ikke aktivering av produkt-GUI eller hosted CI. Konto-/chat-/automatiserings-ID-er lagres ikke i offentlig repository.
+Eieren har bestilt automatisk SUPERVISOR-review, godkjenning og videreføring innen mandatet uten manuell påminnelse. Timinuttersoppfølgingen er historisk standard og beholdes som reserve inntil faktisk callbacklevering er verifisert og automasjonen eventuelt endret. Timeren er ikke deaktivert gjennom dette policyvedtaket; faktisk acceptance/evidens, kvote og stopp-/eskaleringsregler gjelder fortsatt. AGENT leverer checkpoint i repo/egen sluttrapport og stopper når arbeidsordren krever review. Dette er arbeidsflytoppfølging, ikke aktivering av produkt-GUI eller hosted CI. Konto-/chat-/automatiserings-ID-er lagres ikke i offentlig repository.
 
 
 ## Stående eiermandat – videre masterarbeid 2026-10-13
@@ -82,3 +82,36 @@ Eieren har bestilt videre arbeid etter masterplanen og gir SUPERVISOR fullmakt t
 Les faktisk femtimers-/ukeskvote før MEDIUM/LARGE og parallellstart, og vurder samlet kapasitet med reserve til konsistent checkpoint/verifikasjon/review. Ved utilstrekkelig margin: reduser scope/concurrency eller STOP_FOR_RESET etter sikkert commit/checkpoint. Gjenoppta avgrenset masterarbeid etter faktisk reset når avlest kapasitet tillater det; ukekvoten må også ha margin. Ikke bruk resetcredits automatisk. Brukt kvote er ikke en grunn til å la uferdig arbeid ligge usikret.
 
 Autonom review/godkjenning/videre bestilling gjelder reversible rutinevalg innen master og aksepterte ADR-er. Reelle arkitektur-/lisens-/scopekonflikter og faktiske automatiske approval-avslag eskaleres; mandatet omgår ikke plattformkontroller. Arbeidsordrens konkrete stopp/reviewport gjelder fortsatt for hver worker. Ingen konto/chat/automation-ID-er, maskindata eller aktuelle kontokvoter gjøres til produktarkitektur.
+
+
+## Hendelsesstyrt supervisoroppfølging – stående eiertillegg 2026-10-14
+
+Eieren har bestilt at AGENT kan igangsette oppfølging av SUPERVISOR. Dette autoriserer kontrollpunktrapporter og returmeldinger til prosjektets SUPERVISOR-chat. Rapporteringsfullmakten endrer ikke master, ADR-er, produkt-/arbeidsscope, bruksgrenser eller publiseringsfullmakt. Ved callbackvedtaket bestod decoderpubliseringsavslaget og ble ikke løst av rapporteringsfullmakten. Den senere uttrykkelige publiseringsgodkjenningen er dokumentert nedenfor.
+
+Permanent AGENT sender én kort kontrollpunktrapport etter COMPLETE, CHECKPOINT som krever review, BLOCKED, feil/plattformavslag eller trygt STOP_FOR_RESET. Før meldingen lagres varig rapport og en konsistent lokal commit når mulig. Rapporten oppgir task/hendelse, branch, faktisk testet SHA og aktuell HEAD-SHA, utførte tester/acceptance, endringer og åpne gap, rapportsti samt relevant kvote-/resetbehov. Ikke send sensitive payloads. Aktuelle kontotall og runtime-/chat-/automatiseringsadresser eller ID-er hører bare hjemme i ignorert lokal koordinering eller selve arbeidsordren, aldri offentlige dokumenter.
+
+Send høyst én melding per unik kombinasjon task + SHA + hendelse. Ingen løpende progressmeldinger, identiske retries, rutinekvitteringer eller meldingspingpong. Når rapporten markerer reviewstopp, venter AGENT på neste arbeidsordre. Callback leverer status/evidens; den gir ikke ny eierfullmakt, godkjenner ikke eget arbeid og starter ikke en ny produktoppgave.
+
+SUPERVISOR verifiserer rapporten mot kompakt worker-/chatstatus, lokal Git-status, faktisk diff og testevidens. Dedupliser rapport og eventuell timeroppfølging før en ordre sendes. Eksisterende valg CONTINUE, REQUEST_FIX, STOP_FOR_RESET og ESCALATE_TO_OWNER, faktisk kvotegating og reelle approvalstopp gjelder fortsatt.
+
+Midlertidige workers rapporterer til nærmeste overordnede med eksisterende subagentverktøy. Overordnet AGENT/SUPERVISOR samler delrapportene og kontrollerer samlet evidens, slik at parallelle resultater ikke utløser dupliserte eller uforenlige arbeidsordre.
+
+Dersom callbackverktøyet er utilgjengelig eller avvist, rapporterer AGENT i egen chat/repo og bruker eksisterende tidsreserve. Ingen alternativ kanal eller annen omgåelse av et faktisk avslag.
+
+### Historisk lokalt callback-policycheckpoint
+
+Denne endringen er avgrenset til SUPERVISOR_POLICY.md og én operativ henvisning i AGENTS.md, basert på decodercheckpoint 2c8498f. Dokumentlenker, offentlig inventar/personvern, minimal diff og whitespace kontrolleres; alle andre eksisterende filer skal være byteidentiske med dette grunnlaget. Ingen ny build/testkjøring kreves for bare dokumentasjon. Tidligere 822/822-resultat gjelder implementasjon ce5d84f og er ikke ny testevidens for policyen.
+
+Etter lokal commit utføres én POLICY_CALLBACK_TEST / CHECKPOINT som ber SUPERVISOR reviewe dette policycheckpointet. Leveringsstatus rapporteres i AGENT-chatten; denne teksten påstår ikke vellykket levering eller endring/deaktivering av timeren. Ingen push, PR eller main-endring inngår.
+
+Lokal callback-policy5dfda9d og callbackleveringen er senere godkjent av SUPERVISOR. Timerreserve er fortsatt ikke endret gjennom AGENTs dokumentarbeid.
+
+## GitHub-publisering – stående eiertillegg 2026-10-14
+
+Eieren har etter de tidligere publiseringsavslagene gitt en ny uttrykkelig godkjenning: «Jeg gir uttrykkelig godkjenning for å sende neste push til github. Fremtidige push'es er også godkjent av med for super bruker».
+
+Godkjenningen gjelder det offentlige prosjekt-repositoryet https://github.com/MasterCorruptor/ultrastar-song-creator, med eksakt origin https://github.com/MasterCorruptor/ultrastar-song-creator.git. Den omfatter den lokalt reviewede LRCLIB-decoderleveransen ce5d84f, callback-policy5dfda9d og senere SUPERVISOR-godkjente prosjektendringer på ordinære work-brancher, PR-er og integrasjon i main innen tidligere master-, scope-, review-, kvote- og lisensrammer. Rutinemessig ny eierbekreftelse for slike pushes er ikke nødvendig.
+
+Det tidligere decoderstoppets manglende publiseringsfullmakt er løst av denne nye eiergodkjenningen. Historiske faktiske avslag beholdes som historikk; de blir ikke omtolket til vellykket publisering. Ingen push/PR/merge er utført i dette dokumentcheckpointet. SUPERVISOR reviewer det aktuelle dokumentcheckpointet før konkret publiserings-/integrasjonsordre.
+
+«Super bruker» endrer ikke sandbox eller automatiske godkjenningskontroller og tillater ikke force-push, destruktiv synkronisering, publisering til andre destinasjoner eller omgåelse av et nytt avslag. Nye faktiske plattform-/approvalavslag stopper den berørte handlingen og rapporteres etter eksisterende policy.
