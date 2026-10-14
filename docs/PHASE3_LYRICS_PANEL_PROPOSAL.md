@@ -1,6 +1,6 @@
 # Lyrics panel B — local functional contract proposal
 
-STATUS: PROPOSED, awaiting SUPERVISOR review. No B implementation, UI launch or publication.
+STATUS: Functional direction accepted in principle at301b885. B1 same-history apply contract is frozen below; B2 panel/dispatcher/admission/owned teardown remains proposed pending B1 review and separate dispatch. No UI launch or publication.
 BASE accepted A440ea86e6e9b9a9cd72d0f8e37dfbb65039093b0, tested A e4b3923 / 47 new / 939 Windows cases; main6ddb743 unchanged.
 [Plan](exec-plans/active/phase3-lyrics-panel-preparation.md), [frozen A/B behavior](PHASE3_LYRICS_FLOW_PROPOSAL.md), [actual A API](PHASE3_LYRICS_SESSION_WORK_ORDER.md).
 
@@ -84,3 +84,9 @@ Future tests must show:
 Later native/manual acceptance is a separately authorized visible-prototype check with synthetic deterministic fixtures: explicit input/choice/manual/apply/undo/redo, close while search is pending, and preserved playback/timeline. Respect actual native-UI permissions then; no UI is launched in preparation. Live LRCLIB compatibility, real media/project GUI, audio matching, content rights and full Search→Generate→Edit→Validate→Export remain separate evidence/gaps.
 
 NEXT: SUPERVISOR reviews the bounded B contract/file ownership/lifetime before any implementation order and fresh quota gating. Commit local docs only and STOP. No publication, callback retry, merge/main update, production/test/project/lock edit or automatic feature start. OWNER DECISION REQUIRED: no new product decision identified; existing A external-delivery approvals remain separately pending.
+
+## Accepted sequential split — B1 then B2
+
+B1 is a separate small local implementation order: only EditingSession.cs and new LyricsEditingSessionTests.cs. ApplySelectedLyrics uses existing private history/current song, returns true only for real changes; equal payload is a no-op preserving redo. Expected invalid payload returns false/static rejection preserving state/history. **Null returns false with static rejection and never clears selected lyrics.** Changed is raised after success/no-op/rejection. Successful undo/redo uses generic change wording; note Move behavior is unchanged. No new project reference or GUI/lifecycle work in B1. [B1 work order](exec-plans/active/phase3-lyrics-editor-apply.md).
+
+B2 remains the proposed panel/UI/lifetime/project-reference scope above and requires B1 review plus a new bounded implementation order. No combined UI/lifecycle implementation or blocked A publication is authorized through B1.
