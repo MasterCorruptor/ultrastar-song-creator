@@ -6,7 +6,8 @@ MODEL USED: Sol Medium requested; actual model/reasoning not exposed and therefo
 BRANCH: work/phase3-lrclib-response-decoder.
 BASE: 42eb9f6b2a9f645cff07f71acd3753e50de8daf8.
 PRE-CODE PROFILE COMMIT: 31e31ac.
-LAST COMMIT: implementation checkpoint containing this report; resolve with git log on the branch.
+IMPLEMENTATION COMMIT: ce5d84fd393dc2c7e08fba45facf4e3d9e679e25.
+LAST COMMIT: local publication-status checkpoint containing this report; resolve with git log on the branch.
 [Profile](../../LRCLIB_RESPONSE_PROFILE.md), [work order](../../PHASE3_LRCLIB_RESPONSE_WORK_ORDER.md).
 
 ## Completed
@@ -37,6 +38,8 @@ No packages, locks, shared diagnostic seam, LrcParser, Core, Song, Projects/v3, 
 
 Supervisor code review and acceptance pending. Transport, HTTP/gating/client/provider/GUI integration and live acquisition are outside this checkpoint. No Linux/native/network result claimed.
 
-Commit/push coherent checkpoint to authorized origin, verify clean status and matching branch SHA, then STOP. No PR, merge, main update or new task before review.
+Implementation committed locally. Automatic approval review rejected the branch push: it considered earlier approval limited to another reviewed package and did not authorize publication of this new source-code payload. No push occurred and no workaround was attempted. Direct owner approval of this decoder publication is pending.
 
-OWNER DECISION REQUIRED: NO.
+Next step: supervisor may review the local checkpoint now. After explicit publication authorization, push this bounded branch and verify matching SHA; then stop for review. No PR, merge, main update or new task.
+
+OWNER DECISION REQUIRED: YES — permission to publish this specific decoder source/tests/docs to the public MasterCorruptor/ultrastar-song-creator work/phase3-lrclib-response-decoder branch. No architecture or product decision is requested.

@@ -26,3 +26,5 @@ Strictallresults via ValidateProviderResults(lrclib,originalQuery,all,20) before
 - 280 protected existing files byte-identical to integrated main42eb9f6; master also byte-identical to supplied local original. Dependencies/locks, shared seams/parser, Core/Song/Projects/v3, ADRs and license unchanged.
 
 Cancellation is cooperative at checkpoints, not immediate preemption inside synchronous JSON/LRC parsing. No live API, Linux, native playback, transport or end-to-end acquisition result is claimed. Supervisor code review remains pending; no PR/merge or automatic next block.
+
+Implementation checkpoint ce5d84f is local only. Branch publication was rejected by automatic approval review pending direct authorization for this payload; no push/PR/merge occurred. See the active checkpoint for the publication status.
