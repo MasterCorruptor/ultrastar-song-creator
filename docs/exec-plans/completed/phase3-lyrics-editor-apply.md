@@ -1,6 +1,6 @@
 # Lyrics editor apply B1 — work order
 
-STATUS: CHECKPOINT — implementation and Windows verification complete; STOP FOR ROOT REVIEW. TASK phase3-lyrics-editor-apply, SMALL / SEQUENTIAL, one worker.
+STATUS: COMPLETE — implementation and Windows verification accepted by SUPERVISOR at fb6fcb6. TASK phase3-lyrics-editor-apply, SMALL / SEQUENTIAL, one worker.
 MODEL USED: Sol Medium requested; actual model/reasoning unknown.
 BRANCH: work/phase3-lyrics-editor-apply.
 BASE: B preparation301b8853f03de018a0302bdf15c1d95673ce6a57. A publication source440ea86 and B preparation branch unchanged; main6ddb743 unchanged.
@@ -26,3 +26,9 @@ SDK10.0.401:14/14 new targeted cases, locked solution restore passed; Release0wa
 Fixture CR/LF escape literals were corrected before final tests. Protected source/tests/master/ADRs/deps/locks, original master, publicinventory/privacy/vendor/doclinks/whitespace checked. No live API/native/Linux/GUI-panel acceptance;939 was baseline,953 is actual B1 evidence.
 
 Root implementation review remains pending; B2 stays proposed until review/new scoped dispatch. Existing A publication and callback refusals remain binding and separate; no retries/questions/remote actions here. Own chat/repo only. OWNER DECISION REQUIRED: no new product/architecture choice; pending external-delivery permissions unchanged.
+
+## Acceptance and delivery follow-up
+
+SUPERVISOR accepted B1 at fb6fcb6 after actual source/test review; tested aaedb1d, 14 new / 953 total Windows cases. No code changes followed. Earlier delivery blocks are historical: owner explicitly approved A099884b publication (PR21) and subsequent short checkpoint reports. B1/B2 publication and PR21 merge remain separate actions.
+
+Next local order is B2 component only; window/application wiring is B3 after review.

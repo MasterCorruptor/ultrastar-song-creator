@@ -87,8 +87,12 @@ NEXT: SUPERVISOR reviews the bounded B contract/file ownership/lifetime before a
 
 ## Accepted sequential split — B1 then B2
 
-B1 is a separate small local implementation order: only EditingSession.cs and new LyricsEditingSessionTests.cs. ApplySelectedLyrics uses existing private history/current song, returns true only for real changes; equal payload is a no-op preserving redo. Expected invalid payload returns false/static rejection preserving state/history. **Null returns false with static rejection and never clears selected lyrics.** Changed is raised after success/no-op/rejection. Successful undo/redo uses generic change wording; note Move behavior is unchanged. No new project reference or GUI/lifecycle work in B1. [B1 work order](exec-plans/active/phase3-lyrics-editor-apply.md).
+B1 is a separate small local implementation order: only EditingSession.cs and new LyricsEditingSessionTests.cs. ApplySelectedLyrics uses existing private history/current song, returns true only for real changes; equal payload is a no-op preserving redo. Expected invalid payload returns false/static rejection preserving state/history. **Null returns false with static rejection and never clears selected lyrics.** Changed is raised after success/no-op/rejection. Successful undo/redo uses generic change wording; note Move behavior is unchanged. No new project reference or GUI/lifecycle work in B1. [B1 work order](exec-plans/completed/phase3-lyrics-editor-apply.md).
 
 B2 remains the proposed panel/UI/lifetime/project-reference scope above and requires B1 review plus a new bounded implementation order. No combined UI/lifecycle implementation or blocked A publication is authorized through B1.
 
-B1 local implementation checkpoint: aaedb1d,14new/953total Windows tests, zero skipped; locked restore/Release0warnings/format pass. [B1 report](exec-plans/active/phase3-lyrics-editor-apply.md) awaits root code review. This does not implement/approve B2 controls/dispatcher/lifetime or grant publication permissions.
+B1 local implementation checkpoint: aaedb1d,14new/953total Windows tests, zero skipped; locked restore/Release0warnings/format pass. [B1 report](exec-plans/completed/phase3-lyrics-editor-apply.md) awaits root code review. This does not implement/approve B2 controls/dispatcher/lifetime or grant publication permissions.
+
+## Current dispatch — B2 component / B3 wiring
+
+B1 is accepted at fb6fcb6 (tested aaedb1d, 953 Windows cases). B2 is now ordered as a local component and headless tests only: [work order](PHASE3_LYRICS_PANEL_COMPONENT_WORK_ORDER.md). EditorWindow/EditorApplication, playback release and startup/normal-window-close wiring remain B3, requiring later review/order. Earlier pending A publication/callback statements above describe historical preparation only: exact A099884b is published in PR21 and short checkpoint callbacks are explicitly authorized. No B1/B2 publication or merge is included here.
