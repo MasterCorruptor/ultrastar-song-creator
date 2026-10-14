@@ -1,6 +1,6 @@
 # Lyrics acquisition flow — proposed next functional slice
 
-STATUS: PROPOSED, awaiting SUPERVISOR review; no new API, coordinator or GUI is implemented by this preparation. BASE main6ddb743e7d06853eb194bb83505ea62fe489a7b7 (PR20).
+STATUS: CONTRACT FROZEN under SUPERVISOR acceptance of the A/B sequence at 10994cf and the required bounded-state/lifetime clarifications below. No new API, coordinator or GUI is implemented. BASE main6ddb743e7d06853eb194bb83505ea62fe489a7b7 (PR20).
 [Plan](exec-plans/active/phase3-lyrics-flow-preparation.md), [master](PROJECT_MASTER.md) §6/Fase 3–6, [transport](LRCLIB_TRANSPORT_PROFILE.md), [lyrics contract](PHASE3_LYRICS_CONTRACT.md), [selected payload/project v3](PROJECT_FORMAT_V3.md).
 
 ## Actual implemented seams and gaps
@@ -24,23 +24,42 @@ Transport/decoder and selected payload are integrated and tested; the missing wo
 
 A can ship independently and does not pretend to expose user-facing lyrics acquisition. B depends on A's accepted public contract; do not parallelize these slices against an unstable contract. Real media/project GUI and Generation are separately scoped subsequent work, not prerequisites for A and not silently included in B.
 
-## Proposed A contract — names are proposals, not existing APIs
+## Frozen A behavior — API baseline remains a scoped implementation step
 
-New LyricsAcquisitionSession(ILyricsSearchProvider provider), IAsyncDisposable. Provider is **borrowed**; the composition owner remains responsible for disposing it after the session drains. No production default/fake provider, general plugin framework or new public transport injection.
+New LyricsAcquisitionSession(ILyricsSearchProvider provider), IAsyncDisposable, presentation-neutral and provider-borrowing. Proposed action/type names below identify the seam; the next implementation baseline may specify exact signatures/types inside the same owned file without changing this frozen behavior. Provider ownership stays with composition; no fake production default, plugin framework or new transport injection.
 
-Expose one immutable Current snapshot and a Changed signal with monotonic revision. Snapshot has status Idle/Searching/Results/NoResults/Failed/Cancelled/ManualReady/Disposed, original query, validated page if current, explicit preview choice/prepared Core.SelectedLyrics if any, and optional bounded typed error. These are transient memory only.
+Expose one immutable Current snapshot and Changed signal with monotonic revision. Snapshot includes status Idle/Searching/Results/NoResults/Failed/Cancelled/ManualReady/Disposed, bounded original query, eligible validated page, explicit preview/prepared Core.SelectedLyrics and bounded typed error. No Song, history or file I/O.
 
-Proposed actions: SearchAsync(query, callerToken), Cancel(), Reset(), Select(revision, providerId, candidateId, documentId), SetManualText(text), DisposeAsync(). A returns/exposes a prepared immutable payload; it never applies it to a Song.
+Proposed actions: SearchAsync(query, callerToken), Cancel(), Reset(), Select(revision, providerId, candidateId, documentId), SetManualText(text), DisposeAsync(). SearchAsync returns an observed task with a bounded per-intent outcome (completed, rejected/failed, canceled, superseded or closed); expected validation/provider/cancellation outcomes update typed state, not raw exceptions. Superseded tasks settle deterministically even if their old provider call has not settled. Misuse after closure throws ObjectDisposedException.
 
-- Starting search validates the original query, invalidates the previous request generation, cancels it and clears page/preview/error. No implicit normalization, guessed metadata or first-result choice.
-- Accept results only if generation is still current and the session is alive. Validate Page plus original query/provider identity. Empty success is NoResults. Invalid returned batches become sanitized InvalidResponse/ResponseTooLarge. Preserve provider order/diagnostics; no score/ranking.
-- Cancel updates current status and invalidates pending completion. Late success/error from canceled or superseded requests is observed and discarded, including providers that ignore cancellation. It cannot restore an old page/selection or overwrite a manual choice.
-- Select requires the current revision and an exact member through LyricsSelections.Select. Available requires an explicit document; Instrumental requires explicit null-document choice. Missing/Unsupported cannot be applied. Reported Word capability never invents Word timing.
-- SetManualText cancels/invalidates provider work, clears provider results and validates through ManualLyrics.Create. Successful manual text creates one frozen choice/prepared payload; repeated Apply must reuse that payload, not regenerate timestamps/IDs. Invalid manual input records a typed validation outcome and leaves no applicable preview. It never changes the song.
-- Reset or editing query/manual input in B invalidates corresponding old preview/results. This affects acquisition state only; existing Song.SelectedLyrics remains until an explicit Apply/clear command.
-- State transitions use short serialized synchronization; no lock is held across provider awaits. Changed signals occur outside locks and may arise on completion threads. The UI adapter marshals to Dispatcher.UIThread, reads latest immutable revision and discards outdated queued rendering; no UI types enter Acquisition.
-- Observe all request completions; dispose per-request cancellation sources when that request settles. DisposeAsync marks closed, invalidates/cancels outstanding work, awaits its settlement and emits no late notifications. It does not dispose the borrowed provider. The owner then disposes an owned provider. This respects the transport's unsupported concurrent provider-disposal contract; no sync UI blocking or hard-kill promise.
-- Errors expose existing LyricsSearchError with optional HTTP status/retry or LyricsValidationError for input/choice. Unexpected provider failures have only a bounded static unexpected-failure indication; no raw Message/InnerException, payload, URL or headers reach presentation/logs. Selection/page text is retained only within existing budgets.
+### Bounded work and latest intent
+
+At most **one actual provider invocation in flight and one pending latest search intent**. A new valid search invalidates/cancels the active generation and replaces the pending intent. Complete an obsolete pending intent as superseded immediately. Do not create unlimited provider tasks, cancellation sources or gate waiters from rapid Search calls. Invoke only the newest eligible pending intent after the active invocation settles; no retries.
+
+Searching represents either current active search or latest pending intent, with its validated original query and no eligible page/preview/error. Validate accepted Page plus original query and provider identity; malformed/mismatched returned batches map to sanitized InvalidResponse/ResponseTooLarge. Empty valid success becomes NoResults; nonempty success becomes Results. Never select first candidate automatically or invent confidence.
+
+All active completions are observed. A canceled/superseded/closed generation's success or error is discarded and cannot replace newer state, including manual choice. A borrowed provider ignoring cancellation can delay the next actual search and disposal until settlement; it cannot block manual/reset/cancel actions. Production LRCLIB's 30-second deadline remains its own transport contract, not a coordinator hard-kill guarantee.
+
+### Explicit state/action outcomes
+
+- Idle: no query/page/preview/error. Reset invalidates/cancels active generation, clears pending intent and returns Idle.
+- Searching: query present, page/preview absent. Cancel while Searching clears pending intent, invalidates/cancels active work and becomes Cancelled; page/preview absent and unselectable. Cancel in other live states is a no-op.
+- Results: current validated page can be selected. Select checks revision first. A stale revision is rejected **without any mutation**, preserving the newer state and its valid preview/error. Current invalid identity/variant choice clears applicable preview, keeps the validated page/Results for a later selection and records typed validation. A valid choice clears that choice error.
+- Available needs explicit validated document through LyricsSelections.Select; Instrumental needs explicit null-document choice. Missing/Unsupported cannot be applied. Reported Word flag never invents Word timing.
+- NoResults/Failed/Cancelled have no eligible page or preview; Select cannot use old pages. Expected provider errors carry LyricsSearchError and optional status/retry. Invalid input/choice carries LyricsValidationError. Invalid search input supersedes pending work and leaves Failed without retaining unbounded invalid query data.
+- SetManualText invalidates/cancels active work, clears pending intent/page/query and validates once through ManualLyrics.Create. Valid text becomes ManualReady with one frozen choice/prepared payload. Invalid input becomes Failed with typed validation and no applicable preview. Manual text remains usable despite an ignored cancellation or unavailable provider.
+- B calls Reset when query/manual edits invalidate a preview. Reset/Cancel/manual/search never change Song.SelectedLyrics. Apply reuses the prepared immutable payload, not regenerated manual IDs/timestamps.
+- Disposed is final: query/page/preview/error cleared. New public actions throw ObjectDisposedException; repeated/concurrent DisposeAsync returns the same drain task rather than starting another drain.
+
+### Synchronization, notifications and disposal
+
+Use short serialized state synchronization only. Capture/mutate internal state under lock; invoke providers, await tasks, execute CTS.Cancel/cancellation callbacks, notify observers and wait for disposal **outside** that lock. Dispose a per-operation cancellation source only after its corresponding invocation settles. All superseded/pending returned tasks must have deterministic settlement.
+
+Changed notifications may be reordered across threads. Revisions never decrease; UI dispatches to Dispatcher.UIThread and reads latest immutable Current, discarding obsolete queued rendering. Ordinary subscriber faults are isolated per subscriber: do not corrupt state, classify them as provider failures, skip other subscribers/cleanup or log raw exception/provider data. No new diagnostic framework.
+
+DisposeAsync atomically closes admission, invalidates/cancels active work, clears pending intent, sets the final cleared Disposed snapshot and sends at most one terminal Changed notification outside the lock. Late provider completions produce no notifications/state mutations. Concurrent disposal reuses one drain task, observing active settlement and releasing owned cancellation sources once. Composition disposes its owned provider **after** this drain. No synchronous UI wait; a provider ignoring cancellation delays drain until settlement.
+
+Unexpected provider faults expose only a bounded static unexpected-failure indication; no raw Message/InnerException, payload, URLs or headers reach presentation/logs. Candidate/selection text stays within existing page/document budgets.
 
 ## Proposed B binding and ownership
 
@@ -62,10 +81,10 @@ Project v3 persists only the explicit selected Core payload. Search query/page/c
 
 ## File ownership and meaningful acceptance
 
-A only: NEW Acquisition/Lyrics/LyricsAcquisitionSession.cs (its small state/error types may remain in that file) and NEW Core.Tests/LyricsAcquisitionSessionTests.cs. Existing provider/parser/shared contracts/Core/Projects/Desktop/projects/locks unchanged. Own controlled providers/TCS fixtures test success/no-results/typed errors, malformed/mismatched page, revision identity/variant/instrumental rules, manual validation, no implicit choice, late success/error after supersession/cancel/manual/dispose, disposal drain/borrowed ownership and immutable prepared payload. No real sleeps/network.
+A only: NEW Acquisition/Lyrics/LyricsAcquisitionSession.cs (its small state/error types may remain in that file) and NEW Core.Tests/LyricsAcquisitionSessionTests.cs. Existing provider/parser/shared contracts/Core/Projects/Desktop/projects/locks unchanged. Own controlled providers/TCS fixtures test success/no-results/typed errors, malformed/mismatched page, revision identity/variant/instrumental rules, manual validation, no implicit choice, late success/error after supersession/cancel/manual/dispose, disposal drain/borrowed ownership and immutable prepared payload. Add acceptance for rapid three-plus supersessions proving one invocation/one latest intent, settled obsolete tasks and no extra queued calls; stale Select preserving a newer valid preview; observer reentrancy/fault isolation and other-subscriber/cleanup continuation; ignored-cancel provider with usable manual/reset/cancel; repeated concurrent disposal, one drain/final notification, no pending search after closure and no late notifications. No real sleeps/network.
 
 B only after A review: NEW Desktop/Lyrics/LyricsPanel.cs (small UI adapter), narrow EditingSession.cs, EditorWindow.cs, EditorApplication.cs wiring, Desktop project-reference inventory and own NEW Desktop.Tests/LyricsPanelTests.cs plus narrow existing session regression tests as needed. Confirm exact files before dispatch; no parallel seam owner. Headless acceptance: explicit input/search/cancel, visible typed status/diagnostics, explicit provider/manual selection, safe UI-thread revisions, disabled invalid Apply, actual same-history apply/undo/redo/no-op preserving notes/media/metadata/offset, close during pending search, and no live requests. Existing project tests demonstrate selected v3 persistence; add a real new flow round-trip only if it verifies composition rather than duplicating the serializer.
 
 Native B acceptance later: manually exercise search/cancel/explicit choice/manual fallback/apply/undo/redo in a visible prototype with synthetic fixtures; actual provider interoperability and real-song matching/content rights remain separately evidenced. No alpha/beta or complete Search→Generate→Edit→Validate→Export claim.
 
-NEXT: SUPERVISOR review/freeze A contract and issue that bounded implementation order only after actual quota gating. This preparation stops at local docs commit/callback; no implementation, push/PR/merge/live API/native UI or automatic next task. OWNER DECISION REQUIRED: none identified for these reversible routine choices.
+NEXT: accepted behavior frozen; preserve this local docs checkpoint and STOP_FOR_RESET. A implementation requires a new explicit SUPERVISOR scoped dispatch after fresh actual capacity reading; elapsed time alone is not authorization. No reset credits/purchases, implementation, push/PR/merge/live API/native UI or automatic next task. OWNER DECISION REQUIRED: none identified for these reversible routine choices.
