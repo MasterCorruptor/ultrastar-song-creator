@@ -1,6 +1,6 @@
 # LRCLIB response decoder
 
-STATUS: CHECKPOINT — implementation and required local verification complete; locally accepted by SUPERVISOR. Root and independent static review found no actionable findings for ce5d84f/2c8498f. Public publication remains blocked.
+STATUS: CHECKPOINT — implementation and required local verification complete; locally accepted by SUPERVISOR. Root and independent static review found no actionable findings for ce5d84f/2c8498f. New explicit owner authorization resolves the historical publication-permission block; concrete push awaits current document review/order.
 TASK: phase3-lrclib-response-decoder, MEDIUM / SEQUENTIAL, one worker.
 MODEL USED: Sol Medium requested; actual model/reasoning not exposed and therefore unknown.
 BRANCH: work/phase3-lrclib-response-decoder.
@@ -36,10 +36,10 @@ No packages, locks, shared diagnostic seam, LrcParser, Core, Song, Projects/v3, 
 
 ## Unresolved / next step
 
-Local supervisor code review and acceptance complete; public publication pending. Transport, HTTP/gating/client/provider/GUI integration and live acquisition are outside this checkpoint. No Linux/native/network result claimed.
+Local supervisor code review and acceptance complete; publication authorized, actual push still pending. Transport, HTTP/gating/client/provider/GUI integration and live acquisition are outside this checkpoint. No Linux/native/network result claimed.
 
-Implementation committed locally. Automatic approval review rejected the branch push: it considered earlier approval limited to another reviewed package and did not authorize publication of this new source-code payload. No push occurred and no workaround was attempted. Direct owner approval of this decoder publication is pending.
+Implementation committed locally. Automatic approval review rejected the branch push: it considered earlier approval limited to another reviewed package and did not authorize publication of this new source-code payload. No push occurred and no workaround was attempted. This was the historical stop. New explicit owner authorization on 2026-10-14 now covers this decoder and later supervisor-reviewed project pushes to the same public repository.
 
-Next step: retain the accepted local decoder checkpoint. Public push requires separate explicit authorization. A separately ordered [local transport preparation](phase3-lrclib-transport-preparation-local.md) proposes the remaining HTTP contract without implementing it. No PR, merge or main update.
+Next step: retain the accepted local decoder checkpoint. Explicit authorization is now recorded in SUPERVISOR_POLICY.md; a concrete publication order follows current document review. A separately ordered [local transport preparation](phase3-lrclib-transport-preparation-local.md) proposes the remaining HTTP contract without implementing it. No PR, merge or main update.
 
-OWNER DECISION REQUIRED: YES — permission to publish this specific decoder source/tests/docs to the public MasterCorruptor/ultrastar-song-creator work/phase3-lrclib-response-decoder branch. No architecture or product decision is requested.
+OWNER DECISION REQUIRED: NO — publication permission is now explicitly granted. Pending supervisor document review and concrete push/integration order remain operational steps; new actual approval rejections must still be respected.

@@ -10,7 +10,7 @@ LAST COMMIT: local docs checkpoint containing this report; resolve current HEAD 
 
 ## Completed
 
-Corrected decoder status to local code acceptance for ce5d84f/2c8498f (root and independent static review without actionable findings), retaining actual 49/822 Windows evidence and separate publication block. No main integration or new suite claimed.
+Corrected decoder status to local code acceptance for ce5d84f/2c8498f (root and independent static review without actionable findings), retaining actual 49/822 Windows evidence and historical publication-block facts. Later explicit owner authorization resolves the permission gap without claiming a completed push. No main integration or new suite claimed.
 
 Specified local pre-code request/client ownership/test injection, dedicated completion-based gate, overall deadline, bounded body/status/media errors and offline acceptance. Recommended raw Retry-After classification plus process-lifetime LRCLIB-only fail-closed state for unrepresentable valid delta; recommendation remains PROPOSED. No public reset, new package or production code.
 
@@ -18,14 +18,14 @@ Specified local pre-code request/client ownership/test injection, dedicated comp
 
 Read existing MusicBrainzRecordingProvider, RecordingRequestGate, LyricsContracts and accepted decoder/profile. Read-only local .NET 10.0.11 RetryConditionHeaderValue.TryParse probe demonstrated valid large delta rejection alongside invalid syntax, motivating raw bounded decimal classification. This is not a solution suite or a live API result.
 
-Minimal five-file docs scope, local links, public inventory/privacy/vendor, whitespace and protected-file byte identity checked. All existing source/tests/tools/master/ADRs/dependencies unchanged from base; main42eb9f6 preserved. No build/fullsuite required for docs-only; prior 822/822 still applies to unchanged ce5d84f code.
+Minimal six-file docs scope after authorized publication-policy steering, local links, public inventory/privacy/vendor, whitespace and protected-file byte identity checked. All existing source/tests/tools/master/ADRs/dependencies unchanged from base; main42eb9f6 preserved. No build/fullsuite required for docs-only; prior 822/822 still applies to unchanged ce5d84f code.
 
 ## Files / unresolved / next step
 
-Updated LRCLIB_RESPONSE_PROFILE.md, active decoder checkpoint and PHASE3_LRCLIB_ADAPTER_PROPOSAL.md. New LRCLIB_TRANSPORT_PROFILE.md and this active preparation checkpoint.
+Updated LRCLIB_RESPONSE_PROFILE.md, active decoder checkpoint and PHASE3_LRCLIB_ADAPTER_PROPOSAL.md. New LRCLIB_TRANSPORT_PROFILE.md and this active preparation checkpoint. Authorized steering also updates SUPERVISOR_POLICY.md with the exact public repository and standing owner push approval.
 
-Supervisor acceptance of extreme header policy, constructor/injection and gate/deadline contract remains pending. Decoder publication remains blocked by actual automatic approval rejection; this local order grants no remote authorization.
+Supervisor acceptance of extreme header policy, constructor/injection and gate/deadline contract remains pending. Historical decoder publication rejection is preserved. New explicit owner authorization on 2026-10-14 covers the decoder/policy and later supervisor-reviewed pushes to the same public repository. No concrete push is performed before this document checkpoint is reviewed and a publication order delivered. Normal approval controls and any new actual rejection remain binding.
 
 Commit locally, send one authorized task + HEAD + CHECKPOINT callback and STOP. No fetch, push, PR, merge, main update, HTTP implementation or automatic next task.
 
-OWNER DECISION REQUIRED: no new product/architecture decision identified; existing decoder-publication permission remains separately unresolved.
+OWNER DECISION REQUIRED: NO — publication permission explicitly granted; transport proposal still awaits SUPERVISOR contract review.

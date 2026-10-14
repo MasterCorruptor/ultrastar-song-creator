@@ -86,7 +86,7 @@ Autonom review/godkjenning/videre bestilling gjelder reversible rutinevalg innen
 
 ## Hendelsesstyrt supervisoroppfølging – stående eiertillegg 2026-10-14
 
-Eieren har bestilt at AGENT kan igangsette oppfølging av SUPERVISOR. Dette autoriserer kontrollpunktrapporter og returmeldinger til prosjektets SUPERVISOR-chat. Rapporteringsfullmakten endrer ikke master, ADR-er, produkt-/arbeidsscope, bruksgrenser eller publiseringsfullmakt. Eksisterende decoderpubliseringsavslag består og løses ikke av dette tillegget.
+Eieren har bestilt at AGENT kan igangsette oppfølging av SUPERVISOR. Dette autoriserer kontrollpunktrapporter og returmeldinger til prosjektets SUPERVISOR-chat. Rapporteringsfullmakten endrer ikke master, ADR-er, produkt-/arbeidsscope, bruksgrenser eller publiseringsfullmakt. Ved callbackvedtaket bestod decoderpubliseringsavslaget og ble ikke løst av rapporteringsfullmakten. Den senere uttrykkelige publiseringsgodkjenningen er dokumentert nedenfor.
 
 Permanent AGENT sender én kort kontrollpunktrapport etter COMPLETE, CHECKPOINT som krever review, BLOCKED, feil/plattformavslag eller trygt STOP_FOR_RESET. Før meldingen lagres varig rapport og en konsistent lokal commit når mulig. Rapporten oppgir task/hendelse, branch, faktisk testet SHA og aktuell HEAD-SHA, utførte tester/acceptance, endringer og åpne gap, rapportsti samt relevant kvote-/resetbehov. Ikke send sensitive payloads. Aktuelle kontotall og runtime-/chat-/automatiseringsadresser eller ID-er hører bare hjemme i ignorert lokal koordinering eller selve arbeidsordren, aldri offentlige dokumenter.
 
@@ -98,8 +98,20 @@ Midlertidige workers rapporterer til nærmeste overordnede med eksisterende suba
 
 Dersom callbackverktøyet er utilgjengelig eller avvist, rapporterer AGENT i egen chat/repo og bruker eksisterende tidsreserve. Ingen alternativ kanal eller annen omgåelse av et faktisk avslag.
 
-### Lokalt policycheckpoint
+### Historisk lokalt callback-policycheckpoint
 
 Denne endringen er avgrenset til SUPERVISOR_POLICY.md og én operativ henvisning i AGENTS.md, basert på decodercheckpoint 2c8498f. Dokumentlenker, offentlig inventar/personvern, minimal diff og whitespace kontrolleres; alle andre eksisterende filer skal være byteidentiske med dette grunnlaget. Ingen ny build/testkjøring kreves for bare dokumentasjon. Tidligere 822/822-resultat gjelder implementasjon ce5d84f og er ikke ny testevidens for policyen.
 
 Etter lokal commit utføres én POLICY_CALLBACK_TEST / CHECKPOINT som ber SUPERVISOR reviewe dette policycheckpointet. Leveringsstatus rapporteres i AGENT-chatten; denne teksten påstår ikke vellykket levering eller endring/deaktivering av timeren. Ingen push, PR eller main-endring inngår.
+
+Lokal callback-policy5dfda9d og callbackleveringen er senere godkjent av SUPERVISOR. Timerreserve er fortsatt ikke endret gjennom AGENTs dokumentarbeid.
+
+## GitHub-publisering – stående eiertillegg 2026-10-14
+
+Eieren har etter de tidligere publiseringsavslagene gitt en ny uttrykkelig godkjenning: «Jeg gir uttrykkelig godkjenning for å sende neste push til github. Fremtidige push'es er også godkjent av med for super bruker».
+
+Godkjenningen gjelder det offentlige prosjekt-repositoryet https://github.com/MasterCorruptor/ultrastar-song-creator, med eksakt origin https://github.com/MasterCorruptor/ultrastar-song-creator.git. Den omfatter den lokalt reviewede LRCLIB-decoderleveransen ce5d84f, callback-policy5dfda9d og senere SUPERVISOR-godkjente prosjektendringer på ordinære work-brancher, PR-er og integrasjon i main innen tidligere master-, scope-, review-, kvote- og lisensrammer. Rutinemessig ny eierbekreftelse for slike pushes er ikke nødvendig.
+
+Det tidligere decoderstoppets manglende publiseringsfullmakt er løst av denne nye eiergodkjenningen. Historiske faktiske avslag beholdes som historikk; de blir ikke omtolket til vellykket publisering. Ingen push/PR/merge er utført i dette dokumentcheckpointet. SUPERVISOR reviewer det aktuelle dokumentcheckpointet før konkret publiserings-/integrasjonsordre.
+
+«Super bruker» endrer ikke sandbox eller automatiske godkjenningskontroller og tillater ikke force-push, destruktiv synkronisering, publisering til andre destinasjoner eller omgåelse av et nytt avslag. Nye faktiske plattform-/approvalavslag stopper den berørte handlingen og rapporteres etter eksisterende policy.

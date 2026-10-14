@@ -6,7 +6,7 @@ STATUS: PROPOSED, awaiting SUPERVISOR contract review. TASK phase3-lrclib-transp
 
 ## Baseline and request
 
-Integrated main42eb9f6 includes shared diagnostics and project v3. Decoder ce5d84f/2c8498f is accepted locally with 49 decoder cases and 822/822 Windows tests, not integrated into main. Its publication remains separately blocked. Policy5dfda9d allows checkpoint callbacks, not public source publication. No new research/live lyrics or new test-suite execution accompanies this proposal.
+Integrated main42eb9f6 includes shared diagnostics and project v3. Decoder ce5d84f/2c8498f is accepted locally with 49 decoder cases and 822/822 Windows tests, not integrated into main. Its historical publication-permission block is resolved by the later explicit owner approval; actual push awaits current document review/order. Callback-policy5dfda9d is distinct from the later standing public-push authorization recorded in SUPERVISOR_POLICY.md. No new research/live lyrics or new test-suite execution accompanies this proposal.
 
 Proposed public production API: sealed LrclibProvider : ILyricsSearchProvider, IDisposable; public parameterless constructor, ProviderId = lrclib and existing SearchAsync(LyricsQuery, CancellationToken). Validate the original query and send exactly one anonymous GET to https://lrclib.net/api/search with separately URI-escaped track_name=Title and artist_name=Artist. No trimming/guessed query parameters, q fallback, /get, retry, redirects, account keys or other requests. Source/provenance URLs remain inert.
 
