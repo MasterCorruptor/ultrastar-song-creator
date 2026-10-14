@@ -4,6 +4,7 @@
     <Project Path="src/UltraStar.SongCreator.Audio/UltraStar.SongCreator.Audio.csproj" />
     <Project Path="src/UltraStar.SongCreator.Core/UltraStar.SongCreator.Core.csproj" />
     <Project Path="src/UltraStar.SongCreator.Desktop/UltraStar.SongCreator.Desktop.csproj" />
+    <Project Path="src/UltraStar.SongCreator.Generation/UltraStar.SongCreator.Generation.csproj" />
     <Project Path="src/UltraStar.SongCreator.Projects/UltraStar.SongCreator.Projects.csproj" />
     <Project Path="src/UltraStar.SongCreator.UltraStar/UltraStar.SongCreator.UltraStar.csproj" />
   </Folder>
@@ -12,6 +13,7 @@
     <Project Path="tests/UltraStar.SongCreator.Audio.Tests/UltraStar.SongCreator.Audio.Tests.csproj" />
     <Project Path="tests/UltraStar.SongCreator.Core.Tests/UltraStar.SongCreator.Core.Tests.csproj" />
     <Project Path="tests/UltraStar.SongCreator.Desktop.Tests/UltraStar.SongCreator.Desktop.Tests.csproj" />
+    <Project Path="tests/UltraStar.SongCreator.Generation.Tests/UltraStar.SongCreator.Generation.Tests.csproj" />
   </Folder>
   <Folder Name="/tools/" />
   <Folder Name="/tools/audio/">
