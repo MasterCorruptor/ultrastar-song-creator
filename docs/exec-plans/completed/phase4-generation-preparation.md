@@ -1,5 +1,5 @@
 # Generation preparation — execution checkpoint
-STATUS: CHECKPOINT / STOP FOR SUPERVISOR REVIEW. Docs only.
+STATUS: COMPLETE — readiness/direction accepted by SUPERVISOR at0fe274c; this is the historical docs-only preparation.
 TASK phase4-generation-preparation, SMALL/MEDIUM / SEQUENTIAL, one implementer; Sol Medium requested, actual runtime model/reasoning unknown.
 BASE e63d914; branch work/phase4-generation-preparation; main/origin/main16b9c18 unchanged.
 [Readiness inventory / G1 proposed contract, ownership, licence evidence and tests](../../PHASE4_GENERATION_PREPARATION.md).
@@ -11,3 +11,5 @@ No new suite for docs-only. Verify original master and all existing source/test/
 NEXT: SUPERVISOR freezes bounded G1 work order before implementation. No worker/feature/nativeUI/nettlyrics/download/install/push/PR/merge/main change. No new owner-reserved decision identified.
 
 Verification completed: 214 existing source/test/tool/project/lock/solution/master/ADR files byte-identical to e63d914; original master and prior refs/main/origin unchanged. Document links/privacy/inventory/vendor/whitespace passed; no build/test/backend/network/native/installation execution. Later report HEAD is docs-only; resolve git log. All recommendations remain proposed until SUPERVISOR review.
+
+SUPERVISOR split larger G1 into sequential blocks. [G1A](../../PHASE4_PREPROCESSING_CONTRACT_WORK_ORDER.md) implements only pure immutable contracts/validation, separately awaiting review. Larger codec/staging/process/JSON/Python/backend work remains unimplemented; Phase3 and fullworkflow gaps remain.

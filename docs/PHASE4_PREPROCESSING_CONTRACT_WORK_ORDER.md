@@ -1,5 +1,5 @@
 # G1A preprocessing contracts — frozen local work order
-STATUS: IMPLEMENTING. MEDIUM / SEQUENTIAL / one implementer; Sol Medium requested, actual runtime model/reasoning unknown.
+STATUS: CHECKPOINT — implemented/verified; STOP FOR SUPERVISOR REVIEW. MEDIUM / SEQUENTIAL / one implementer; Sol Medium requested, actual runtime model/reasoning unknown.
 BASE0fe274c; branch work/phase4-preprocessing-contract; main16b9c18 unchanged.
 [Accepted direction/gaps](PHASE4_GENERATION_PREPARATION.md). Larger G1 pipeline is split: G1A pure contracts first; codec/staging/process/JSON/Python/backend implementation remains later work.
 
@@ -12,7 +12,7 @@ Public sealed get-only PreprocessingProposal with static Create(PreprocessingReq
 
 Public sealed record PcmDescription(string RelativePath,int SampleRate,int Channels,int BitsPerSample,long FrameCount,long FileBytes,string Sha256); readonly record struct WaveformBin(long StartFrame,long EndFrame,double Minimum,double Maximum). Time domain enum DecodedPcmSeconds only; duration derives from FrameCount/SampleRate, exact frames are authoritative. Fixed leaf analysis.wav, mono16kHz PCM16, frames1..28,800,000 (30min); filebytes at least44+2*frames, at most64MiB. This checks claims, not actual WAV/files. Bins1..4096, contiguous nonempty exclusive-end frame ranges cover [0,FrameCount], finite ordered min/max within[-1,1]. OriginInMediaSeconds defaults null; explicit finite nonnegative origin is a caller claim, not verified/mapped to Song or Lyrics seconds. No offset application.
 
-PreprocessingValidation.Validate overloads for request/proposal, pure invariant validation; PreprocessingValidationException.Error carries small PreprocessingError codes (identity/song/media/stream/lyrics/path/hash/provenance/PCM/waveform/limit). Exception text is static and contains no input. Proposed limits: source1GiB; IDs256characters; metadata4096characters; streams256/tags1024; strict Unicode and no controls. Path normalization is lexical only, not a sandbox or proof of file identity.
+PreprocessingValidation.Validate overloads for request/proposal, pure invariant validation; PreprocessingValidationException.Error carries small PreprocessingError codes (identity/song/media/stream/lyrics/path/hash/provenance/PCM/waveform/limit). Exception text is static and contains no input. Proposed limits: source1GiB; IDs256characters; metadata4096characters; streams256/tags1024; strict Unicode; opaque IDs/names reject controls, raw tag values preserve them, and paths follow existing lexical rules. Path normalization is lexical only, not a sandbox or proof of file identity.
 
 ## Files / acceptance / stop
 Only NEW Generation.csproj, PreprocessingContracts.cs and optional PreprocessingValidation.cs; Core+Acquisition references, no external production package. NEW Generation.Tests.csproj/PreprocessingContractTests.cs with exact Core.Tests packages (TestSDK17.14.1,xunit2.9.3,VSrunner3.1.4), two new locks and two solution entries. Existing projects/locks/code/tools/master/ADRs frozen.
@@ -20,3 +20,7 @@ Only NEW Generation.csproj, PreprocessingContracts.cs and optional Preprocessing
 Deterministic no-I/O tests: local/downloaded path/provenance mapping, actual stream ambiguity/type/unknown/stored-choice mismatch; null/default/invalid/explicit lyrics; payload identities/deep immutable buffers; unchanged captured snapshot after note edit; offsets/clocks/origin remain distinct; PCM/hash/provenance/frame/bin/limit boundaries. No property-only tests or physical files/process/network/device.
 
 Targeted tests → coherent codecommit → locked restore/Release0warnings/full Windows/format plus frozen bytes/lock/master/docs/privacy/inventory/vendor/whitespace. Record actual SHA/counts/evidence; STOP FOR SUPERVISOR REVIEW. No G1B/process/JSON/Python/models/schema/GUI/remote/main change.
+
+## Actual checkpoint
+
+Tested6e0ef34:69new/1069total Windows cases, zero skipped; locked restore/Release0warnings/full format passed. [Report/evidence](exec-plans/active/phase4-preprocessing-contract.md). Source/test/project/lock bytes frozen after code checkpoint. Existing projects/locks/source untouched; larger G1B is not started. Path/hash/shape/origin are lexical/in-memory claims only.

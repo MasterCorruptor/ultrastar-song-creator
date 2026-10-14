@@ -1,5 +1,5 @@
 # Generation G1 — preparation for review
-STATUS: CHECKPOINT / STOP FOR SUPERVISOR REVIEW. Docs only; no Phase4 product implementation.
+STATUS: Readiness/direction accepted at0fe274c. Larger G1 remains proposed; G1A pure contracts are implemented separately and await review.
 TASK phase4-generation-preparation; SMALL/MEDIUM / SEQUENTIAL, one implementer; Sol Medium requested, actual runtime model/reasoning unknown.
 BASE e63d914fcea76beaf86e229690f3e05c8b4c1427; branch work/phase4-generation-preparation. Main/origin/main16b9c1891c91c10bd99f377b5fa6e38e1b440f92 and original refs preserved.
 Authority: [master §6–9/Fases3–4](PROJECT_MASTER.md), accepted [ADR0001](decisions/ADR-0001-desktop-and-analysis-stack.md)/[ADR0002](decisions/ADR-0002-licensing-and-reuse.md), [Phase1 recommendation](PHASE1_RECOMMENDATION.md), [PR22 result and native gaps](PHASE3_LYRICS_EDITOR_INTEGRATION.md).

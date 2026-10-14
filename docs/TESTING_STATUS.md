@@ -120,3 +120,7 @@ Samlet B1–B3 er integrert som main16b9c1891c91c10bd99f377b5fa6e38e1b440f92 ved
 ## Generation-forberedelse — docs only
 
 [Repo-/gapanalyse og foreslått G1-kontrakt](PHASE4_GENERATION_PREPARATION.md) avgrenser lokal PCM-preprocessing og separat modellfri worker før senere analysemodeller. Fase3 har fortsatt flerkilde/TTML/confidence/ASR-/realmediaGUI/native/live/Linux-gap; ingen faseavslutning eller ny backend-/kvalitetsakseptanse påstås. Kun dokumentasjon, ingen ny suite; eksisterende1000Windows ved38e1b5a er ikke ny Generation-evidens. Avventer review før implementasjon eller delte schema-/APIendringer.
+
+## G1A — ren preprocessing-kontrakt til review
+
+Ved testet6e0ef34 består69nye/1069totale Windows-tester (Core871,Audio17,Desktop112,Generation69), zero skipped; locked restore/Release0warnings/full format består. [API/rapport](exec-plans/active/phase4-preprocessing-contract.md). Nye tester har ingen fysiskfil/prosess/nett/device; de kontrollerer normaliserte input, uendret immutable snapshot/tekst, eksplisitt stream/path og utdataenes tids-/frame-/proveniens-/hashformatgrenser. Ingen faktisk dekoding, hashverifikasjon, worker, analysemodell, schema/GUI eller native/live/Linux/fullworkflow-akseptanse. Gamle prosjekt-/lock-/kodebytes er bevart. Avventer SUPERVISOR-review før G1B; ingen publisering/mainendring.
