@@ -10,7 +10,7 @@ public enum ValidationCode
     InvalidTiming, InvalidDuration, InvalidPhraseBounds, InvalidPitch,
     InvalidConfidence, InvalidTempo, InvalidType, BrokenReference,
     NoteOutsidePhrase, NoteOverlap, MissingText, MissingMetadata, MissingMedia,
-    MissingProvenance, InvalidAnalysisPoint, InvalidSourceMetadata
+    MissingProvenance, InvalidAnalysisPoint, InvalidSourceMetadata, InvalidSelectedLyrics
 }
 
 public sealed record ValidationIssue(
@@ -78,6 +78,12 @@ public static class SongValidator
                 if (header is null || string.IsNullOrWhiteSpace(header.Name) || header.Value is null)
                     Add(ValidationCode.InvalidSourceMetadata, $"Song.ImportedSource.Headers[{i}]", song.Id, "Header name/value must be present.");
             }
+        }
+
+        try { SelectedLyricsValidation.Validate(song.SelectedLyrics); }
+        catch (SelectedLyricsValidationException e)
+        {
+            Add(ValidationCode.InvalidSelectedLyrics, "selectedLyrics", song.Id, $"{e.Error}: {e.Message}");
         }
 
         var media = Collection(song.Media, "Song.Media");
