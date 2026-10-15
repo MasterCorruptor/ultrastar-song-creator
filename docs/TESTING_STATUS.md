@@ -112,3 +112,25 @@ SUPERVISOR og uavhengig review har godkjent bc7d17b/testet38e1b5a som automatisk
 ## Samlet lokal B1–B3-integrasjon til review
 
 [Integrasjonsrapport](PHASE3_LYRICS_EDITOR_INTEGRATION.md) samler aksepterte kode-/testrefs og presise native/manual/live/Linux-gap. Lokal main-merge9bafcf0 har identisk filinnhold med B3-closure bb0c5d6; source/test/project/lockbytes matcher testet38e1b5a/1000Windows. Ingen ny suite for docs-only/identisk-tre-klargjøring. Main d5a6231 er bevart; ingen ny remote/publisering/nativeUI eller feature startet.
+
+## PR22 — samlet sangtekstintegrasjon
+
+Samlet B1–B3 er integrert som main16b9c1891c91c10bd99f377b5fa6e38e1b440f92 ved eksakt reviewet/publisert941e765. GitHub/main, origin/main og lokal main er like; hele merge-treet matcher godkjent941e765, kode/test/prosjekt/lockbytes testet38e1b5a med1000Windows (Core871/Audio17/Desktop112), zero skipped. Ingen ny suite for identisk merge-tre; hosted checks var ikke konfigurert i preflight. [Rapport](PHASE3_LYRICS_EDITOR_INTEGRATION.md). Native/live/Linux/fullworkflow forblir gap; lokal docsclosure er ikke automatisk publisert. Ingen videre fase startet.
+
+## Generation-forberedelse — docs only
+
+[Repo-/gapanalyse og foreslått G1-kontrakt](PHASE4_GENERATION_PREPARATION.md) avgrenser lokal PCM-preprocessing og separat modellfri worker før senere analysemodeller. Fase3 har fortsatt flerkilde/TTML/confidence/ASR-/realmediaGUI/native/live/Linux-gap; ingen faseavslutning eller ny backend-/kvalitetsakseptanse påstås. Kun dokumentasjon, ingen ny suite; eksisterende1000Windows ved38e1b5a er ikke ny Generation-evidens. Avventer review før implementasjon eller delte schema-/APIendringer.
+
+## G1A — ren preprocessing-kontrakt til review
+
+Ved testet6e0ef34 består69nye/1069totale Windows-tester (Core871,Audio17,Desktop112,Generation69), zero skipped; locked restore/Release0warnings/full format består. [API/rapport](exec-plans/completed/phase4-preprocessing-contract.md). Nye tester har ingen fysiskfil/prosess/nett/device; de kontrollerer normaliserte input, uendret immutable snapshot/tekst, eksplisitt stream/path og utdataenes tids-/frame-/proveniens-/hashformatgrenser. Ingen faktisk dekoding, hashverifikasjon, worker, analysemodell, schema/GUI eller native/live/Linux/fullworkflow-akseptanse. Gamle prosjekt-/lock-/kodebytes er bevart. Avventer SUPERVISOR-review før G1B; ingen publisering/mainendring.
+
+G1A er sluttgodkjent av SUPERVISOR ved23b8591/testet6e0ef34,69nye/1069Windows, uten actionable funn. [Avsluttet kontraktrapport](exec-plans/completed/phase4-preprocessing-contract.md). Dette er bare ren in-memory/lexical kontraktakseptanse; ingen ny suite ved docsclosure, ingen fil/hash/prosess/backendverifikasjon. G1B forberedes separat uten implementasjon.
+
+Historisk forberedelsescheckpoint: G1B var kun [prosessforberedelse til review](PHASE4_GENERATION_PROCESS_PREPARATION.md), ingen runnerkode eller ny suite. Forslaget begrenser til betrodde leaf-prosesser og skiller root-exit/EOF/lokal ressursfrigjøring fra etterkommergaranti, med bounded cleanup-forsøk og holdt admission/arbeidsmappe ved pending/quarantine. Offisiell .NET10-dokumentasjon er kontrollert; ingen ny terminal/runtime/native/Linux-akseptanse påstås.
+
+## G1B accepted local process foundation
+[Generation process report](PHASE4_GENERATION_PROCESS_CHECKPOINT.md): testedf6524d9c4134ea203d50fc3844e3f089c646e9b7,1118/1118 Windows (49 process cases), zero skipped; locked restore/Release0warnings/format passed. Pending/Quarantined ownership and terminal fixtures only. SUPERVISOR accepted reviewed7da57a6/testedf6524d9 including P2. Linux terminal smoke and product workflow remain outstanding. main16b9c18 unchanged; accepted local checkpoint, no publication. [Completed plan](exec-plans/completed/phase4-generation-process.md). No new suite for documentation closure.
+
+## Generation foundation - local integration prepared
+[Integration report/inventory](PHASE4_GENERATION_FOUNDATION_INTEGRATION.md) and [local PR draft](PHASE4_GENERATION_FOUNDATION_PR_DRAFT.md) collect accepted G1A/G1B and PR22 docs closure on work/phase4-generation-foundation-integration.230 files match testedf6524d9 byte-for-byte;1118 Windows is reused evidence, no new suite on docs HEAD. Main16b9c18 unchanged. STOP for exact-head SUPERVISOR review before remote action.
