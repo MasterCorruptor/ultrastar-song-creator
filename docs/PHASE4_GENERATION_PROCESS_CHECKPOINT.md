@@ -1,9 +1,9 @@
-# G1B generation process â€” local verification checkpoint
+# G1B generation process - accepted verification checkpoint
 
-STATUS: CHECKPOINT / STOP FOR SUPERVISOR REVIEW. No integration or next stage accepted here.
+STATUS: SUPERVISOR ACCEPTED / LOCAL CLOSURE. Integration preparation is separate; no next implementation stage is accepted here.
 Task phase4-generation-process; branch work/phase4-generation-process; one sequential implementer.
 Tested code: **f6524d9c4134ea203d50fc3844e3f089c646e9b7**. Final report HEAD is recorded by the report commit, not a self-referential SHA.
-[Frozen contract](PHASE4_GENERATION_PROCESS_PREPARATION.md), [work order](PHASE4_GENERATION_PROCESS_WORK_ORDER.md), [active plan](exec-plans/active/phase4-generation-process.md).
+[Frozen contract](PHASE4_GENERATION_PROCESS_PREPARATION.md), [work order](PHASE4_GENERATION_PROCESS_WORK_ORDER.md), [completed plan](exec-plans/completed/phase4-generation-process.md).
 
 ## Delivered boundary
 
@@ -46,13 +46,16 @@ Ignored local evidence, relative to repository root:
 - .agent-local/phase1/continuation/g1b-p2-format-check.log
 - .agent-local/phase1/continuation/g1b-p2-protected.json
 
-## Remaining limits / review stop
+## Remaining limits
 
 Windows terminal-process evidence only. Linux terminal smoke is separately outstanding; prior Linux suites do not establish G1B support. No native product GUI/manual acceptance, live media, codec, Python/JSON worker, staging/cache, model, pipeline or Generation-to-editor application was implemented. This is not completion of full Fase3, Fase4 or the end-to-end product.
 
 The configured no-child executable/script precondition is not OS-enforced. Root exit/EOF/local handle release do not prove arbitrary descendant exit. Kill(true) is asynchronous best effort; inaccessible/detached descendants are not a portable guarantee. A stalled native operation can retain Pending indefinitely while its strongly held coordinator observes it. Permanent quarantine never authorizes workspace deletion, publication or a fresh runner bypass; future job ownership must enforce that lease.
 
-Local committed checkpoint only. No push, PR, merge, main update, next worker or new stage was performed in G1B. SUPERVISOR must review the actual code/limits/evidence before continuation.
+Local committed checkpoint only. No push, PR, merge, main update, next worker or new stage was performed in G1B. SUPERVISOR has accepted this exact code/limits/evidence as recorded below; remote integration still requires exact-head review and a separate order.
 
 ## Handoff status
 The short checkpoint callback was rejected by automatic approval review because trusted direct user authorization to message the destination chat was not established in the current transcript. No retry, alternate channel or workaround was used. This does not invalidate the local tested checkpoint. The report is available in the AGENT chat/repository for SUPERVISOR review through existing follow-up; no next stage is started. The P2 correction order expressly retains that fallback: no new callback attempt or repeated approval question is made.
+
+## Final SUPERVISOR acceptance
+Reviewed HEAD7da57a6765f251ccda8a0b2df817bcfa0625c0cd / testedf6524d9c4134ea203d50fc3844e3f089c646e9b7 is accepted, including explicit wrapper/base-stream disposal on all started paths. Independent review confirms P2 resolved with no new concrete findings.1118/1118 Windows, zero skipped; eight P2 regressions. G1A was accepted separately. Genuine EOF, retained Pending, permanent quarantine and the audited no-child precondition remain required. This documentation closure adds no source/test change or new suite, Linux/native/fullworkflow acceptance, callback attempt, publication or main update.

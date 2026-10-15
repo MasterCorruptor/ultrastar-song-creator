@@ -1,5 +1,5 @@
 # G1B generation process — implementation baseline
-STATUS: CHECKPOINT / STOP FOR SUPERVISOR REVIEW. MEDIUM/LARGE / SEQUENTIAL / one implementer; Sol High requested, actual runtime model/reasoning unknown.
+STATUS: COMPLETED / SUPERVISOR ACCEPTED. MEDIUM/LARGE / SEQUENTIAL / one implementer; Sol High requested, actual runtime model/reasoning unknown.
 BASE11684fd0cf2fbb010d4a938c092df091c9f97e0c; work/phase4-generation-process. Main16b9c18 and original refs preserved.
 [Frozen semantics](PHASE4_GENERATION_PROCESS_PREPARATION.md) governs leaf-only usage, exact reason priority, permanent quarantine and independent local-release ownership.
 
@@ -24,3 +24,5 @@ Targeted tests, coherent code commit, locked restore/Release0warnings/full Windo
 Testedf6524d9c4134ea203d50fc3844e3f089c646e9b7:49 process cases;1118/1118 full Windows, zero skipped; locked restore/Release0warnings/format passed. [Report and remaining limits](PHASE4_GENERATION_PROCESS_CHECKPOINT.md). All old locks and220 protected files preserved; no test-lock graph change was needed. No publication/main update or next stage.
 
 P2 ownership correction: capture/explicitly dispose all redirected wrappers/base streams before release, including completed readers. Independent close tasks retain Pending/quarantine when uncertain; natural EOF remains separate.8 regressions added; no further project metadata or lock change.
+
+Final acceptance: SUPERVISOR accepted reviewed7da57a6/testedf6524d9,1118Windows including eight P2 regressions, with no remaining concrete review finding. [Completed implementation plan](exec-plans/completed/phase4-generation-process.md). Closure is docs only; next order is local integration preparation, no new suite/source/remote/main/callback action.

@@ -57,3 +57,6 @@ Freeze this contract/file scope with SUPERVISOR first, then implement only G1, v
 ## Direction accepted / sequential split
 
 SUPERVISOR accepted readiness/gap/licence analysis at0fe274c but classified the complete proposed G1 pipeline as too large for one implementation. [G1A work order](PHASE4_PREPROCESSING_CONTRACT_WORK_ORDER.md) freezes only immutable transient contracts and pure validation first. Larger G1 staging/codec/process/JSON/Python/real backend remains proposed and unimplemented. Phase3/native/live/Linux/fullworkflow gaps remain; no new owner-reserved decision.
+
+## Current accepted subset
+G1A pure contracts and G1B trusted-leaf process ownership are now accepted separately; [G1B acceptance](PHASE4_GENERATION_PROCESS_CHECKPOINT.md) records reviewed7da57a6/testedf6524d9 with1118Windows. The proposed larger G1 staging/codec/JSON/Python/preprocessing flow remains unimplemented. This status closure changes no proposed contract, master/ADR or implementation and grants no Linux/native/fullworkflow acceptance.

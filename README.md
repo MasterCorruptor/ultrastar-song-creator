@@ -109,3 +109,7 @@ Samlet B1–B3 er nå klargjort på en egen lokal integrasjonsbranch, med uendre
 ## Sangtekstflyt B1–B3 integrert
 
 [PR22](https://github.com/MasterCorruptor/ultrastar-song-creator/pull/22) er merget som main16b9c18; GitHub/main og lokal main samsvarer. Hele merge-treet er identisk med godkjent941e765/testet kode38e1b5a (1000/1000Windows). [Integrasjonsrapport](docs/PHASE3_LYRICS_EDITOR_INTEGRATION.md). Native/manuell/live/Linux/fullworkflow er fortsatt ikke verifisert; ingen Generation/release er startet. Denne lokale sluttdokumentasjonen er ikke publisert gjennom PR22.
+
+## Akseptert Generation-fundament - lokal integrasjonsklargjøring
+
+G1A og G1B er SUPERVISOR-godkjent: immutable preprocessing-kontrakter og intern prosessrunner for betrodde leaf-verktøy, med eksplisitt pipe-eierskap, naturlig EOF og separat Pending/permanent quarantine. [Akseptanse og grenser](docs/PHASE4_GENERATION_PROCESS_CHECKPOINT.md), [avsluttet G1B-plan](docs/exec-plans/completed/phase4-generation-process.md). Testetf6524d9 har1118/1118 Windows-tester, zero skipped; docsclosure kjører ingen ny suite. Stor preprocessingpipeline, Linux-terminal/native/live/fullworkflow og full Fase3/Fase4 er ikke ferdige. Lokal integrasjon forberedes separat; ingen ny publisering eller main-endring i denne avslutningen.
