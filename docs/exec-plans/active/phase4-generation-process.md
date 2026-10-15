@@ -10,3 +10,5 @@ No codec/JSON/Python/staging/models/GUI or publication. If actual platform seman
 
 ## Actual checkpoint / restart anchor
 Active order remains phase4-generation-process, not historical A/PR21 publication. APIbaseline8aa718d; tested code9780cb30a54ef26a6328ac689f8741083784e96e. Steps1-4 complete:41 new process tests,1110/1110 full Windows, locked restore, Release0warnings, format and protected/master/lock/inventory/privacy/vendor/link/whitespace checks. [Durable report](../../PHASE4_GENERATION_PROCESS_CHECKPOINT.md). Pending5: SUPERVISOR review; no next stage or remote/main action. Keep this plan active until acceptance. Logs remain in ignored .agent-local/phase1/continuation/g1b-*.
+
+Handoff: short callback rejected by automatic approval review; recorded in the report and own chat. No retry/alternate route; review stop remains in effect.

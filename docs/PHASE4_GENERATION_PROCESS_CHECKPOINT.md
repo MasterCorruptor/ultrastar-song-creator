@@ -42,3 +42,6 @@ Windows terminal-process evidence only. Linux terminal smoke is separately outst
 The configured no-child executable/script precondition is not OS-enforced. Root exit/EOF/local handle release do not prove arbitrary descendant exit. Kill(true) is asynchronous best effort; inaccessible/detached descendants are not a portable guarantee. A stalled native operation can retain Pending indefinitely while its strongly held coordinator observes it. Permanent quarantine never authorizes workspace deletion, publication or a fresh runner bypass; future job ownership must enforce that lease.
 
 Local committed checkpoint only. No push, PR, merge, main update, next worker or new stage was performed in G1B. SUPERVISOR must review the actual code/limits/evidence before continuation.
+
+## Handoff status
+The short checkpoint callback was rejected by automatic approval review because trusted direct user authorization to message the destination chat was not established in the current transcript. No retry, alternate channel or workaround was used. This does not invalidate the local tested checkpoint. The report is available in the AGENT chat/repository for SUPERVISOR review through existing follow-up; no next stage is started.
