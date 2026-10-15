@@ -7,5 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="../UltraStar.SongCreator.Core/UltraStar.SongCreator.Core.csproj" />
     <ProjectReference Include="../UltraStar.SongCreator.Acquisition/UltraStar.SongCreator.Acquisition.csproj" />
+    <InternalsVisibleTo Include="UltraStar.SongCreator.Generation.Tests" />
   </ItemGroup>
 </Project>

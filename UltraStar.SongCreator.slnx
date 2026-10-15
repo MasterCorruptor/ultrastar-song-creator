@@ -9,6 +9,7 @@
     <Project Path="src/UltraStar.SongCreator.UltraStar/UltraStar.SongCreator.UltraStar.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/Generation.TestHost/Generation.TestHost.csproj" />
     <Project Path="tests/MediaProbe.TestHost/MediaProbe.TestHost.csproj" />
     <Project Path="tests/UltraStar.SongCreator.Audio.Tests/UltraStar.SongCreator.Audio.Tests.csproj" />
     <Project Path="tests/UltraStar.SongCreator.Core.Tests/UltraStar.SongCreator.Core.Tests.csproj" />

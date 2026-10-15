@@ -9,6 +9,15 @@
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" PrivateAssets="all" />
     <ProjectReference Include="../../src/UltraStar.SongCreator.Generation/UltraStar.SongCreator.Generation.csproj" />
+    <ProjectReference Include="../Generation.TestHost/Generation.TestHost.csproj" ReferenceOutputAssembly="false" />
     <Using Include="Xunit" />
   </ItemGroup>
+  <Target Name="CopyGenerationTestHost" AfterTargets="Build">
+    <MSBuild Projects="../Generation.TestHost/Generation.TestHost.csproj" Targets="GetTargetPath" Properties="Configuration=$(Configuration)">
+      <Output TaskParameter="TargetOutputs" ItemName="GenerationHostTarget" />
+    </MSBuild>
+    <PropertyGroup><GenerationHostDirectory>@(GenerationHostTarget->'%(RootDir)%(Directory)')</GenerationHostDirectory></PropertyGroup>
+    <ItemGroup><GenerationHostFiles Include="$(GenerationHostDirectory)Generation.TestHost.*" /></ItemGroup>
+    <Copy SourceFiles="@(GenerationHostFiles)" DestinationFolder="$(OutDir)GenerationHost" />
+  </Target>
 </Project>
