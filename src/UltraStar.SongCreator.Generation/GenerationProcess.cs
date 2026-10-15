@@ -34,10 +34,12 @@ internal sealed record GenerationProcessResult(GenerationProcessReason Reason, i
     ImmutableArray<byte> Stdout, ImmutableArray<byte> Stderr, GenerationProcessCleanup Cleanup);
 
 // Test-only operation gates/faults, never a replacement executable/process/stream backend.
-internal enum GenerationProcessPoint { Start, StdoutRead, StderrRead, Kill, PipeClose, Dispose }
+internal enum GenerationProcessPoint { Start, StdoutRead, StderrRead, Kill, PipeClose, Dispose, StdinClose, StdoutClose, StderrClose }
 internal sealed class GenerationProcessHooks
 {
     internal Func<GenerationProcessPoint, Task>? Before { get; init; }
+    internal Action<StreamWriter, StreamReader, StreamReader>? StreamsOpened { get; init; }
+    internal Action<GenerationProcessPoint>? PipeDisposed { get; init; }
     internal Action? CleanupBudgetArmed { get; init; }
     internal Action? RootEofBudgetArmed { get; init; }
 }
@@ -163,6 +165,9 @@ internal sealed class GenerationProcess
         internal readonly GenerationProcessCleanup Cleanup = new();
         internal CancellationToken Caller => caller;
         private Process? process;
+        private StreamWriter? inputWriter;
+        private StreamReader? outputReader, errorReader;
+        private Stream? inputPipe, outputPipe, errorPipe;
         private Task<bool>? starting;
         private Task? root, input, output, errors, allIo;
         private bool started, outEof, errEof;
@@ -225,9 +230,27 @@ internal sealed class GenerationProcess
                 if (Stopping) return false;
                 started = process.Start();
                 if (!started) Record(Unavailable);
+                else CaptureStreams();
                 return started;
             }
             catch (Exception) { Record(Unavailable); return false; }
+        }
+        private void CaptureStreams()
+        {
+            // Accessed stdout/stderr select SyncMode; accessed stdin is also caller-owned.
+            // Capture each wrapper/base stream once, retaining partial acquisition on failure.
+            try { inputWriter = process!.StandardInput; inputPipe = inputWriter.BaseStream; }
+            catch (Exception) { Record(Pipe); }
+            try { outputReader = process!.StandardOutput; outputPipe = outputReader.BaseStream; }
+            catch (Exception) { Record(Pipe); }
+            try { errorReader = process!.StandardError; errorPipe = errorReader.BaseStream; }
+            catch (Exception) { Record(Pipe); }
+            try
+            {
+                if (inputWriter is not null && outputReader is not null && errorReader is not null)
+                    owner.hooks?.StreamsOpened?.Invoke(inputWriter, outputReader, errorReader);
+            }
+            catch (Exception) { Record(Pipe); }
         }
         private void StartIo()
         {
@@ -247,11 +270,7 @@ internal sealed class GenerationProcess
                     catch (Exception) { /* Unknown root identity remains owned/quarantined. */ }
                 }
             });
-            input = Task.Run(() =>
-            {
-                try { process!.StandardInput.Close(); }
-                catch (Exception) { Record(Pipe); }
-            });
+            input = Task.Run(() => CloseOwnedPipeAsync(inputWriter, inputPipe, GenerationProcessPoint.StdinClose));
             output = Task.Run(() => ReadAsync(true));
             errors = Task.Run(() => ReadAsync(false));
             allIo = Task.WhenAll(root, input, output, errors);
@@ -262,7 +281,7 @@ internal sealed class GenerationProcess
             {
                 await Hook(standardOutput ? GenerationProcessPoint.StdoutRead : GenerationProcessPoint.StderrRead).ConfigureAwait(false);
                 if (Volatile.Read(ref abortReads) != 0) return;
-                var stream = standardOutput ? process!.StandardOutput.BaseStream : process!.StandardError.BaseStream;
+                var stream = standardOutput ? outputPipe! : errorPipe!;
                 var maximum = standardOutput ? options.StdoutLimit : options.StderrLimit;
                 using var buffer = new MemoryStream();
                 var chunk = new byte[8192];
@@ -290,15 +309,28 @@ internal sealed class GenerationProcess
             catch (InvalidOperationException) { /* Root can exit concurrently; wait still determines release. */ }
             catch (Exception) { Record(Pipe); }
         }
+        private async Task CloseOwnedPipeAsync(IDisposable? wrapper, Stream? pipe, GenerationProcessPoint point)
+        {
+            try { await Hook(point).ConfigureAwait(false); }
+            catch (Exception) { Record(Pipe); owner.Poison(this); }
+            var uncertain = false;
+            try { wrapper?.Dispose(); }
+            catch (Exception) { uncertain = true; Record(Pipe); owner.Poison(this); }
+            // Independent fallback even if wrapper disposal failed; retain the actual base-stream handle.
+            try { pipe?.Dispose(); }
+            catch (Exception) { uncertain = true; Record(Pipe); owner.Poison(this); }
+            if (uncertain) await unknown.Task.ConfigureAwait(false);
+            else Notify(() => owner.hooks?.PipeDisposed?.Invoke(point));
+        }
         private async Task ClosePipesAsync()
         {
             Interlocked.Exchange(ref abortReads, 1);
             try { await Hook(GenerationProcessPoint.PipeClose).ConfigureAwait(false); }
-            catch (Exception) { Record(Pipe); }
-            try { process!.StandardOutput.BaseStream.Dispose(); }
-            catch (Exception) { Record(Pipe); }
-            try { process!.StandardError.BaseStream.Dispose(); }
-            catch (Exception) { Record(Pipe); }
+            catch (Exception) { Record(Pipe); owner.Poison(this); }
+            // Separate owned tasks ensure one blocked/faulted close cannot suppress the other attempt.
+            var closeOutput = Task.Run(() => CloseOwnedPipeAsync(outputReader, outputPipe, GenerationProcessPoint.StdoutClose));
+            var closeError = Task.Run(() => CloseOwnedPipeAsync(errorReader, errorPipe, GenerationProcessPoint.StderrClose));
+            await Task.WhenAll(closeOutput, closeError).ConfigureAwait(false);
         }
         private async Task DisposeAsync()
         {
@@ -321,14 +353,12 @@ internal sealed class GenerationProcess
                 {
                     if (Cleanup.State != GenerationCleanupState.Quarantined)
                         await Task.WhenAny(readers, Delay(owner.grace)).ConfigureAwait(false);
-                    if (!readers.IsCompleted)
-                    {
-                        owner.Poison(this);
-                        var closing = Task.Run(ClosePipesAsync);
-                        await Task.WhenAll(readers, closing).ConfigureAwait(false);
-                    }
+                    if (!readers.IsCompleted) owner.Poison(this);
                 }
-                await allIo!.ConfigureAwait(false);
+                // Completed reads do not dispose their SyncMode wrappers/pipes. Always close them,
+                // including EOF, nonzero and limit paths, before releasing or disposing Process.
+                var closing = Task.Run(ClosePipesAsync);
+                await Task.WhenAll(allIo!, closing).ConfigureAwait(false);
             }
             await Task.Run(DisposeAsync).ConfigureAwait(false);
         }

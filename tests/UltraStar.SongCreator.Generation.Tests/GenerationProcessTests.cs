@@ -112,6 +112,7 @@ public sealed class GenerationProcessTests
     }
     private sealed class Terminal : IAsyncDisposable
     {
+        private int disposed;
         internal readonly Control Root = new();
         internal readonly Control Child = new();
         internal readonly string Directory;
@@ -134,6 +135,7 @@ public sealed class GenerationProcessTests
         }
         public async ValueTask DisposeAsync()
         {
+            if (Interlocked.Exchange(ref disposed, 1) != 0) return;
             try { await Child.DisposeAsync(); }
             finally
             {
@@ -143,6 +145,159 @@ public sealed class GenerationProcessTests
                 System.IO.Directory.Delete(target, true);
             }
         }
+    }
+
+    private sealed class OwnedStreams(StreamWriter input, StreamReader output, StreamReader error) : IDisposable
+    {
+        internal readonly Stream InputPipe = input.BaseStream, OutputPipe = output.BaseStream, ErrorPipe = error.BaseStream;
+        public void Dispose()
+        {
+            // Failure teardown closes actual captured resources as well as process fixtures.
+            foreach (var resource in new IDisposable[] { input, output, error, InputPipe, OutputPipe, ErrorPipe })
+                try { resource.Dispose(); } catch (Exception e) when (e is IOException or ObjectDisposedException) { }
+        }
+        internal void AssertDisposed()
+        {
+            Assert.False(InputPipe.CanWrite);
+            Assert.False(OutputPipe.CanRead);
+            Assert.False(ErrorPipe.CanRead);
+            Assert.Throws<ObjectDisposedException>(() => input.Write('x'));
+            Assert.Throws<ObjectDisposedException>(() => output.Peek());
+            Assert.Throws<ObjectDisposedException>(() => error.Peek());
+        }
+    }
+
+    [Theory]
+    [InlineData("echo", (int)GenerationProcessReason.Success)]
+    [InlineData("nonzero", (int)GenerationProcessReason.NonZeroExit)]
+    [InlineData("bytes", (int)GenerationProcessReason.OutputLimit)]
+    public async Task CompletedReadersExplicitlyDisposeActualOwnedWrappersAndPipesBeforeReuse(string mode, int reasonValue)
+    {
+        var owned = new List<OwnedStreams>();
+        var runner = new GenerationProcess(null, null, new()
+        {
+            StreamsOpened = (input, output, error) => owned.Add(new(input, output, error))
+        });
+        try
+        {
+            for (var i = 0; i < 3; i++)
+            {
+                await using var terminal = new Terminal();
+                var run = runner.RunAsync(terminal.Options(mode, "4097", "0") with { StdoutLimit = 4096 });
+                await terminal.Root.Ready(); await terminal.Root.Send("go");
+                var result = await Done(run);
+                Assert.Equal((GenerationProcessReason)reasonValue, result.Reason);
+                await Done(result.Cleanup.WhenLocalReleased);
+                Assert.Equal(GenerationCleanupState.LocalReleased, result.Cleanup.State);
+                Assert.Equal(i + 1, owned.Count);
+                foreach (var streams in owned) streams.AssertDisposed();
+            }
+            await Done(runner.CloseAsync());
+        }
+        finally { foreach (var streams in owned) streams.Dispose(); }
+    }
+
+    [Theory]
+    [InlineData((int)GenerationProcessPoint.StdinClose)]
+    [InlineData((int)GenerationProcessPoint.StdoutClose)]
+    [InlineData((int)GenerationProcessPoint.StderrClose)]
+    public async Task ExplicitPipeDisposeStallRetainsAdmissionAndActualPipeUntilSettlement(int pointValue)
+    {
+        await using var terminal = new Terminal(); var clock = new Clock();
+        using var gate = new Gate((GenerationProcessPoint)pointValue);
+        OwnedStreams? streams = null;
+        var armed = Signal();
+        var inputClosed = Signal(); var outputClosed = Signal(); var errorClosed = Signal();
+        var runner = new GenerationProcess(clock, Grace, new()
+        {
+            StreamsOpened = (input, output, error) => streams = new(input, output, error),
+            Before = gate.Before,
+            CleanupBudgetArmed = () => armed.TrySetResult(),
+            PipeDisposed = p =>
+            {
+                if (p == GenerationProcessPoint.StdinClose) inputClosed.TrySetResult();
+                if (p == GenerationProcessPoint.StdoutClose) outputClosed.TrySetResult();
+                if (p == GenerationProcessPoint.StderrClose) errorClosed.TrySetResult();
+            }
+        });
+        using var cancel = new CancellationTokenSource();
+        try
+        {
+            var run = runner.RunAsync(terminal.Options(pointValue == (int)GenerationProcessPoint.StdinClose ? "hold" : "echo"), cancel.Token);
+            await terminal.Root.Ready(); await terminal.Root.Send("go");
+            if (pointValue == (int)GenerationProcessPoint.StdinClose) cancel.Cancel();
+            await Done(gate.Entered.Task); await Done(armed.Task);
+            if (pointValue != (int)GenerationProcessPoint.StdinClose) await Done(inputClosed.Task);
+            if (pointValue != (int)GenerationProcessPoint.StdoutClose) await Done(outputClosed.Task);
+            if (pointValue != (int)GenerationProcessPoint.StderrClose) await Done(errorClosed.Task);
+            clock.Advance(Grace);
+            var result = await Done(run);
+            Assert.Equal(pointValue == (int)GenerationProcessPoint.StdinClose ? GenerationProcessReason.Cancelled : GenerationProcessReason.DrainIncomplete, result.Reason);
+            Assert.Equal(GenerationCleanupState.Pending, result.Cleanup.State);
+            Assert.False(result.Cleanup.WhenLocalReleased.IsCompleted);
+            Assert.Equal(GenerationProcessReason.Busy, (await runner.RunAsync(terminal.Options())).Reason);
+            Assert.NotNull(streams);
+            Assert.Equal(pointValue == (int)GenerationProcessPoint.StdinClose, streams.InputPipe.CanWrite);
+            Assert.Equal(pointValue == (int)GenerationProcessPoint.StdoutClose, streams.OutputPipe.CanRead);
+            Assert.Equal(pointValue == (int)GenerationProcessPoint.StderrClose, streams.ErrorPipe.CanRead);
+            gate.Release.TrySetResult();
+            await Done(result.Cleanup.WhenLocalReleased);
+            Assert.Equal(GenerationCleanupState.LocalReleased, result.Cleanup.State);
+            streams.AssertDisposed();
+            await Done(runner.CloseAsync());
+        }
+        finally { gate.Release.TrySetResult(); await terminal.DisposeAsync(); streams?.Dispose(); }
+    }
+
+    [Theory]
+    [InlineData((int)GenerationProcessPoint.StdinClose)]
+    [InlineData((int)GenerationProcessPoint.StdoutClose)]
+    public async Task PipeCloseFaultStillClosesOtherPipesAndQuarantinesWhileAnotherCloseIsHeld(int faultValue)
+    {
+        await using var terminal = new Terminal(); var clock = new Clock();
+        using var fault = new Gate((GenerationProcessPoint)faultValue);
+        using var held = new Gate(GenerationProcessPoint.StderrClose);
+        OwnedStreams? streams = null;
+        var armed = Signal(); var inputClosed = Signal(); var outputClosed = Signal();
+        var runner = new GenerationProcess(clock, Grace, new()
+        {
+            StreamsOpened = (input, output, error) => streams = new(input, output, error),
+            Before = async p =>
+            {
+                await fault.Before(p);
+                if (p == (GenerationProcessPoint)faultValue) throw new IOException("private fixture detail");
+                await held.Before(p);
+            },
+            CleanupBudgetArmed = () => armed.TrySetResult(),
+            PipeDisposed = p =>
+            {
+                if (p == GenerationProcessPoint.StdinClose) inputClosed.TrySetResult();
+                if (p == GenerationProcessPoint.StdoutClose) outputClosed.TrySetResult();
+            }
+        });
+        try
+        {
+            var run = runner.RunAsync(terminal.Options("nonzero"));
+            await terminal.Root.Ready(); await terminal.Root.Send("go");
+            await Done(fault.Entered.Task); fault.Release.TrySetResult();
+            await Done(held.Entered.Task); await Done(armed.Task);
+            await Done(inputClosed.Task); await Done(outputClosed.Task);
+            clock.Advance(Grace);
+            var result = await Done(run);
+            Assert.Equal(GenerationProcessReason.PipeFailure, result.Reason);
+            Assert.Equal(GenerationCleanupState.Quarantined, result.Cleanup.State);
+            Assert.False(result.Cleanup.WhenLocalReleased.IsCompleted);
+            Assert.Equal(GenerationProcessReason.Closed, (await runner.RunAsync(terminal.Options())).Reason);
+            Assert.NotNull(streams);
+            Assert.False(streams.InputPipe.CanWrite); Assert.False(streams.OutputPipe.CanRead); Assert.True(streams.ErrorPipe.CanRead);
+            held.Release.TrySetResult();
+            await Done(result.Cleanup.WhenLocalReleased);
+            streams.AssertDisposed();
+            Assert.Equal(GenerationCleanupState.Quarantined, result.Cleanup.State);
+            Assert.Equal(GenerationProcessReason.Closed, (await runner.RunAsync(terminal.Options())).Reason);
+            await Done(runner.CloseAsync());
+        }
+        finally { fault.Release.TrySetResult(); held.Release.TrySetResult(); await terminal.DisposeAsync(); streams?.Dispose(); }
     }
 
     [Fact]
