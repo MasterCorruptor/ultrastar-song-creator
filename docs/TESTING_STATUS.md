@@ -131,3 +131,6 @@ Historisk forberedelsescheckpoint: G1B var kun [prosessforberedelse til review](
 
 ## G1B accepted local process foundation
 [Generation process report](PHASE4_GENERATION_PROCESS_CHECKPOINT.md): testedf6524d9c4134ea203d50fc3844e3f089c646e9b7,1118/1118 Windows (49 process cases), zero skipped; locked restore/Release0warnings/format passed. Pending/Quarantined ownership and terminal fixtures only. SUPERVISOR accepted reviewed7da57a6/testedf6524d9 including P2. Linux terminal smoke and product workflow remain outstanding. main16b9c18 unchanged; accepted local checkpoint, no publication. [Completed plan](exec-plans/completed/phase4-generation-process.md). No new suite for documentation closure.
+
+## Generation foundation - local integration prepared
+[Integration report/inventory](PHASE4_GENERATION_FOUNDATION_INTEGRATION.md) and [local PR draft](PHASE4_GENERATION_FOUNDATION_PR_DRAFT.md) collect accepted G1A/G1B and PR22 docs closure on work/phase4-generation-foundation-integration.230 files match testedf6524d9 byte-for-byte;1118 Windows is reused evidence, no new suite on docs HEAD. Main16b9c18 unchanged. STOP for exact-head SUPERVISOR review before remote action.
