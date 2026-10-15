@@ -21,4 +21,6 @@ Controlled terminal fixtures/private pipe handshakes and owned child handles; ga
 Targeted tests, coherent code commit, locked restore/Release0warnings/full Windows/format, original master/ADRs/protected bytes/refs/locks/privacy/vendor/inventory/docs/whitespace. Actual tested SHA/final HEAD/ignored evidence paths; STOP FOR SUPERVISOR REVIEW. No pipeline/staging/codec/Python/JSON/model/GUI/schema/cache/network/native app/remote/main update/next worker.
 
 ## Verified local checkpoint
-Tested9780cb30a54ef26a6328ac689f8741083784e96e:41 new terminal cases;1110/1110 full Windows, zero skipped; locked restore/Release0warnings/format passed. [Report and remaining limits](PHASE4_GENERATION_PROCESS_CHECKPOINT.md). All old locks and220 protected files preserved; no test-lock graph change was needed. No publication/main update or next stage.
+Testedf6524d9c4134ea203d50fc3844e3f089c646e9b7:49 process cases;1118/1118 full Windows, zero skipped; locked restore/Release0warnings/format passed. [Report and remaining limits](PHASE4_GENERATION_PROCESS_CHECKPOINT.md). All old locks and220 protected files preserved; no test-lock graph change was needed. No publication/main update or next stage.
+
+P2 ownership correction: capture/explicitly dispose all redirected wrappers/base streams before release, including completed readers. Independent close tasks retain Pending/quarantine when uncertain; natural EOF remains separate.8 regressions added; no further project metadata or lock change.

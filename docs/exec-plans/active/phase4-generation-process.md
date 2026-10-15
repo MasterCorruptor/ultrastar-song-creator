@@ -9,6 +9,8 @@ Base11684fd; work/phase4-generation-process; one implementer Sol High requested,
 No codec/JSON/Python/staging/models/GUI or publication. If actual platform semantics invalidate the contract, stop that portion with minimal proposal.
 
 ## Actual checkpoint / restart anchor
-Active order remains phase4-generation-process, not historical A/PR21 publication. APIbaseline8aa718d; tested code9780cb30a54ef26a6328ac689f8741083784e96e. Steps1-4 complete:41 new process tests,1110/1110 full Windows, locked restore, Release0warnings, format and protected/master/lock/inventory/privacy/vendor/link/whitespace checks. [Durable report](../../PHASE4_GENERATION_PROCESS_CHECKPOINT.md). Pending5: SUPERVISOR review; no next stage or remote/main action. Keep this plan active until acceptance. Logs remain in ignored .agent-local/phase1/continuation/g1b-*.
+Active order remains phase4-generation-process, not historical A/PR21 publication. APIbaseline8aa718d; tested codef6524d9c4134ea203d50fc3844e3f089c646e9b7. Steps1-4 complete:49 process tests,1118/1118 full Windows, locked restore, Release0warnings, format and protected/master/lock/inventory/privacy/vendor/link/whitespace checks. [Durable report](../../PHASE4_GENERATION_PROCESS_CHECKPOINT.md). Pending5: SUPERVISOR review; no next stage or remote/main action. Keep this plan active until acceptance. Logs remain in ignored .agent-local/phase1/continuation/g1b-*.
 
 Handoff: short callback rejected by automatic approval review; recorded in the report and own chat. No retry/alternate route; review stop remains in effect.
+
+P2 REQUEST_FIX completed locally: explicit ownership/disposal of accessed wrappers and base streams on all paths;8 added regressions including actual disposed-state, reuse and independent stalled/faulted pipe cleanup. Corrected codef6524d9/1118Windows. Prior41/1110 did not prove pipe disposal. Report logs use g1b-p2-*; no callback retry, no next stage. STOP FOR SUPERVISOR REVIEW.
