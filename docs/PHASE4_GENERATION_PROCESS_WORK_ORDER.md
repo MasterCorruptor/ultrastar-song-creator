@@ -1,5 +1,5 @@
 # G1B generation process — implementation baseline
-STATUS: IMPLEMENTING. MEDIUM/LARGE / SEQUENTIAL / one implementer; Sol High requested, actual runtime model/reasoning unknown.
+STATUS: CHECKPOINT / STOP FOR SUPERVISOR REVIEW. MEDIUM/LARGE / SEQUENTIAL / one implementer; Sol High requested, actual runtime model/reasoning unknown.
 BASE11684fd0cf2fbb010d4a938c092df091c9f97e0c; work/phase4-generation-process. Main16b9c18 and original refs preserved.
 [Frozen semantics](PHASE4_GENERATION_PROCESS_PREPARATION.md) governs leaf-only usage, exact reason priority, permanent quarantine and independent local-release ownership.
 
@@ -19,3 +19,6 @@ NEW Generation/GenerationProcess.cs (small internal types/hooks in same file), N
 Controlled terminal fixtures/private pipe handshakes and owned child handles; gates/manual TimeProvider, no sleeps. Cover literal arguments/CWD/closed stdin/opaque bytes/exact caps/floods/nonzero/hang; cancellation/close/limit/pipe/deadline priority and atomic late publication; Busy/invalid/reuse/repeated close; inherited writer/root-before-EOF/eventual release/permanent quarantine; detached descendant limitation; start/kill/read/dispose stalls/fault observation with same production coordinator and safe fixture cleanup.
 
 Targeted tests, coherent code commit, locked restore/Release0warnings/full Windows/format, original master/ADRs/protected bytes/refs/locks/privacy/vendor/inventory/docs/whitespace. Actual tested SHA/final HEAD/ignored evidence paths; STOP FOR SUPERVISOR REVIEW. No pipeline/staging/codec/Python/JSON/model/GUI/schema/cache/network/native app/remote/main update/next worker.
+
+## Verified local checkpoint
+Tested9780cb30a54ef26a6328ac689f8741083784e96e:41 new terminal cases;1110/1110 full Windows, zero skipped; locked restore/Release0warnings/format passed. [Report and remaining limits](PHASE4_GENERATION_PROCESS_CHECKPOINT.md). All old locks and220 protected files preserved; no test-lock graph change was needed. No publication/main update or next stage.

@@ -128,3 +128,6 @@ Ved testet6e0ef34 består69nye/1069totale Windows-tester (Core871,Audio17,Deskto
 G1A er sluttgodkjent av SUPERVISOR ved23b8591/testet6e0ef34,69nye/1069Windows, uten actionable funn. [Avsluttet kontraktrapport](exec-plans/completed/phase4-preprocessing-contract.md). Dette er bare ren in-memory/lexical kontraktakseptanse; ingen ny suite ved docsclosure, ingen fil/hash/prosess/backendverifikasjon. G1B forberedes separat uten implementasjon.
 
 G1B er kun [prosessforberedelse til review](PHASE4_GENERATION_PROCESS_PREPARATION.md), ingen runnerkode eller ny suite. Forslaget begrenser til betrodde leaf-prosesser og skiller root-exit/EOF/lokal ressursfrigjøring fra etterkommergaranti, med bounded cleanup-forsøk og holdt admission/arbeidsmappe ved pending/quarantine. Offisiell .NET10-dokumentasjon er kontrollert; ingen ny terminal/runtime/native/Linux-akseptanse påstås.
+
+## G1B local process checkpoint
+[Generation process report](PHASE4_GENERATION_PROCESS_CHECKPOINT.md): tested9780cb30a54ef26a6328ac689f8741083784e96e,1110/1110 Windows (41 new process cases), zero skipped; locked restore/Release0warnings/format passed. Pending/Quarantined ownership and terminal fixtures only. Linux terminal smoke, product workflow and SUPERVISOR acceptance remain outstanding. main16b9c18 unchanged; local review checkpoint, no publication.
